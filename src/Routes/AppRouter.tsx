@@ -6,11 +6,11 @@ function AppRouter() {
   return (
     <BrowserRouter>
       <Routes>
-        <Route path="/" element={<Login />}/>
-        <Route/>
+        <Route path="/" element={<Login />} />
+        <Route />
       </Routes>
     </BrowserRouter>
   );
 }
 
-export default AppRouter
+export default AppRouter;
