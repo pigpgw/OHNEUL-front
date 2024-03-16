@@ -1,15 +1,17 @@
 import React from 'react';
 import styled from 'styled-components';
-import '../fonts/font.css';
+import '../Fonts/font.css';
+import { Link } from 'react-router-dom';
 import { IoPersonOutline } from 'react-icons/io5';
 import { BsCoin } from 'react-icons/bs';
-import appLogo from '../assets/images/appLogo.png';
+import appLogo from '../Assets/Images/appLogo.png';
 
 const HeaderContainer = styled.div`
   display: flex;
   margin-top: 10px;
   justify-content: space-between;
   align-items: center;
+  width: 100%;
 `;
 
 const LogoContainer = styled.div`

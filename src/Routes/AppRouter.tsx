@@ -1,9 +1,9 @@
 import React from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
-import Login from 'pages/Login';
-import Favorite from 'pages/Favorite';
-import Mood from 'pages/Mood';
-import Home from 'pages/Home';
+import Login from 'Pages/Login';
+import Favorite from 'Pages/Favorite';
+import Mood from 'Pages/Mood';
+import Home from 'Pages/Home';
 
 function AppRouter() {
   return (
