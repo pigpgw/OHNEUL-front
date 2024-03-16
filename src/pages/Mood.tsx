@@ -1,7 +1,7 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 
-function Favorite() {
+function Mood() {
   const navigate = useNavigate();
 
   const navigateMood = () => {
@@ -9,10 +9,10 @@ function Favorite() {
   }
   return (
     <>
-      <p>favorite page입니다.</p>
-      <button onClick={navigateMood}>기분 선택 완료</button>
+      <p>Mood page입니다.</p>
+      <button onClick={navigateMood}></button>
     </>
   );
 }
 
-export default Favorite;
+export default Mood;
