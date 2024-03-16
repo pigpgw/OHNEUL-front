@@ -58,7 +58,7 @@ const CashAmount = styled.p`
 `;
 
 const IconPerson = styled(IoPersonOutline)`
-  font-size: 33px;
+  font-size: 28px;
   margin: 10px 10px 5px 5px;
 `;
 
