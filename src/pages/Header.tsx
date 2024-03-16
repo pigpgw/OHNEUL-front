@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import '../Fonts/font.css';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { IoPersonOutline } from 'react-icons/io5';
 import { BsCoin } from 'react-icons/bs';
 import appLogo from '../Assets/Images/appLogo.png';
@@ -65,6 +65,10 @@ const IconPerson = styled(IoPersonOutline)`
 `;
 
 function Header() {
+  const navigate = useNavigate();
+  const goToMyPage = () => {
+    navigate('/mypage');
+  };
   return (
     <HeaderContainer>
       <LogoContainer>
@@ -76,7 +80,7 @@ function Header() {
           <CashIcon />
           <CashAmount>200</CashAmount>
         </CashContainer>
-        <IconPerson />
+        <IconPerson onClick={goToMyPage} />
       </InfoContainer>
     </HeaderContainer>
   );

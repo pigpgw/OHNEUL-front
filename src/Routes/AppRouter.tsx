@@ -14,6 +14,7 @@ function AppRouter() {
           <Route path="mood" element={<Mood />} />
         </Route>
         <Route path="/login" element={<Login />} />
+        <Route path='/mypage' element={<div>마이페이지</div>}/>
       </Routes>
     </BrowserRouter>
   );
