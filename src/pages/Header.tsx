@@ -50,8 +50,9 @@ const CashContainer = styled.div`
 `;
 
 const CashIcon = styled(BsCoin)`
-  font-size: 12px;
+  font-size: 16px;
   margin-right: 3px;
+  margin: 2px 5px;
 `;
 
 const CashAmount = styled.p`
