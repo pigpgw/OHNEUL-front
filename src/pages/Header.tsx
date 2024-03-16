@@ -1,6 +1,8 @@
 import React from 'react';
 import styled from 'styled-components';
 import '../fonts/font.css';
+import { IoPersonOutline } from 'react-icons/io5';
+import { BsCoin } from 'react-icons/bs';
 import appLogo from '../assets/images/appLogo.png';
 
 const HeaderContainer = styled.div`
@@ -32,6 +34,34 @@ const LogoTitle = styled.p`
   text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
 `;
 
+const InfoContainer = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-weight: 500;
+`;
+
+const CashContainer = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`;
+
+const CashIcon = styled(BsCoin)`
+  font-size: 12px;
+  margin-right: 3px;
+`;
+
+const CashAmount = styled.p`
+  font-size: 12px;
+  font-weight: 600;
+`;
+
+const IconPerson = styled(IoPersonOutline)`
+  font-size: 33px;
+  margin: 10px 10px 5px 5px;
+`;
+
 function Header() {
   return (
     <HeaderContainer>
@@ -39,6 +69,13 @@ function Header() {
         <LogoImage src={appLogo} alt="" />
         <LogoTitle>OHNEUL</LogoTitle>
       </LogoContainer>
+      <InfoContainer>
+        <CashContainer>
+          <CashIcon />
+          <CashAmount>200</CashAmount>
+        </CashContainer>
+        <IconPerson />
+      </InfoContainer>
     </HeaderContainer>
   );
 }
