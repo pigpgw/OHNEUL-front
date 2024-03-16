@@ -1,9 +1,10 @@
 import React from 'react';
 import styled from 'styled-components';
 import '../Fonts/font.css';
-import { Link, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { IoPersonOutline } from 'react-icons/io5';
 import { BsCoin } from 'react-icons/bs';
+import PropTypes from 'prop-types';
 import appLogo from '../Assets/Images/appLogo.png';
 
 const HeaderContainer = styled.div`
@@ -65,7 +66,11 @@ const IconPerson = styled(IoPersonOutline)`
   margin: 10px 10px 5px 5px;
 `;
 
-function Header() {
+interface HeaderProps {
+  onCashIconClick: () => void;
+}
+
+function Header({ onCashIconClick }: HeaderProps) {
   const navigate = useNavigate();
   const goToMyPage = () => {
     navigate('/mypage');
@@ -77,7 +82,7 @@ function Header() {
         <LogoTitle>OHNEUL</LogoTitle>
       </LogoContainer>
       <InfoContainer>
-        <CashContainer>
+        <CashContainer onClick={onCashIconClick}>
           <CashIcon />
           <CashAmount>200</CashAmount>
         </CashContainer>
@@ -86,5 +91,9 @@ function Header() {
     </HeaderContainer>
   );
 }
+
+Header.propTypes = {
+  onCashIconClick: PropTypes.func.isRequired
+};
 
 export default Header;

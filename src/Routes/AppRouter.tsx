@@ -4,10 +4,8 @@ import Login from 'Pages/Login';
 import Favorite from 'Pages/Favorite';
 import Mood from 'Pages/Mood';
 import Home from 'Pages/Home';
-import CoinShopModal from 'Components/Shop/CoinShopModal';
 
 function AppRouter() {
-
 
   return (
     <BrowserRouter>
@@ -19,7 +17,6 @@ function AppRouter() {
         <Route path="/login" element={<Login />} />
         <Route path='/mypage' element={<div>마이페이지</div>}/>
       </Routes>
-      <CoinShopModal />
   
     </BrowserRouter>
   );
