@@ -68,44 +68,42 @@
     ]
   ],
   "hobby": [
-    [
-      {
-        "hobby_id": 1,
-        "hobby": "운동"
-      },
-      {
-        "hobby_id": 2,
-        "hobby": "독서"
-      },
-      {
-        "hobby_id": 3,
-        "hobby": "영화"
-      },
-      {
-        "hobby_id": 4,
-        "hobby": "게임"
-      },
-      {
-        "hobby_id": 5,
-        "hobby": "보드게임"
-      },
-      {
-        "hobby_id": 6,
-        "hobby": "드라이브"
-      },
-      {
-        "hobby_id": 7,
-        "hobby": "춤"
-      },
-      {
-        "hobby_id": 8,
-        "hobby": "요리"
-      },
-      {
-        "hobby_id": 9,
-        "hobby": "노래"
-      }
-    ]
+    {
+      "hobby_id": 1,
+      "hobby": "운동"
+    },
+    {
+      "hobby_id": 2,
+      "hobby": "독서"
+    },
+    {
+      "hobby_id": 3,
+      "hobby": "영화"
+    },
+    {
+      "hobby_id": 4,
+      "hobby": "게임"
+    },
+    {
+      "hobby_id": 5,
+      "hobby": "보드게임"
+    },
+    {
+      "hobby_id": 6,
+      "hobby": "드라이브"
+    },
+    {
+      "hobby_id": 7,
+      "hobby": "춤"
+    },
+    {
+      "hobby_id": 8,
+      "hobby": "요리"
+    },
+    {
+      "hobby_id": 9,
+      "hobby": "노래"
+    }
   ],
   "user-hobby": [
     [
