@@ -1,0 +1,122 @@
+{
+  "users": [
+    [
+      {
+        "user_id": 2,
+        "username": "강수진",
+        "phone": "010-4762-1402",
+        "birth": "1997-07-29T15:00:00.000Z",
+        "gender": "여",
+        "score": 5,
+        "coin": 1500,
+        "hobby_id": 1,
+        "mood_id": 1,
+        "theme_id": 1
+      },
+      {
+        "user_id": 3,
+        "username": "강수진",
+        "phone": "111-2222-3333",
+        "birth": "1234-01-01T15:32:08.000Z",
+        "gender": "여",
+        "score": 5,
+        "coin": 1500,
+        "hobby_id": 1,
+        "mood_id": 1,
+        "theme_id": 1
+      }
+    ]
+  ],
+  "moods": [
+    {
+      "mood_id": 8,
+      "mood": "알빠노?",
+      "id": "ec64"
+    },
+    {
+      "mood_id": 9,
+      "mood": "심심해요 :(",
+      "id": "3a9d"
+    }
+  ],
+  "theme": [
+    [
+      {
+        "theme_id": 4,
+        "theme": "좋은 사람 만나고 싶어요!"
+      },
+      {
+        "theme_id": 5,
+        "theme": "연애상담을 하고싶어요!"
+      },
+      {
+        "theme_id": 6,
+        "theme": "커리어이야기를 해요!"
+      },
+      {
+        "theme_id": 7,
+        "theme": "아무 이야기나 해요!"
+      },
+      {
+        "theme_id": 8,
+        "theme": "게임 할 사람 구해요!"
+      },
+      {
+        "theme_id": 9,
+        "theme": "같이 롤 할 사람 구해요!"
+      }
+    ]
+  ],
+  "hobby": [
+    [
+      {
+        "hobby_id": 2,
+        "hobby": "사회"
+      },
+      {
+        "hobby_id": 3,
+        "hobby": "영화"
+      },
+      {
+        "hobby_id": 4,
+        "hobby": "취업"
+      },
+      {
+        "hobby_id": 5,
+        "hobby": "자연"
+      },
+      {
+        "hobby_id": 6,
+        "hobby": "과학"
+      },
+      {
+        "hobby_id": 7,
+        "hobby": "연애"
+      },
+      {
+        "hobby_id": 8,
+        "hobby": "요리"
+      },
+      {
+        "hobby_id": 9,
+        "hobby": "개발아니고 새발"
+      }
+    ]
+  ],
+  "user-hobby": [
+    [
+      {
+        "user_hobby_id": 1,
+        "user_id": 1,
+        "hobby_id": 8,
+        "username": "이루시"
+      },
+      {
+        "user_hobby_id": 2,
+        "user_id": 1,
+        "hobby_id": 7,
+        "username": "이루시"
+      }
+    ]
+  ]
+}
