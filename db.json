@@ -70,8 +70,12 @@
   "hobby": [
     [
       {
+        "hobby_id": 1,
+        "hobby": "운동"
+      },
+      {
         "hobby_id": 2,
-        "hobby": "사회"
+        "hobby": "독서"
       },
       {
         "hobby_id": 3,
@@ -79,19 +83,19 @@
       },
       {
         "hobby_id": 4,
-        "hobby": "취업"
+        "hobby": "게임"
       },
       {
         "hobby_id": 5,
-        "hobby": "자연"
+        "hobby": "보드게임"
       },
       {
         "hobby_id": 6,
-        "hobby": "과학"
+        "hobby": "드라이브"
       },
       {
         "hobby_id": 7,
-        "hobby": "연애"
+        "hobby": "춤"
       },
       {
         "hobby_id": 8,
@@ -99,7 +103,7 @@
       },
       {
         "hobby_id": 9,
-        "hobby": "개발아니고 새발"
+        "hobby": "노래"
       }
     ]
   ],
