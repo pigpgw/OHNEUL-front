@@ -10,6 +10,7 @@ import {
   SubmitBtn,
   MarginTag,
 } from 'Components/Common/Tag';
+import { useNavigate } from 'react-router-dom';
 
 interface Hobby {
   hobby_id: number;
@@ -20,6 +21,9 @@ interface Hobby {
 function Hobby() {
   const queryClient = useQueryClient();
   const [hobby, setHobby] = useState<Hobby[]>([]);
+  const userSelectHobby = hobby
+    .filter((item) => item.clicked === true)
+    .map((item) => item.hobby_id);
 
   useEffect(() => {
     async function getFbData(): Promise<void> {
@@ -56,12 +60,17 @@ function Hobby() {
     // return axios.post('http://localhost:3000/user-hobby/join')
   };
 
-  const {mutateAsync: addHobbyMutation} = useMutation({
+  const { mutateAsync: addHobbyMutation } = useMutation({
     mutationFn: addUserHobby,
-    onSuccess: ()=> {
-      console.log('post user select hobby')
-    }
+    onSuccess: () => {
+      console.log('post user select hobby');
+    },
   });
+
+  const navigate = useNavigate();
+  function navigateTitle() {
+    navigate('/mood');
+  }
 
   return (
     <Container>
@@ -79,16 +88,25 @@ function Hobby() {
       </ItemContainer>
       <InfoText>최소 1개, 최대 3개만 선택 가능</InfoText>
       <MarginTag margin={50}></MarginTag>
-      <SubmitBtn onClick={async () => {
-        try {
-          await addUserHobby({
-            user_id:23,
-            hobby_id:[1,2]
-          })
-        } catch (e) {
-         console.error(e)
-        }
-      }}>선택 완료</SubmitBtn>
+      <SubmitBtn
+        onClick={async () => {
+          try {
+            if (userSelectHobby.length === 0) {
+              alert('최소 하나 이상 골라주세용');
+              return;
+            }
+            await addHobbyMutation({
+              user_id: 23,
+              hobby_id: userSelectHobby,
+            });
+            navigateTitle();
+          } catch (e) {
+            console.error(e);
+          }
+        }}
+      >
+        선택 완료
+      </SubmitBtn>
     </Container>
   );
 }
