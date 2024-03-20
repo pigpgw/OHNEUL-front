@@ -4,7 +4,8 @@ import {
   InfoText,
   Container,
   Title,
-  ItemContainer,
+  ThemeItemContainer,
+  ThemeItemBtn,
   SubmitBtn,
   MarginTag,
 } from 'Components/Common/Tag';
@@ -28,7 +29,7 @@ function Theme() {
   });
 
   const [theme, setTheme] = useState<Themes[]>([]);
-  const userSelectMood = theme
+  const userSelectTheme = theme
     .filter((item) => item.clicked === true)
     .map((item) => item.theme)[0];
 
@@ -47,15 +48,13 @@ function Theme() {
     );
   };
 
-  //   const handleSubmit = () => {
-  //     if (userSelectMood) {
-  //       addUserMood({
-  //         mood: userSelectMood,
-  //       });
-  //     } else {
-  //       console.log('Please select a mood before submitting.');
-  //     }
-  //   };
+    const handleSubmit = () => {
+      if (userSelectTheme) {
+        console.log('유저가 선택한 주제',userSelectTheme)
+      } else {
+        console.log('Please select a mood before submitting.');
+      }
+    };
 
   if (isLoading) return <div>mood data 가져오는 중입니다.</div>;
   if (isError) return <div>mood data 가져오기 실패</div>;
@@ -64,20 +63,20 @@ function Theme() {
     <>
       <Container>
         <Title>오늘 당신은?</Title>
-        <ItemContainer>
+        <ThemeItemContainer>
           {theme?.map((item) => (
-            <ItemBtn
+            <ThemeItemBtn
               key={item.theme_id}
               onClick={() => clickBtn(item.theme_id)}
               clicked={item.clicked}
             >
               {item.theme}
-            </ItemBtn>
+            </ThemeItemBtn>
           ))}
-        </ItemContainer>
+        </ThemeItemContainer>
         <InfoText>최대 1개만 선택 가능합니다.</InfoText>
         <MarginTag margin={50}></MarginTag>
-        {/* <SubmitBtn onClick={handleSubmit}>선택 완료</SubmitBtn> */}
+        <SubmitBtn onClick={handleSubmit}>선택 완료</SubmitBtn>
       </Container>
     </>
   );
