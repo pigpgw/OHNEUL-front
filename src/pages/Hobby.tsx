@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { useQuery, useMutation, useQueryClient } from 'react-query';
 import axios from 'axios';
 import {
   ItemBtn,
@@ -17,6 +18,7 @@ interface Hobby {
 }
 
 function Hobby() {
+  const queryClient = useQueryClient();
   const [hobby, setHobby] = useState<Hobby[]>([]);
 
   useEffect(() => {
@@ -37,6 +39,30 @@ function Hobby() {
     );
   };
 
+  interface UserHobby {
+    user_id: number;
+    hobby_id: number[];
+  }
+
+  interface AddUserHobbyResponse {
+    message: string;
+    data: UserHobby;
+  }
+
+  const addUserHobby = (
+    userHobby: UserHobby,
+  ): Promise<AddUserHobbyResponse> => {
+    return axios.post('http://localhost:3000/user-hobby', userHobby);
+    // return axios.post('http://localhost:3000/user-hobby/join')
+  };
+
+  const {mutateAsync: addHobbyMutation} = useMutation({
+    mutationFn: addUserHobby,
+    onSuccess: ()=> {
+      console.log('post user select hobby')
+    }
+  });
+
   return (
     <Container>
       <Title>평소 당신은?</Title>
@@ -53,7 +79,16 @@ function Hobby() {
       </ItemContainer>
       <InfoText>최소 1개, 최대 3개만 선택 가능</InfoText>
       <MarginTag margin={50}></MarginTag>
-      <SubmitBtn>선택 완료</SubmitBtn>
+      <SubmitBtn onClick={async () => {
+        try {
+          await addUserHobby({
+            user_id:23,
+            hobby_id:[1,2]
+          })
+        } catch (e) {
+         console.error(e)
+        }
+      }}>선택 완료</SubmitBtn>
     </Container>
   );
 }

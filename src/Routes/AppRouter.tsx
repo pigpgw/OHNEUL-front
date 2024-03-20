@@ -1,7 +1,7 @@
 import React from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import Login from 'Pages/Login';
-import Favorite from 'Pages/Favorite';
+import Favorite from 'Pages/Hobby';
 import Mood from 'Pages/Mood';
 import Home from 'Pages/Home';
 
