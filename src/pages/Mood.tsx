@@ -45,20 +45,12 @@ function Mood() {
           : { ...item, clicked: false },
       ),
     );
-    console.log('check mood clicked', userSelectMood);
   };
 
   const { mutate: addUserMood } = useAddUserMoodMutation();
 
-  // const handleSubmit = async () => {
-  //   try {
-  //     // await addUserMood
-
-  //   }
-  // }
-
   const handleSubmit = () => {
-    if (userSelectMood) { // Make sure a mood is selected
+    if (userSelectMood) { 
       addUserMood({
         mood:userSelectMood
       });
