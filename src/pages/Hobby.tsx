@@ -11,6 +11,7 @@ import {
   MarginTag,
 } from 'Components/Common/Tag';
 import { useNavigate } from 'react-router-dom';
+import { useAddUserHobby } from '../hooks/useAddUserHobby';
 
 interface Hobby {
   hobby_id: number;
@@ -43,29 +44,7 @@ function Hobby() {
     );
   };
 
-  interface UserHobby {
-    user_id: number;
-    hobby_id: number[];
-  }
-
-  interface AddUserHobbyResponse {
-    message: string;
-    data: UserHobby;
-  }
-
-  const addUserHobby = (
-    userHobby: UserHobby,
-  ): Promise<AddUserHobbyResponse> => {
-    return axios.post('http://localhost:3000/user-hobby', userHobby);
-    // return axios.post('http://localhost:3000/user-hobby/join')
-  };
-
-  const { mutateAsync: addHobbyMutation } = useMutation({
-    mutationFn: addUserHobby,
-    onSuccess: () => {
-      console.log('post user select hobby');
-    },
-  });
+  const { mutate: addUserHobby } = useAddUserHobby();
 
   const navigate = useNavigate();
   function navigateTitle() {
@@ -91,11 +70,11 @@ function Hobby() {
       <SubmitBtn
         onClick={async () => {
           try {
-            if (userSelectHobby.length === 0) {
-              alert('최소 하나 이상 골라주세용');
+            if (userSelectHobby.length >= 0 || userSelectHobby.length === 0) {
+              alert('취미는 1개 ~ 3개만 골라주세용');
               return;
             }
-            await addHobbyMutation({
+            await addUserHobby({
               user_id: 23,
               hobby_id: userSelectHobby,
             });
