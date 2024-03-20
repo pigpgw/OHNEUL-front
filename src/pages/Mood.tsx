@@ -12,18 +12,18 @@ import { useQuery } from 'react-query';
 import { fetchGetMood } from 'api/fetchMood';
 import { useAddUserMoodMutation } from '../hooks/useUserMoodMutation';
 
-function Mood() {
-  interface MoodTs {
-    mood_id: number;
-    mood: string;
-    clicked?: boolean;
-  }
+interface MoodTs {
+  mood_id: number;
+  mood: string;
+  clicked?: boolean;
+}
 
+function Mood() {
   const {
     data: availableMoods,
     isLoading,
     isError,
-  } = useQuery(['get-mood'], fetchGetMood, {
+  } = useQuery<MoodTs[], Error>(['get-mood'], fetchGetMood, {
     onSuccess: () => console.log('mood data 가져오기 성공'),
     onError: () => console.log('mood data 가져오기 실패'),
   });
@@ -50,14 +50,14 @@ function Mood() {
   const { mutate: addUserMood } = useAddUserMoodMutation();
 
   const handleSubmit = () => {
-    if (userSelectMood) { 
+    if (userSelectMood) {
       addUserMood({
-        mood:userSelectMood
+        mood: userSelectMood,
       });
     } else {
-      console.log("Please select a mood before submitting.");
+      console.log('Please select a mood before submitting.');
     }
-  }
+  };
 
   if (isLoading) return <div>mood data 가져오는 중입니다.</div>;
   if (isError) return <div>mood data 가져오기 실패</div>;
