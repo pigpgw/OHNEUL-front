@@ -17,7 +17,7 @@ const addUserHobby = (userHobby: UserHobby): Promise<AddUserHobbyResponse> => {
   // return axios.post('http://localhost:3000/user-hobby/join')
 };
 
-export const useAddUserHobby = () => {
+export const useAddUserHobbyMutation = () => {
     const queryClient = useQueryClient()
     return useMutation(addUserHobby,{
         onSuccess: () => {
