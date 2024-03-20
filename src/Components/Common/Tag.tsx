@@ -57,6 +57,6 @@ export const SubmitBtn = styled.button`
   border: 0;
 `;
 
-export const MarginTag = styled.div<{margin?:number | null}>`
-margin: ${(props) => (props.margin !== null ? `${props.margin}px` : '0px')}
-`
+export const MarginTag = styled.div<{ margin?: number | null }>`
+  margin: ${(props) => (props.margin !== null ? `${props.margin}px` : '0px')};
+`;
