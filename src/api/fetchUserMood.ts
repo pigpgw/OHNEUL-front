@@ -6,6 +6,6 @@ interface Mood {
 }
 
 export const fetchAddUserMood = async (userMood: Mood): Promise<Mood> => {
-  return axios.post('http://localhost:3000/moods', userMood);
+  return axios.post('https://jsonplaceholder.typicode.com/posts', userMood);
   // http://localhost:3000/moods/join
 };

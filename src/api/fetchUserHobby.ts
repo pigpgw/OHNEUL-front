@@ -28,6 +28,6 @@ export const fetchGetHobbys = async (): Promise<Hobby[]> => {
 export const fetchAddUserHobby = (
   userHobby: UserHobby,
 ): Promise<AddUserHobbyResponse> => {
-  return axios.post('http://localhost:3000/user-hobby', userHobby);
+  return axios.post('https://jsonplaceholder.typicode.com/posts', userHobby);
   // return axios.post('http://localhost:3000/user-hobby/join')
 };
