@@ -10,7 +10,7 @@ import {
 } from 'Components/Common/Tag';
 import { useNavigate } from 'react-router-dom';
 import { useQuery } from 'react-query';
-import { fetchGetOneUser } from 'api/fetchOneUser';
+import useCheckHobbiesAndNavigate from 'hooks/useCheckHobbiesAndNavigateHook';
 import { useAddUserHobbyMutation } from '../hooks/useUserHobbyMutation';
 import { fetchGetHobbys } from '../api/fetchHobby';
 
@@ -21,22 +21,8 @@ interface Hobby {
 }
 
 function Hobby() {
-  useEffect(() => {
-    async function fetchData() {
-      try {
-        const user = await fetchGetOneUser();
-        const hasHobbies = user.hobbies.length > 0;
-        console.log('Fetched user data:', user);
-        if (hasHobbies) {
-          navigate('/mood');
-        }
-      } catch (error) {
-        console.log('error get user data:', error);
-      }
-    }
-    fetchData();
-  }, []);
-  
+  useCheckHobbiesAndNavigate(); 
+
   const [hobby, setHobby] = useState<Hobby[]>([]);
   const userSelectHobby = hobby
     .filter((item) => item.clicked === true)
