@@ -1,5 +1,5 @@
 /* eslint-disable import/prefer-default-export */
-import { useQuery, useMutation, useQueryClient } from 'react-query';
+import { useMutation, } from 'react-query';
 import axios from 'axios';
 
 interface UserHobby {
@@ -18,7 +18,6 @@ const addUserHobby = (userHobby: UserHobby): Promise<AddUserHobbyResponse> => {
 };
 
 export const useAddUserHobbyMutation = () => {
-    const queryClient = useQueryClient()
     return useMutation(addUserHobby,{
         onSuccess: () => {
             console.log('사용자 취미 등록 완료')
