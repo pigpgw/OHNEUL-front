@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react';
 import {
-  ItemBtn,
   InfoText,
   Container,
   Title,
@@ -23,9 +22,9 @@ function Theme() {
     data: availableThemes,
     isLoading,
     isError,
-  } = useQuery<Themes[], Error>(['get-mood'], fetchGetThemes, {
-    onSuccess: () => console.log('mood data 가져오기 성공'),
-    onError: () => console.log('mood data 가져오기 실패'),
+  } = useQuery<Themes[], Error>(['get-theme'], fetchGetThemes, {
+    onSuccess: () => console.log('theme data 가져오기 성공'),
+    onError: () => console.log('theme data 가져오기 실패'),
   });
 
   const [theme, setTheme] = useState<Themes[]>([]);
@@ -52,12 +51,12 @@ function Theme() {
       if (userSelectTheme) {
         console.log('유저가 선택한 주제',userSelectTheme)
       } else {
-        console.log('Please select a mood before submitting.');
+        console.log('Please select a theme before submitting.');
       }
     };
 
-  if (isLoading) return <div>mood data 가져오는 중입니다.</div>;
-  if (isError) return <div>mood data 가져오기 실패</div>;
+  if (isLoading) return <div>theme data 가져오는 중입니다.</div>;
+  if (isError) return <div>theme data 가져오기 실패</div>;
 
   return (
     <>

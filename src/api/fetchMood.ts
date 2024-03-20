@@ -14,5 +14,3 @@ export const fetchGetMood = async ():Promise<Mood[]> => {
     throw new Error('mood data를 가져오는데 실패했습니다.')
   }
 };
-
-

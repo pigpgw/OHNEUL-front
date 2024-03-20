@@ -10,8 +10,9 @@ import {
 } from 'Components/Common/Tag';
 import { useNavigate } from 'react-router-dom';
 import { useQuery } from 'react-query';
+import { fetchGetOneUser } from 'api/fetchOneUser';
 import { useAddUserHobbyMutation } from '../hooks/useUserHobbyMutation';
-import { fetchGetHobbys } from '../api/fetchUserHobby';
+import { fetchGetHobbys } from '../api/fetchHobby';
 
 interface Hobby {
   hobby_id: number;
@@ -20,6 +21,22 @@ interface Hobby {
 }
 
 function Hobby() {
+  useEffect(() => {
+    async function fetchData() {
+      try {
+        const user = await fetchGetOneUser();
+        const hasHobbies = user.hobbies.length > 0;
+        console.log('Fetched user data:', user);
+        if (hasHobbies) {
+          navigate('/mood');
+        }
+      } catch (error) {
+        console.log('error get user data:', error);
+      }
+    }
+    fetchData();
+  }, []);
+  
   const [hobby, setHobby] = useState<Hobby[]>([]);
   const userSelectHobby = hobby
     .filter((item) => item.clicked === true)
@@ -62,7 +79,6 @@ function Hobby() {
       navigate('/mood');
     } catch (e) {
       alert('오류가 발생했습니다. 나중에 다시 시도해주세요.');
-      console.error(e);
     }
   };
 
