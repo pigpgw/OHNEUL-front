@@ -10,7 +10,7 @@ import {
 } from 'Components/Common/Tag';
 import { useNavigate } from 'react-router-dom';
 import { useQuery } from 'react-query';
-import { useAddUserHobbyMutation } from '../hooks/useAddUserHobbyMutation';
+import { useAddUserHobbyMutation } from '../hooks/useUserHobbyMutation';
 import { fetchGetHobbys } from '../api/fetchUserHobby';
 
 interface Hobby {

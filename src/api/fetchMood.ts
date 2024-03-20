@@ -6,7 +6,7 @@ interface Mood {
   mood: string;
 }
 
-export const fetchMood = async ():Promise<Mood[]> => {
+export const fetchGetMood = async ():Promise<Mood[]> => {
   try {
     const response = await axios.get('http://localhost:3000/moods');
     return response.data;
@@ -15,7 +15,4 @@ export const fetchMood = async ():Promise<Mood[]> => {
   }
 };
 
-// {
-//   "mood_id": 8,
-//   "mood": "알빠노?"
-// },
+
