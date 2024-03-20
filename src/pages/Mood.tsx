@@ -10,6 +10,7 @@ import {
 } from 'Components/Common/Tag';
 import { useQuery } from 'react-query';
 import { fetchGetMood } from 'api/fetchMood';
+import { useNavigate } from 'react-router-dom';
 import { useAddUserMoodMutation } from '../hooks/useUserMoodMutation';
 
 interface MoodTs {
@@ -48,12 +49,14 @@ function Mood() {
   };
 
   const { mutate: addUserMood } = useAddUserMoodMutation();
+  const navigate = useNavigate();
 
   const handleSubmit = () => {
     if (userSelectMood) {
       addUserMood({
         mood: userSelectMood,
       });
+      navigate('/theme')
     } else {
       console.log('Please select a mood before submitting.');
     }
