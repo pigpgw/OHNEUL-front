@@ -8,5 +8,6 @@ interface Themes {
 
 export const fetchGetThemes = async ():Promise<Themes[]> => {
   const response = await axios.get('http://localhost:3000/theme');
+  console.log('check theme',response.data)
   return response.data;
 };

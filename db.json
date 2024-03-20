@@ -327,7 +327,7 @@
       "mood": "별로에요"
     },
     {
-      "mood_id":7,
+      "mood_id": 7,
       "mood": "그냥그려요"
     },
     {
@@ -340,32 +340,30 @@
     }
   ],
   "theme": [
-    [
-      {
-        "theme_id": 4,
-        "theme": "좋은 사람 만나고 싶어요!"
-      },
-      {
-        "theme_id": 5,
-        "theme": "연애상담을 하고싶어요!"
-      },
-      {
-        "theme_id": 6,
-        "theme": "커리어이야기를 해요!"
-      },
-      {
-        "theme_id": 7,
-        "theme": "아무 이야기나 해요!"
-      },
-      {
-        "theme_id": 8,
-        "theme": "게임 할 사람 구해요!"
-      },
-      {
-        "theme_id": 9,
-        "theme": "같이 롤 할 사람 구해요!"
-      }
-    ]
+    {
+      "theme_id": 4,
+      "theme": "좋은 사람 만나고 싶어요!"
+    },
+    {
+      "theme_id": 5,
+      "theme": "연애상담을 하고싶어요!"
+    },
+    {
+      "theme_id": 6,
+      "theme": "커리어이야기를 해요!"
+    },
+    {
+      "theme_id": 7,
+      "theme": "아무 이야기나 해요!"
+    },
+    {
+      "theme_id": 8,
+      "theme": "게임 할 사람 구해요!"
+    },
+    {
+      "theme_id": 9,
+      "theme": "같이 롤 할 사람 구해요!"
+    }
   ],
   "hobby": [
     {
@@ -417,66 +415,42 @@
   "user-hobby": [
     {
       "user_id": 23,
-      "hobby_id": [
-        1,
-        2
-      ],
+      "hobby_id": [1, 2],
       "id": "f482"
     },
     {
       "user_id": 23,
-      "hobby_id": [
-        1,
-        2
-      ],
+      "hobby_id": [1, 2],
       "id": "5533"
     },
     {
       "user_id": 23,
-      "hobby_id": [
-        1,
-        2
-      ],
+      "hobby_id": [1, 2],
       "id": "298b"
     },
     {
       "user_id": 23,
-      "hobby_id": [
-        1,
-        2
-      ],
+      "hobby_id": [1, 2],
       "id": "2208"
     },
     {
       "user_id": 23,
-      "hobby_id": [
-        1,
-        2
-      ],
+      "hobby_id": [1, 2],
       "id": "3df7"
     },
     {
       "user_id": 23,
-      "hobby_id": [
-        1,
-        2
-      ],
+      "hobby_id": [1, 2],
       "id": "c55e"
     },
     {
       "user_id": 23,
-      "hobby_id": [
-        1,
-        2
-      ],
+      "hobby_id": [1, 2],
       "id": "7d17"
     },
     {
       "user_id": 23,
-      "hobby_id": [
-        1,
-        2
-      ],
+      "hobby_id": [1, 2],
       "id": "7b96"
     },
     {
@@ -487,117 +461,72 @@
     {
       "id": "0a10",
       "user_id": 23,
-      "hobby_id": [
-        8
-      ]
+      "hobby_id": [8]
     },
     {
       "id": "2891",
       "user_id": 23,
-      "hobby_id": [
-        6,
-        8,
-        9
-      ]
+      "hobby_id": [6, 8, 9]
     },
     {
       "id": "440a",
       "user_id": 23,
-      "hobby_id": [
-        3,
-        4,
-        5
-      ]
+      "hobby_id": [3, 4, 5]
     },
     {
       "id": "661a",
       "user_id": 23,
-      "hobby_id": [
-        3,
-        4,
-        5
-      ]
+      "hobby_id": [3, 4, 5]
     },
     {
       "id": "965c",
       "user_id": 23,
-      "hobby_id": [
-        3,
-        4,
-        5
-      ]
+      "hobby_id": [3, 4, 5]
     },
     {
       "id": "26db",
       "user_id": 23,
-      "hobby_id": [
-        3,
-        8,
-        9
-      ]
+      "hobby_id": [3, 8, 9]
     },
     {
       "id": "96b6",
       "user_id": 23,
-      "hobby_id": [
-        3,
-        6,
-        8
-      ]
+      "hobby_id": [3, 6, 8]
     },
     {
       "id": "c89d",
       "user_id": 23,
-      "hobby_id": [
-        3
-      ]
+      "hobby_id": [3]
     },
     {
       "id": "5834",
       "user_id": 23,
-      "hobby_id": [
-        2,
-        5
-      ]
+      "hobby_id": [2, 5]
     },
     {
       "id": "3314",
       "user_id": 23,
-      "hobby_id": [
-        4,
-        5
-      ]
+      "hobby_id": [4, 5]
     },
     {
       "id": "a80f",
       "user_id": 23,
-      "hobby_id": [
-        5,
-        8
-      ]
+      "hobby_id": [5, 8]
     },
     {
       "id": "fec2",
       "user_id": 23,
-      "hobby_id": [
-        4,
-        7
-      ]
+      "hobby_id": [4, 7]
     },
     {
       "id": "b4a5",
       "user_id": 23,
-      "hobby_id": [
-        9
-      ]
+      "hobby_id": [9]
     },
     {
       "id": "26da",
       "user_id": 23,
-      "hobby_id": [
-        5,
-        8
-      ]
+      "hobby_id": [5, 8]
     }
   ]
 }

@@ -34,6 +34,7 @@ function Theme() {
 
   useEffect(() => {
     if (availableThemes) setTheme(availableThemes);
+    console.log('check theme',theme)
   }, [availableThemes]);
 
   const clickBtn = (id: number) => {
@@ -51,7 +52,6 @@ function Theme() {
   //       addUserMood({
   //         mood: userSelectMood,
   //       });
-  //       navigate('/theme')
   //     } else {
   //       console.log('Please select a mood before submitting.');
   //     }
