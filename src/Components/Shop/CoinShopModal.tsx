@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import CoinPriceData from 'Assets/Data/CoinPriceData';
+import CoinPriceData from 'assets/Data/CoinPriceData';
 import CoinItem from './CoinItem';
 
 function CoinShopModal() {

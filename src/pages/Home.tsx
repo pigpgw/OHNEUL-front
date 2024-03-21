@@ -15,7 +15,6 @@ function Home() {
       <Header onCashIconClick={handleCashIconClick} />
       <Outlet />
       {showCoinSopModal && <CoinShopModal />}
-      
     </>
   );
 }

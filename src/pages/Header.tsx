@@ -1,11 +1,11 @@
 import React from 'react';
 import styled from 'styled-components';
-import '../Fonts/font.css';
+import '../fonts/font.css';
 import { useNavigate } from 'react-router-dom';
 import { IoPersonOutline } from 'react-icons/io5';
 import { BsCoin } from 'react-icons/bs';
 import PropTypes from 'prop-types';
-import appLogo from '../Assets/Images/appLogo.png';
+import appLogo from '../assets/images/appLogo.png';
 
 const HeaderContainer = styled.div`
   display: flex;
@@ -93,7 +93,7 @@ function Header({ onCashIconClick }: HeaderProps) {
 }
 
 Header.propTypes = {
-  onCashIconClick: PropTypes.func.isRequired
+  onCashIconClick: PropTypes.func.isRequired,
 };
 
 export default Header;

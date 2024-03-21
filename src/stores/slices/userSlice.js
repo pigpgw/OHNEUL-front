@@ -12,13 +12,16 @@ export const userSlice = createSlice({
   },
   reducers: {
     setAuth: (state, action) => {
-      state.value = action.payload;
+      const newState = state;
+      newState.value = action.payload;
     },
     login: (state) => {
-      state.isLogin = true;
+      const newState = state;
+      newState.isLogin = true;
     },
     clearAuth: (state) => {
-      state.value = {
+      const newState = state;
+      newState.value = {
         username: null,
         AccessToken: null,
         refreshToken: null,
@@ -26,7 +29,8 @@ export const userSlice = createSlice({
     },
 
     logout: (state) => {
-      state.isLogin = false;
+      const newState = state;
+      newState.isLogin = false;
     },
   },
 });
