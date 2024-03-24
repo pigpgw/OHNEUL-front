@@ -20,10 +20,9 @@ const KakaoLoginButton = styled.button`
 //   cursor: pointer;
 // `;
 const KakaoLogin: React.FC = () => {
-  const CLIENT_ID = '';
-  const STATE = '';
-  const REDIRECT_URI = '';
-  const KakaoAuthRoot = ``;
+  const REST_API_KEY = 'b53d2404d55238fab9d1509ecd3afe2d';
+  const REDIRECT_URI = 'https://localhost:3000/login/kakao/callback';
+  const KakaoAuthRoot = `https://kauth.kakao.com/oauth/authorize?response_type=code&client_id=${REST_API_KEY}&redirect_uri=${REDIRECT_URI}`;
 
   const navigate = useNavigate();
   function navigateFavorite(): void {

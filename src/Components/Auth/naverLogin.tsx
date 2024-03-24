@@ -1,5 +1,4 @@
-import React from 'react';
-import { useNavigate } from 'react-router-dom';
+import React, { useEffect } from 'react';
 import styled from 'styled-components';
 import NaverImg from '../../assets/images/naverLoginButton.png';
 
@@ -20,15 +19,11 @@ const NaverLoginButton = styled.button`
 //   cursor: pointer;
 // `;
 const NaverLogin: React.FC = () => {
-  const CLIENT_ID = 'J1wzv0RZYqlXqTf6Gg7W';
-  const STATE = 'false';
+  const CLIENT_SECRET = process.env.REACT_APP_CLIENT_SECRET;
+  const CLIENT_ID = process.env.REACT_APP_CLIENT_ID;
+  const STATE = 'flase';
   const REDIRECT_URI = 'https://localhost:3000/login/naver/callback';
   const NaverAuthRoot = `https://nid.naver.com/oauth2.0/authorize?response_type=code&client_id=${CLIENT_ID}&state=${STATE}&redirect_uri=${REDIRECT_URI}`;
-
-  const navigate = useNavigate();
-  const navigateFavorite = () => {
-    navigate('/favorite');
-  };
 
   const loginRedirect = () => {
     window.location.href = NaverAuthRoot;
