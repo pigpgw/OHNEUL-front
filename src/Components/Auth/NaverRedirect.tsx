@@ -9,12 +9,13 @@ const NaverRedirect = () => {
   useEffect(() => {
     const fetchToken = async () => {
       try {
-        const code = new URL(window.location.href).searchParams.get('code');
-        const response = await axios.post('/users/join', {
-          code,
-        });
-        const { token } = response.data.token;
-        localStorage.setItem('token', token);
+        console.log(document.cookie);
+        // const code = new URL(window.location.href).searchParams.get('code');
+        // const response = await axios.post('/users/join', {
+        //   code,
+        // });
+        // const { token } = response.data.token;
+        // localStorage.setItem('token', token);
         navigate('/afterlogin');
       } catch (error) {
         alert(error);

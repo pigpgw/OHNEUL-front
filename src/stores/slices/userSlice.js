@@ -12,25 +12,23 @@ export const userSlice = createSlice({
   },
   reducers: {
     setAuth: (state, action) => {
-      const newState = state;
-      newState.value = action.payload;
+      // state.value = action.payload; <- 여기
+      return { ...state, value: action.payload }; // 수정
     },
     login: (state) => {
-      const newState = state;
-      newState.isLogin = true;
+      // state.isLogin = true; <- 여기
+      return { ...state, isLogin: true }; // 수정
     },
     clearAuth: (state) => {
-      const newState = state;
-      newState.value = {
-        username: null,
-        AccessToken: null,
-        refreshToken: null,
-      };
+      // state.value = { username: null, AccessToken: null, refreshToken: null }; <- 여기
+      return {
+        ...state,
+        value: { username: null, AccessToken: null, refreshToken: null },
+      }; // 수정
     },
-
     logout: (state) => {
-      const newState = state;
-      newState.isLogin = false;
+      // state.isLogin = false; <- 여기
+      return { ...state, isLogin: false }; // 수정
     },
   },
 });

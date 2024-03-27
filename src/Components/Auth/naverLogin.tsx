@@ -22,13 +22,12 @@ const NaverLogin: React.FC = () => {
   const CLIENT_SECRET = process.env.REACT_APP_CLIENT_SECRET;
   const CLIENT_ID = process.env.REACT_APP_CLIENT_ID;
   const STATE = 'flase';
-  const REDIRECT_URI = 'https://localhost:3000/login/naver/callback';
-  const NaverAuthRoot = `https://nid.naver.com/oauth2.0/authorize?response_type=code&client_id=${CLIENT_ID}&state=${STATE}&redirect_uri=${REDIRECT_URI}`;
-
+  const REDIRECT_URI = 'http://localhost:3000/login/naver/callback';
+  const NaverAuthRoot = `http://nid.naver.com/oauth2.0/authorize?response_type=code&client_id=${CLIENT_ID}&state=${STATE}&redirect_uri=${REDIRECT_URI}`;
+  //https://localhost:3000/login/naver 배포되고나서 3001인지확인;; s확인
   const loginRedirect = () => {
     window.location.href = NaverAuthRoot;
   };
-
   return (
     <NaverLoginButton onClick={loginRedirect}>
       <img alt="" src={NaverImg}></img>

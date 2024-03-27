@@ -1,5 +1,6 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
+import { UseDispatch } from 'react-redux';
 import styled from 'styled-components';
 import KakaoImg from '../../assets/images/kakaoLoginButton.png';
 

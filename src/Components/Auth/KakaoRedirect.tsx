@@ -7,15 +7,23 @@ const KakaoRedirect = () => {
   const code = window.location.search;
   const navigate = useNavigate();
   useEffect(() => {
-    console.log(process.env.REACT_APP_URL);
-    axios
-      .post(`${process.env.REACT_APP_URL}kakaoLogin${code}`)
-      .then(({ data }) => {
-        console.log(data);
-        localStorage.setItem('name', data.user_name);
-        navigate('/loginSuccess');
-      });
-  }, []);
+    const fetchToken = async () => {
+      try {
+        console.log(document.cookie);
+        // const code = new URL(window.location.href).searchParams.get('code');
+        // const response = await axios.post('/users/join', {
+        //   code,
+        // });
+        // const { token } = response.data.token;
+        // localStorage.setItem('token', token);
+        navigate('/afterlogin');
+      } catch (error) {
+        alert(error);
+        console.log('토큰 요청 중 오류 발생:', error);
+      }
+    };
+    fetchToken();
+  }, [navigate]);
 
   return <Wrap>카카오 로딩중</Wrap>;
 };
