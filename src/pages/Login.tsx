@@ -2,8 +2,8 @@ import React from 'react';
 import styled from 'styled-components';
 import { useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
-import NaverLogin from '../Components/Auth/NaverLogin';
-import KakaoLogin from '../Components/Auth/KakaoLogin';
+import NaverLogin from '../Components/Auth/naverLogin';
+import KakaoLogin from '../Components/Auth/kakaoLogin';
 import MainLogo from '../Components/Common/MainLogo';
 
 const LogoContainer = styled.div`

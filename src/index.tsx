@@ -19,15 +19,11 @@ const queryClient = new QueryClient();
 
 root.render(
   <React.StrictMode>
-
     <Provider store={store}>
-      <App />
+      <QueryClientProvider client={queryClient}>
+        <App /> {/* Your root component */}
+      </QueryClientProvider>
     </Provider>
-
-    <QueryClientProvider client={queryClient}>
-      <App /> {/* Your root component */}
-    </QueryClientProvider>
-
   </React.StrictMode>,
 );
 
