@@ -11,6 +11,7 @@ export const userSlice = createSlice({
     isLogin: false,
   },
   reducers: {
+    // 로그인시
     setAuth: (state, action) => {
       // state.value = action.payload; <- 여기
       return { ...state, value: action.payload }; // 수정
@@ -19,6 +20,8 @@ export const userSlice = createSlice({
       // state.isLogin = true; <- 여기
       return { ...state, isLogin: true }; // 수정
     },
+    // ------------------------------------------------
+    // 로그아웃시
     clearAuth: (state) => {
       // state.value = { username: null, AccessToken: null, refreshToken: null }; <- 여기
       return {

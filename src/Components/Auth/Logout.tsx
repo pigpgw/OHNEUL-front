@@ -1,7 +1,7 @@
 import React from 'react';
 import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
-import { logout } from '../../stores/slices/userSlice';
+import { logout, clearAuth } from '../../stores/slices/userSlice';
 
 function Logout() {
   const dispatch = useDispatch();
@@ -9,7 +9,8 @@ function Logout() {
 
   const handleLogout = () => {
     dispatch(logout());
-    navigate('/login');
+    dispatch(clearAuth());
+    navigate('/');
   };
 
   return (

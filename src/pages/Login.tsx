@@ -1,6 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import { useSelector } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
 import NaverLogin from '../Components/Auth/NaverLogin';
 import KakaoLogin from '../Components/Auth/KakaoLogin';
 import MainLogo from '../Components/Common/MainLogo';
@@ -27,20 +28,22 @@ interface State {
 const Login: React.FC = () => {
   const isLogin = useSelector((state: State) => state.user.isLogin);
   const userName = useSelector((state: State) => state.user.value.username);
+  const navigate = useNavigate();
   return (
     <>
       <LogoContainer>
         <MainLogo></MainLogo>
       </LogoContainer>
-
       {isLogin ? (
-        `${userName}님의 "오늘"`
+        navigate('/home')
       ) : (
         <SocialContainer>
           <NaverLogin></NaverLogin>
           <KakaoLogin></KakaoLogin>
         </SocialContainer>
       )}
+
+      {}
       {/* 이 페이지 랜더링 된 후 캐치프레이즈 문구 나오게하기 */}
     </>
   );

@@ -13,18 +13,10 @@ const NaverLoginButton = styled.button`
     width: 100%;
   }
 `;
-// const NaverLoginImg = styled.img`
-//   width: 50%;
-//   height: 50%;
-//   cursor: pointer;
-// `;
 const NaverLogin: React.FC = () => {
-  const CLIENT_SECRET = process.env.REACT_APP_CLIENT_SECRET;
-  const CLIENT_ID = process.env.REACT_APP_CLIENT_ID;
-  const STATE = 'flase';
-  const REDIRECT_URI = 'http://localhost:3000/login/naver/callback';
-  const NaverAuthRoot = `http://nid.naver.com/oauth2.0/authorize?response_type=code&client_id=${CLIENT_ID}&state=${STATE}&redirect_uri=${REDIRECT_URI}`;
-  //https://localhost:3000/login/naver 배포되고나서 3001인지확인;; s확인
+  const NaverAuthRoot =
+    'https://port-0-ohneul-44rk2blu3topxi.sel5.cloudtype.app/login/naver';
+
   const loginRedirect = () => {
     window.location.href = NaverAuthRoot;
   };

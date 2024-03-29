@@ -15,21 +15,9 @@ const KakaoLoginButton = styled.button`
     width: 100%;
   }
 `;
-// const NaverLoginImg = styled.img`
-//   width: 50%;
-//   height: 50%;
-//   cursor: pointer;
-// `;
 const KakaoLogin: React.FC = () => {
-  const REST_API_KEY = 'b53d2404d55238fab9d1509ecd3afe2d';
-  const REDIRECT_URI = 'https://localhost:3000/login/kakao/callback';
-  const KakaoAuthRoot = `https://kauth.kakao.com/oauth/authorize?response_type=code&client_id=${REST_API_KEY}&redirect_uri=${REDIRECT_URI}`;
-
-  const navigate = useNavigate();
-  function navigateFavorite(): void {
-    navigate('/favorite');
-  }
-
+  const KakaoAuthRoot =
+    'https://port-0-ohneul-44rk2blu3topxi.sel5.cloudtype.app/login/kakao';
   function loginRedirect(): void {
     window.location.href = KakaoAuthRoot;
   }
