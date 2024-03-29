@@ -12,6 +12,7 @@ RUN npm run build
  
 # nginx 이미지
 FROM nginx:latest
+RUN chmod -R 777 /var/cache/nginx/client_temp
 COPY nginx.conf /etc/nginx/nginx.conf
 COPY --from=build /var/app/build /usr/share/nginx/html
 
