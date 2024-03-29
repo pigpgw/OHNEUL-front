@@ -7,6 +7,7 @@ export const ItemBtn = styled.button<{ clicked?: boolean }>`
   border: 0;
   padding: 0 15px;
   margin: 10px;
+  font-size: 13px;
 
   background: white;
   box-shadow: 1px 1px 1px rgba(41, 41, 41, 0.25);
@@ -25,13 +26,45 @@ export const InfoText = styled.p`
 `;
 
 export const Container = styled.div`
-  width: 75%;
+  width: 95%;
   display: flex;
   justify-content: center;
   align-items: center;
   flex-direction: column;
   height: 570px;
   max-width: 500px;
+`;
+
+export const ThemeItemContainer = styled.div`
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap:wrap;
+  flex-direction: row;
+  height: 180px;
+  max-width: 500px;
+  margin:40px 0 40px 0;
+`;
+
+export const ThemeItemBtn = styled.button<{ clicked?: boolean }>`
+  height: 33px;
+  border-radius: 10px;
+  border: 0;
+  padding: 0 10px;
+  margin: 5px;
+  font-size: 13px;
+
+  background: white;
+  box-shadow: 1px 1px 1px rgba(41, 41, 41, 0.25);
+
+  ${({ clicked }) =>
+    clicked &&
+    css`
+      background: #0075ff;
+      box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+      color: white;
+    `}
 `;
 
 export const Title = styled.p`
@@ -57,6 +90,6 @@ export const SubmitBtn = styled.button`
   border: 0;
 `;
 
-export const MarginTag = styled.div<{margin?:number | null}>`
-margin: ${(props) => (props.margin !== null ? `${props.margin}px` : '0px')}
-`
+export const MarginTag = styled.div<{ margin?: number | null }>`
+  margin: ${(props) => (props.margin !== null ? `${props.margin}px` : '0px')};
+`;
