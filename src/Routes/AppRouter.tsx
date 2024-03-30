@@ -15,8 +15,8 @@ function AppRouter() {
     <BrowserRouter>
       <Routes>
         {/* Login -> AfterLogin -> Home */}
-        <Route path="/afterlogin" element={<AfterLogin></AfterLogin>}></Route>
-        <Route path="/login/kakao" element={<Redirect />}></Route>
+        <Route path="/afterlogin" element={<AfterLogin></AfterLogin>} />
+        <Route path="/login/kakao" element={<Redirect />} />
         <Route path="/login/naver" element={<Redirect />} />
         <Route path="/" element={<Login />} />
         <Route path="/home" element={<Home />}>
