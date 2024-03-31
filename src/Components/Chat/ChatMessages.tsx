@@ -1,4 +1,4 @@
-import React, { ReactElement, useEffect } from 'react';
+import React, { ReactElement, useEffect, useRef } from 'react';
 import styled from 'styled-components';
 
 interface Message {
@@ -12,6 +12,16 @@ interface MessageListProps {
 }
 
 function ChatMessages({ messageList }: MessageListProps): JSX.Element {
+  const messagesEndRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    scrollToBottom();
+  }, [messageList]);
+
+  const scrollToBottom = () => {
+    messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
+  };
+
   return (
     <ChatMessagesContainer>
       <ChatMessagesWrapper>
@@ -21,6 +31,7 @@ function ChatMessages({ messageList }: MessageListProps): JSX.Element {
             <ChatMessageContent className={v.type}>{v.msg}</ChatMessageContent>
           </ChatMessageItemBox>
         ))}
+        <div ref={messagesEndRef} />
       </ChatMessagesWrapper>
     </ChatMessagesContainer>
   );
