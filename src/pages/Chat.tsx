@@ -35,26 +35,43 @@ function Chat({ socket }: any): JSX.Element {
   };
 
   useEffect(() => {
-    setMessageList((prev) => [
-      ...prev,
-      {
-        msg: '안녕',
-        type: 'other',
-        id: 'id',
-      },
-    ]);
+    if (!socket) return;
+    function sMessageCallback(messageData: any) {
+      console.log('받은 데이터', messageData);
+      const { data, id } = messageData;
+      if (id !== socket.id) {
+        setMessageList((prev) => [
+          ...prev,
+          {
+            msg: data,
+            type: 'other',
+            id,
+          },
+        ]);
+      }
+    }
+    socket.on('receiveMessage', sMessageCallback);
+    // eslint-disable-next-line consistent-return
+    return () => {
+      socket.off('receiveMessage', sMessageCallback);
+    };
   }, []);
 
   const msgSubmitHandler = (e: React.FormEvent<HTMLFormElement>): void => {
     e.preventDefault();
+    const sendData = {
+      data: msg,
+      id: socket.id,
+    };
     setMessageList((prev) => [
       ...prev,
       {
         msg,
         type: 'me',
-        id: 'id',
+        id: socket.id,
       },
     ]);
+    socket.emit('sendMessage', sendData);
     setMsg('');
   };
 
