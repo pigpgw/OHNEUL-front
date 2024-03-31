@@ -7,7 +7,7 @@ import {
   ItemContainer,
   SubmitBtn,
   MarginTag,
-} from 'Components/Common/Tag';
+} from 'Components/styles/Common';
 import { useNavigate } from 'react-router-dom';
 import { useQuery } from 'react-query';
 import useCheckHobbiesAndNavigate from 'hooks/useCheckHobbiesAndNavigateHook';
@@ -21,7 +21,7 @@ interface Hobby {
 }
 
 function Hobby() {
-  useCheckHobbiesAndNavigate(); 
+  useCheckHobbiesAndNavigate();
 
   const [hobby, setHobby] = useState<Hobby[]>([]);
   const userSelectHobby = hobby

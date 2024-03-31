@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
-import MainLogo from '../Components/Common/MainLogo';
+// import MainLogo from '../Components/Common/MainLogo';
 import phrase from '../assets/images/appCatchphrase.png';
 
 const LogoContainer = styled.div`
@@ -33,7 +33,7 @@ const AfterLogin: React.FC = () => {
   return (
     <>
       <LogoContainer>
-        <MainLogo></MainLogo>
+        {/* <MainLogo></MainLogo> */}
       </LogoContainer>
       <PhraseContainer>
         <img src={phrase} alt="phrase"></img>

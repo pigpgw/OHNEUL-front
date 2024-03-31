@@ -7,7 +7,7 @@ import {
   ItemContainer,
   SubmitBtn,
   MarginTag,
-} from 'Components/Common/Tag';
+} from 'Components/styles/Common';
 import { useQuery } from 'react-query';
 import { fetchGetMood } from 'api/fetchMood';
 import { useNavigate } from 'react-router-dom';
@@ -56,7 +56,7 @@ function Mood() {
       addUserMood({
         mood: userSelectMood,
       });
-      navigate('/theme')
+      navigate('/theme');
     } else {
       console.log('Please select a mood before submitting.');
     }
@@ -80,6 +80,7 @@ function Mood() {
             </ItemBtn>
           ))}
         </ItemContainer>
+
         <InfoText>최대 1개만 선택 가능합니다.</InfoText>
         <MarginTag margin={50}></MarginTag>
         <SubmitBtn onClick={handleSubmit}>선택 완료</SubmitBtn>

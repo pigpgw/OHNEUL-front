@@ -5,7 +5,7 @@ import { useNavigate } from 'react-router-dom';
 import { IoPersonOutline } from 'react-icons/io5';
 import { BsCoin } from 'react-icons/bs';
 import PropTypes from 'prop-types';
-import appLogo from '../assets/images/appLogo.png';
+import appLogo from '../assets/Images/appLogo.png';
 
 const HeaderContainer = styled.div`
   display: flex;
