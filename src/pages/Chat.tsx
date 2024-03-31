@@ -3,6 +3,7 @@ import React, { useEffect, useState } from 'react';
 import ChatHeader from 'Components/Chat/ChatHeader';
 import ChatInfo from 'Components/Chat/ChatInfo';
 import ChatMessages from 'Components/Chat/ChatMessages';
+import ChatInputForm from 'Components/Chat/ChatInputForm';
 
 interface Message {
   msg: string;
@@ -29,6 +30,7 @@ function Chat({ socket }: any): JSX.Element {
   }, [socket]);
 
   const msgChangeHandler = (e: React.ChangeEvent<HTMLInputElement>): void => {
+    e.preventDefault();
     setMsg(e.target.value);
   };
 
@@ -43,7 +45,7 @@ function Chat({ socket }: any): JSX.Element {
     ]);
   }, []);
 
-  const msgSubmitHandler = (e: React.ChangeEvent<HTMLFormElement>): void => {
+  const msgSubmitHandler = (e: React.FormEvent<HTMLFormElement>): void => {
     e.preventDefault();
     setMessageList((prev) => [
       ...prev,
@@ -65,10 +67,15 @@ function Chat({ socket }: any): JSX.Element {
       ></ChatHeader>
       <ChatInfo />
       <ChatMessages messageList={messageList} />
-      <form onSubmit={msgSubmitHandler}>
+      {/* <form onSubmit={msgSubmitHandler}>
         <input value={msg} onChange={msgChangeHandler} type="text" />
         <button>메세지 보내기</button>
-      </form>
+      </form> */}
+      <ChatInputForm
+        msgSubmitHandler={msgSubmitHandler}
+        msg={msg}
+        msgChangeHandler={msgChangeHandler}
+      />
     </>
   );
 }
