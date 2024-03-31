@@ -27,3 +27,5 @@ const Wrap = styled.div`
   min-height: 1100px;
 `;
 export default KakaoRedirect;
+
+// 추후정보못받아올시나눠서사용
