@@ -34,7 +34,7 @@ function Theme() {
 
   useEffect(() => {
     if (availableThemes) setTheme(availableThemes);
-    console.log('check theme',theme)
+    console.log('check theme', theme);
   }, [availableThemes]);
 
   const clickBtn = (id: number) => {
@@ -47,13 +47,13 @@ function Theme() {
     );
   };
 
-    const handleSubmit = () => {
-      if (userSelectTheme) {
-        console.log('유저가 선택한 주제',userSelectTheme)
-      } else {
-        console.log('Please select a theme before submitting.');
-      }
-    };
+  const handleSubmit = () => {
+    if (userSelectTheme) {
+      console.log('유저가 선택한 주제', userSelectTheme);
+    } else {
+      console.log('Please select a theme before submitting.');
+    }
+  };
 
   if (isLoading) return <div>theme data 가져오는 중입니다.</div>;
   if (isError) return <div>theme data 가져오기 실패</div>;
