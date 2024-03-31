@@ -85,7 +85,7 @@ const ChatMessageContent = styled.div`
     border-bottom-right-radius: 10px;
   }
   &.other {
-    padding: 5px 10px 7px 12px;
+    padding: 5px 10px 7px 10px;
     text-align: left;
     background: #d4d4d4;
     border-top-right-radius: 10px;

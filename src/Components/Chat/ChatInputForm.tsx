@@ -16,7 +16,7 @@ function ChatInputForm({
     <ChatInputContainer>
       <form onSubmit={msgSubmitHandler}>
         <ChatInput value={msg} onChange={msgChangeHandler} />
-        <ChatSubmitBtn>전송</ChatSubmitBtn>
+        {msg && <ChatSubmitBtn>전송</ChatSubmitBtn>}
       </form>
     </ChatInputContainer>
   );
