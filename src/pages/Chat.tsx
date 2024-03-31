@@ -2,6 +2,7 @@
 import React, { useEffect, useState } from 'react';
 import ChatHeader from 'Components/Chat/ChatHeader';
 import ChatInfo from 'Components/Chat/ChatInfo';
+import ChatMessages from 'Components/Chat/ChatMessages';
 
 interface Message {
   msg: string;
@@ -10,7 +11,7 @@ interface Message {
 }
 
 function Chat({ socket }: any): JSX.Element {
-  const [messageList, setMessageList] = useState<Message[]>();
+  const [messageList, setMessageList] = useState<Message[]>([]);
   const [msg, setMsg] = useState<string>('');
 
   const clickCashIcon = () => console.log('캐쉬 아이콘을 클릭하였습니다');
@@ -24,10 +25,36 @@ function Chat({ socket }: any): JSX.Element {
   };
 
   useEffect(() => {
-    return () => {
-      if (socket) return;
-    };
+    if (!socket) return;
+  }, [socket]);
+
+  const msgChangeHandler = (e: React.ChangeEvent<HTMLInputElement>): void => {
+    setMsg(e.target.value);
+  };
+
+  useEffect(() => {
+    setMessageList((prev) => [
+      ...prev,
+      {
+        msg: '안녕',
+        type: 'other',
+        id: 'id',
+      },
+    ]);
   }, []);
+
+  const msgSubmitHandler = (e: React.ChangeEvent<HTMLFormElement>): void => {
+    e.preventDefault();
+    setMessageList((prev) => [
+      ...prev,
+      {
+        msg,
+        type: 'me',
+        id: 'id',
+      },
+    ]);
+    setMsg('');
+  };
 
   return (
     <>
@@ -37,7 +64,11 @@ function Chat({ socket }: any): JSX.Element {
         reportIconClick={clickReport}
       ></ChatHeader>
       <ChatInfo />
-      
+      <ChatMessages messageList={messageList} />
+      <form onSubmit={msgSubmitHandler}>
+        <input value={msg} onChange={msgChangeHandler} type="text" />
+        <button>메세지 보내기</button>
+      </form>
     </>
   );
 }
