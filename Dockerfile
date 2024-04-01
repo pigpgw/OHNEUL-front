@@ -11,7 +11,8 @@ COPY . .
 RUN npm install
 
 RUN npm run build
-RUN npm start
+
+EXPOSE 3000
  
 # nginx 이미지
 # FROM nginx:latest
@@ -20,7 +21,7 @@ RUN npm start
 # COPY --from=build /var/app/build /usr/share/nginx/html
 
 # EXPOSE 80
-EXPOSE 3000
+
 # CMD ["nginx", "-g", "daemon off;"]
 # CMD ["npm start", "build/index.html"]
-# CMD ["npm","run","start"]
+CMD ["npm","start"]
