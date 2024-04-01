@@ -4,6 +4,7 @@ import ChatHeader from 'Components/Chat/ChatHeader';
 import ChatInfo from 'Components/Chat/ChatInfo';
 import ChatMessages from 'Components/Chat/ChatMessages';
 import ChatInputForm from 'Components/Chat/ChatInputForm';
+import { ConsentModal } from 'Components/Modal/ChatModal';
 
 interface Message {
   msg: string;
@@ -102,6 +103,14 @@ function Chat({ socket }: any): JSX.Element {
     socket.emit('sendMessage', sendData);
     setMsg('');
   };
+
+  const onAgree = () => {
+    console.log('대화 연장 동의')
+  }
+
+  const onRefuse = () => {
+    console.log('대화 연장 거부')
+  }
   
   return (
     <>
@@ -117,6 +126,7 @@ function Chat({ socket }: any): JSX.Element {
           <button onClick={addTime}>연장하기</button>
         </div>
       )}
+      <ConsentModal onAgree={onAgree} onRefuse={onRefuse}></ConsentModal>
       <ChatMessages messageList={messageList} />
       <ChatInputForm
         msgSubmitHandler={msgSubmitHandler}

@@ -24,6 +24,23 @@ export const WaitModal = ({ onClose }: { onClose: (e:any) => void }) => {
   );
 };
 
+type ConsentModalProps =  {
+  onAgree: () => void;
+  onRefuse: () => void;
+}
+
+export const ConsentModal = ({ onAgree, onRefuse }:ConsentModalProps) => {
+  return (
+    <ModalWrapper>
+      <ModalTitle>상대방과 대화를 연장하시겠습니까?</ModalTitle>
+      <ModalBtnContainer>
+      <ModalBtn onClick={onAgree}>연장하기</ModalBtn>
+        <ModalBtn onClick={onRefuse}>거절하기</ModalBtn>
+      </ModalBtnContainer>
+    </ModalWrapper>
+  );
+};
+
 const ModalTitle = styled.div`
   font-size: 15px;
   font-weight: 800;
