@@ -18,7 +18,6 @@ export const WaitModal = ({ onClose }: { onClose: (e:any) => void }) => {
     <ModalWrapper>
       <ModalTitle>대화 상대를 찾고 있어요</ModalTitle>
       <ModalBtnContainer>
-        {/* Correctly passing onClose to ModalBtn onClick */}
         <ModalBtn onClick={onClose}>취소</ModalBtn>
       </ModalBtnContainer>
     </ModalWrapper>

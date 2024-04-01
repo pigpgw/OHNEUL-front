@@ -14,6 +14,9 @@ interface Message {
 function Chat({ socket }: any): JSX.Element {
   const [messageList, setMessageList] = useState<Message[]>([]);
   const [msg, setMsg] = useState<string>('');
+  const [consentModal, setConsentModal] = useState<boolean>(false);
+  const [remainingTime, setRemainingTime] = useState<number>(6);
+  const [consent, setConsent] = useState<boolean>(false)
 
   const clickCashIcon = () => console.log('캐쉬 아이콘을 클릭하였습니다');
 
@@ -28,6 +31,31 @@ function Chat({ socket }: any): JSX.Element {
   useEffect(() => {
     if (!socket) return;
   }, [socket]);
+
+  useEffect(() => {
+    const intervalId = setInterval(() => {
+      setRemainingTime((prevTime) => {
+        if (prevTime === 0) {
+          clearInterval(intervalId);
+          setConsentModal(true);
+          setConsent(false)
+          return 0;
+        }
+        return prevTime - 1;
+      });
+    }, 1000);
+
+    return () => clearInterval(intervalId);
+  }, [consent]);
+
+  const addTime = () => {
+    setRemainingTime((prevTime) => prevTime + 5);
+    setConsentModal(false)
+    setConsent(true)
+  };
+
+  const minutes = Math.floor(remainingTime / 60);
+  const seconds = remainingTime % 60;
 
   const msgChangeHandler = (e: React.ChangeEvent<HTMLInputElement>): void => {
     e.preventDefault();
@@ -74,7 +102,7 @@ function Chat({ socket }: any): JSX.Element {
     socket.emit('sendMessage', sendData);
     setMsg('');
   };
-
+  
   return (
     <>
       <ChatHeader
@@ -83,11 +111,13 @@ function Chat({ socket }: any): JSX.Element {
         reportIconClick={clickReport}
       ></ChatHeader>
       <ChatInfo />
+      <div>{`${minutes}:${seconds}`}</div>
+      {consentModal && (
+        <div>
+          <button onClick={addTime}>연장하기</button>
+        </div>
+      )}
       <ChatMessages messageList={messageList} />
-      {/* <form onSubmit={msgSubmitHandler}>
-        <input value={msg} onChange={msgChangeHandler} type="text" />
-        <button>메세지 보내기</button>
-      </form> */}
       <ChatInputForm
         msgSubmitHandler={msgSubmitHandler}
         msg={msg}
