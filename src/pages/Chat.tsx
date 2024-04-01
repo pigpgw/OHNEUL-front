@@ -4,7 +4,7 @@ import ChatHeader from 'Components/Chat/ChatHeader';
 import ChatInfo from 'Components/Chat/ChatInfo';
 import ChatMessages from 'Components/Chat/ChatMessages';
 import ChatInputForm from 'Components/Chat/ChatInputForm';
-import { ConsentModal } from 'Components/Modal/ChatModal';
+import { ConsentModal, ConsentWaitModal } from 'Components/Modal/ChatModal';
 
 interface Message {
   msg: string;
@@ -13,11 +13,15 @@ interface Message {
 }
 
 function Chat({ socket }: any): JSX.Element {
+  const [intervalId, setIntervalId] = useState<NodeJS.Timeout | undefined>(
+    undefined,
+  );
   const [messageList, setMessageList] = useState<Message[]>([]);
   const [msg, setMsg] = useState<string>('');
   const [consentModal, setConsentModal] = useState<boolean>(false);
   const [remainingTime, setRemainingTime] = useState<number>(6);
-  const [consent, setConsent] = useState<boolean>(false)
+  const [consent, setConsent] = useState<boolean>(false);
+  const [consentWaitModal, setConsentWaitModal] = useState<boolean>(false);
 
   const clickCashIcon = () => console.log('캐쉬 아이콘을 클릭하였습니다');
 
@@ -33,27 +37,29 @@ function Chat({ socket }: any): JSX.Element {
     if (!socket) return;
   }, [socket]);
 
-  useEffect(() => {
-    const intervalId = setInterval(() => {
+  function countTime() {
+    if (intervalId) clearInterval(intervalId);
+
+    const newIntervalId = setInterval(() => {
       setRemainingTime((prevTime) => {
         if (prevTime === 0) {
-          clearInterval(intervalId);
+          clearInterval(newIntervalId);
           setConsentModal(true);
-          setConsent(false)
+          setConsent(false);
           return 0;
         }
         return prevTime - 1;
       });
     }, 1000);
 
-    return () => clearInterval(intervalId);
-  }, [consent]);
+    setIntervalId(newIntervalId);
+  }
 
-  const addTime = () => {
-    setRemainingTime((prevTime) => prevTime + 5);
-    setConsentModal(false)
-    setConsent(true)
-  };
+  useEffect(() => {
+    return () => {
+      if (intervalId) clearInterval(intervalId);
+    };
+  }, []);
 
   const minutes = Math.floor(remainingTime / 60);
   const seconds = remainingTime % 60;
@@ -66,7 +72,6 @@ function Chat({ socket }: any): JSX.Element {
   useEffect(() => {
     if (!socket) return;
     function sMessageCallback(messageData: any) {
-      console.log('받은 데이터', messageData);
       const { data, id } = messageData;
       if (id !== socket.id) {
         setMessageList((prev) => [
@@ -104,14 +109,48 @@ function Chat({ socket }: any): JSX.Element {
     setMsg('');
   };
 
+  useEffect(() => {
+    function consentWaitCallback() {
+      setConsentWaitModal(true);
+    }
+
+    function consentSuccessCallback() {
+      setConsentModal(false);
+      setConsent(true);
+      setConsentWaitModal(false);
+    }
+
+    function extendTimeCallback(extendedTime: number) {
+      clearInterval(intervalId);
+      setRemainingTime(extendedTime);
+    }
+
+    socket.on('wait', consentWaitCallback);
+    socket.on('start', consentSuccessCallback);
+    socket.on('extendTime', extendTimeCallback);
+
+    return () => {
+      socket.off('wait', consentWaitCallback);
+      socket.off('start', consentSuccessCallback);
+      socket.off('extendTime', extendTimeCallback);
+    };
+  }, [consent]);
+
+  useEffect(() => {
+    countTime();
+  }, [consent]);
+
   const onAgree = () => {
-    console.log('대화 연장 동의')
-  }
+    socket.emit('consent', 'agree');
+    setConsentWaitModal(true);
+    setConsentModal(false);
+  };
 
   const onRefuse = () => {
-    console.log('대화 연장 거부')
-  }
-  
+    socket.emit('consent', 'no');
+    socket.emit('userExit');
+  };
+
   return (
     <>
       <ChatHeader
@@ -122,17 +161,18 @@ function Chat({ socket }: any): JSX.Element {
       <ChatInfo />
       <div>{`${minutes}:${seconds}`}</div>
       {consentModal && (
-        <div>
-          <button onClick={addTime}>연장하기</button>
-        </div>
+        <ConsentModal onAgree={onAgree} onRefuse={onRefuse}></ConsentModal>
       )}
-      <ConsentModal onAgree={onAgree} onRefuse={onRefuse}></ConsentModal>
+      {consentWaitModal && <ConsentWaitModal></ConsentWaitModal>}
+
       <ChatMessages messageList={messageList} />
-      <ChatInputForm
-        msgSubmitHandler={msgSubmitHandler}
-        msg={msg}
-        msgChangeHandler={msgChangeHandler}
-      />
+      {remainingTime !== 0 && (
+        <ChatInputForm
+          msgSubmitHandler={msgSubmitHandler}
+          msg={msg}
+          msgChangeHandler={msgChangeHandler}
+        />
+      )}
     </>
   );
 }

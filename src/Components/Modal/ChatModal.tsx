@@ -13,7 +13,7 @@ function ModalWrapper({ children }: ModalProps) {
   );
 }
 
-export const WaitModal = ({ onClose }: { onClose: (e:any) => void }) => {
+export const WaitModal = ({ onClose }: { onClose: (e: any) => void }) => {
   return (
     <ModalWrapper>
       <ModalTitle>대화 상대를 찾고 있어요</ModalTitle>
@@ -24,19 +24,27 @@ export const WaitModal = ({ onClose }: { onClose: (e:any) => void }) => {
   );
 };
 
-type ConsentModalProps =  {
+type ConsentModalProps = {
   onAgree: () => void;
   onRefuse: () => void;
-}
+};
 
-export const ConsentModal = ({ onAgree, onRefuse }:ConsentModalProps) => {
+export const ConsentModal = ({ onAgree, onRefuse }: ConsentModalProps) => {
   return (
     <ModalWrapper>
       <ModalTitle>상대방과 대화를 연장하시겠습니까?</ModalTitle>
       <ModalBtnContainer>
-      <ModalBtn onClick={onAgree}>연장하기</ModalBtn>
+        <ModalBtn onClick={onAgree}>연장하기</ModalBtn>
         <ModalBtn onClick={onRefuse}>거절하기</ModalBtn>
       </ModalBtnContainer>
+    </ModalWrapper>
+  );
+};
+
+export const ConsentWaitModal = () => {
+  return (
+    <ModalWrapper>
+      <ModalTitle>잠시만 기다려주세요 상대방이 응답중입니다.</ModalTitle>
     </ModalWrapper>
   );
 };
