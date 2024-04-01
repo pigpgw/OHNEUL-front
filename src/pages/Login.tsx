@@ -34,7 +34,6 @@ const Login: React.FC = () => {
   const isLogin = useSelector((state: State) => state.user.isLogin);
   const userName = useSelector((state: State) => state.user.value.username);
   const navigate = useNavigate();
-  // const red = () => {};
 
   useEffect(() => {
     if (isLogin) {

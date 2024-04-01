@@ -1,32 +1,29 @@
 import React, { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
-// import axios from 'axios';
-// import { useDispatch } from 'react-redux';
-// import { setAuth } from 'stores/slices/userSlice';
+import axios from 'axios';
+import { useDispatch } from 'react-redux';
+import { setAuth } from 'stores/slices/userSlice';
 
 const Redirect = () => {
   const navigate = useNavigate();
-
-  useEffect(() => {
-    // console.log('state가 변경될 때 마다 호출!');
-    return () => {
-      // console.log('언마운트 시 호출!');
-    };
-  });
+  const dispatch = useDispatch();
   useEffect(() => {
     const fetchToken = async () => {
       try {
-        navigate('/home');
-        // console.log('쿠키확인', document.cookie);
-        <div>asdadasdasdas</div>;
+        const response = await axios.get('/user');
+        // 로컬스토리지 사용?
+        const { username, AccessToken, refreshToken } = response.data;
+        dispatch(setAuth({ username, AccessToken, refreshToken }));
+        navigate('/');
       } catch (error) {
-        // alert(error);
-        // console.log(' 요청 중 오류 발생:', error);
+        alert('로그인에 실패했습니다.');
+        console.error('로그인 요청 중 오류 발생:', error);
       }
     };
+
     fetchToken();
-  }, [navigate]);
+  }, [dispatch, navigate]);
 
   return (
     <>
