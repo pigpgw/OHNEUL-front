@@ -21,4 +21,5 @@ RUN npm run build
 # EXPOSE 80
 EXPOSE 3000
 # CMD ["nginx", "-g", "daemon off;"]
-CMD ["npm start", "build/index.html"]
+# CMD ["npm start", "build/index.html"]
+CMD ["npm", "start"]
