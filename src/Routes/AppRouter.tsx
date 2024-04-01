@@ -8,14 +8,11 @@ import Home from '../pages/Home';
 import Theme from '../pages/Theme';
 import Redirect from '../Components/Auth/Redirect';
 // import KakaoRedirect from '../Components/Auth/KakaoRedirect';
-// import AfterLogin from '../pages/AfterLogin';
 
 function AppRouter() {
   return (
     <BrowserRouter>
       <Routes>
-        {/* Login -> AfterLogin -> Home */}
-        {/* <Route path="/afterlogin" element={<AfterLogin></AfterLogin>} /> */}
         <Route path="/login/kakao" element={<Redirect />} />
         <Route path="/login/naver" element={<Redirect />} />
         <Route path="/" element={<Login />} />
