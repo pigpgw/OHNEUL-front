@@ -34,17 +34,16 @@ const Login: React.FC = () => {
   const isLogin = useSelector((state: State) => state.user.isLogin);
   const userName = useSelector((state: State) => state.user.value.username);
   const navigate = useNavigate();
-  const red = () => {
+  // const red = () => {};
+
+  useEffect(() => {
     if (isLogin) {
-      const timer = setTimeout(() => {
+      const timer = window.setTimeout(() => {
         navigate('/home');
       }, 5000);
       return () => clearTimeout(timer);
     }
-  };
-  useEffect(() => {
-    red();
-    // isLogin이 true이면서 10초 후에 홈 페이지로 이동
+    return navigate('/');
   }, [isLogin, navigate]);
 
   return (
