@@ -1,7 +1,7 @@
 import React from 'react';
-// import { useNavigate } from 'react-router-dom';
-// import { UseDispatch } from 'react-redux';
+import axios from 'axios';
 import styled from 'styled-components';
+import { useQueryClient } from 'react-query';
 import KakaoImg from '../../assets/images/kakaoLoginButton.png';
 
 const KakaoLoginButton = styled.button`
@@ -15,6 +15,22 @@ const KakaoLoginButton = styled.button`
     width: 100%;
   }
 `;
+
+// const fetchUserData = async () => {
+//   const response = await axios.get('/users');
+//   return response.data;
+// };
+
+// const KakaoLogin: React.FC = () => {
+// //   const QueryClient = useQueryClient();
+
+// // const loginRedirect = async ()=>{
+// // try{
+// //   await QueryClient.fetchQuery('',fetchUserData)
+// // }
+
+// }
+
 const KakaoLogin: React.FC = () => {
   const KakaoAuthRoot =
     'https://port-0-ohneul-docker-44rk2blu3topxi.sel5.cloudtype.app/login/kakao';

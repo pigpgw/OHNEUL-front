@@ -6,13 +6,12 @@ import { logout, clearAuth } from '../../stores/slices/userSlice';
 function Logout() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
-
-  const handleLogout = () => {
+  const handleLogout = (): void => {
     dispatch(logout());
     dispatch(clearAuth());
+    // 로컬스토리지
     navigate('/');
   };
-
   return (
     <div>
       <button onClick={handleLogout}>로그아웃</button>

@@ -24,15 +24,15 @@ const SocialContainer = styled.div`
 const PhraseContainer = styled.div``;
 // 로그인후잠깐보여지는페이지
 // 이페이지가렌더링된후바로메인페이지진입
-interface State {
+interface User {
   user: {
     value: { username: string; AccessToken: string; refreshToken: string };
     isLogin: boolean;
   };
 }
 const Login: React.FC = () => {
-  const isLogin = useSelector((state: State) => state.user.isLogin);
-  const userName = useSelector((state: State) => state.user.value.username);
+  const isLogin = useSelector((state: User) => state.user.isLogin);
+  const userName = useSelector((state: User) => state.user.value.username);
   const navigate = useNavigate();
 
   useEffect(() => {
