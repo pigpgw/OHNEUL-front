@@ -13,12 +13,12 @@ RUN npm install
 RUN npm run build
  
 # nginx 이미지
-FROM nginx:latest
+# FROM nginx:latest
 # RUN chmod -R 777 /var/cache/nginx/client_temp
-COPY nginx.conf /etc/nginx/nginx.conf
-COPY --from=build /var/app/build /usr/share/nginx/html
+# COPY nginx.conf /etc/nginx/nginx.conf
+# COPY --from=build /var/app/build /usr/share/nginx/html
 
-EXPOSE 80
+# EXPOSE 80
 EXPOSE 3000
-CMD ["nginx", "-g", "daemon off;"]
-# CMD ["npm", "start"]
+# CMD ["nginx", "-g", "daemon off;"]
+CMD ["npm", "start"]
