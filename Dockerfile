@@ -12,6 +12,8 @@ RUN npm install
 
 RUN npm run build
 
+RUN npm install -g serve
+
 EXPOSE 3000
  
 # nginx 이미지
@@ -24,4 +26,4 @@ EXPOSE 3000
 
 # CMD ["nginx", "-g", "daemon off;"]
 # CMD ["npm start", "build/index.html"]
-CMD ["npm","start"]
+CMD ["serve", "-s", "build"]
