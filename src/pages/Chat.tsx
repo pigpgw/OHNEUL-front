@@ -23,18 +23,16 @@ function Chat({ socket }: any): JSX.Element {
   const [remainingTime, setRemainingTime] = useState<number>(6);
   const [consent, setConsent] = useState<boolean>(false);
   const [consentWaitModal, setConsentWaitModal] = useState<boolean>(false);
-  const [exitModla, setExitModal] = useState<boolean>(false);
+  const [exitModal, setExitModal] = useState<boolean>(false);
 
   useEffect(() => {
     if (!socket) return;
   }, [socket]);
 
   const clickCashIcon = () => console.log('캐쉬 아이콘을 클릭하였습니다');
-
   const clickExit = () => {
     console.log('나가기 버튼을 눌렀습니다.');
   };
-
   const clickReport = () => {
     console.log('신고하기');
   };
@@ -44,7 +42,7 @@ function Chat({ socket }: any): JSX.Element {
 
     const newIntervalId = setInterval(() => {
       setRemainingTime((prevTime) => {
-        if (prevTime === 0) {
+        if (prevTime === 0 ){
           clearInterval(newIntervalId);
           setConsentModal(true);
           setConsent(false);
@@ -58,10 +56,14 @@ function Chat({ socket }: any): JSX.Element {
   }
 
   useEffect(() => {
+    console.log('체크용', consentModal, '나가기창', exitModal);
+  });
+
+  useEffect(() => {
     return () => {
       if (intervalId) clearInterval(intervalId);
     };
-  }, []);
+  }, [intervalId]);
 
   const minutes = Math.floor(remainingTime / 60);
   const seconds = remainingTime % 60;
@@ -109,7 +111,7 @@ function Chat({ socket }: any): JSX.Element {
     return () => {
       socket.off('receiveMessage', sMessageCallback);
     };
-  }, []);
+  }, [socket]);
 
   useEffect(() => {
     function consentWaitCallback() {
@@ -159,10 +161,13 @@ function Chat({ socket }: any): JSX.Element {
   };
 
   useEffect(() => {
+    if (exitModal) setConsentModal(false);
+  }, [exitModal]);
+
+  useEffect(() => {
     function userExistCallback() {
       setExitModal(true);
       setTimeout(() => {
-        setExitModal(false);
         goThemePage();
       }, 10000);
     }
@@ -170,7 +175,8 @@ function Chat({ socket }: any): JSX.Element {
     return () => {
       socket.off('finish', userExistCallback);
     };
-  });
+  }, [setRemainingTime, goThemePage, socket]);
+
 
   return (
     <>
@@ -182,7 +188,7 @@ function Chat({ socket }: any): JSX.Element {
       ></ChatHeader>
       <ChatInfo />
       <div>{`${minutes}:${seconds}`}</div>
-      {consentModal && (
+      {consentModal && !exitModal && (
         <ConsentModal onAgree={onAgree} onRefuse={onRefuse}></ConsentModal>
       )}
       {consentWaitModal && (
@@ -190,7 +196,7 @@ function Chat({ socket }: any): JSX.Element {
           infoContent={'상대방이 응답을 하는중입니다. 잠시만 기다려주세요'}
         ></InfoModal>
       )}
-      {exitModla && (
+      {exitModal && (
         <InfoModal
           btnName="나가기"
           onClose={goThemePage}
