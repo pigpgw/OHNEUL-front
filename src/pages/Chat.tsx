@@ -42,7 +42,7 @@ function Chat({ socket }: any): JSX.Element {
 
     const newIntervalId = setInterval(() => {
       setRemainingTime((prevTime) => {
-        if (prevTime === 0 ){
+        if (prevTime === 0) {
           clearInterval(newIntervalId);
           setConsentModal(true);
           setConsent(false);
@@ -152,6 +152,7 @@ function Chat({ socket }: any): JSX.Element {
   const onRefuse = () => {
     socket.emit('consent', 'no');
     socket.emit('userExit');
+    goThemePage();
   };
 
   const navigate = useNavigate();
@@ -176,7 +177,6 @@ function Chat({ socket }: any): JSX.Element {
       socket.off('finish', userExistCallback);
     };
   }, [setRemainingTime, goThemePage, socket]);
-
 
   return (
     <>
