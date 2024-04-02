@@ -64,10 +64,6 @@ function Chat({ socket }: any): JSX.Element {
   }
 
   useEffect(() => {
-    console.log('체크용', consentModal, '나가기창', exitModal);
-  });
-
-  useEffect(() => {
     return () => {
       if (intervalId) clearInterval(intervalId);
     };
@@ -76,12 +72,12 @@ function Chat({ socket }: any): JSX.Element {
   const minutes = Math.floor(remainingTime / 60);
   const seconds = remainingTime % 60;
 
-  const msgChangeHandler = (e: React.ChangeEvent<HTMLInputElement>): void => {
+  const msgChangeHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
     e.preventDefault();
     setMsg(e.target.value);
   };
 
-  const msgSubmitHandler = (e: React.FormEvent<HTMLFormElement>): void => {
+  const msgSubmitHandler = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     const sendData = {
       data: msg,
@@ -184,7 +180,7 @@ function Chat({ socket }: any): JSX.Element {
     return () => {
       socket.off('finish', userExistCallback);
     };
-  }, [setRemainingTime, goThemePage, socket]);
+  }, [goThemePage, socket]);
 
   return (
     <>
@@ -208,7 +204,7 @@ function Chat({ socket }: any): JSX.Element {
         <InfoModal
           btnName2="나가기"
           finishEvent={goThemePage}
-          infoContent='"상대방이 나갔습니다 10초뒤 주제 선택 페이지로 이동합니다..'
+          infoContent='상대방이 나갔습니다 10초뒤 주제 선택 페이지로 이동합니다..'
         ></InfoModal>
       )}
       {forExitModal && (

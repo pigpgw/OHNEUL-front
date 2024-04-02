@@ -75,6 +75,7 @@ export const InfoModal = ({
 const ModalTitle = styled.div`
   font-size: 15px;
   font-weight: 800;
+  text-align: center;
   margin: 10px;
 `;
 
