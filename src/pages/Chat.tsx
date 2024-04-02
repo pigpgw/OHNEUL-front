@@ -128,7 +128,6 @@ function Chat({ socket }: any): JSX.Element {
     socket.on('wait', consentWaitCallback);
     socket.on('start', consentSuccessCallback);
     socket.on('extendTime', extendTimeCallback);
-
     return () => {
       socket.off('wait', consentWaitCallback);
       socket.off('start', consentSuccessCallback);
@@ -149,14 +148,25 @@ function Chat({ socket }: any): JSX.Element {
   const onRefuse = () => {
     socket.emit('consent', 'no');
     socket.emit('userExit');
-  };
+};
+
+  useEffect(() => {
+    function userExistCallback() {
+      socket.emit('finish')
+    }
+    socket.on('finish', userExistCallback);
+    return () => {
+      socket.off('finish', userExistCallback);
+    };
+  });
 
   return (
     <>
       <ChatHeader
         onCashIconClick={clickCashIcon}
-        leaveRoomIconClick={clickExit}
+        leaveRoomIconClick={onRefuse}
         reportIconClick={clickReport}
+        onRefuse = {onRefuse}
       ></ChatHeader>
       <ChatInfo />
       <div>{`${minutes}:${seconds}`}</div>

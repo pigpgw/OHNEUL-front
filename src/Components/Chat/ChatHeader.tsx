@@ -15,6 +15,7 @@ interface ChatHeaderProps {
   onCashIconClick: () => void;
   leaveRoomIconClick: () => void;
   reportIconClick: () => void;
+  onRefuse: () => void; // Update this line
 }
 
 function ChatHeader({
@@ -22,6 +23,7 @@ function ChatHeader({
   onCashIconClick,
   leaveRoomIconClick,
   reportIconClick,
+  onRefuse
 }: ChatHeaderProps) {
   const report = () => {
     console.log('신고하기');
