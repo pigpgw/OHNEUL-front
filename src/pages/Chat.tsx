@@ -38,6 +38,13 @@ function Chat({ socket }: any): JSX.Element {
     console.log('신고하기');
   };
 
+  function onForExitModal() {
+    setForExitModal(true);
+  }
+  function offForExitModal() {
+    setForExitModal(false);
+  }
+
   function countTime() {
     if (intervalId) clearInterval(intervalId);
 
@@ -178,13 +185,6 @@ function Chat({ socket }: any): JSX.Element {
       socket.off('finish', userExistCallback);
     };
   }, [setRemainingTime, goThemePage, socket]);
-
-  function onForExitModal() {
-    setForExitModal(true);
-  }
-  function offForExitModal() {
-    setForExitModal(false);
-  }
 
   return (
     <>
