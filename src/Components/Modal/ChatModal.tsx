@@ -48,15 +48,26 @@ export const ConsentModal = ({ onAgree, onRefuse }: ConsentModalProps) => {
 
 interface InfoModal {
   infoContent: string;
-  onClose?: () => void;
-  btnName?: string;
+  continueEvent?: () => void;
+  finishEvent?: () => void;
+  btnName1?: string;
+  btnName2?: string;
 }
 
-export const InfoModal = ({ infoContent, onClose, btnName }: InfoModal) => {
+export const InfoModal = ({
+  infoContent,
+  continueEvent,
+  finishEvent,
+  btnName1,
+  btnName2,
+}: InfoModal) => {
   return (
     <ModalWrapper>
       <ModalTitle>{infoContent}</ModalTitle>
-      {onClose && <button onClick={onClose}>{btnName}</button>}
+      <ModalBtnContainer>
+        {continueEvent && <ModalBtn onClick={continueEvent}>{btnName1}</ModalBtn>}
+        {finishEvent && <ModalBtn onClick={finishEvent}>{btnName2}</ModalBtn>}
+      </ModalBtnContainer>
     </ModalWrapper>
   );
 };

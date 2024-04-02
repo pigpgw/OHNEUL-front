@@ -23,6 +23,7 @@ function Chat({ socket }: any): JSX.Element {
   const [remainingTime, setRemainingTime] = useState<number>(6);
   const [consent, setConsent] = useState<boolean>(false);
   const [consentWaitModal, setConsentWaitModal] = useState<boolean>(false);
+  const [forExitModal, setForExitModal] = useState<boolean>(false);
   const [exitModal, setExitModal] = useState<boolean>(false);
 
   useEffect(() => {
@@ -178,13 +179,20 @@ function Chat({ socket }: any): JSX.Element {
     };
   }, [setRemainingTime, goThemePage, socket]);
 
+  function onForExitModal() {
+    setForExitModal(true);
+  }
+  function offForExitModal() {
+    setForExitModal(false);
+  }
+
   return (
     <>
       <ChatHeader
         onCashIconClick={clickCashIcon}
-        leaveRoomIconClick={onRefuse}
         reportIconClick={clickReport}
         onRefuse={onRefuse}
+        onForExitModal={onForExitModal}
       ></ChatHeader>
       <ChatInfo />
       <div>{`${minutes}:${seconds}`}</div>
@@ -198,10 +206,19 @@ function Chat({ socket }: any): JSX.Element {
       )}
       {exitModal && (
         <InfoModal
-          btnName="나가기"
-          onClose={goThemePage}
+          btnName2="나가기"
+          finishEvent={goThemePage}
           infoContent='"상대방이 나갔습니다 10초뒤 주제 선택 페이지로 이동합니다..'
         ></InfoModal>
+      )}
+      {forExitModal && (
+        <InfoModal
+          infoContent="대화를 종료하시겠습니까?"
+          continueEvent={offForExitModal}
+          finishEvent={onRefuse}
+          btnName1="계속하기"
+          btnName2="나가기"
+        />
       )}
       <ChatMessages messageList={messageList} />
       {remainingTime !== 0 && (

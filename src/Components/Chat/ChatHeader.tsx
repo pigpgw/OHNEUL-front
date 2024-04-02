@@ -13,17 +13,17 @@ import {
 interface ChatHeaderProps {
   socket?: void;
   onCashIconClick: () => void;
-  leaveRoomIconClick: () => void;
   reportIconClick: () => void;
   onRefuse: () => void; // Update this line
+  onForExitModal: () => void
 }
 
 function ChatHeader({
   socket,
   onCashIconClick,
-  leaveRoomIconClick,
   reportIconClick,
-  onRefuse
+  onRefuse,
+  onForExitModal
 }: ChatHeaderProps) {
   const report = () => {
     console.log('신고하기');
@@ -31,7 +31,7 @@ function ChatHeader({
   return (
     <HeaderContainer>
       <LogoContainer>
-        <IconExit onClick={leaveRoomIconClick} />
+        <IconExit onClick={onForExitModal} />
       </LogoContainer>
       <InfoContainer>
         <CashContainer onClick={onCashIconClick}>
