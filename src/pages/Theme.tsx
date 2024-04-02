@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { MouseEvent } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useQuery } from 'react-query';
 import {
@@ -73,13 +74,13 @@ function Theme({ socket }: any) {
     };
   }, [wait]);
 
-  const onClose = (e: any) => {
+  const onClose = (e: React.MouseEvent<HTMLButtonElement>): void => {
     e.stopPropagation();
     console.log('상대 찾기 취소버튼', wait);
     socket.emit('userExit');
     setWait(false);
   };
-
+  
   if (isLoading) return <div>theme data 가져오는 중입니다.</div>;
   if (isError) return <div>theme data 가져오기 실패</div>;
 

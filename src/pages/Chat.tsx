@@ -4,7 +4,8 @@ import ChatHeader from 'Components/Chat/ChatHeader';
 import ChatInfo from 'Components/Chat/ChatInfo';
 import ChatMessages from 'Components/Chat/ChatMessages';
 import ChatInputForm from 'Components/Chat/ChatInputForm';
-import { ConsentModal, ConsentWaitModal } from 'Components/Modal/ChatModal';
+import { ConsentModal, InfoModal } from 'Components/Modal/ChatModal';
+import { useNavigate } from 'react-router-dom';
 
 interface Message {
   msg: string;
@@ -22,6 +23,11 @@ function Chat({ socket }: any): JSX.Element {
   const [remainingTime, setRemainingTime] = useState<number>(6);
   const [consent, setConsent] = useState<boolean>(false);
   const [consentWaitModal, setConsentWaitModal] = useState<boolean>(false);
+  const [exitModla, setExitModal] = useState<boolean>(false);
+
+  useEffect(() => {
+    if (!socket) return;
+  }, [socket]);
 
   const clickCashIcon = () => console.log('캐쉬 아이콘을 클릭하였습니다');
 
@@ -32,10 +38,6 @@ function Chat({ socket }: any): JSX.Element {
   const clickReport = () => {
     console.log('신고하기');
   };
-
-  useEffect(() => {
-    if (!socket) return;
-  }, [socket]);
 
   function countTime() {
     if (intervalId) clearInterval(intervalId);
@@ -69,6 +71,24 @@ function Chat({ socket }: any): JSX.Element {
     setMsg(e.target.value);
   };
 
+  const msgSubmitHandler = (e: React.FormEvent<HTMLFormElement>): void => {
+    e.preventDefault();
+    const sendData = {
+      data: msg,
+      id: socket.id,
+    };
+    setMessageList((prev) => [
+      ...prev,
+      {
+        msg,
+        type: 'me',
+        id: socket.id,
+      },
+    ]);
+    socket.emit('sendMessage', sendData);
+    setMsg('');
+  };
+
   useEffect(() => {
     if (!socket) return;
     function sMessageCallback(messageData: any) {
@@ -90,24 +110,6 @@ function Chat({ socket }: any): JSX.Element {
       socket.off('receiveMessage', sMessageCallback);
     };
   }, []);
-
-  const msgSubmitHandler = (e: React.FormEvent<HTMLFormElement>): void => {
-    e.preventDefault();
-    const sendData = {
-      data: msg,
-      id: socket.id,
-    };
-    setMessageList((prev) => [
-      ...prev,
-      {
-        msg,
-        type: 'me',
-        id: socket.id,
-      },
-    ]);
-    socket.emit('sendMessage', sendData);
-    setMsg('');
-  };
 
   useEffect(() => {
     function consentWaitCallback() {
@@ -148,11 +150,21 @@ function Chat({ socket }: any): JSX.Element {
   const onRefuse = () => {
     socket.emit('consent', 'no');
     socket.emit('userExit');
-};
+  };
+
+  const navigate = useNavigate();
+
+  const goThemePage = () => {
+    navigate('/theme');
+  };
 
   useEffect(() => {
     function userExistCallback() {
-      socket.emit('finish')
+      setExitModal(true);
+      setTimeout(() => {
+        setExitModal(false);
+        goThemePage();
+      }, 10000);
     }
     socket.on('finish', userExistCallback);
     return () => {
@@ -166,15 +178,25 @@ function Chat({ socket }: any): JSX.Element {
         onCashIconClick={clickCashIcon}
         leaveRoomIconClick={onRefuse}
         reportIconClick={clickReport}
-        onRefuse = {onRefuse}
+        onRefuse={onRefuse}
       ></ChatHeader>
       <ChatInfo />
       <div>{`${minutes}:${seconds}`}</div>
       {consentModal && (
         <ConsentModal onAgree={onAgree} onRefuse={onRefuse}></ConsentModal>
       )}
-      {consentWaitModal && <ConsentWaitModal></ConsentWaitModal>}
-
+      {consentWaitModal && (
+        <InfoModal
+          infoContent={'상대방이 응답을 하는중입니다. 잠시만 기다려주세요'}
+        ></InfoModal>
+      )}
+      {exitModla && (
+        <InfoModal
+          btnName="나가기"
+          onClose={goThemePage}
+          infoContent='"상대방이 나갔습니다 10초뒤 주제 선택 페이지로 이동합니다..'
+        ></InfoModal>
+      )}
       <ChatMessages messageList={messageList} />
       {remainingTime !== 0 && (
         <ChatInputForm

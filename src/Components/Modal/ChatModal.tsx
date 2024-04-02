@@ -1,5 +1,6 @@
 /* eslint-disable import/prefer-default-export */
 import React from 'react';
+import { MouseEvent } from 'react';
 import { createPortal } from 'react-dom';
 import styled from 'styled-components';
 
@@ -13,7 +14,11 @@ function ModalWrapper({ children }: ModalProps) {
   );
 }
 
-export const WaitModal = ({ onClose }: { onClose: (e: any) => void }) => {
+interface WatiModalProps {
+  onClose: (e: MouseEvent<HTMLButtonElement>) => void;
+}
+
+export const WaitModal = ({ onClose }: WatiModalProps) => {
   return (
     <ModalWrapper>
       <ModalTitle>대화 상대를 찾고 있어요</ModalTitle>
@@ -41,10 +46,17 @@ export const ConsentModal = ({ onAgree, onRefuse }: ConsentModalProps) => {
   );
 };
 
-export const ConsentWaitModal = () => {
+interface InfoModal {
+  infoContent: string;
+  onClose?: () => void;
+  btnName?: string;
+}
+
+export const InfoModal = ({ infoContent, onClose, btnName }: InfoModal) => {
   return (
     <ModalWrapper>
-      <ModalTitle>잠시만 기다려주세요 상대방이 응답중입니다.</ModalTitle>
+      <ModalTitle>{infoContent}</ModalTitle>
+      {onClose && <button onClick={onClose}>{btnName}</button>}
     </ModalWrapper>
   );
 };
