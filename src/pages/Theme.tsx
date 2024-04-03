@@ -17,7 +17,7 @@ interface Themes {
   clicked?: boolean;
 }
 
-function Theme() {
+function Theme(socket: any) {
   const {
     data: availableThemes,
     isLoading,
