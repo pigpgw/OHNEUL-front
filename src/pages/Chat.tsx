@@ -4,7 +4,11 @@ import ChatHeader from 'Components/Chat/ChatHeader';
 import ChatInfo from 'Components/Chat/ChatInfo';
 import ChatMessages from 'Components/Chat/ChatMessages';
 import ChatInputForm from 'Components/Chat/ChatInputForm';
-import { ConsentModal, InfoModal } from 'Components/Modal/ChatModal';
+import {
+  ConsentModal,
+  InfoModal,
+  ReportModal,
+} from 'Components/Modal/ChatModal';
 import { useNavigate } from 'react-router-dom';
 
 interface Message {
@@ -25,6 +29,11 @@ function Chat({ socket }: any): JSX.Element {
   const [consentWaitModal, setConsentWaitModal] = useState<boolean>(false);
   const [forExitModal, setForExitModal] = useState<boolean>(false);
   const [exitModal, setExitModal] = useState<boolean>(false);
+  const [reviewModal, setReviewModal] = useState<boolean>(false);
+  const [totalTime, setTotalTime] = useState<number>(0);
+
+  const [reportModal, setReportModal] = useState<boolean>(false);
+  const [reportReason, setReportReson] = useState<string>('');
 
   useEffect(() => {
     if (!socket) return;
@@ -33,9 +42,6 @@ function Chat({ socket }: any): JSX.Element {
   const clickCashIcon = () => console.log('캐쉬 아이콘을 클릭하였습니다');
   const clickExit = () => {
     console.log('나가기 버튼을 눌렀습니다.');
-  };
-  const clickReport = () => {
-    console.log('신고하기');
   };
 
   function onForExitModal() {
@@ -58,11 +64,14 @@ function Chat({ socket }: any): JSX.Element {
         }
         return prevTime - 1;
       });
+      // 총 대화시간 체크
+      setTotalTime((prev) => {
+        return prev + 1;
+      });
     }, 1000);
 
     setIntervalId(newIntervalId);
   }
-
   useEffect(() => {
     return () => {
       if (intervalId) clearInterval(intervalId);
@@ -171,10 +180,15 @@ function Chat({ socket }: any): JSX.Element {
 
   useEffect(() => {
     function userExistCallback() {
-      setExitModal(true);
-      setTimeout(() => {
-        goThemePage();
-      }, 10000);
+      clearInterval(intervalId);
+      if (totalTime < 3) {
+        setExitModal(true);
+        setTimeout(() => {
+          goThemePage();
+        }, 10000);
+      } else {
+        setReviewModal(true);
+      }
     }
     socket.on('finish', userExistCallback);
     return () => {
@@ -182,11 +196,32 @@ function Chat({ socket }: any): JSX.Element {
     };
   }, [goThemePage, socket]);
 
+  const onReportModal = () => {
+    setReportModal(true);
+  };
+
+  const offReportModal = () => {
+    setReportModal(false);
+  };
+
+  const selectReportReason = (e: React.MouseEvent<HTMLButtonElement>): void => {
+    const { value } = e.target as HTMLButtonElement;
+    setReportReson(value);
+    console.log('누른 신고사유', reportReason);
+  };
+
+  const reportUser = () => {
+    console.log("상대방 신고 사유",reportReason)
+    setReportReson('')
+    alert('신고가 완료되었습니다.')
+    setReportModal(false)
+  }
+
   return (
     <>
       <ChatHeader
         onCashIconClick={clickCashIcon}
-        reportIconClick={clickReport}
+        reportIconClick={onReportModal}
         onRefuse={onRefuse}
         onForExitModal={onForExitModal}
       ></ChatHeader>
@@ -204,8 +239,27 @@ function Chat({ socket }: any): JSX.Element {
         <InfoModal
           btnName2="나가기"
           finishEvent={goThemePage}
-          infoContent='상대방이 나갔습니다 10초뒤 주제 선택 페이지로 이동합니다..'
+          infoContent="상대방이 나갔습니다 10초뒤 주제 선택 페이지로 이동합니다.."
         ></InfoModal>
+      )}
+      {reportModal && (
+        <ReportModal
+          infoContent="신고"
+          reportReasons={[
+            '성적 발언',
+            '혐오발언',
+            '패드립',
+            '부적절한 발언',
+            '도배',
+          ]}
+          onClick={selectReportReason}
+          onClose={offReportModal}
+          selectedReason={reportReason}
+          doReport = {reportUser}
+        />
+      )}
+      {reviewModal && (
+        <InfoModal infoContent="상대방이 나가버렸어요 상대방은 어땠는지 리뷰를 남겨주세요" />
       )}
       {forExitModal && (
         <InfoModal

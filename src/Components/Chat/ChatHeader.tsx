@@ -25,9 +25,6 @@ function ChatHeader({
   onRefuse,
   onForExitModal
 }: ChatHeaderProps) {
-  const report = () => {
-    console.log('신고하기');
-  };
   return (
     <HeaderContainer>
       <LogoContainer>
@@ -38,7 +35,7 @@ function ChatHeader({
           <CashIcon />
           <CashAmount>200</CashAmount>
         </CashContainer>
-        <IconReport onClick={report} />
+        <IconReport onClick={reportIconClick} />
       </InfoContainer>
     </HeaderContainer>
   );

@@ -65,10 +65,52 @@ export const InfoModal = ({
     <ModalWrapper>
       <ModalTitle>{infoContent}</ModalTitle>
       <ModalBtnContainer>
-        {continueEvent && <ModalBtn onClick={continueEvent}>{btnName1}</ModalBtn>}
+        {continueEvent && (
+          <ModalBtn onClick={continueEvent}>{btnName1}</ModalBtn>
+        )}
         {finishEvent && <ModalBtn onClick={finishEvent}>{btnName2}</ModalBtn>}
       </ModalBtnContainer>
     </ModalWrapper>
+  );
+};
+
+interface ReportModalProps {
+  infoContent: string;
+  onClick?: (e: React.MouseEvent<HTMLButtonElement>) => void;
+  onClose: () => void;
+  doReport: () => void;
+  reportReasons?: string[];
+  selectedReason: string;
+}
+
+export const ReportModal = ({
+  infoContent,
+  onClick,
+  onClose,
+  doReport,
+  reportReasons = [],
+  selectedReason,
+}: ReportModalProps) => {
+  return (
+    <ReportModalLayout>
+      <ModalTitle>{infoContent}</ModalTitle>
+      <ReportModalBtnContainer>
+        {reportReasons.map((reason, index) => (
+          <ReportBtn
+            key={index}
+            value={reason}
+            onClick={onClick}
+            selected={selectedReason === reason}
+          >
+            {reason}
+          </ReportBtn>
+        ))}
+        <ModalBtnContainer>
+          <ModalBtn onClick={doReport}>신고하기</ModalBtn>
+          <ModalBtn onClick={onClose}>취소</ModalBtn>
+        </ModalBtnContainer>
+      </ReportModalBtnContainer>
+    </ReportModalLayout>
   );
 };
 
@@ -120,4 +162,49 @@ const ModalLayout = styled.div`
   top: 45%;
   left: 51%;
   transform: translate(-50%, -50%);
+`;
+
+const ReportModalLayout = styled.div`
+  width: 73%;
+
+  max-width: 450px;
+  max-height: 320px;
+
+  background: #ffffff;
+  border: 1px solid #cccccc;
+  border-radius: 20px;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  position: fixed;
+  top: 45%;
+  left: 51%;
+  transform: translate(-50%, -50%);
+`;
+
+const ReportModalBtnContainer = styled.div`
+  width: 60%;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  margin: 10px;
+`;
+
+interface ReportBtnProps {
+  selected?: boolean;
+}
+
+const ReportBtn = styled.button<ReportBtnProps>`
+  width: 200px;
+  height: 30px;
+  margin: 10px;
+  background: ${(props) => (props.selected ? '#0075ff' : '#ffffff')};
+  border: 1px solid #cccccc;
+  border-radius: 20px;
+  font-weight: 800;
+
+  color: ${(props) => (props.selected ? 'white' : 'black')};
 `;
