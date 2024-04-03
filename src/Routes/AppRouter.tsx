@@ -33,8 +33,8 @@ function AppRouter() {
           {/* <Route path="theme" element={<Theme socket={socket} />} /> */}
         </Route>
         <Route path="/mypage" element={<div>마이페이지</div>} />
-        {/* <Route path="/chat" element={<Chat socket={socket} />} /> */}
-        {/* <Route path="/*" element={<NotFound />} /> */}
+        {/* <Route path="/chat" element={<Chat socket={socket} />} />
+        <Route path="/*" element={<NotFound />} /> */}
       </Routes>
     </BrowserRouter>
   );

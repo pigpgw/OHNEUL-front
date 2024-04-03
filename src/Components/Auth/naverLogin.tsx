@@ -14,8 +14,7 @@ const NaverLoginButton = styled.button`
   }
 `;
 const NaverLogin: React.FC = () => {
-  const NaverAuthRoot =
-    'https://port-0-ohneul-docker-44rk2blu3topxi.sel5.cloudtype.app/login/naver';
+  const NaverAuthRoot = 'http://localhost:4000/login/naver';
 
   const loginRedirect = () => {
     window.location.href = NaverAuthRoot;
