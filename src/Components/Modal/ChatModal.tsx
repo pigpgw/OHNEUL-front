@@ -8,14 +8,36 @@ type ModalProps = {
   children: React.ReactNode;
 };
 
+interface WatiModalProps {
+  onClose: (e: MouseEvent<HTMLButtonElement>) => void;
+}
+
+type ConsentModalProps = {
+  onAgree: () => void;
+  onRefuse: () => void;
+};
+
+interface InfoModal {
+  infoContent: string;
+  continueEvent?: () => void;
+  finishEvent?: () => void;
+  btnName1?: string;
+  btnName2?: string;
+}
+
+interface ReportModalProps {
+  infoContent: string;
+  onClick?: (e: React.MouseEvent<HTMLButtonElement>) => void;
+  onClose: () => void;
+  doReport: () => void;
+  reportReasons?: string[];
+  selectedReason: string;
+}
+
 function ModalWrapper({ children }: ModalProps) {
   return (
     <>{createPortal(<ModalLayout>{children}</ModalLayout>, document.body)}</>
   );
-}
-
-interface WatiModalProps {
-  onClose: (e: MouseEvent<HTMLButtonElement>) => void;
 }
 
 export const WaitModal = ({ onClose }: WatiModalProps) => {
@@ -29,11 +51,6 @@ export const WaitModal = ({ onClose }: WatiModalProps) => {
   );
 };
 
-type ConsentModalProps = {
-  onAgree: () => void;
-  onRefuse: () => void;
-};
-
 export const ConsentModal = ({ onAgree, onRefuse }: ConsentModalProps) => {
   return (
     <ModalWrapper>
@@ -45,14 +62,6 @@ export const ConsentModal = ({ onAgree, onRefuse }: ConsentModalProps) => {
     </ModalWrapper>
   );
 };
-
-interface InfoModal {
-  infoContent: string;
-  continueEvent?: () => void;
-  finishEvent?: () => void;
-  btnName1?: string;
-  btnName2?: string;
-}
 
 export const InfoModal = ({
   infoContent,
@@ -73,15 +82,6 @@ export const InfoModal = ({
     </ModalWrapper>
   );
 };
-
-interface ReportModalProps {
-  infoContent: string;
-  onClick?: (e: React.MouseEvent<HTMLButtonElement>) => void;
-  onClose: () => void;
-  doReport: () => void;
-  reportReasons?: string[];
-  selectedReason: string;
-}
 
 export const ReportModal = ({
   infoContent,
@@ -119,10 +119,6 @@ const ModalTitle = styled.div`
   font-weight: 800;
   text-align: center;
   margin: 10px;
-`;
-
-const ModalContent = styled.div`
-  font-size: 10px;
 `;
 
 const ModalBtnContainer = styled.div`
