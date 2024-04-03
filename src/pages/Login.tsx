@@ -1,13 +1,12 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import styled from 'styled-components';
 import { useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
-import NaverLogin from '../Components/Auth/NaverLogin';
-import KakaoLogin from '../Components/Auth/KakaoLogin';
+import { setTimeout } from 'timers/promises';
+import NaverLogin from '../Components/Auth/naverLogin';
+import KakaoLogin from '../Components/Auth/kakaoLogin';
 import MainLogo from '../Components/Common/MainLogo';
 import phrase from '../assets/images/appCatchphrase.png';
-
-const PhraseContainer = styled.div``;
 
 const LogoContainer = styled.div`
   display: flex;
@@ -22,17 +21,30 @@ const SocialContainer = styled.div`
   align-items: center;
   gap: 1px;
 `;
-interface State {
+const PhraseContainer = styled.div``;
+// 로그인후잠깐보여지는페이지
+// 이페이지가렌더링된후바로메인페이지진입
+interface User {
   user: {
     value: { username: string; AccessToken: string; refreshToken: string };
     isLogin: boolean;
   };
 }
 const Login: React.FC = () => {
-  // const isLogin = useSelector((state: State) => state.user.isLogin);
-  const isLogin = document.cookie;
-  // const userName = useSelector((state: State) => state.user.value.username);
+  // const isLogin = useSelector((state: User) => state.user.isLogin);
+  const userName = useSelector((state: User) => state.user.value.username);
   const navigate = useNavigate();
+  const isLogin = document.cookie;
+  useEffect(() => {
+    if (isLogin) {
+      const timer = window.setTimeout(() => {
+        navigate('/home');
+      }, 2000);
+      return () => clearTimeout(timer);
+    }
+    return navigate('/');
+  }, [isLogin, navigate]);
+
   return (
     <>
       <LogoContainer>
@@ -48,9 +60,6 @@ const Login: React.FC = () => {
           <KakaoLogin></KakaoLogin>
         </SocialContainer>
       )}
-
-      {}
-      {/* 이 페이지 랜더링 된 후 캐치프레이즈 문구 나오게하기 */}
     </>
   );
 };
