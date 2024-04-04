@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { MouseEvent } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useQuery } from 'react-query';
 import {
@@ -37,7 +38,11 @@ function Theme({ socket }: any) {
 
   useEffect(() => {
     if (availableThemes) setTheme(availableThemes);
+    console.log('check clicked button', userSelectTheme);
   }, [availableThemes]);
+  useEffect(() => {
+    console.log('사용자가 고른 주제',userSelectTheme)
+  },[userSelectTheme])
 
   const clickBtn = (id: number) => {
     setTheme((prev) =>
@@ -51,6 +56,7 @@ function Theme({ socket }: any) {
 
   const matchingcStart = (e: React.MouseEvent<HTMLButtonElement>) => {
     if (!userSelectTheme) alert('최소 1개를 선택해주세요');
+    console.log('매칭 시작 누름')
     e.preventDefault();
     socket.emit('selectTheme', userSelectTheme);
   };
@@ -73,7 +79,7 @@ function Theme({ socket }: any) {
     };
   }, [wait]);
 
-  const onClose = (e: any) => {
+  const onClose = (e: React.MouseEvent<HTMLButtonElement>): void => {
     e.stopPropagation();
     console.log('상대 찾기 취소버튼', wait);
     socket.emit('userExit');

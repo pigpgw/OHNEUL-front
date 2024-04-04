@@ -17,6 +17,7 @@ const PhraseContainer = styled.div``;
 
 const AfterLogin: React.FC = () => {
   const isAuth = document.cookie;
+  console.log('쿠키 확인 after login',isAuth)
   const navigate = useNavigate();
   useEffect(() => {
     const checkAuth = async () => {
