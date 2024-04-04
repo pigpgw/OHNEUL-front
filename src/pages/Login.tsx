@@ -2,11 +2,9 @@ import React, { useEffect } from 'react';
 import styled from 'styled-components';
 import { useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
-import { setTimeout } from 'timers/promises';
-import NaverLogin from '../Components/Auth/naverLogin';
-import KakaoLogin from '../Components/Auth/kakaoLogin';
-import MainLogo from '../Components/Common/MainLogo';
-import phrase from '../assets/images/appCatchphrase.png';
+import NaverLogin from 'Components/Auth/naverLogin';
+import KakaoLogin from 'Components/Auth/kakaoLogin';
+// import MainLogo from 'Components/Common/MainLogo';
 
 const LogoContainer = styled.div`
   display: flex;
@@ -48,7 +46,7 @@ const Login: React.FC = () => {
   return (
     <>
       <LogoContainer>
-        <MainLogo></MainLogo>
+        {/* <MainLogo></MainLogo> */}
       </LogoContainer>
       {isLogin ? (
         <PhraseContainer>

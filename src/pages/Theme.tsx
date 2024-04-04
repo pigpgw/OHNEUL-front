@@ -1,4 +1,6 @@
 import React, { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { useQuery } from 'react-query';
 import {
   InfoText,
   Container,
@@ -7,9 +9,9 @@ import {
   ThemeItemBtn,
   SubmitBtn,
   MarginTag,
-} from 'Components/Common/Tag';
-import { useQuery } from 'react-query';
+} from '../Components/styles/Common';
 import { fetchGetThemes } from '../api/fetchTheme';
+import { WaitModal } from '../Components/Modal/ChatModal';
 
 interface Themes {
   theme_id: number;
@@ -17,7 +19,7 @@ interface Themes {
   clicked?: boolean;
 }
 
-function Theme(socket: any) {
+function Theme({ socket }: any) {
   const {
     data: availableThemes,
     isLoading,
@@ -28,13 +30,17 @@ function Theme(socket: any) {
   });
 
   const [theme, setTheme] = useState<Themes[]>([]);
-  const userSelectTheme = theme
+  const [wait, setWait] = useState<boolean>(false);
+  const userSelectTheme: string = theme
     .filter((item) => item.clicked === true)
     .map((item) => item.theme)[0];
 
   useEffect(() => {
     if (availableThemes) setTheme(availableThemes);
+<<<<<<< HEAD
     console.log('check theme', theme);
+=======
+>>>>>>> dev
   }, [availableThemes]);
 
   const clickBtn = (id: number) => {
@@ -47,12 +53,35 @@ function Theme(socket: any) {
     );
   };
 
-  const handleSubmit = () => {
-    if (userSelectTheme) {
-      console.log('유저가 선택한 주제', userSelectTheme);
-    } else {
-      console.log('Please select a theme before submitting.');
+  const matchingcStart = (e: React.MouseEvent<HTMLButtonElement>) => {
+    if (!userSelectTheme) alert('최소 1개를 선택해주세요');
+    e.preventDefault();
+    socket.emit('selectTheme', userSelectTheme);
+  };
+
+  const navigate = useNavigate();
+  useEffect(() => {
+    function waitMessageCallback() {
+      setWait(true);
     }
+
+    function startMessageCallback() {
+      setWait(false);
+      navigate('/chat');
+    }
+    socket.on('wait', waitMessageCallback);
+    socket.on('start', startMessageCallback);
+    return () => {
+      socket.off('wait', waitMessageCallback);
+      socket.off('start', startMessageCallback);
+    };
+  }, [wait]);
+
+  const onClose = (e: any) => {
+    e.stopPropagation();
+    console.log('상대 찾기 취소버튼', wait);
+    socket.emit('userExit');
+    setWait(false);
   };
 
   if (isLoading) return <div>theme data 가져오는 중입니다.</div>;
@@ -73,9 +102,12 @@ function Theme(socket: any) {
             </ThemeItemBtn>
           ))}
         </ThemeItemContainer>
+        {wait && <WaitModal onClose={onClose} />}
         <InfoText>최대 1개만 선택 가능합니다.</InfoText>
         <MarginTag margin={50}></MarginTag>
-        <SubmitBtn onClick={handleSubmit}>선택 완료</SubmitBtn>
+        <SubmitBtn disabled={wait} onClick={matchingcStart}>
+          선택 완료
+        </SubmitBtn>
       </Container>
     </>
   );
