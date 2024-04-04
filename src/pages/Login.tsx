@@ -7,6 +7,8 @@ import KakaoLogin from 'Components/Auth/kakaoLogin';
 import MainLogo from 'Components/Common/MainLogo';
 import phrase from 'assets/images/appCatchphrase.png';
 import { setAuth } from 'stores/slices/userSlice';
+import meltedCookie from 'utils/meltedCookie'
+
 const LogoContainer = styled.div`
   display: flex;
   flex-direction: column;
@@ -29,26 +31,19 @@ interface User {
     isLogin: boolean;
   };
 }
+
 const Login: React.FC = () => {
   // const isLogin = useSelector((state: User) => state.user.isLogin);
   const userName = useSelector((state: User) => state.user.value.username);
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const isLogin = document.cookie;
-   // useEffect(() => {
-  //   dispatch(setAuth({ provider, refreshToken, userId }));
-  // }, [dispatch, provider, refreshToken, userId]);
+  const [userId,token,flatform] = meltedCookie();
 
   useEffect(() => {
-    const cookies = document.cookie.split('; ');
-    const userInfo = cookies.reduce((acc, cookie) => {
-      const [key, value] = cookie.split('=');
-      acc[key] = value;
-      return acc;
-    }, {})
-    console.log(userInfo); 
-    ;})
-  //   const { serId, provider, refreshToken } = userInfo;
+    dispatch(setAuth({ flatform, token, userId }));
+   
+  }, []);
 
   //   // eslint-disable-next-line camelcase
   //   dispatch(setAuth({ userId, provider, refreshToken }));
