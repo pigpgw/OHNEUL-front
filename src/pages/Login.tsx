@@ -1,11 +1,12 @@
 import React, { useEffect } from 'react';
 import styled from 'styled-components';
-import { useSelector } from 'react-redux';
+import { useSelector ,useDispatch} from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import NaverLogin from 'Components/Auth/naverLogin';
 import KakaoLogin from 'Components/Auth/kakaoLogin';
-// import MainLogo from 'Components/Common/MainLogo';
-
+import MainLogo from 'Components/Common/MainLogo';
+import phrase from 'assets/images/appCatchphrase.png';
+import { setAuth } from 'stores/slices/userSlice';
 const LogoContainer = styled.div`
   display: flex;
   flex-direction: column;
@@ -31,12 +32,29 @@ interface User {
 const Login: React.FC = () => {
   // const isLogin = useSelector((state: User) => state.user.isLogin);
   const userName = useSelector((state: User) => state.user.value.username);
+  const dispatch = useDispatch();
   const navigate = useNavigate();
   const isLogin = document.cookie;
+   // useEffect(() => {
+  //   dispatch(setAuth({ provider, refreshToken, userId }));
+  // }, [dispatch, provider, refreshToken, userId]);
+
+  // useEffect(() => {
+  //   const cookies = document.cookie.split('; ');
+  //   const userInfo = cookies.reduce((acc, cookie) => {
+  //     const [key, value]:  = cookie.split('=');
+  //     acc[key] = value;
+  //     return acc;
+  //   }, {});
+  //   const { userId, provider, refreshToken } = userInfo;
+
+  //   // eslint-disable-next-line camelcase
+  //   dispatch(setAuth({ userId, provider, refreshToken }));
+  // }, [dispatch]);
   useEffect(() => {
     if (isLogin) {
       const timer = window.setTimeout(() => {
-        navigate('/home');
+        navigate('/favorite');
       }, 2000);
       return () => clearTimeout(timer);
     }
@@ -46,7 +64,7 @@ const Login: React.FC = () => {
   return (
     <>
       <LogoContainer>
-        {/* <MainLogo></MainLogo> */}
+        <MainLogo></MainLogo>
       </LogoContainer>
       {isLogin ? (
         <PhraseContainer>

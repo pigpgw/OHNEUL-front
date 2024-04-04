@@ -2,7 +2,6 @@ import React from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 
 // import KakaoRedirect from '../Components/Auth/KakaoRedirect';
-import AfterLogin from 'pages/AfterLogin';
 import io from 'socket.io-client';
 import Login from 'pages/Login';
 import Favorite from 'pages/Hobby';
@@ -22,9 +21,7 @@ function AppRouter() {
   return (
     <BrowserRouter>
       <Routes>
-        {/* Login -> AfterLogin -> Home */}
-        {/* <Route path="/afterlogin" element={<AfterLogin></AfterLogin>}></Route> */}
-        <Route path="/login/kakao" element={<Redirect />}></Route>
+         <Route path="/login/kakao" element={<Redirect />}></Route>
         <Route path="/login/naver" element={<Redirect />} />
         <Route path="/" element={<Login />} />
         <Route path="/" element={<Home />}>
