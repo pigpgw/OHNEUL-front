@@ -17,7 +17,7 @@ const KakaoLoginButton = styled.button`
 `;
 const KakaoLogin: React.FC = () => {
   const KakaoAuthRoot =
-    'https://port-0-ohneul-docker-44rk2blu3topxi.sel5.cloudtype.app/login/kakao';
+    'http://localhost:4000/login/kakao';
   function loginRedirect(): void {
     window.location.href = KakaoAuthRoot;
   }
