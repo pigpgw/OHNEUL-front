@@ -39,14 +39,16 @@ const Login: React.FC = () => {
   //   dispatch(setAuth({ provider, refreshToken, userId }));
   // }, [dispatch, provider, refreshToken, userId]);
 
-  // useEffect(() => {
-  //   const cookies = document.cookie.split('; ');
-  //   const userInfo = cookies.reduce((acc, cookie) => {
-  //     const [key, value]:  = cookie.split('=');
-  //     acc[key] = value;
-  //     return acc;
-  //   }, {});
-  //   const { userId, provider, refreshToken } = userInfo;
+  useEffect(() => {
+    const cookies = document.cookie.split('; ');
+    const userInfo = cookies.reduce((acc, cookie) => {
+      const [key, value] = cookie.split('=');
+      acc[key] = value;
+      return acc;
+    }, {})
+    console.log(userInfo); 
+    ;})
+  //   const { serId, provider, refreshToken } = userInfo;
 
   //   // eslint-disable-next-line camelcase
   //   dispatch(setAuth({ userId, provider, refreshToken }));
