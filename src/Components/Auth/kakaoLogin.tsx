@@ -32,7 +32,8 @@ const KakaoLoginButton = styled.button`
 // }
 
 const KakaoLogin: React.FC = () => {
-  const KakaoAuthRoot = 'http://localhost:4000/login/kakao';
+  const KakaoAuthRoot =
+    'http://localhost:4000/login/kakao';
   function loginRedirect(): void {
     window.location.href = KakaoAuthRoot;
   }

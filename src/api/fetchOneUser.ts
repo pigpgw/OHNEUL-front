@@ -19,8 +19,7 @@ interface User {
 }
 
 export const fetchGetOneUser = async (): Promise<User> => {
-  const response = await axios.get('http://localhost:3000/users');
-  console.log('response', response.data[0]);
+  const response = await axios.get('http://localhost:4000/users');
   return response.data[0];
 };
 

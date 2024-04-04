@@ -12,10 +12,10 @@ import Chat from 'pages/Chat';
 import NotFound from 'pages/NotFound';
 import Redirect from 'Components/Auth/Redirect';
 
-// const socket = io('http://localhost:4000')
-const socket = io(
-  'https://port-0-ohneul-docker-44rk2blu3topxi.sel5.cloudtype.app/',
-);
+const socket = io('http://localhost:4000')
+// const socket = io(
+//   'https://port-0-ohneul-docker-44rk2blu3topxi.sel5.cloudtype.app/',
+// );
 
 function AppRouter() {
   return (

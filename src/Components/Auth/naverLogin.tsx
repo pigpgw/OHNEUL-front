@@ -14,7 +14,8 @@ const NaverLoginButton = styled.button`
   }
 `;
 const NaverLogin: React.FC = () => {
-  const NaverAuthRoot = 'http://localhost:4000/login/naver';
+  const NaverAuthRoot =
+    'http://localhost:4000/login/naver';
 
   const loginRedirect = () => {
     window.location.href = NaverAuthRoot;
