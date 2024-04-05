@@ -1,13 +1,13 @@
 import React, { useEffect } from 'react';
 import styled from 'styled-components';
-import { useSelector ,useDispatch} from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import NaverLogin from 'Components/Auth/naverLogin';
 import KakaoLogin from 'Components/Auth/kakaoLogin';
 import MainLogo from 'Components/Common/MainLogo';
 import phrase from 'assets/images/appCatchphrase.png';
-import { setAuth } from 'stores/slices/userSlice';
-import meltedCookie from 'utils/meltedCookie'
+import { setAuth, login } from 'stores/slices/userSlice';
+import meltedCookie from 'utils/meltedCookie';
 
 const LogoContainer = styled.div`
   display: flex;
@@ -27,29 +27,32 @@ const PhraseContainer = styled.div``;
 // 이페이지가렌더링된후바로메인페이지진입
 interface User {
   user: {
-    value: { username: string; AccessToken: string; refreshToken: string };
+    value: { user_id: string; refreshToken: string; provider: string };
     isLogin: boolean;
   };
 }
 
 const Login: React.FC = () => {
   // const isLogin = useSelector((state: User) => state.user.isLogin);
-  const userName = useSelector((state: User) => state.user.value.username);
+  const storedUserInfo = useSelector((state: User) => state.user);
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const isLogin = document.cookie;
-  const [userId,token,flatform] = meltedCookie();
+  const isLogin = useSelector((state: User) => state.user.isLogin);
+  const [userId, token, flatform] = meltedCookie();
 
   useEffect(() => {
-    dispatch(setAuth({ flatform, token, userId }));
-   
-  }, []);
+    dispatch(
+      setAuth({ user_id: userId, refreshToken: token, provider: flatform }),
+    );
+    dispatch(login());
+  }, [dispatch]);
 
   //   // eslint-disable-next-line camelcase
   //   dispatch(setAuth({ userId, provider, refreshToken }));
   // }, [dispatch]);
   useEffect(() => {
     if (isLogin) {
+      console.log(storedUserInfo, '확인');
       const timer = window.setTimeout(() => {
         navigate('/favorite');
       }, 2000);
