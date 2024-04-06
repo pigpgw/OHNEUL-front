@@ -180,6 +180,9 @@ function Chat({ socket }: any): JSX.Element {
 
   useEffect(() => {
     function userExistCallback() {
+      // console.log('쿠키 초기화 이전 cookie 확인',document.cookie)
+      document.cookie = "other=";
+      // console.log('방 나나고 쿠키 삭제',document.cookie)
       clearInterval(intervalId);
       if (totalTime < 3) {
         setExitModal(true);
@@ -211,11 +214,21 @@ function Chat({ socket }: any): JSX.Element {
   };
 
   const reportUser = () => {
-    console.log("상대방 신고 사유",reportReason)
-    setReportReson('')
-    alert('신고가 완료되었습니다.')
-    setReportModal(false)
-  }
+    const uuidInCookie = document.cookie
+      .split(' ')
+      .filter((item) => item.split('=')[0] === 'other')[0];
+    const reportedUserId = uuidInCookie.split('=')[1].replace(/;/g, '');
+    console.log('상대방 uuid', reportedUserId);
+    console.log('상대방 신고 사유', reportReason);
+    const reportInfo = {
+      reportedUserId,
+      reportReason,
+    };
+    socket.emit('reportUser', reportInfo);
+    setReportReson('');
+    alert('신고가 완료되었습니다.');
+    setReportModal(false);
+  };
 
   return (
     <>
@@ -255,7 +268,7 @@ function Chat({ socket }: any): JSX.Element {
           onClick={selectReportReason}
           onClose={offReportModal}
           selectedReason={reportReason}
-          doReport = {reportUser}
+          doReport={reportUser}
         />
       )}
       {reviewModal && (

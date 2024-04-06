@@ -14,7 +14,7 @@ interface ChatHeaderProps {
   socket?: void;
   onCashIconClick: () => void;
   reportIconClick: () => void;
-  onRefuse: () => void; // Update this line
+  onRefuse: () => void;
   onForExitModal: () => void
 }
 
