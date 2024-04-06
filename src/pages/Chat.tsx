@@ -171,6 +171,9 @@ function Chat({ socket }: any): JSX.Element {
   const navigate = useNavigate();
 
   const goThemePage = () => {
+    console.log('쿠키 초기화 이전 cookie 확인',document.cookie)
+    document.cookie = 'other=';
+    console.log('방 나나고 쿠키 삭제',document.cookie)
     navigate('/theme');
   };
 
@@ -180,9 +183,6 @@ function Chat({ socket }: any): JSX.Element {
 
   useEffect(() => {
     function userExistCallback() {
-      // console.log('쿠키 초기화 이전 cookie 확인',document.cookie)
-      document.cookie = "other=";
-      // console.log('방 나나고 쿠키 삭제',document.cookie)
       clearInterval(intervalId);
       if (totalTime < 3) {
         setExitModal(true);
@@ -272,7 +272,11 @@ function Chat({ socket }: any): JSX.Element {
         />
       )}
       {reviewModal && (
-        <InfoModal infoContent="상대방이 나가버렸어요 상대방은 어땠는지 리뷰를 남겨주세요" />
+        <InfoModal
+          infoContent="상대방이 나가버렸어요 상대방은 어땠는지 리뷰를 남겨주세요"
+          finishEvent={goThemePage}
+          btnName2="나가기"
+        />
       )}
       {forExitModal && (
         <InfoModal
