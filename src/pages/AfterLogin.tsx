@@ -24,8 +24,8 @@ const AfterLogin: React.FC = () => {
       if (isAuth) {
         // navigate('/home');
       } else;
-      // alert('Please login');
-      // navigate('/');
+      alert('Please login');
+      navigate('/favorite');
     };
     checkAuth();
   }, [navigate]);

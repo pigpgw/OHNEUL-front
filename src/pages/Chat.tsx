@@ -8,8 +8,10 @@ import {
   ConsentModal,
   InfoModal,
   ReportModal,
+  ReviewModal,
 } from 'Components/Modal/ChatModal';
 import { useNavigate } from 'react-router-dom';
+import Rating from 'Components/Chat/Rating';
 
 interface Message {
   msg: string;
@@ -171,6 +173,9 @@ function Chat({ socket }: any): JSX.Element {
   const navigate = useNavigate();
 
   const goThemePage = () => {
+    console.log('쿠키 초기화 이전 cookie 확인', document.cookie);
+    document.cookie = 'other=';
+    console.log('방 나나고 쿠키 삭제', document.cookie);
     navigate('/theme');
   };
 
@@ -211,11 +216,25 @@ function Chat({ socket }: any): JSX.Element {
   };
 
   const reportUser = () => {
-    console.log("상대방 신고 사유",reportReason)
-    setReportReson('')
-    alert('신고가 완료되었습니다.')
-    setReportModal(false)
-  }
+    const uuidInCookie = document.cookie
+      .split(' ')
+      .filter((item) => item.split('=')[0] === 'other')[0];
+    const reportedUserId = uuidInCookie.split('=')[1].replace(/;/g, '');
+    console.log('상대방 uuid', reportedUserId);
+    console.log('상대방 신고 사유', reportReason);
+    const reportInfo = {
+      reportedUserId,
+      reportReason,
+    };
+    socket.emit('reportUser', reportInfo);
+    setReportReson('');
+    alert('신고가 완료되었습니다.');
+    setReportModal(false);
+  };
+
+  const sendReview = () => {
+    alert('리뷰 보내기를 완료했습니다.');
+  };
 
   return (
     <>
@@ -255,11 +274,13 @@ function Chat({ socket }: any): JSX.Element {
           onClick={selectReportReason}
           onClose={offReportModal}
           selectedReason={reportReason}
-          doReport = {reportUser}
+          doReport={reportUser}
         />
       )}
       {reviewModal && (
-        <InfoModal infoContent="상대방이 나가버렸어요 상대방은 어땠는지 리뷰를 남겨주세요" />
+        <ReviewModal>
+          <Rating socket={socket} />
+        </ReviewModal>
       )}
       {forExitModal && (
         <InfoModal
