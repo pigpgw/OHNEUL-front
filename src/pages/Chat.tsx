@@ -8,8 +8,10 @@ import {
   ConsentModal,
   InfoModal,
   ReportModal,
+  ReviewModal,
 } from 'Components/Modal/ChatModal';
 import { useNavigate } from 'react-router-dom';
+import Rating from 'Components/Chat/Rating';
 
 interface Message {
   msg: string;
@@ -171,9 +173,9 @@ function Chat({ socket }: any): JSX.Element {
   const navigate = useNavigate();
 
   const goThemePage = () => {
-    console.log('쿠키 초기화 이전 cookie 확인',document.cookie)
+    console.log('쿠키 초기화 이전 cookie 확인', document.cookie);
     document.cookie = 'other=';
-    console.log('방 나나고 쿠키 삭제',document.cookie)
+    console.log('방 나나고 쿠키 삭제', document.cookie);
     navigate('/theme');
   };
 
@@ -230,6 +232,10 @@ function Chat({ socket }: any): JSX.Element {
     setReportModal(false);
   };
 
+  const sendReview = () => {
+    alert('리뷰 보내기를 완료했습니다.');
+  };
+
   return (
     <>
       <ChatHeader
@@ -272,11 +278,9 @@ function Chat({ socket }: any): JSX.Element {
         />
       )}
       {reviewModal && (
-        <InfoModal
-          infoContent="상대방이 나가버렸어요 상대방은 어땠는지 리뷰를 남겨주세요"
-          finishEvent={goThemePage}
-          btnName2="나가기"
-        />
+        <ReviewModal>
+          <Rating socket={socket} />
+        </ReviewModal>
       )}
       {forExitModal && (
         <InfoModal
