@@ -211,11 +211,11 @@ function Chat({ socket }: any): JSX.Element {
   };
 
   const reportUser = () => {
-    console.log("상대방 신고 사유",reportReason)
-    setReportReson('')
-    alert('신고가 완료되었습니다.')
-    setReportModal(false)
-  }
+    console.log('상대방 신고 사유', reportReason);
+    setReportReson('');
+    alert('신고가 완료되었습니다.');
+    setReportModal(false);
+  };
 
   return (
     <>
@@ -255,7 +255,7 @@ function Chat({ socket }: any): JSX.Element {
           onClick={selectReportReason}
           onClose={offReportModal}
           selectedReason={reportReason}
-          doReport = {reportUser}
+          doReport={reportUser}
         />
       )}
       {reviewModal && (

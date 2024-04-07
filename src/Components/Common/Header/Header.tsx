@@ -17,9 +17,10 @@ import {
 
 interface HeaderProps {
   onCashIconClick: () => void;
+  name: string;
 }
 
-function Header({ onCashIconClick }: HeaderProps) {
+function Header({ onCashIconClick, name }: HeaderProps) {
   const navigate = useNavigate();
   const goToMyPage = () => {
     navigate('/mypage');
@@ -30,6 +31,7 @@ function Header({ onCashIconClick }: HeaderProps) {
         <LogoImage src={appLogo} alt="" />
         <LogoTitle>OHNEUL</LogoTitle>
       </LogoContainer>
+      {name}
       <InfoContainer>
         <CashContainer onClick={onCashIconClick}>
           <CashIcon />
