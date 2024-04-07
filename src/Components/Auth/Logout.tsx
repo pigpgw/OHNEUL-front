@@ -18,16 +18,23 @@ const Logout: React.FC = () => {
   };
 
   const handleLogout = (): void => {
-    dispatch(logout());
     dispatch(clearAuth());
+    dispatch(logout());
     deleteCookie('user_id');
     deleteCookie('refreshToken');
     deleteCookie('provider');
-    navigate('/');
+    // navigate('/');
+    console.log(user.isLogin, 'handle끝');
   };
+
   useEffect(() => {
-    console.log(user);
-  }, []);
+    // isLogin 상태가 변경될 때마다 모니터링하여 필요한 작업 수행
+    if (!user.isLogin) {
+      // 로그아웃 처리 후 페이지 이동
+      navigate('/');
+      console.log(user.isLogin, 'handle끝2');
+    }
+  }, [user.isLogin, navigate]);
 
   return (
     <div>

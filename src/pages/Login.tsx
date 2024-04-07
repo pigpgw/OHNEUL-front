@@ -44,12 +44,18 @@ const Login: React.FC = () => {
     dispatch(
       setAuth({ user_id: userId, refreshToken: token, provider: flatform }),
     );
-    dispatch(login());
-  }, [dispatch]);
+    const isCookie = (): boolean => {
+      return (
+        document.cookie.includes('user_id') &&
+        document.cookie.includes('refreshToken') &&
+        document.cookie.includes('provider')
+      );
+    };
+    if (isCookie() && !isLogin) {
+      dispatch(login());
+    }
+  }, [dispatch, isLogin]);
 
-  //   // eslint-disable-next-line camelcase
-  //   dispatch(setAuth({ userId, provider, refreshToken }));
-  // }, [dispatch]);
   useEffect(() => {
     if (isLogin) {
       console.log(storedUserInfo, '확인');
