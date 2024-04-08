@@ -1,5 +1,5 @@
 /* eslint-disable import/prefer-default-export */
-import React from 'react';
+import React, { ReactNode } from 'react';
 import { MouseEvent } from 'react';
 import { createPortal } from 'react-dom';
 import styled from 'styled-components';
@@ -111,6 +111,19 @@ export const ReportModal = ({
         </ModalBtnContainer>
       </ReportModalBtnContainer>
     </ReportModalLayout>
+  );
+};
+
+type ReviewModalProps = {
+  children: ReactNode;
+};
+
+export const ReviewModal = ({ children}: ReviewModalProps) => {
+  return (
+    <ModalWrapper>
+      <ModalTitle>오늘 대화는 어떠셨나요?</ModalTitle>
+      {children}
+    </ModalWrapper>
   );
 };
 

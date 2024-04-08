@@ -43,9 +43,6 @@ function Theme({ socket }: any) {
     console.log('check clicked button', userSelectTheme);
 
   }, [availableThemes]);
-  useEffect(() => {
-    console.log('사용자가 고른 주제',userSelectTheme)
-  },[userSelectTheme])
 
   const clickBtn = (id: number) => {
     setTheme((prev) =>
@@ -59,9 +56,19 @@ function Theme({ socket }: any) {
 
   const matchingcStart = (e: React.MouseEvent<HTMLButtonElement>) => {
     if (!userSelectTheme) alert('최소 1개를 선택해주세요');
-    console.log('매칭 시작 누름')
-    e.preventDefault();
-    socket.emit('selectTheme', userSelectTheme);
+    else {
+      const uuidInCookie = document.cookie
+        .split(' ')
+        .filter((item) => item.split('=')[0] === 'user_id')[0];
+      const uuid = uuidInCookie.split('=')[1].replace(/;/g, '');
+      e.preventDefault();
+      const data = {
+        uuid,
+        userSelectTheme,
+      };
+      socket.emit('selectTheme', data);
+      console.log('내가 매칭 선택시 서버에 보낸 나의 정보', data);
+    }
   };
 
   const navigate = useNavigate();
@@ -70,8 +77,11 @@ function Theme({ socket }: any) {
       setWait(true);
     }
 
-    function startMessageCallback() {
+    function startMessageCallback(otherId: string) {
       setWait(false);
+      console.log('상대방 쿠키 아이디', otherId);
+      document.cookie = `other=${otherId}`;
+      console.log('상대방 쿠키 받아온 후 확인', document.cookie);
       navigate('/chat');
     }
     socket.on('wait', waitMessageCallback);
