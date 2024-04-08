@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { MouseEvent } from 'react';
+import { extractUserId } from 'utils/extractUserId';
 import { useNavigate } from 'react-router-dom';
 import { useQuery } from 'react-query';
 import {
@@ -54,10 +54,7 @@ function Theme({ socket }: any) {
   const matchingcStart = (e: React.MouseEvent<HTMLButtonElement>) => {
     if (!userSelectTheme) alert('최소 1개를 선택해주세요');
     else {
-      const uuidInCookie = document.cookie
-        .split(' ')
-        .filter((item) => item.split('=')[0] === 'user_id')[0];
-      const uuid = uuidInCookie.split('=')[1].replace(/;/g, '');
+      const uuid = extractUserId();
       e.preventDefault();
       const data = {
         uuid,

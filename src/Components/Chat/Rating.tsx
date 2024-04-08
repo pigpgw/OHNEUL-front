@@ -1,6 +1,7 @@
-import React, { useState} from 'react';
+import React, { useState } from 'react';
 import { FaStar } from 'react-icons/fa';
 import { useNavigate } from 'react-router-dom';
+import { extractOtherUserId } from 'utils/extractUserId';
 import styled from 'styled-components';
 
 function Rating({ socket }: any): JSX.Element {
@@ -22,16 +23,13 @@ function Rating({ socket }: any): JSX.Element {
 
   const navigate = useNavigate();
 
-  const sendReview = ():void => {
+  const sendReview = (): void => {
     const score = clicked.filter(Boolean).length;
-    const uuidInCookie:string = document.cookie
-      .split(' ')
-      .filter((item) => item.split('=')[0] === 'other')[0];
-    const otherId:string = uuidInCookie.split('=')[1].replace(/;/g, '');
+    const otherId: string = extractOtherUserId();
     console.log('상대방 아이디', otherId, '내가 준 평점', score);
-    const data:{
-      userId:string,
-      score:number
+    const data: {
+      userId: string;
+      score: number;
     } = {
       userId: otherId,
       score,

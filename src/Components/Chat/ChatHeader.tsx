@@ -25,6 +25,7 @@ function ChatHeader({
   onRefuse,
   onForExitModal
 }: ChatHeaderProps) {
+
   return (
     <HeaderContainer>
       <LogoContainer>

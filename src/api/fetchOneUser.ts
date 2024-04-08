@@ -1,5 +1,6 @@
 /* eslint-disable import/prefer-default-export */
 import axios from 'axios';
+import { extractUserId } from '../utils/extractUserId';
 
 interface hobbies {
   hobby_id: number;
@@ -19,7 +20,9 @@ interface User {
 }
 
 export const fetchGetOneUser = async (): Promise<User> => {
-  const response = await axios.get('http://localhost:4000/users');
+  const userId = extractUserId()
+  const response = await axios.get(`http://localhost:4000/users/${userId}`);
+  console.log('fetchGetonUser',response.data)
   return response.data[0];
 };
 
