@@ -8,6 +8,7 @@ import PaymentsDetails from 'Components/Mypage/PaymentsDetails';
 import CoinUsageDetails from 'Components/Mypage/CoinUsageDetails';
 import Terms from 'Components/Mypage/Terms';
 import Announcement from 'Components/Mypage/Announcement';
+import WithDrawal from 'Components/Auth/withDrawal';
 
 // const dropDown = [
 //   { name: '별점', isLogin: true },
@@ -66,7 +67,7 @@ const MyPage: React.FC = () => {
       </>
       <>
         <Logout></Logout>
-        <div>회원탈퇴</div>
+        <WithDrawal></WithDrawal>
       </>
     </>
   );
