@@ -39,9 +39,7 @@ function Theme({ socket }: any) {
   useEffect(() => {
     if (availableThemes) setTheme(availableThemes);
 
-
     console.log('check clicked button', userSelectTheme);
-
   }, [availableThemes]);
 
   const clickBtn = (id: number) => {
