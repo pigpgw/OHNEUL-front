@@ -2,6 +2,7 @@ import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { logout, clearAuth } from 'stores/slices/userSlice';
+import axios from 'axios';
 
 interface User {
   user: {
@@ -17,15 +18,15 @@ const Logout: React.FC = () => {
     document.cookie = `${name}=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;`;
   };
 
-  const handleLogout = (): void => {
-    dispatch(clearAuth());
-    dispatch(logout());
-    deleteCookie('user_id');
-    deleteCookie('refreshToken');
-    deleteCookie('provider');
-    // navigate('/');
-    console.log(user.isLogin, 'handle끝');
-  };
+  // const handleLogout = (): void => {
+  // dispatch(clearAuth());
+  // dispatch(logout());
+  // deleteCookie('user_id');
+  // deleteCookie('refreshToken');
+  // deleteCookie('provider');
+  // navigate('/');
+  //   console.log(user.isLogin, 'handle끝');
+  // };
 
   useEffect(() => {
     // isLogin 상태가 변경될 때마다 모니터링하여 필요한 작업 수행
@@ -36,9 +37,30 @@ const Logout: React.FC = () => {
     }
   }, [user.isLogin, navigate]);
 
+  const handleLogOut = async () => {
+    try {
+      const response = await axios.post('/logout/naver', null, {
+        withCredentials: true,
+      });
+      console.log(response.data);
+      if (response.status === 200) {
+        console.log('로그아웃');
+        dispatch(clearAuth());
+        dispatch(logout());
+        deleteCookie('user_id');
+        deleteCookie('refreshToken');
+        deleteCookie('provider');
+        navigate('/');
+      } else {
+        console.log('실패');
+      }
+    } catch (error) {
+      console.error('로그아웃', error);
+    }
+  };
   return (
     <div>
-      <button onClick={handleLogout}>로그아웃</button>
+      <button onClick={handleLogOut}>로그아웃</button>
     </div>
   );
 };

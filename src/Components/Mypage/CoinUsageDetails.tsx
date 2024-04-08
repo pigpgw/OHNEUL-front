@@ -1,7 +1,7 @@
 import React from 'react';
 
-function CoinUsageDetails() {
+const CoinUsageDetails = () => {
   return <div>CoinUsageDetails</div>;
-}
+};
 
 export default CoinUsageDetails;
