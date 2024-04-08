@@ -6,7 +6,7 @@ const CoinUsageDetails = () => {
   const [userId, token, flatform] = meltedCookie();
   const fetchPayments = async () => {
     axios
-      .get(`http://localhost:4000/payments/${userId}`, {
+      .get(`http://localhost:4000/order/${userId}`, {
         withCredentials: true,
       })
       .then((res) => {

@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { logout, clearAuth } from 'stores/slices/userSlice';
 import axios from 'axios';
+import meltedCookie from 'utils/meltedCookie';
 
 interface User {
   user: {
@@ -38,24 +39,47 @@ const Logout: React.FC = () => {
   }, [user.isLogin, navigate]);
 
   const handleLogOut = async () => {
-    try {
-      const response = await axios.post('/logout/naver', null, {
-        withCredentials: true,
-      });
-      console.log(response.data);
-      if (response.status === 200) {
-        console.log('로그아웃');
-        dispatch(clearAuth());
-        dispatch(logout());
-        deleteCookie('user_id');
-        deleteCookie('refreshToken');
-        deleteCookie('provider');
-        navigate('/');
-      } else {
-        console.log('실패');
+    const [userId, token, flatform] = meltedCookie();
+    if (flatform === 'naver') {
+      try {
+        const response = await axios.post('/logout/naver', null, {
+          withCredentials: true,
+        });
+        console.log(response.data);
+        if (response.status === 200) {
+          console.log('로그아웃');
+          dispatch(clearAuth());
+          dispatch(logout());
+          deleteCookie('user_id');
+          deleteCookie('refreshToken');
+          deleteCookie('provider');
+          navigate('/');
+        } else {
+          console.log('실패');
+        }
+      } catch (error) {
+        console.error('로그아웃', error);
       }
-    } catch (error) {
-      console.error('로그아웃', error);
+    } else if (flatform === 'kakao') {
+      try {
+        const response = await axios.post('/logout/kakao', null, {
+          withCredentials: true,
+        });
+        console.log(response.data);
+        if (response.status === 200) {
+          console.log('로그아웃');
+          dispatch(clearAuth());
+          dispatch(logout());
+          deleteCookie('user_id');
+          deleteCookie('refreshToken');
+          deleteCookie('provider');
+          navigate('/');
+        } else {
+          console.log('실패');
+        }
+      } catch (error) {
+        console.error('로그아웃', error);
+      }
     }
   };
   return (
