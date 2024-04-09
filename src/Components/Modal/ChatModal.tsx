@@ -118,7 +118,7 @@ type ReviewModalProps = {
   children: ReactNode;
 };
 
-export const ReviewModal = ({ children}: ReviewModalProps) => {
+export const ReviewModal = ({ children }: ReviewModalProps) => {
   return (
     <ModalWrapper>
       <ModalTitle>오늘 대화는 어떠셨나요?</ModalTitle>

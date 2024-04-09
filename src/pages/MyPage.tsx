@@ -8,17 +8,39 @@ import PaymentsDetails from 'Components/Mypage/PaymentsDetails';
 import CoinUsageDetails from 'Components/Mypage/CoinUsageDetails';
 import Terms from 'Components/Mypage/Terms';
 import Announcement from 'Components/Mypage/Announcement';
-import WithDrawal from 'Components/Auth/withDrawal';
+import WithDrawal from 'Components/Auth/WithDrawal';
 
-// const dropDown = [
-//   { name: '별점', isLogin: true },
-//   { name: '취미', isLogin: true },
-//   { name: '결제내역', isLogin: true },
-//   { name: '코인내역', isLogin: true },
-//   { name: '약관', isLogin: true },
-//   { name: '공지사항', isLogin: true },
-// ];
-const Tab = styled.div``;
+const InterestSection = styled.div`
+  border-bottom: 2px solid #dbdbdb;
+  margin-bottom: 10px;
+`;
+
+const Title = styled.div`
+  padding-bottom: 10px;
+  border-bottom: 2px solid #dbdbdb;
+`;
+const TabSection = styled.div`
+  margin-top: 30px;
+`;
+const Tab = styled.div`
+  padding: 10px;
+  cursor: pointer;
+  width: 23em;
+`;
+const TabTitle = styled.div`
+  text-align: left;
+
+  border-bottom: 2px solid #dbdbdb;
+`;
+const ContentContainer = styled.div`
+  margin-top: 30px;
+`;
+
+const AuthContainer = styled.div`
+  margin-top: 100px;
+  display: flex;
+  justify-content: space-between;
+`;
 
 const MyPage: React.FC = () => {
   const [open, setOpen] = useState<string | null>(null);
@@ -26,49 +48,47 @@ const MyPage: React.FC = () => {
     setOpen(open === itemName ? null : itemName);
   };
 
-  //   const toggleDrawer = (inOpen: any) => (event: any) => {
-  //     if (
-  //       event.type === 'keydown' &&
-  //       (event.key === 'Tab' || event.key === 'Shift')
-  //     ) {
-  //       return false;
-  //     }
-  //     setOpen(inOpen);
-  //   };
   return (
     <>
       <Header
         onCashIconClick={(): void => {
           throw new Error('Function not implemented.');
         }}
-        // name="마이페이지"
       ></Header>
+      <ContentContainer>
+        <Title>마이페이지</Title>
+        <TabSection>
+          <StarRating />
 
-      <div>MyPage</div>
-      <>
-        <Tab onClick={() => handleModal('starRating')}>
-          리뷰확인{open === 'starRating' && <StarRating />}
-        </Tab>
-        <Tab onClick={() => handleModal('interest')}>
-          취미{open === 'interest' && <Interest />}
-        </Tab>
-        <Tab onClick={() => handleModal('payments')}>
-          결제내역{open === 'payments' && <PaymentsDetails />}
-        </Tab>
-        <Tab onClick={() => handleModal('coinusage')}>
-          코인내역{open === 'coinusage' && <CoinUsageDetails />}
-        </Tab>
-        <Tab onClick={() => handleModal('terms')}>
-          약관{open === 'terms' && <Terms />}
-        </Tab>
-        <Tab onClick={() => handleModal('announcement')}>
-          공지사항{open === 'announcement' && <Announcement />}
-        </Tab>
-      </>
-      <>
-        <Logout></Logout>
-        <WithDrawal></WithDrawal>
-      </>
+          <InterestSection>
+            <Interest />
+          </InterestSection>
+          <Tab onClick={() => handleModal('payments')}>
+            <TabTitle>결제내역</TabTitle>
+            {open === 'payments' && <PaymentsDetails />}
+          </Tab>
+
+          <Tab onClick={() => handleModal('coinusage')}>
+            <TabTitle>코인내역</TabTitle>
+            {open === 'coinusage' && <CoinUsageDetails />}
+          </Tab>
+
+          <Tab onClick={() => handleModal('terms')}>
+            <TabTitle>이용정책 </TabTitle>
+            {open === 'terms' && <Terms />}
+          </Tab>
+
+          <Tab onClick={() => handleModal('announcement')}>
+            <TabTitle> 공지사항 </TabTitle>
+            {open === 'announcement' && <Announcement />}
+          </Tab>
+        </TabSection>
+
+        <AuthContainer>
+          <Logout></Logout>
+          <WithDrawal></WithDrawal>
+        </AuthContainer>
+      </ContentContainer>
     </>
   );
 };
