@@ -57,10 +57,6 @@ function Hobby() {
       alert('취미는 1개 ~ 3개만 골라주세요');
       return;
     }
-    console.log('check usersleelct hobbt', {
-      user_id: userId,
-      hobby_id: userSelectHobby,
-    });
     try {
       await addUserHobby({
         user_id: userId,

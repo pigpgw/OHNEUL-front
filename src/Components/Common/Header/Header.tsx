@@ -31,10 +31,6 @@ function Header({ onCashIconClick }: HeaderProps) {
     navigate('/mypage');
   };
 
-  useEffect(() => {
-    console.log('코인 상대 체크', isCoinLoading, isCoinError, userCoinState);
-  });
-
   if (isCoinLoading) return <div>로딩중</div>;
   if (isCoinError) return <div>에러 발생</div>;
   return (

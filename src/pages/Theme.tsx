@@ -88,7 +88,7 @@ function Theme({ socket }: any) {
 
   const onClose = (e: React.MouseEvent<HTMLButtonElement>): void => {
     e.stopPropagation();
-    console.log('상대 찾기 취소버튼', wait);
+    // console.log('상대 찾기 취소버튼', wait);
     socket.emit('userExit');
     setWait(false);
   };
