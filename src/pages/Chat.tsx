@@ -11,6 +11,7 @@ import {
   ReportModal,
   ReviewModal,
 } from 'Components/Modal/ChatModal';
+import { useCoinQuery } from 'hooks/useCoinQuery';
 import { useNavigate } from 'react-router-dom';
 import Rating from 'Components/Chat/Rating';
 
@@ -37,6 +38,8 @@ function Chat({ socket }: any): JSX.Element {
 
   const [reportModal, setReportModal] = useState<boolean>(false);
   const [reportReason, setReportReson] = useState<string>('');
+  const userId = extractUserId();
+  const { userCoinState } = useCoinQuery(userId);
 
   useEffect(() => {
     if (!socket) return;
@@ -157,18 +160,20 @@ function Chat({ socket }: any): JSX.Element {
   }, [consent]);
 
   const onAgree = () => {
-    const userId = extractUserId();
-    const data = {
-      user_id: userId,
-      consent: 'agree',
-    };
-    socket.emit('consent', data);
-    setConsentWaitModal(true);
-    setConsentModal(false);
+    if (userCoinState < 5) {
+      alert('ㅠㅠㅠ 코인이 부족합니다.');
+    } else {
+      const data = {
+        user_id: userId,
+        consent: 'agree',
+      };
+      socket.emit('consent', data);
+      setConsentWaitModal(true);
+      setConsentModal(false);
+    }
   };
 
   const onRefuse = () => {
-    const userId = extractUserId();
     const data = {
       user_id: userId,
       consent: 'no',
