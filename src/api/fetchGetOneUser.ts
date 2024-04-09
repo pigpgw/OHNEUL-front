@@ -7,7 +7,7 @@ interface hobbies {
   hobby: string;
 }
 
-interface User {
+interface UserHobby {
   user_id: number;
   username: string;
   phone: string;
@@ -16,13 +16,14 @@ interface User {
   coin: number;
   mood_id: number;
   theme_id: number;
-  hobbies: hobbies[];
 }
 
-export const fetchGetOneUser = async (): Promise<User> => {
-  const userId = extractUserId()
-  const response = await axios.get(`http://localhost:4000/users/${userId}`);
-  console.log('fetchGetonUser',response.data)
+export const fetchGetOneUserHobby = async () => {
+  const userId = extractUserId();
+  const response = await axios.get(
+    `http://localhost:4000/user-hobby/${userId}`,
+  );
+  console.log('fetchGetonUser', response.data[0], 'user id', userId);
   return response.data[0];
 };
 

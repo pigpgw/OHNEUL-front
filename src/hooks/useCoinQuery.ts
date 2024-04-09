@@ -19,13 +19,15 @@ const fetchUser = async (userId: string) => {
   return response.data;
 };
 
-export const useCoinQuery = (userId: string):CoinQueryClient => {
+export const useCoinQuery = (userId: string): CoinQueryClient => {
   const {
     isLoading: isCoinLoading,
     isError: isCoinError,
     data,
     isSuccess,
-  } = useQuery<UserCoin>(['coin', userId], () => fetchUser(userId));
+  } = useQuery<UserCoin>(['coin', userId], () => fetchUser(userId), {
+    refetchInterval: 6000,
+  });
 
   const userCoinState: number = data?.coin || 0;
 

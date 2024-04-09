@@ -1,6 +1,6 @@
 import { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { fetchGetOneUser } from 'api/fetchOneUser';
+import { fetchGetOneUserHobby } from 'api/fetchGetOneUser';
 
 const useCheckHobbiesAndNavigate = () => {
   const navigate = useNavigate();
@@ -8,9 +8,8 @@ const useCheckHobbiesAndNavigate = () => {
   useEffect(() => {
     const fetchDataAndNavigate = async () => {
       try {
-        const user = await fetchGetOneUser();
-        const hasHobbies = user.hobbies.length > 0;
-        if (hasHobbies) {
+        const user = await fetchGetOneUserHobby();
+        if (Object.keys(user).length > 0) {
           navigate('/mood');
         }
       } catch (error) {

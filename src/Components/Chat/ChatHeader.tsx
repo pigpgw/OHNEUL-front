@@ -1,4 +1,6 @@
 import React from 'react';
+import { useCoinQuery } from 'hooks/useCoinQuery';
+import { extractUserId } from 'utils/extractUserId';
 import {
   HeaderContainer,
   LogoContainer,
@@ -15,7 +17,7 @@ interface ChatHeaderProps {
   onCashIconClick: () => void;
   reportIconClick: () => void;
   onRefuse: () => void;
-  onForExitModal: () => void
+  onForExitModal: () => void;
 }
 
 function ChatHeader({
@@ -23,8 +25,12 @@ function ChatHeader({
   onCashIconClick,
   reportIconClick,
   onRefuse,
-  onForExitModal
+  onForExitModal,
 }: ChatHeaderProps) {
+  const userId = extractUserId();
+  const { isCoinLoading, isCoinError, userCoinState } = useCoinQuery(userId);
+  if (isCoinLoading) return <div>로딩중</div>;
+  if (isCoinError) return <div>에러 발생</div>;
 
   return (
     <HeaderContainer>
@@ -34,7 +40,7 @@ function ChatHeader({
       <InfoContainer>
         <CashContainer onClick={onCashIconClick}>
           <CashIcon />
-          <CashAmount>200</CashAmount>
+          <CashAmount>{userCoinState}</CashAmount>
         </CashContainer>
         <IconReport onClick={reportIconClick} />
       </InfoContainer>
