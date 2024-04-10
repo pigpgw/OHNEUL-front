@@ -1,6 +1,6 @@
 /* eslint-disable import/prefer-default-export */
 import { useMutation, } from 'react-query';
-import {fetchAddUserHobby} from '../api/fetchUserHobby'
+import {fetchAddUserHobby} from '../api/fetchAddUserHobby'
 
 export const useAddUserHobbyMutation = () => {
     return useMutation(["userHobby"],fetchAddUserHobby,{

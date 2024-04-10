@@ -1,4 +1,4 @@
-import React, { ReactElement, useEffect, useRef } from 'react';
+import React, { useEffect, useRef } from 'react';
 import styled from 'styled-components';
 
 interface Message {
@@ -47,6 +47,7 @@ const ChatMessagesContainer = styled.div`
 
 const ChatMessagesWrapper = styled.ul`
   list-style: none;
+  height:450px;
   padding: 10px;
   margin: 0;
   border-radius: 10px;
