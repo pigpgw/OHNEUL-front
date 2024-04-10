@@ -11,6 +11,7 @@ import {
 import { useNavigate } from 'react-router-dom';
 import { useQuery } from 'react-query';
 import useCheckHobbiesAndNavigate from 'hooks/useCheckHobbiesAndNavigateHook';
+import { extractUserId } from 'utils/extractUserId';
 import { useAddUserHobbyMutation } from '../hooks/useUserHobbyMutation';
 import { fetchGetHobbys } from '../api/fetchHobby';
 
@@ -48,7 +49,7 @@ function Hobby() {
       ),
     );
   };
-
+  const userId = extractUserId();
   const { mutate: addUserHobby } = useAddUserHobbyMutation();
   const navigate = useNavigate();
   const handleSubmit = async () => {
@@ -56,10 +57,9 @@ function Hobby() {
       alert('취미는 1개 ~ 3개만 골라주세요');
       return;
     }
-
     try {
       await addUserHobby({
-        user_id: 23,
+        user_id: userId,
         hobby_id: userSelectHobby,
       });
       navigate('/mood');

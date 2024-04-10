@@ -4,12 +4,14 @@ import ChatHeader from 'Components/Chat/ChatHeader';
 import ChatInfo from 'Components/Chat/ChatInfo';
 import ChatMessages from 'Components/Chat/ChatMessages';
 import ChatInputForm from 'Components/Chat/ChatInputForm';
+import { extractUserId } from 'utils/extractUserId';
 import {
   ConsentModal,
   InfoModal,
   ReportModal,
   ReviewModal,
 } from 'Components/Modal/ChatModal';
+import { useCoinQuery } from 'hooks/useCoinQuery';
 import { useNavigate } from 'react-router-dom';
 import Rating from 'Components/Chat/Rating';
 
@@ -36,15 +38,14 @@ function Chat({ socket }: any): JSX.Element {
 
   const [reportModal, setReportModal] = useState<boolean>(false);
   const [reportReason, setReportReson] = useState<string>('');
+  const userId = extractUserId();
+  const { userCoinState } = useCoinQuery(userId);
 
   useEffect(() => {
     if (!socket) return;
   }, [socket]);
 
   const clickCashIcon = () => console.log('캐쉬 아이콘을 클릭하였습니다');
-  const clickExit = () => {
-    console.log('나가기 버튼을 눌렀습니다.');
-  };
 
   function onForExitModal() {
     setForExitModal(true);
@@ -159,13 +160,25 @@ function Chat({ socket }: any): JSX.Element {
   }, [consent]);
 
   const onAgree = () => {
-    socket.emit('consent', 'agree');
-    setConsentWaitModal(true);
-    setConsentModal(false);
+    if (userCoinState < 5) {
+      alert('ㅠㅠㅠ 코인이 부족합니다.');
+    } else {
+      const data = {
+        user_id: userId,
+        consent: 'agree',
+      };
+      socket.emit('consent', data);
+      setConsentWaitModal(true);
+      setConsentModal(false);
+    }
   };
 
   const onRefuse = () => {
-    socket.emit('consent', 'no');
+    const data = {
+      user_id: userId,
+      consent: 'no',
+    };
+    socket.emit('consent', data);
     socket.emit('userExit');
     goThemePage();
   };
@@ -212,16 +225,13 @@ function Chat({ socket }: any): JSX.Element {
   const selectReportReason = (e: React.MouseEvent<HTMLButtonElement>): void => {
     const { value } = e.target as HTMLButtonElement;
     setReportReson(value);
-    console.log('누른 신고사유', reportReason);
+    // console.log('누른 신고사유', reportReason);
   };
 
   const reportUser = () => {
-    const uuidInCookie = document.cookie
-      .split(' ')
-      .filter((item) => item.split('=')[0] === 'other')[0];
-    const reportedUserId = uuidInCookie.split('=')[1].replace(/;/g, '');
-    console.log('상대방 uuid', reportedUserId);
-    console.log('상대방 신고 사유', reportReason);
+    const reportedUserId = extractUserId();
+    // console.log('상대방 uuid', reportedUserId);
+    // console.log('상대방 신고 사유', reportReason);
     const reportInfo = {
       reportedUserId,
       reportReason,
@@ -230,10 +240,6 @@ function Chat({ socket }: any): JSX.Element {
     setReportReson('');
     alert('신고가 완료되었습니다.');
     setReportModal(false);
-  };
-
-  const sendReview = () => {
-    alert('리뷰 보내기를 완료했습니다.');
   };
 
   return (

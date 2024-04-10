@@ -2,18 +2,17 @@
 import axios from 'axios';
 
 interface UserHobby {
-  user_id: number;
+  user_id: string;
   hobby_id: number[];
 }
 
 interface AddUserHobbyResponse {
   message: string;
-  data: UserHobby;
+  data: string;
 }
 
 export const fetchAddUserHobby = (
   userHobby: UserHobby,
 ): Promise<AddUserHobbyResponse> => {
-  return axios.post('https://jsonplaceholder.typicode.com/posts', userHobby);
-  // return axios.post('http://localhost:3000/user-hobby/join')
+  return axios.post('http://localhost:4000/user-hobby/join', userHobby);
 };
