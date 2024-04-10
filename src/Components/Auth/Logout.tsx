@@ -30,9 +30,7 @@ const Logout: React.FC = () => {
   // };
 
   useEffect(() => {
-    // isLogin 상태가 변경될 때마다 모니터링하여 필요한 작업 수행
     if (!user.isLogin) {
-      // 로그아웃 처리 후 페이지 이동
       navigate('/');
       console.log(user.isLogin, 'handle끝2');
     }
@@ -42,9 +40,13 @@ const Logout: React.FC = () => {
     const [userId, token, flatform] = meltedCookie();
     if (flatform === 'naver') {
       try {
-        const response = await axios.post('/logout/naver', null, {
-          withCredentials: true,
-        });
+        const response = await axios.post(
+          'http://localhost:4000/login/logout/naver',
+          // null,
+          // {
+          //   withCredentials: true,
+          // },
+        );
         console.log(response.data);
         if (response.status === 200) {
           console.log('로그아웃');
@@ -62,9 +64,13 @@ const Logout: React.FC = () => {
       }
     } else if (flatform === 'kakao') {
       try {
-        const response = await axios.post('/logout/kakao', null, {
-          withCredentials: true,
-        });
+        const response = await axios.post(
+          'http://localhost:4000/login/logout/kakao',
+          // null,
+          // {
+          //   withCredentials: true,
+          // },
+        );
         console.log(response.data);
         if (response.status === 200) {
           console.log('로그아웃');

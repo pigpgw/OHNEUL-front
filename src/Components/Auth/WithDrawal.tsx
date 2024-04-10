@@ -30,27 +30,6 @@ const WithDrawal: React.FC = () => {
   }, [user.isLogin, navigate]);
 
   const handleWithDrawal = async () => {
-    const userDelete = async (userid: string) => {
-      try {
-        const response = await axios.delete(
-          `http://localhost:4000/users/${userid}`,
-        );
-        console.log(response.data);
-        return response.data;
-      } catch (error) {
-        console.error(error);
-        throw error;
-      }
-    };
-
-    userDelete(userId)
-      .then((res) => {
-        console.log(res, 'success to delete user');
-      })
-      .catch((error) => {
-        console.error(error, 'failed to delete user');
-      });
-
     const [flatform] = meltedCookie();
     if (flatform === 'naver') {
       try {
@@ -93,6 +72,28 @@ const WithDrawal: React.FC = () => {
         console.error('로그아웃', error);
       }
     }
+
+    const userDelete = async (userid: string) => {
+      try {
+        const response = await axios.delete(
+          `http://localhost:4000/users/${userid}`,
+        );
+        console.log(response.data);
+        return response.data;
+      } catch (error) {
+        console.error(error);
+        throw error;
+      }
+    };
+
+    userDelete(userId)
+      .then((res) => {
+        console.log(res, 'success to delete user');
+        navigate('/');
+      })
+      .catch((error) => {
+        console.error(error, 'failed to delete user');
+      });
   };
   return (
     <div>
