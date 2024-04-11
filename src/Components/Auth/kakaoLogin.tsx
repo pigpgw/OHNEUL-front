@@ -10,7 +10,7 @@ const KakaoLoginButton = styled.button`
   outline: none;
   cursor: pointer;
   img {
-    width: 100%;
+    width: 90%;
   }
 `;
 
