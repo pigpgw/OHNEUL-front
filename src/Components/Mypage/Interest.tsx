@@ -1,7 +1,8 @@
 import axios from 'axios';
 import React, { useState, useEffect } from 'react';
 import meltedCookie from 'utils/meltedCookie';
-
+import plusHeart from 'assets/images/plusHeart';
+import minusHeart from 'assets/images/plusHeart';
 interface Item {
   id: number;
   name: string;

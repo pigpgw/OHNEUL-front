@@ -40,48 +40,48 @@ const WithDrawal: React.FC = () => {
   }, [user.isLogin, navigate]);
 
   const handleWithDrawal = async () => {
-    // const [flatform] = meltedCookie();
-    // if (flatform === 'naver') {
-    //   try {
-    //     const response = await axios.post('/logout/naver', null, {
-    //       withCredentials: true,
-    //     });
-    //     console.log(response.data);
-    //     if (response.status === 200) {
-    //       console.log('로그아웃');
-    //       dispatch(clearAuth());
-    //       dispatch(logout());
-    //       deleteCookie('user_id');
-    //       deleteCookie('refreshToken');
-    //       deleteCookie('provider');
-    //       navigate('/');
-    //     } else {
-    //       console.log('실패');
-    //     }
-    //   } catch (error) {
-    //     console.error('로그아웃', error);
-    //   }
-    // } else if (flatform === 'kakao') {
-    //   try {
-    //     const response = await axios.post('/logout/kakao', null, {
-    //       withCredentials: true,
-    //     });
-    //     console.log(response.data);
-    //     if (response.status === 200) {
-    //       console.log('로그아웃');
-    //       dispatch(clearAuth());
-    //       dispatch(logout());
-    //       deleteCookie('user_id');
-    //       deleteCookie('refreshToken');
-    //       deleteCookie('provider');
-    //       navigate('/');
-    //     } else {
-    //       console.log('실패');
-    //     }
-    //   } catch (error) {
-    //     console.error('로그아웃', error);
-    //   }
-    // }
+    const [flatform] = meltedCookie();
+    if (flatform === 'naver') {
+      try {
+        const response = await axios.post('/logout/naver', null, {
+          withCredentials: true,
+        });
+        console.log(response.data);
+        if (response.status === 200) {
+          console.log('로그아웃');
+          dispatch(clearAuth());
+          dispatch(logout());
+          deleteCookie('user_id');
+          deleteCookie('refreshToken');
+          deleteCookie('provider');
+          navigate('/');
+        } else {
+          console.log('실패');
+        }
+      } catch (error) {
+        console.error('로그아웃', error);
+      }
+    } else if (flatform === 'kakao') {
+      try {
+        const response = await axios.post('/logout/kakao', null, {
+          withCredentials: true,
+        });
+        console.log(response.data);
+        if (response.status === 200) {
+          console.log('로그아웃');
+          dispatch(clearAuth());
+          dispatch(logout());
+          deleteCookie('user_id');
+          deleteCookie('refreshToken');
+          deleteCookie('provider');
+          navigate('/');
+        } else {
+          console.log('실패');
+        }
+      } catch (error) {
+        console.error('로그아웃', error);
+      }
+    }
 
     const userDelete = async (userid: string) => {
       try {
