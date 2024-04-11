@@ -7,6 +7,6 @@ interface Themes {
 }
 
 export const fetchGetThemes = async (): Promise<Themes[]> => {
-  const response = await axios.get('http://localhost:4000/themes');
+  const response = await axios.get('http://18.204.230.142:4000/themes');
   return response.data;
 };

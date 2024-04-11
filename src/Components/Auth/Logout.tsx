@@ -42,7 +42,7 @@ const Logout: React.FC = () => {
     if (flatform === 'naver') {
       try {
         const response = await axios.post(
-          'http://localhost:4000/login/logout/naver',
+          'http://18.204.230.142:4000/login/logout/naver',
         );
         console.log(response.data);
         if (response.status === 200) {
@@ -62,7 +62,7 @@ const Logout: React.FC = () => {
     } else if (flatform === 'kakao') {
       try {
         const response = await axios.post(
-          'http://localhost:4000/login/logout/kakao',
+          'http://18.204.230.142:4000/login/logout/kakao',
         );
         console.log(response.data);
         if (response.status === 200) {

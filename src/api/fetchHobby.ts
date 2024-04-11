@@ -8,7 +8,9 @@ interface Hobby {
 
 export const fetchGetHobbys = async (): Promise<Hobby[]> => {
   try {
-    const response = await axios.get<Hobby[]>('http://localhost:4000/hobbies');
+    const response = await axios.get<Hobby[]>(
+      'http://18.204.230.142:4000/hobbies',
+    );
     return response.data;
   } catch (e) {
     throw new Error('전체 취미 목록 불러오기 실패');

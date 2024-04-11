@@ -6,11 +6,11 @@ interface Mood {
   mood: string;
 }
 
-export const fetchGetMood = async ():Promise<Mood[]> => {
+export const fetchGetMood = async (): Promise<Mood[]> => {
   try {
-    const response = await axios.get('http://localhost:4000/moods');
+    const response = await axios.get('http://18.204.230.142:4000/moods');
     return response.data;
   } catch (error) {
-    throw new Error('mood data를 가져오는데 실패했습니다.')
+    throw new Error('mood data를 가져오는데 실패했습니다.');
   }
 };

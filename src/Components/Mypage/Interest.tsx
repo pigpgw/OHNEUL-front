@@ -13,7 +13,7 @@ const Interest = () => {
   useEffect(() => {
     const fetchPayments = async () => {
       axios
-        .get(`http://localhost:4000/user-hobby/${userId}}`, {})
+        .get(`http://18.204.230.142:4000/user-hobby/${userId}}`, {})
         .then((res) => {
           console.log(res);
           setData(res.data);
