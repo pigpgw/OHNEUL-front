@@ -32,8 +32,12 @@ function Mood() {
   const [mood, setMood] = useState<MoodTs[]>([]);
   const userSelectMood = mood
     .filter((item) => item.clicked === true)
-    .map((item) => item.mood)[0];
+    .map((item) => item.mood_id)[0];
 
+    useEffect(() => {
+      console.log(userSelectMood)
+    },[])
+  
   useEffect(() => {
     if (availableMoods) setMood(availableMoods);
   }, [availableMoods]);
@@ -54,7 +58,7 @@ function Mood() {
   const handleSubmit = () => {
     if (userSelectMood) {
       addUserMood({
-        mood: userSelectMood,
+        mood_id: userSelectMood,
       });
       navigate('/theme');
     } else {
