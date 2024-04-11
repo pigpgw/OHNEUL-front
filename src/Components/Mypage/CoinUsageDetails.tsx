@@ -15,6 +15,7 @@ const CoinUsageDetails = () => {
       .catch((error) => {
         console.error(error);
       });
+    console.log(fetchPayments());
   };
   return <div>CoinUsageDetails</div>;
 };

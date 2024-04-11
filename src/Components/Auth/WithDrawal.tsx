@@ -4,7 +4,17 @@ import { useNavigate } from 'react-router-dom';
 import { logout, clearAuth } from 'stores/slices/userSlice';
 import axios from 'axios';
 import meltedCookie from 'utils/meltedCookie';
+import styled from 'styled-components';
 
+const Button = styled.button`
+  background: none;
+  border: none;
+  padding: 0;
+  font: inherit;
+  color: #dbdbdb;
+  cursor: pointer;
+  outline: inherit;
+`;
 interface User {
   user: {
     value: { user_id: string; refreshToken: string; provider: string };
@@ -30,55 +40,55 @@ const WithDrawal: React.FC = () => {
   }, [user.isLogin, navigate]);
 
   const handleWithDrawal = async () => {
-    const [flatform] = meltedCookie();
-    if (flatform === 'naver') {
-      try {
-        const response = await axios.post('/logout/naver', null, {
-          withCredentials: true,
-        });
-        console.log(response.data);
-        if (response.status === 200) {
-          console.log('로그아웃');
-          dispatch(clearAuth());
-          dispatch(logout());
-          deleteCookie('user_id');
-          deleteCookie('refreshToken');
-          deleteCookie('provider');
-          navigate('/');
-        } else {
-          console.log('실패');
-        }
-      } catch (error) {
-        console.error('로그아웃', error);
-      }
-    } else if (flatform === 'kakao') {
-      try {
-        const response = await axios.post('/logout/kakao', null, {
-          withCredentials: true,
-        });
-        console.log(response.data);
-        if (response.status === 200) {
-          console.log('로그아웃');
-          dispatch(clearAuth());
-          dispatch(logout());
-          deleteCookie('user_id');
-          deleteCookie('refreshToken');
-          deleteCookie('provider');
-          navigate('/');
-        } else {
-          console.log('실패');
-        }
-      } catch (error) {
-        console.error('로그아웃', error);
-      }
-    }
+    // const [flatform] = meltedCookie();
+    // if (flatform === 'naver') {
+    //   try {
+    //     const response = await axios.post('/logout/naver', null, {
+    //       withCredentials: true,
+    //     });
+    //     console.log(response.data);
+    //     if (response.status === 200) {
+    //       console.log('로그아웃');
+    //       dispatch(clearAuth());
+    //       dispatch(logout());
+    //       deleteCookie('user_id');
+    //       deleteCookie('refreshToken');
+    //       deleteCookie('provider');
+    //       navigate('/');
+    //     } else {
+    //       console.log('실패');
+    //     }
+    //   } catch (error) {
+    //     console.error('로그아웃', error);
+    //   }
+    // } else if (flatform === 'kakao') {
+    //   try {
+    //     const response = await axios.post('/logout/kakao', null, {
+    //       withCredentials: true,
+    //     });
+    //     console.log(response.data);
+    //     if (response.status === 200) {
+    //       console.log('로그아웃');
+    //       dispatch(clearAuth());
+    //       dispatch(logout());
+    //       deleteCookie('user_id');
+    //       deleteCookie('refreshToken');
+    //       deleteCookie('provider');
+    //       navigate('/');
+    //     } else {
+    //       console.log('실패');
+    //     }
+    //   } catch (error) {
+    //     console.error('로그아웃', error);
+    //   }
+    // }
 
     const userDelete = async (userid: string) => {
       try {
         const response = await axios.delete(
           `http://localhost:4000/users/${userid}`,
         );
-        console.log(response.data);
+        console.log(response);
         return response.data;
       } catch (error) {
         console.error(error);
@@ -88,8 +98,9 @@ const WithDrawal: React.FC = () => {
 
     userDelete(userId)
       .then((res) => {
+        console.log(res, 1);
         console.log(res, 'success to delete user');
-        navigate('/');
+        // navigate('/');
       })
       .catch((error) => {
         console.error(error, 'failed to delete user');
@@ -97,7 +108,7 @@ const WithDrawal: React.FC = () => {
   };
   return (
     <div>
-      <button onClick={handleWithDrawal}>회원탈퇴</button>
+      <Button onClick={handleWithDrawal}>회원탈퇴</Button>
     </div>
   );
 };

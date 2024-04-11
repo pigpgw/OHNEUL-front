@@ -2,7 +2,7 @@ import React from 'react';
 import axios from 'axios';
 import styled from 'styled-components';
 import { useQueryClient } from 'react-query';
-import KakaoImg from '../../assets/images/kakaoLoginButton.png';
+import KakaoImg from 'assets/images/kakaoLoginButton.png';
 
 const KakaoLoginButton = styled.button`
   width: 30%;

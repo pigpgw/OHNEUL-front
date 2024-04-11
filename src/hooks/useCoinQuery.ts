@@ -15,7 +15,9 @@ interface CoinQueryClient {
 }
 
 const fetchUser = async (userId: string) => {
-  const response = await axios.get(`http://localhost:4000/users/${userId}`);
+  const response = await axios.get(
+    'http://localhost:4000/users/86ffcbea-6dca-460a-ac9f-60bc98644a83',
+  );
   return response.data;
 };
 

@@ -4,6 +4,17 @@ import { useNavigate } from 'react-router-dom';
 import { logout, clearAuth } from 'stores/slices/userSlice';
 import axios from 'axios';
 import meltedCookie from 'utils/meltedCookie';
+import styled from 'styled-components';
+
+const Button = styled.button`
+  background: none;
+  border: none;
+  padding: 0;
+  font: inherit;
+  color: #dbdbdb;
+  cursor: pointer;
+  outline: inherit;
+`;
 
 interface User {
   user: {
@@ -90,7 +101,9 @@ const Logout: React.FC = () => {
   };
   return (
     <div>
-      <button onClick={handleLogOut}>로그아웃</button>
+      <Button role="button" onClick={handleLogOut}>
+        로그아웃
+      </Button>
     </div>
   );
 };
