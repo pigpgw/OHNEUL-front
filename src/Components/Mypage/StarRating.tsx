@@ -13,14 +13,9 @@ const Desc = styled.div`
   color: #dbdbdb;
 `;
 
-interface Item {
-  id: number;
-  score: number;
-}
-
 const StarRating = () => {
-  const [userId, token, flatform] = meltedCookie();
-  const [data, setData] = useState<Item[] | number>(0);
+  const [userId] = meltedCookie();
+  const [data, setData] = useState<number>(0);
   useEffect(() => {
     const fetchPayments = async () => {
       axios
@@ -73,7 +68,7 @@ const StarRating = () => {
     return [desc, count];
   };
 
-  return <div>{renderHerat(5)}</div>;
+  return <div>{renderHerat(data)}</div>;
 };
 
 export default StarRating;

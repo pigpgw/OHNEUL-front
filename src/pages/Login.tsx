@@ -23,8 +23,7 @@ const SocialContainer = styled.div`
   gap: 1px;
 `;
 const PhraseContainer = styled.div``;
-// 로그인후잠깐보여지는페이지
-// 이페이지가렌더링된후바로메인페이지진입
+
 interface User {
   user: {
     value: { user_id: string; refreshToken: string; provider: string };
@@ -33,7 +32,6 @@ interface User {
 }
 
 const Login: React.FC = () => {
-  // const isLogin = useSelector((state: User) => state.user.isLogin);
   const storedUserInfo = useSelector((state: User) => state.user);
   const dispatch = useDispatch();
   const navigate = useNavigate();

@@ -31,9 +31,7 @@ const WithDrawal: React.FC = () => {
   const userId = user.value.user_id;
 
   useEffect(() => {
-    // isLogin 상태가 변경될 때마다 모니터링하여 필요한 작업 수행
     if (!user.isLogin) {
-      // 로그아웃 처리 후 페이지 이동
       alert('로그인상태를 확인해주세요.');
       console.log(user.isLogin, 'handle끝2');
     }

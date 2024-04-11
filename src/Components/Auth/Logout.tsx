@@ -30,16 +30,6 @@ const Logout: React.FC = () => {
     document.cookie = `${name}=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;`;
   };
 
-  // const handleLogout = (): void => {
-  // dispatch(clearAuth());
-  // dispatch(logout());
-  // deleteCookie('user_id');
-  // deleteCookie('refreshToken');
-  // deleteCookie('provider');
-  // navigate('/');
-  //   console.log(user.isLogin, 'handle끝');
-  // };
-
   useEffect(() => {
     if (!user.isLogin) {
       navigate('/');
@@ -53,10 +43,6 @@ const Logout: React.FC = () => {
       try {
         const response = await axios.post(
           'http://localhost:4000/login/logout/naver',
-          // null,
-          // {
-          //   withCredentials: true,
-          // },
         );
         console.log(response.data);
         if (response.status === 200) {
@@ -77,10 +63,6 @@ const Logout: React.FC = () => {
       try {
         const response = await axios.post(
           'http://localhost:4000/login/logout/kakao',
-          // null,
-          // {
-          //   withCredentials: true,
-          // },
         );
         console.log(response.data);
         if (response.status === 200) {

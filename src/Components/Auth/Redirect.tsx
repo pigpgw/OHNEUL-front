@@ -10,39 +10,15 @@ const Wrap = styled.div`
   margin-top: 200px;
   min-height: 1100px;
 `;
-// const fetchToken = async () => {
-//   const response = await axios.get('/user');
-//   return response.data;
-// };
 
 const Redirect: React.FC = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
-  // const {
-  //   data: userData,
-  //   isLoading,
-  //   isError,
-  // } = useQuery('userData', fetchToken);
-  // if (isLoading) return <Wrap>로딩중</Wrap>;
-  // if (isError) {
-  //   alert('싪ㅍ패');
-  //   console.error(' 에러');
-
-  //   return <Wrap>error</Wrap>;
-  // }
-  // const { username, AccessToken } = userData;
-  // dispatch(setAuth({ username, AccessToken }));
-  // return null;
   useEffect(() => {
     const fetchToken = async () => {
       try {
         if (document.cookie) {
-          // // const response = await axios.get('/user');
-          // // 로컬스토리지 사용?
-          // console.log(document.cookie.user_id);
-          // // const { username, AccessToken, refreshToken } = response.data;
-          // dispatch(setAuth({ username, AccessToken, refreshToken }));
           navigate('/');
         }
       } catch (error) {
