@@ -91,7 +91,6 @@ function Chat({ socket }: any): JSX.Element {
 
   const msgSubmitHandler = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    if (msg.length === 0) return
     const sendData = {
       data: msg,
       id: socket.id,

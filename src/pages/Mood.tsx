@@ -31,14 +31,14 @@ function Mood() {
   });
 
   const [mood, setMood] = useState<MoodTs[]>([]);
-  // useEffect(() => {
-  //   const data = extractReward();
-  //   if (data === 'F') {
-  //     setTimeout(() => {
-  //       alert('매일 접속 보상이 지급되었습니다');
-  //     }, 1000);
-  //   }
-  // }, []);
+  useEffect(() => {
+    const data = extractReward();
+    if (data !== 'F') {
+      setTimeout(() => {
+        alert('매일 접속 보상이 지급되었습니다');
+      }, 1000);
+    }
+  }, []);
   const userSelectMood = mood
     .filter((item) => item.clicked === true)
     .map((item) => item.mood)[0];
