@@ -4,7 +4,7 @@ import ChatHeader from 'Components/Chat/ChatHeader';
 import ChatInfo from 'Components/Chat/ChatInfo';
 import ChatMessages from 'Components/Chat/ChatMessages';
 import ChatInputForm from 'Components/Chat/ChatInputForm';
-import { extractUserId } from 'utils/extractUserId';
+import { extractUserId } from 'utils/extractCookie';
 import {
   ConsentModal,
   InfoModal,

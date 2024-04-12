@@ -11,7 +11,7 @@ import {
 import { useNavigate } from 'react-router-dom';
 import { useQuery } from 'react-query';
 import useCheckHobbiesAndNavigate from 'hooks/useCheckHobbiesAndNavigateHook';
-import { extractUserId } from 'utils/extractUserId';
+import { extractUserId } from 'utils/extractCookie';
 import { useAddUserHobbyMutation } from '../hooks/useUserHobbyMutation';
 import { fetchGetHobbys } from '../api/fetchHobby';
 

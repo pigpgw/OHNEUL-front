@@ -13,3 +13,13 @@ export const extractOtherUserId = (): string => {
   const userId = uuidInCookie.split('=')[1].replace(/;/g, '');
   return userId;
 };
+
+export const extractReward = (): string => {
+  const rewardId = document.cookie
+    .split(' ')
+    .filter((item) => item.split('=')[0] === 'reward')[0]
+    .split('=')[1]
+    .replace(/;/g, '');
+  console.log('check rewat', rewardId);
+  return rewardId;
+};

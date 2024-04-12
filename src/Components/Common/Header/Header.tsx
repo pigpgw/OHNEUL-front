@@ -3,7 +3,7 @@ import '../../../fonts/font.css';
 import { useNavigate } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { useCoinQuery } from 'hooks/useCoinQuery';
-import { extractUserId } from 'utils/extractUserId';
+import { extractUserId } from 'utils/extractCookie';
 import appLogo from '../../../assets/images/appLogo.png';
 
 import {

@@ -8,7 +8,7 @@ interface Mood {
 
 export const fetchGetMood = async (): Promise<Mood[]> => {
   try {
-    const response = await axios.get('http://18.204.230.142:4000/moods');
+    const response = await axios.get(`http://3.91.102.205:4000/moods`);
     return response.data;
   } catch (error) {
     throw new Error('mood data를 가져오는데 실패했습니다.');

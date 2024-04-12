@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { FaStar } from 'react-icons/fa';
 import { useNavigate } from 'react-router-dom';
-import { extractOtherUserId } from 'utils/extractUserId';
+import { extractOtherUserId } from 'utils/extractCookie';
 import styled from 'styled-components';
 
 function Rating({ socket }: any): JSX.Element {
