@@ -13,7 +13,7 @@ import NotFound from 'pages/NotFound';
 import Redirect from 'Components/Auth/Redirect';
 import MyPage from 'pages/MyPage';
 
-const socket = io('http://18.204.230.142:4000/');
+const socket = io('http://3.91.102.205:4000');
 
 function AppRouter() {
   return (

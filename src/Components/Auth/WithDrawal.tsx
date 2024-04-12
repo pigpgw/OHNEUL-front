@@ -84,7 +84,7 @@ const WithDrawal: React.FC = () => {
     const userDelete = async (userid: string) => {
       try {
         const response = await axios.delete(
-          `http://18.204.230.142:4000/users/${userid}`,
+          `http://3.91.102.205:4000/users/${userid}`,
         );
         console.log(response);
         return response.data;
