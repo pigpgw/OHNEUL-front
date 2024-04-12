@@ -18,26 +18,25 @@ const StarRating = () => {
   const [data, setData] = useState<number>(0);
   useEffect(() => {
     const fetchPayments = async () => {
-      axios
-        .get(
-          `http://localhost:
-        4000/users/${userId}`,
-          {},
-        )
-        .then((res) => {
-          console.log(res);
-          setData(res.data);
-        })
-        .catch((error) => {
-          console.error(error);
-        });
+      const response = await axios.get(`http://localhost:4000/users/${userId}`);
+      console.log(response.data, 'asdas');
+      // return response;
+      return setData(response.data.score);
+      // .then((res) => {
+      //   console.log(res);
+      //   setData(res.data);
+      // })
+      // .catch((error) => {
+      //   console.error(error);
+      // });
     };
     fetchPayments();
   }, []);
 
   const renderHerat = (score: number) => {
-    const plusCount = score;
-    const minusCount = 5 - score;
+    const strToNumb = Number(score);
+    const plusCount = strToNumb;
+    const minusCount = 5 - strToNumb;
     const count = [];
     const desc = [];
     for (let i = 0; i < plusCount; i += 1) {
@@ -46,7 +45,10 @@ const StarRating = () => {
     for (let j = 0; j < minusCount; j += 1) {
       count.push(<Heart src={minusHeart} alt=""></Heart>);
     }
-    switch (score) {
+    switch (strToNumb) {
+      case 0.0:
+        desc.push(<Desc>채팅을시작해주세요!!!!!!</Desc>);
+        break;
       case 1:
         desc.push(<Desc>별이한개!!!!!!</Desc>);
         break;

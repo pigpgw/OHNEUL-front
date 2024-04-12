@@ -39,11 +39,10 @@ const Logout: React.FC = () => {
 
   const handleLogOut = async () => {
     const [userId, token, flatform] = meltedCookie();
+    console.log(flatform);
     if (flatform === 'naver') {
       try {
-        const response = await axios.post(
-          'http://localhost:4000/login/logout/naver',
-        );
+        const response = await axios.post('http://localhost:4000/logout/naver');
         console.log(response.data);
         if (response.status === 200) {
           console.log('로그아웃');
@@ -61,9 +60,7 @@ const Logout: React.FC = () => {
       }
     } else if (flatform === 'kakao') {
       try {
-        const response = await axios.post(
-          'http://localhost:4000/login/logout/kakao',
-        );
+        const response = await axios.post('http://localhost:4000/logout/kakao');
         console.log(response.data);
         if (response.status === 200) {
           console.log('로그아웃');

@@ -2,35 +2,39 @@ import axios from 'axios';
 import React, { useState, useEffect } from 'react';
 import meltedCookie from 'utils/meltedCookie';
 
-interface Item {
-  id: number;
-  name: string;
+interface HobbyData {
+  hobby_id: number;
 }
-
 const Interest = () => {
   const [userId] = meltedCookie();
-  const [data, setData] = useState<Item[] | null>([]);
+  const [datas, setData] = useState<HobbyData[]>([]);
   useEffect(() => {
     const fetchPayments = async () => {
-      axios
-        .get(`http://localhost:4000/user-hobby/${userId}}`, {})
-        .then((res) => {
-          console.log(res);
-          setData(res.data);
-        })
-        .catch((error) => {
-          console.error(error);
-        });
+      const response: any = await axios.get(
+        `http://localhost:4000/user-hobby/${userId}`,
+      );
+
+      return setData(response.data);
+
+      // .then((res) => {
+      //   console.log(res, '취미확인');
+      //   console.log(userId);
+      //   setData(res.data);
+      // })
+      // .catch((error) => {
+      //   console.error(error);
+      // });
     };
     fetchPayments();
   }, []);
   return (
     <div>
-      {
-        <ul>
-          {data && data.map((item) => <li key={item.id}>{item.name}</li>)}
-        </ul>
-      }
+      {datas.map((el, id) => (
+        <div key={id}>
+          {el.hobby_id}
+          {'취미'}
+        </div>
+      ))}
     </div>
   );
 };
