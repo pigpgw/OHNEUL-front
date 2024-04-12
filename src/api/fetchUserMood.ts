@@ -1,11 +1,13 @@
 /* eslint-disable import/prefer-default-export */
 import axios from 'axios';
+import { extractUserId } from '../utils/extractCookie';
 
 interface Mood {
   mood: string;
 }
 
 export const fetchAddUserMood = async (userMood: Mood): Promise<Mood> => {
-  return axios.post('https://jsonplaceholder.typicode.com/posts', userMood);
+  const userId = extractUserId()
+  return axios.post(`http://3.91.102.205:4000/users/${userId}`, userMood);
   // http://localhost:3000/moods/join
 };
