@@ -1,6 +1,6 @@
 /* eslint-disable import/prefer-default-export */
 import axios from 'axios';
-import { extractUserId } from '../utils/extractUserId';
+import { extractUserId } from '../utils/extractCookie';
 
 export const fetchGetOneUserHobby = async () => {
   const userId = extractUserId();

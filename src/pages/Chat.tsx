@@ -4,7 +4,7 @@ import ChatHeader from 'Components/Chat/ChatHeader';
 import ChatInfo from 'Components/Chat/ChatInfo';
 import ChatMessages from 'Components/Chat/ChatMessages';
 import ChatInputForm from 'Components/Chat/ChatInputForm';
-import { extractUserId } from 'utils/extractUserId';
+import { extractUserId } from 'utils/extractCookie';
 import {
   ConsentModal,
   InfoModal,
@@ -91,6 +91,7 @@ function Chat({ socket }: any): JSX.Element {
 
   const msgSubmitHandler = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    if (msg.length === 0) return
     const sendData = {
       data: msg,
       id: socket.id,

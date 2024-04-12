@@ -1,6 +1,6 @@
 import React from 'react';
 import { useCoinQuery } from 'hooks/useCoinQuery';
-import { extractUserId } from 'utils/extractUserId';
+import { extractUserId } from 'utils/extractCookie';
 import {
   HeaderContainer,
   LogoContainer,
