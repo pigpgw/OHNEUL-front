@@ -72,9 +72,13 @@ function Chat({ socket }: any): JSX.Element {
         return prev + 1;
       });
     }, 1000);
-
     setIntervalId(newIntervalId);
   }
+
+  useEffect(() => {
+    console.log('경과중인 누적시간 체크', totalTime);
+  })
+
   useEffect(() => {
     return () => {
       if (intervalId) clearInterval(intervalId);
@@ -200,7 +204,7 @@ function Chat({ socket }: any): JSX.Element {
   useEffect(() => {
     function userExistCallback() {
       clearInterval(intervalId);
-      if (totalTime < 3) {
+      if (totalTime < 5) {
         setExitModal(true);
         setTimeout(() => {
           goThemePage();
@@ -240,6 +244,8 @@ function Chat({ socket }: any): JSX.Element {
     socket.emit('reportUser', reportInfo);
     setReportReson('');
     alert('신고가 완료되었습니다.');
+    goThemePage();
+    socket.emit('userExit');
     setReportModal(false);
   };
 
