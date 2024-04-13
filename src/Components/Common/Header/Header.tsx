@@ -31,11 +31,15 @@ function Header({ onCashIconClick }: HeaderProps) {
     navigate('/mypage');
   };
 
+  const goToThemePage = () => {
+    navigate('/theme')
+  }
+
   if (isCoinLoading) return <div>로딩중</div>;
   if (isCoinError) return <div>에러 발생</div>;
   return (
     <HeaderContainer>
-      <LogoContainer>
+      <LogoContainer  onClick={goToThemePage}>
         <LogoImage src={appLogo} alt="" />
         <LogoTitle>OHNEUL</LogoTitle>
       </LogoContainer>
