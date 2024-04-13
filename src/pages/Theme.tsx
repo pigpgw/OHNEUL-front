@@ -66,23 +66,25 @@ function Theme({ socket }: any) {
     }
   };
 
+  interface uuidList {
+    socketId: string;
+    uuid: string;
+  }
+
   const navigate = useNavigate();
   useEffect(() => {
     function waitMessageCallback() {
       setWait(true);
     }
 
-    function startMessageCallback(otherId: any) {
+    function startMessageCallback(otherId: uuidList[]) {
       setWait(false);
 
       if (otherId && otherId.length > 0) {
         const other = otherId.filter(
           (item: any) => item.socketId !== socket.id,
         )[0].uuid;
-        console.log('상대방 쿠키 아이디', otherId);
-        console.log('상대방 uuid', other);
         document.cookie = `other=${other}`;
-        console.log('상대방 쿠키 받아온 후 확인', document.cookie);
         navigate('/chat');
       } else {
         console.log('상대방 정보가 없습니다.');
