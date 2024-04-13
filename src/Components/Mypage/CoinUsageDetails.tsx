@@ -6,7 +6,7 @@ const CoinUsageDetails = () => {
   const [userId] = meltedCookie();
   const fetchPayments = async () => {
     axios
-      .get(`http://3.91.102.205:4000/order/${userId}`, {
+      .get(`${process.env.REACT_APP_BASE_URL}/order/${userId}`, {
         withCredentials: true,
       })
       .then((res) => {

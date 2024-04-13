@@ -14,5 +14,5 @@ interface AddUserHobbyResponse {
 export const fetchAddUserHobby = (
   userHobby: UserHobby,
 ): Promise<AddUserHobbyResponse> => {
-  return axios.post(`http://3.91.102.205:4000/user-hobby/join`, userHobby);
+  return axios.post(`${process.env.REACT_APP_BASE_URL}/user-hobby/join`, userHobby);
 };

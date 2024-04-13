@@ -16,12 +16,12 @@ interface CoinQueryClient {
 
 
 const fetchUser = async (userId: string) => {
-  const response = await axios.get(`http://3.91.102.205:4000/users/${userId}`);
+  const response = await axios.get(`${process.env.REACT_APP_BASE_URL}/users/${userId}`);
   return response.data;
 };
 
 export const useCoinQuery = (userId: string): CoinQueryClient => {
-  console.log('유저 id',userId)
+  // console.log('유저 id',userId)
   const {
     isLoading: isCoinLoading,
     isError: isCoinError,

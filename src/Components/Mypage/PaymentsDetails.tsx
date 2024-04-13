@@ -8,7 +8,7 @@ const PaymentsDetails = () => {
   useEffect(() => {
     const fetchPayments = async () => {
       axios
-        .get(`http://3.91.102.205:4000/payments/${userId}`, {})
+        .get(`http://.102.205:4000/payments/${userId}`, {})
         .then((res) => {
           console.log(res);
         })

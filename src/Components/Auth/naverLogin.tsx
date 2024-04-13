@@ -14,11 +14,12 @@ const NaverLoginButton = styled.button`
   }
 `;
 const NaverLogin: React.FC = () => {
-  const NaverAuthRoot = 'http://3.91.102.205:4000/login/naver';
+  const NaverAuthRoot = `${process.env.REACT_APP_BASE_URL}/login/naver`;
 
   const loginRedirect = () => {
     window.location.href = NaverAuthRoot;
   };
+  
   return (
     <NaverLoginButton onClick={loginRedirect}>
       <img alt="" src={NaverImg}></img>

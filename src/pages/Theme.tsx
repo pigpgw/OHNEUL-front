@@ -38,7 +38,7 @@ function Theme({ socket }: any) {
 
   useEffect(() => {
     if (availableThemes) setTheme(availableThemes);
-
+    // document.cookie = `other=`;
     console.log('check clicked button', userSelectTheme);
   }, [availableThemes]);
 
@@ -72,12 +72,21 @@ function Theme({ socket }: any) {
       setWait(true);
     }
 
-    function startMessageCallback(otherId: string) {
+    function startMessageCallback(otherId: any) {
       setWait(false);
-      console.log('상대방 쿠키 아이디', otherId);
-      document.cookie = `other=${otherId}`;
-      console.log('상대방 쿠키 받아온 후 확인', document.cookie);
-      navigate('/chat');
+
+      if (otherId && otherId.length > 0) {
+        const other = otherId.filter(
+          (item: any) => item.socketId !== socket.id,
+        )[0].uuid;
+        console.log('상대방 쿠키 아이디', otherId);
+        console.log('상대방 uuid', other);
+        document.cookie = `other=${other}`;
+        console.log('상대방 쿠키 받아온 후 확인', document.cookie);
+        navigate('/chat');
+      } else {
+        console.log('상대방 정보가 없습니다.');
+      }
     }
     socket.on('wait', waitMessageCallback);
     socket.on('start', startMessageCallback);

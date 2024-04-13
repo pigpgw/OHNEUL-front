@@ -19,7 +19,7 @@ const StarRating = () => {
   useEffect(() => {
     const fetchPayments = async () => {
       axios
-        .get(`http://3.91.102.205:4000/users/${userId}`, {})
+        .get(`${process.env.REACT_APP_BASE_URL}/users/${userId}`, {})
         .then((res) => {
           console.log(res);
           setData(res.data);

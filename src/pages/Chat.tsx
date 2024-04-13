@@ -4,7 +4,7 @@ import ChatHeader from 'Components/Chat/ChatHeader';
 import ChatInfo from 'Components/Chat/ChatInfo';
 import ChatMessages from 'Components/Chat/ChatMessages';
 import ChatInputForm from 'Components/Chat/ChatInputForm';
-import { extractUserId } from 'utils/extractCookie';
+import { extractUserId,extractOtherUserId } from 'utils/extractCookie';
 import {
   ConsentModal,
   InfoModal,
@@ -229,7 +229,7 @@ function Chat({ socket }: any): JSX.Element {
   };
 
   const reportUser = () => {
-    const reportedUserId = extractUserId();
+    const reportedUserId = extractOtherUserId();
     // console.log('상대방 uuid', reportedUserId);
     // console.log('상대방 신고 사유', reportReason);
     const reportInfo = {
