@@ -74,11 +74,7 @@ function Chat({ socket }: any): JSX.Element {
     }, 1000);
     setIntervalId(newIntervalId);
   }
-
-  useEffect(() => {
-    console.log('경과중인 누적시간 체크', totalTime);
-  });
-
+  
   useEffect(() => {
     return () => {
       if (intervalId) clearInterval(intervalId);

@@ -106,7 +106,7 @@ export const ReportModal = ({
           </ReportBtn>
         ))}
         <ModalBtnContainer>
-          <ModalBtn onClick={doReport}>신고하기</ModalBtn>
+          <ModalBtn onClick={doReport}>신고후 나가기</ModalBtn>
           <ModalBtn onClick={onClose}>취소</ModalBtn>
         </ModalBtnContainer>
       </ReportModalBtnContainer>
