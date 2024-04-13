@@ -1,25 +1,34 @@
 import axios from 'axios';
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import meltedCookie from 'utils/meltedCookie';
+
+interface PaymentData {
+  message: string;
+}
 
 const PaymentsDetails = () => {
   const [userId] = meltedCookie();
-
+  const [datas, setData] = useState<PaymentData[]>([]);
   useEffect(() => {
     const fetchPayments = async () => {
-      axios
-        .get(`http://.102.205:4000/payments/${userId}`, {})
-        .then((res) => {
-          console.log(res);
-        })
-        .catch((error) => {
-          console.error(error);
-        });
+      const response: any = await axios.get(
+        `${process.env.REACT_APP_BASE_URL}/payments/${userId}`,
+      );
+      return setData(response.data);
     };
     fetchPayments();
   }, []);
 
-  return <div></div>;
+  return (
+    <div>
+      {datas.map((el, id) => (
+        <div key={id}>
+          {el.message}
+          {'코인내역'}
+        </div>
+      ))}
+    </div>
+  );
 };
 
 export default PaymentsDetails;
