@@ -77,7 +77,7 @@ function Chat({ socket }: any): JSX.Element {
 
   useEffect(() => {
     console.log('경과중인 누적시간 체크', totalTime);
-  })
+  });
 
   useEffect(() => {
     return () => {
@@ -184,7 +184,6 @@ function Chat({ socket }: any): JSX.Element {
       consent: 'no',
     };
     socket.emit('consent', data);
-    socket.emit('userExit');
     goThemePage();
   };
 
@@ -195,6 +194,7 @@ function Chat({ socket }: any): JSX.Element {
     document.cookie = 'other=';
     console.log('방 나나고 쿠키 삭제', document.cookie);
     navigate('/theme');
+    socket.emit('userExit');
   };
 
   useEffect(() => {
@@ -245,7 +245,6 @@ function Chat({ socket }: any): JSX.Element {
     setReportReson('');
     alert('신고가 완료되었습니다.');
     goThemePage();
-    socket.emit('userExit');
     setReportModal(false);
   };
 
