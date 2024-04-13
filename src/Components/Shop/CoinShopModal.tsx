@@ -19,9 +19,12 @@ function CoinShopModal() {
 }
 
 const CoinShopContainer = styled.div`
+  position: relative;
+  z-index: 10;
   width: 90%;
-  margin-top: 50px;
+  bottom: 530px;
   height: 400px;
+  background: #ffffff;
 
   display: flex;
   justify-content: center;
