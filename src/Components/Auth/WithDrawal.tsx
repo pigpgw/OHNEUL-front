@@ -41,10 +41,10 @@ const WithDrawal: React.FC = () => {
     const [flatform] = meltedCookie();
     if (flatform === 'naver') {
       try {
-        const response = await axios.post('/logout/naver', null, {
-          withCredentials: true,
-        });
-        console.log(response.data);
+        const response = await axios.post(
+          `${process.env.REACT_APP_BASE_URL}/logout/naver`,
+        );
+        // console.log(response.data);
         if (response.status === 200) {
           console.log('로그아웃');
           dispatch(clearAuth());
@@ -61,9 +61,9 @@ const WithDrawal: React.FC = () => {
       }
     } else if (flatform === 'kakao') {
       try {
-        const response = await axios.post('/logout/kakao', null, {
-          withCredentials: true,
-        });
+        const response = await axios.post(
+          `${process.env.REACT_APP_BASE_URL}/logout/kakao`,
+        );
         console.log(response.data);
         if (response.status === 200) {
           console.log('로그아웃');
@@ -98,7 +98,7 @@ const WithDrawal: React.FC = () => {
       .then((res) => {
         console.log(res, 1);
         console.log(res, 'success to delete user');
-        // navigate('/');
+        navigate('/');
       })
       .catch((error) => {
         console.error(error, 'failed to delete user');
