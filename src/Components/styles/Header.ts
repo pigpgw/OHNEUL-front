@@ -1,6 +1,5 @@
 import styled from 'styled-components';
 import { IoPersonOutline } from 'react-icons/io5';
-import { BsCoin } from 'react-icons/bs';
 import { GiExitDoor } from 'react-icons/gi';
 import { RiAlarmWarningFill } from "react-icons/ri";
 
@@ -42,13 +41,13 @@ export const CashContainer = styled.div`
   justify-content: center;
   align-items: center;
 `;
-export const CashIcon = styled(BsCoin)`
-  font-size: 16px;
+export const CashIcon = styled.img`
+  width: 20px;
   margin-right: 3px;
   margin: 2px 5px;
 `;
 export const CashAmount = styled.p`
-  font-size: 12px;
+  font-size: 14px;
   font-weight: 600;
 `;
 export const IconPerson = styled(IoPersonOutline)`

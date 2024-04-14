@@ -4,6 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { useCoinQuery } from 'hooks/useCoinQuery';
 import { extractUserId } from 'utils/extractCookie';
+import coin from '../../../assets/images/coin.png'
 import appLogo from '../../../assets/images/appLogo.png';
 
 import {
@@ -46,7 +47,7 @@ function Header({ onCashIconClick }: HeaderProps) {
 
       <InfoContainer>
         <CashContainer onClick={onCashIconClick}>
-          <CashIcon />
+          <CashIcon src={coin} alt='코인 아이콘'/>
           <CashAmount>{userCoinState}</CashAmount>
         </CashContainer>
         <IconPerson onClick={goToMyPage} />
