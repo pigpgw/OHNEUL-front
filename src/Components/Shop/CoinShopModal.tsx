@@ -228,7 +228,7 @@ const CoinAmount = styled.div`
 
 const Wrapper = styled.div`
   display: flex;
-  margin: 5px 0 0 0;
+  margin: 5px 0 10px 0;
   width: 100px;
   align-items: center;
   justify-content: space-evenly;
