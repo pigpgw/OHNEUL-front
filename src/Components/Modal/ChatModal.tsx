@@ -56,9 +56,12 @@ export const ConsentModal = ({ onAgree, onRefuse }: ConsentModalProps) => {
     <ModalWrapper>
       <ModalTitle>상대방과 대화를 연장하시겠습니까?</ModalTitle>
       <ModalBtnContainer>
-        <ModalBtn onClick={onAgree}>연장하기</ModalBtn>
+        <ModalBtn onClick={onAgree}>
+          연장하기
+        </ModalBtn>
         <ModalBtn onClick={onRefuse}>거절하기</ModalBtn>
       </ModalBtnContainer>
+      <ModalInfo>상호 동의시 코인이 차감되고 대화가 연장됩니다.</ModalInfo>
     </ModalWrapper>
   );
 };
@@ -140,6 +143,7 @@ const ModalBtnContainer = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
+  margin: 10px;
 `;
 
 const ModalBtn = styled.button`
@@ -216,4 +220,9 @@ const ReportBtn = styled.button<ReportBtnProps>`
   font-weight: 800;
 
   color: ${(props) => (props.selected ? 'white' : 'black')};
+`;
+
+const ModalInfo = styled.p`
+  margin: 3px;
+  font-size: 11px;
 `;

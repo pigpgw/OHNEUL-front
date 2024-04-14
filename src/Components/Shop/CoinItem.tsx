@@ -2,9 +2,15 @@ import React from 'react';
 import styled from 'styled-components';
 import { BsCoin } from 'react-icons/bs';
 
-function CoinItem({ coin, price }: { coin: number; price: number }) {
+type CoinItemProps = {
+  coin: number;
+  price: number;
+  onClick: () => void;
+};
+
+function CoinItem({ coin, price, onClick }: CoinItemProps) {
   return (
-    <CoinItemCointainer>
+    <CoinItemCointainer onClick={onClick}>
       <Wrapper>
         <CashIcon />
         <CoinAmount>{coin}개</CoinAmount>
@@ -17,10 +23,11 @@ function CoinItem({ coin, price }: { coin: number; price: number }) {
 export default CoinItem;
 
 const CoinItemCointainer = styled.div`
-  width: 40%;
+  width: 39%;
   height: 60px;
   padding: 10px 0 10px 0;
   margin: 10px;
+  z-index: 12;
 
   border: 1px solid gray;
   border-radius: 10px;
