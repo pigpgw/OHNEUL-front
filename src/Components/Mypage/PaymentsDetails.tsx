@@ -3,7 +3,8 @@ import React, { useEffect, useState } from 'react';
 import meltedCookie from 'utils/meltedCookie';
 
 interface PaymentData {
-  message: string;
+  amount: number;
+  coin: number;
 }
 
 const PaymentsDetails = () => {
@@ -14,8 +15,10 @@ const PaymentsDetails = () => {
       const response: any = await axios.get(
         `${process.env.REACT_APP_BASE_URL}/payments/${userId}`,
       );
+
       return setData(response.data);
     };
+
     fetchPayments();
   }, []);
 
@@ -23,8 +26,14 @@ const PaymentsDetails = () => {
     <div>
       {datas.map((el, id) => (
         <div key={id}>
-          {el.message}
-          {'코인내역'}
+          <div>
+            <div>{`결제금액 : ${el.amount}원`}</div>
+            <div>{`충전내역 : ${el.coin}코인`}</div>
+          </div>
+          <div>
+            <div>{`결제금액 : ${el.amount}원`}</div>
+            <div>{`충전내역 : ${el.coin}코인`}</div>
+          </div>
         </div>
       ))}
     </div>

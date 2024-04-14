@@ -20,13 +20,14 @@ const CoinUsageDetails = () => {
         .catch((error) => {
           console.error(error);
         });
-      setData(response);
+      return setData(response);
     };
     fetchPayments();
+    console.log(data);
   }, []);
   return (
     <>
-      <div>{data}</div>
+      <div>{}</div>
     </>
   );
 };

@@ -53,6 +53,7 @@ const Logout: React.FC = () => {
           deleteCookie('user_id');
           deleteCookie('refreshToken');
           deleteCookie('provider');
+          deleteCookie('reward');
           navigate('/');
         } else {
           console.log('실패');

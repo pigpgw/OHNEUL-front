@@ -4,17 +4,22 @@ import meltedCookie from 'utils/meltedCookie';
 
 interface HobbyData {
   hobby_id: number;
+  hobby: string;
 }
 const Interest = () => {
   const [userId] = meltedCookie();
   const [datas, setData] = useState<HobbyData[]>([]);
+  const [allDatas, setAllData] = useState<HobbyData[]>([]);
   useEffect(() => {
     const fetchPayments = async () => {
-      const response: any = await axios.get(
+      const allHobbiesResponse: any = await axios.get(
+        `${process.env.REACT_APP_BASE_URL}/hobbies`,
+      );
+      const userHobbieseResponse: any = await axios.get(
         `${process.env.REACT_APP_BASE_URL}/user-hobby/${userId}`,
       );
 
-      return setData(response.data);
+      return setData(userHobbieseResponse.data);
 
       // .then((res) => {
       //   console.log(res, '취미확인');
