@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
 import CoinPriceData from 'assets/Data/CoinPriceData';
+import { BsCoin } from 'react-icons/bs';
 import { createPortal } from 'react-dom';
 import coin from '../../assets/images/coin.png';
-import CoinItem from './CoinItem';
 
 type ModalProps = {
   children: React.ReactNode;
@@ -18,6 +18,12 @@ type CoinProps = {
 type CoinModalProps = {
   onClose: () => void;
   selectedCoin: CoinProps | null;
+};
+
+type CoinItemProps = {
+  coins: number;
+  price: number;
+  onClick: () => void;
 };
 
 function ModalWrapper({ children }: ModalProps) {
@@ -50,7 +56,7 @@ function CoinShopModal() {
         {CoinPriceData.map((item) => {
           return (
             <CoinItem
-              coin={item.coins}
+              coins={item.coins}
               price={item.price}
               key={item.id}
               onClick={() => {
@@ -61,6 +67,18 @@ function CoinShopModal() {
         })}
       </CoinItemContainer>
     </CoinShopContainer>
+  );
+}
+
+function CoinItem({ coins, price, onClick }: CoinItemProps) {
+  return (
+    <CoinItemCointainer onClick={onClick}>
+      <Wrapper>
+        <CashIcon />
+        <CoinAmount>{coins}개</CoinAmount>
+      </Wrapper>
+      <CoinPrice>{price}원</CoinPrice>
+    </CoinItemCointainer>
   );
 }
 
@@ -83,6 +101,7 @@ function CoinItemModal({ onClose, selectedCoin }: CoinModalProps) {
 }
 
 export default CoinShopModal;
+
 
 const ItemCancelBtn = styled.button`
   margin: 0;
@@ -176,4 +195,48 @@ const ModalLayout = styled.div`
   top: 45%;
   left: 50%;
   transform: translate(-50%, -50%);
+`;
+
+
+const CoinItemCointainer = styled.div`
+  width: 39%;
+  height: 60px;
+  padding: 10px 0 10px 0;
+  margin: 10px;
+  z-index: 12;
+
+  border: 1px solid gray;
+  border-radius: 10px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+`;
+
+const CoinAmount = styled.div`
+  font-weight: 800;
+`;
+
+const Wrapper = styled.div`
+  display: flex;
+  margin: 5px 0 0 0;
+`;
+
+const CashIcon = styled(BsCoin)`
+  font-size: 16px;
+  margin-right: 3px;
+  margin: 2px 5px;
+`;
+
+const CoinPrice = styled.div`
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 700;
+  font-size: 17px;
+  line-height: 21px;
+
+  margin: 5px 0 0 0;
+
+  color: #b9b9b9;
 `;
