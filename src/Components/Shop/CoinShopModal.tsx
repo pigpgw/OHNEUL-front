@@ -117,7 +117,7 @@ const ItemCancelBtn = styled.button`
   border: 0;
   font-size: 25px;
   background-color: white;
-  margin-right: 250px;
+  margin-right: 280px;
 `;
 
 const ItemTitle = styled.p`
@@ -131,6 +131,7 @@ const FlexWrapper = styled.div`
   justify-content: space-evenly;
   width: 75%;
   margin: 10px 0 20px 0;
+  padding: 15px;
 `;
 
 const CoinShopContainer = styled.div`
@@ -187,7 +188,7 @@ const ModalLayout = styled.div`
   height: 30%;
   z-index: 12;
 
-  max-width: 400px;
+  max-width: 330px;
   max-height: 250px;
 
   background: #ffffff;
