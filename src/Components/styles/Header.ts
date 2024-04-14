@@ -42,12 +42,12 @@ export const CashContainer = styled.div`
   align-items: center;
 `;
 export const CashIcon = styled.img`
-  width: 20px;
+  width: 17px;
   margin-right: 3px;
   margin: 2px 5px;
 `;
 export const CashAmount = styled.p`
-  font-size: 14px;
+  font-size: 13px;
   font-weight: 600;
 `;
 export const IconPerson = styled(IoPersonOutline)`

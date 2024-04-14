@@ -14,7 +14,7 @@ function Home() {
     <>
       <Header onCashIconClick={handleCashIconClick} />
       <Outlet />
-      {showCoinSopModal && <CoinShopModal />}
+      {showCoinSopModal && <CoinShopModal onCashIconClick={handleCashIconClick}/>}
     </>
   );
 }

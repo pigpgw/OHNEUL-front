@@ -8,6 +8,10 @@ type ModalProps = {
   children: React.ReactNode;
 };
 
+type CoinShopModalProps = {
+  onCashIconClick: () => void;
+};
+
 type CoinProps = {
   id: number;
   coins: number;
@@ -31,7 +35,7 @@ function ModalWrapper({ children }: ModalProps) {
   );
 }
 
-function CoinShopModal() {
+function CoinShopModal({ onCashIconClick }: CoinShopModalProps) {
   const [itemModal, setItemModal] = useState<boolean>(false);
   const [selectedCoin, setSelectedCoin] = useState<CoinProps | null>(null);
 
@@ -47,6 +51,7 @@ function CoinShopModal() {
 
   return (
     <CoinShopContainer>
+      <ItemCancelBtn onClick={onCashIconClick}>X</ItemCancelBtn>
       <CoinShopTitle>코인샵</CoinShopTitle>
       <CoinItemContainer>
         {itemModal && (
@@ -104,7 +109,7 @@ export default CoinShopModal;
 const CoinIcon = styled.img`
   width: 55px;
   height: 55px;
-  margin-top: 4px;;
+  margin-top: 4px;
 `;
 
 const ItemCancelBtn = styled.button`
@@ -201,7 +206,7 @@ const ModalLayout = styled.div`
 `;
 
 const CoinItemCointainer = styled.div`
-  width: 39%;
+  width: 42%;
   height: 60px;
   padding: 10px 0 10px 0;
   margin: 10px;
@@ -217,14 +222,17 @@ const CoinItemCointainer = styled.div`
 `;
 
 const CoinAmount = styled.div`
-  font-size: 17px;
+  font-size: 16px;
   font-weight: 800;
-  margin-top: 4px;
+  margin-top: 2px;
 `;
 
 const Wrapper = styled.div`
   display: flex;
   margin: 5px 0 0 0;
+  width: 100px;
+  align-items: center;
+  justify-content: space-evenly;
 `;
 
 const CashIcon = styled.img`
