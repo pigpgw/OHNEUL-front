@@ -117,7 +117,7 @@ const ItemCancelBtn = styled.button`
   border: 0;
   font-size: 25px;
   background-color: white;
-  margin-right: 280px;
+  margin-left: 85%;
 `;
 
 const ItemTitle = styled.p`
@@ -130,7 +130,7 @@ const FlexWrapper = styled.div`
   flex-direction: row;
   justify-content: space-evenly;
   width: 75%;
-  margin: 10px 0 20px 0;
+  margin: 0 0 20px 0;
   padding: 15px;
 `;
 
@@ -153,13 +153,11 @@ const CoinShopContainer = styled.div`
 `;
 
 const CoinShopTitle = styled.div`
-  margin: 0 0 20px 0;
   font-family: 'Inter';
   font-style: normal;
   font-weight: 700;
   font-size: 27px;
   line-height: 33px;
-
   color: #000000;
 `;
 
@@ -207,8 +205,8 @@ const ModalLayout = styled.div`
 `;
 
 const CoinItemCointainer = styled.div`
-  width: 42%;
-  height: 60px;
+  width: 40%;
+  height: 90px;
   padding: 10px 0 10px 0;
   margin: 10px;
   z-index: 12;
