@@ -50,16 +50,10 @@ const MyPage: React.FC = () => {
 
   return (
     <>
-      <Header
-        onCashIconClick={(): void => {
-          throw new Error('Function not implemented.');
-        }}
-      ></Header>
       <ContentContainer>
         <Title>마이페이지</Title>
         <TabSection>
           <StarRating />
-
           <InterestSection>
             <Interest />
           </InterestSection>

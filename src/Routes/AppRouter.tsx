@@ -26,8 +26,8 @@ function AppRouter() {
           <Route path="favorite" element={<Favorite />} />
           <Route path="mood" element={<Mood />} />
           <Route path="theme" element={<Theme socket={socket} />} />
+          <Route path="/mypage" element={<MyPage />} />
         </Route>
-        <Route path="/mypage" element={<MyPage />} />
         <Route path="/chat" element={<Chat socket={socket} />} />
         <Route path="/*" element={<NotFound />} />
       </Routes>
