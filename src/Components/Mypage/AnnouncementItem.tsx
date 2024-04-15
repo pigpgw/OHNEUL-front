@@ -19,9 +19,8 @@ const AnnouncementItem: React.FC<AnnouncementItemProps> = ({
 
   return (
     <div>
-      <>{date}</>
+      <h6>{date}</h6>
       <h4>{title}</h4>
-
       <p>{content}</p>
     </div>
   );

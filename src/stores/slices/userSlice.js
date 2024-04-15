@@ -8,6 +8,7 @@ export const userSlice = createSlice({
       user_id: null,
       refreshToken: null,
       provider: null,
+      isAdmin: false,
     },
     isLogin: false,
   },
@@ -17,6 +18,7 @@ export const userSlice = createSlice({
       state.value.user_id = action.payload.user_id;
       state.value.refreshToken = action.payload.refreshToken;
       state.value.provider = action.payload.provider;
+      state.value.isAdmin = action.payload.isAdmin;
     },
     login: (state) => {
       state.isLogin = true;
@@ -27,6 +29,7 @@ export const userSlice = createSlice({
       state.value.user_id = null;
       state.value.refreshToken = null;
       state.value.provider = null;
+      state.value.isAdmin = false;
     },
     logout: (state) => {
       state.isLogin = false;

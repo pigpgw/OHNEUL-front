@@ -26,7 +26,12 @@ const PhraseContainer = styled.div``;
 
 interface User {
   user: {
-    value: { user_id: string; refreshToken: string; provider: string };
+    value: {
+      user_id: string;
+      refreshToken: string;
+      provider: string;
+      isAdmin: boolean;
+    };
     isLogin: boolean;
   };
 }
@@ -37,20 +42,41 @@ const Login: React.FC = () => {
   const navigate = useNavigate();
   const isLogin = useSelector((state: User) => state.user.isLogin);
   const [userId, token, flatform] = meltedCookie();
-
+  const Admin = ['3e6a23d5-85ff-4075-8b77-217017088772'];
   useEffect(() => {
-    dispatch(
-      setAuth({ user_id: userId, refreshToken: token, provider: flatform }),
-    );
-    const isCookie = (): boolean => {
-      return (
-        document.cookie.includes('user_id') &&
-        document.cookie.includes('refreshToken') &&
-        document.cookie.includes('provider')
+    if (!Admin.includes(userId)) {
+      dispatch(
+        setAuth({ user_id: userId, refreshToken: token, provider: flatform }),
       );
-    };
-    if (isCookie() && !isLogin) {
-      dispatch(login());
+      const isCookie = (): boolean => {
+        return (
+          document.cookie.includes('user_id') &&
+          document.cookie.includes('refreshToken') &&
+          document.cookie.includes('provider')
+        );
+      };
+      if (isCookie() && !isLogin) {
+        dispatch(login());
+      }
+    } else {
+      dispatch(
+        setAuth({
+          user_id: userId,
+          refreshToken: token,
+          provider: flatform,
+          isAdmin: true,
+        }),
+      );
+      const isCookie = (): boolean => {
+        return (
+          document.cookie.includes('user_id') &&
+          document.cookie.includes('refreshToken') &&
+          document.cookie.includes('provider')
+        );
+      };
+      if (isCookie() && !isLogin) {
+        dispatch(login());
+      }
     }
   }, [dispatch, isLogin]);
 

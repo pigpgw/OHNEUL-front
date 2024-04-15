@@ -1,8 +1,8 @@
 // src/Components/Mypage/Announcement.tsx
 import React, { useState } from 'react';
 import styled from 'styled-components';
+import Pagination from 'utils/Pagination';
 import AnnouncementItem from './AnnouncementItem';
-import Pagination from './Pagination';
 
 const AnnouncementContainer = styled.div`
   margin-top: 20px;
@@ -19,7 +19,12 @@ const Announcement: React.FC = () => {
       title: 'OHNEUL 오픈 기념 이벤트',
       content: '매일 접속시 코인 증정',
     },
-    { id: 2, date: '2', title: '공지 제목 2', content: '공지 내용 2' },
+    {
+      id: 2,
+      date: '2024-05-05',
+      title: 'OHNEUL 오픈 기념 이벤트',
+      content: '매일 접속시 코인 증정',
+    },
     { id: 3, date: '3', title: '공지 제목 3', content: '공지 내용 3' },
   ]);
 
