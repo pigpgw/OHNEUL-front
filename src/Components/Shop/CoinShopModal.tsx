@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import styled from 'styled-components';
 import CoinPriceData from 'assets/Data/CoinPriceData';
 import { createPortal } from 'react-dom';
+import { useNavigate } from 'react-router-dom';
 import coin from '../../assets/images/coin.png';
 
 type ModalProps = {
@@ -88,6 +89,8 @@ function CoinItem({ coins, price, onClick }: CoinItemProps) {
 
 function CoinItemModal({ onClose, selectedCoin }: CoinModalProps) {
   if (!selectedCoin) return null;
+  const navigator = useNavigate()
+  const startPayment = () => navigator('/payment')
   return (
     <ModalWrapper>
       <ItemCancelBtn onClick={onClose}>X</ItemCancelBtn>
@@ -97,7 +100,7 @@ function CoinItemModal({ onClose, selectedCoin }: CoinModalProps) {
             <CoinIcon src={coin} alt="" />
             <ItemTitle>코인 {selectedCoin.coins}개</ItemTitle>
           </FlexWrapper>
-          <SubmitBtn>{selectedCoin.price}원</SubmitBtn>
+          <SubmitBtn onClick={startPayment}>{selectedCoin.price}원</SubmitBtn>
         </>
       )}
     </ModalWrapper>

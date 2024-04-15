@@ -12,6 +12,7 @@ import Chat from 'pages/Chat';
 import NotFound from 'pages/NotFound';
 import Redirect from 'Components/Auth/Redirect';
 import MyPage from 'pages/MyPage';
+import Checkout from 'pages/Checkout'
 
 const socket = io('http://localhost:4000');
 
@@ -28,6 +29,7 @@ function AppRouter() {
           <Route path="theme" element={<Theme socket={socket} />} />
           <Route path="mypage" element={<MyPage />} />
         </Route>
+        <Route path='/payment' element={<Checkout />}/>
         <Route path="/chat" element={<Chat socket={socket} />} />
         <Route path="/*" element={<NotFound />} />
       </Routes>
