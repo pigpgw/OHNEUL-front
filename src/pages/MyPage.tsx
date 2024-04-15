@@ -12,34 +12,63 @@ import WithDrawal from 'Components/Auth/WithDrawal';
 
 const InterestSection = styled.div`
   border-bottom: 2px solid #dbdbdb;
+  margin-top: 10px;
+  margin-bottom: 20px;
+  text-align: left;
+  display: flex;
+`;
+const StarAndInterest = styled.div`
+  margin-top: 10px;
   margin-bottom: 10px;
 `;
-
+const StarRatingSection = styled.div`
+  margin-top: 20px;
+  margin-bottom: 10px;
+`;
 const Title = styled.div`
   padding-bottom: 10px;
   border-bottom: 2px solid #dbdbdb;
+  width: 50vw;
 `;
+
 const TabSection = styled.div`
   margin-top: 30px;
+
+  max-width: 800px;
+  margin: 0 auto;
 `;
 const Tab = styled.div`
   padding: 10px;
   cursor: pointer;
-  width: 23em;
+
+  margin: 0 auto;
+  margin-bottom: 10px;
 `;
 const TabTitle = styled.div`
   text-align: left;
-
   border-bottom: 2px solid #dbdbdb;
+  width: 50vw;
 `;
 const ContentContainer = styled.div`
   margin-top: 30px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
 `;
 
 const AuthContainer = styled.div`
   margin-top: 100px;
   display: flex;
   justify-content: space-between;
+  width: 50vw;
+`;
+const LogoutCont = styled.div`
+  margin-right: 30px;
+`;
+
+const WithDrawalCont = styled.div`
+  margin-left: 30px;
 `;
 
 const MyPage: React.FC = () => {
@@ -53,34 +82,39 @@ const MyPage: React.FC = () => {
       <ContentContainer>
         <Title>마이페이지</Title>
         <TabSection>
-          <StarRating />
-          <InterestSection>
-            <Interest />
-          </InterestSection>
+          <StarAndInterest>
+            <StarRatingSection>
+              <StarRating />
+            </StarRatingSection>
+            <InterestSection>
+              <Interest />
+            </InterestSection>
+          </StarAndInterest>
           <Tab onClick={() => handleModal('payments')}>
             <TabTitle>결제내역</TabTitle>
-            {open === 'payments' && <PaymentsDetails />}
           </Tab>
-
+          {open === 'payments' && <PaymentsDetails />}
           <Tab onClick={() => handleModal('coinusage')}>
             <TabTitle>코인내역</TabTitle>
-            {open === 'coinusage' && <CoinUsageDetails />}
           </Tab>
-
+          {open === 'coinusage' && <CoinUsageDetails />}
           <Tab onClick={() => handleModal('terms')}>
             <TabTitle>이용정책 </TabTitle>
-            {open === 'terms' && <Terms />}
           </Tab>
-
+          {open === 'terms' && <Terms />}
           <Tab onClick={() => handleModal('announcement')}>
             <TabTitle> 공지사항 </TabTitle>
-            {open === 'announcement' && <Announcement />}
           </Tab>
+          {open === 'announcement' && <Announcement />}
         </TabSection>
 
         <AuthContainer>
-          <Logout></Logout>
-          <WithDrawal></WithDrawal>
+          <LogoutCont>
+            <Logout></Logout>
+          </LogoutCont>
+          <WithDrawalCont>
+            <WithDrawal></WithDrawal>
+          </WithDrawalCont>
         </AuthContainer>
       </ContentContainer>
     </>
