@@ -1,13 +1,38 @@
 import axios from 'axios';
 import React, { useState, useEffect } from 'react';
 import meltedCookie from 'utils/meltedCookie';
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 
 interface HobbyData {
   hobby_id: number;
   hobby: string;
 }
-const Hobby = styled.div``;
+const HobbyBtn = styled.button`
+  height: 33px;
+  border-radius: 10px;
+  border: 0;
+  padding: 0 15px;
+  margin: 10px;
+  font-size: 10px;
+  background: white;
+  box-shadow: 1px 1px 1px rgba(41, 41, 41, 0.25);
+`;
+const HobbyEditBtn = styled.button`
+  height: 23px;
+  border-radius: 10px;
+  border: 0;
+  padding: 0 5px;
+  margin: 20px;
+  font-size: 10px;
+  background: white-gray;
+  box-shadow: 1px 1px 1px rgba(41, 41, 41, 0.25);
+`;
+const HobbyBtnContainer = styled.div`
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+  justify-content: center;
+`;
 const Interest = () => {
   const [userId] = meltedCookie();
   const [datas, setData] = useState<HobbyData[]>([]);
@@ -46,12 +71,25 @@ const Interest = () => {
     fetchPayments();
   }, []);
 
+  const HandleHobbyEdit = async () => {
+    const response = await axios.get(
+      `${process.env.REACT_APP_BASE_URL}/hobbies`,
+    );
+  };
+
   return (
-    <div>
+    <HobbyBtnContainer>
       {datas.map((el, id) => (
-        <Hobby key={id}>{el.hobby}</Hobby>
+        <HobbyBtn key={id}>{el.hobby}</HobbyBtn>
       ))}
-    </div>
+      <HobbyEditBtn
+        onClick={() => {
+          HandleHobbyEdit;
+        }}
+      >
+        수정
+      </HobbyEditBtn>
+    </HobbyBtnContainer>
   );
 };
 
