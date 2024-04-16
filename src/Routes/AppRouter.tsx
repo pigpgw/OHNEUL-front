@@ -30,6 +30,8 @@ function AppRouter() {
           <Route path="mypage" element={<MyPage />} />
         </Route>
         <Route path='/payment' element={<Checkout />}/>
+        <Route path='/success'  element={<div>성공</div>}/>
+        <Route path='/fail'  element={<div>실패</div>}/>
         <Route path="/chat" element={<Chat socket={socket} />} />
         <Route path="/*" element={<NotFound />} />
       </Routes>
