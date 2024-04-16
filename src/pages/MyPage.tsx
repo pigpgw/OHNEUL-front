@@ -36,20 +36,20 @@ const MyPage: React.FC = () => {
     <>
       <ContentContainer>
         <Title>마이페이지</Title>
+        <Container>
+          <SocialContainer>
+            <SocialImage></SocialImage>
+          </SocialContainer>
+          <StarAndInterest>
+            <StarRatingSection>
+              <StarRating />
+            </StarRatingSection>
+            <InterestSection>
+              <Interest />
+            </InterestSection>
+          </StarAndInterest>
+        </Container>
         <TabSection>
-          <Container>
-            <SocialContainer>
-              <SocialImage></SocialImage>
-            </SocialContainer>
-            <StarAndInterest>
-              <StarRatingSection>
-                <StarRating />
-              </StarRatingSection>
-              <InterestSection>
-                <Interest />
-              </InterestSection>
-            </StarAndInterest>
-          </Container>
           <Tab onClick={() => handleModal('payments')}>
             <TabTitle>결제내역</TabTitle>
           </Tab>

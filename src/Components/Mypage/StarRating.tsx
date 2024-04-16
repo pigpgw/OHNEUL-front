@@ -6,11 +6,13 @@ import minusHeart from 'assets/images/minusHeart.png';
 import styled from 'styled-components';
 
 const Heart = styled.img`
-  width: 20px;
+  width: 40px;
 `;
 const Desc = styled.div`
-  font-size: 13px;
-  color: #dbdbdb;
+  font-size: 20px;
+  font-weight: 600;
+  color: #000000;
+  margin: 10px;
 `;
 
 const StarRating = () => {
@@ -30,8 +32,21 @@ const StarRating = () => {
 
   const renderHerat = (score: number) => {
     const strToNumb = Number(score);
-    const plusCount = strToNumb;
-    const minusCount = 5 - strToNumb;
+    let plusCount;
+    let minusCount;
+    if (strToNumb >= 4.5) {
+      plusCount = 5;
+      minusCount = 0;
+    } else if (strToNumb >= 4) {
+      plusCount = 4;
+      minusCount = 1;
+    } else {
+      minusCount = Math.ceil(5 - strToNumb);
+      plusCount = Math.floor(strToNumb);
+    }
+
+    console.log('strtumd',strToNumb)
+
     const count = [];
     const desc = [];
     for (let i = 0; i < plusCount; i += 1) {
@@ -40,7 +55,7 @@ const StarRating = () => {
     for (let j = 0; j < minusCount; j += 1) {
       count.push(<Heart src={minusHeart} alt=""></Heart>);
     }
-    switch (strToNumb) {
+    switch (plusCount) {
       case 0.0:
         desc.push(<Desc>채팅을시작해주세요!!!!!!</Desc>);
         break;
@@ -54,7 +69,7 @@ const StarRating = () => {
         desc.push(<Desc>별이세개!!!!!!!!</Desc>);
         break;
       case 4:
-        desc.push(<Desc>별이두개!!!!!!!!</Desc>);
+        desc.push(<Desc>별이네개!!!!!!!!</Desc>);
         break;
       case 5:
         desc.push(<Desc>별이다섯개!!!!!!!!!</Desc>);
