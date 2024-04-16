@@ -82,13 +82,7 @@ const Interest = () => {
       {datas.map((el, id) => (
         <HobbyBtn key={id}>{el.hobby}</HobbyBtn>
       ))}
-      <HobbyEditBtn
-        onClick={() => {
-          HandleHobbyEdit;
-        }}
-      >
-        수정
-      </HobbyEditBtn>
+      <HobbyEditBtn onClick={() => HandleHobbyEdit}>수정</HobbyEditBtn>
     </HobbyBtnContainer>
   );
 };

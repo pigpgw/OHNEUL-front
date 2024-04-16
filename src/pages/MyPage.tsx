@@ -9,67 +9,22 @@ import CoinUsageDetails from 'Components/Mypage/CoinUsageDetails';
 import Terms from 'Components/Mypage/Terms';
 import Announcement from 'Components/Mypage/Announcement';
 import WithDrawal from 'Components/Auth/WithDrawal';
-
-const InterestSection = styled.div`
-  border-bottom: 2px solid #dbdbdb;
-  margin-top: 10px;
-  margin-bottom: 20px;
-  text-align: left;
-  display: flex;
-`;
-const StarAndInterest = styled.div`
-  margin-top: 10px;
-  margin-bottom: 10px;
-`;
-const StarRatingSection = styled.div`
-  margin-top: 20px;
-  margin-bottom: 10px;
-`;
-const Title = styled.div`
-  padding-bottom: 10px;
-  border-bottom: 2px solid #dbdbdb;
-  width: 50vw;
-`;
-
-const TabSection = styled.div`
-  margin-top: 30px;
-
-  max-width: 800px;
-  margin: 0 auto;
-`;
-const Tab = styled.div`
-  padding: 10px;
-  cursor: pointer;
-
-  margin: 0 auto;
-  margin-bottom: 10px;
-`;
-const TabTitle = styled.div`
-  text-align: left;
-  border-bottom: 2px solid #dbdbdb;
-  width: 50vw;
-`;
-const ContentContainer = styled.div`
-  margin-top: 30px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  text-align: center;
-`;
-
-const AuthContainer = styled.div`
-  margin-top: 100px;
-  display: flex;
-  justify-content: space-between;
-  width: 50vw;
-`;
-const LogoutCont = styled.div`
-  margin-right: 30px;
-`;
-
-const WithDrawalCont = styled.div`
-  margin-left: 30px;
-`;
+import SocialImage from 'Components/Mypage/SocialImage';
+import {
+  Container,
+  SocialContainer,
+  InterestSection,
+  StarAndInterest,
+  StarRatingSection,
+  Title,
+  TabSection,
+  Tab,
+  TabTitle,
+  ContentContainer,
+  AuthContainer,
+  LogoutCont,
+  WithDrawalCont,
+} from 'Components/styles/Mypage';
 
 const MyPage: React.FC = () => {
   const [open, setOpen] = useState<string | null>(null);
@@ -82,14 +37,19 @@ const MyPage: React.FC = () => {
       <ContentContainer>
         <Title>마이페이지</Title>
         <TabSection>
-          <StarAndInterest>
-            <StarRatingSection>
-              <StarRating />
-            </StarRatingSection>
-            <InterestSection>
-              <Interest />
-            </InterestSection>
-          </StarAndInterest>
+          <Container>
+            <SocialContainer>
+              <SocialImage></SocialImage>
+            </SocialContainer>
+            <StarAndInterest>
+              <StarRatingSection>
+                <StarRating />
+              </StarRatingSection>
+              <InterestSection>
+                <Interest />
+              </InterestSection>
+            </StarAndInterest>
+          </Container>
           <Tab onClick={() => handleModal('payments')}>
             <TabTitle>결제내역</TabTitle>
           </Tab>
