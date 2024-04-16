@@ -10,10 +10,13 @@ const meltedCookie = () => {
     },
     {},
   ) as { [key in string]: string };
-  const userId = userInfo.user_id;
-  const token = userInfo.refreshToken;
-  const flatform = userInfo.provider;
-  const cookie = [userId, token, flatform];
+  const {
+    user_id: userId,
+    refreshToken: token,
+    provider: flatform,
+    reward: rewardCoin,
+  } = userInfo;
+  const cookie = [userId, token, flatform, rewardCoin];
   return cookie;
 };
 

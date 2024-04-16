@@ -52,6 +52,7 @@ const WithDrawal: React.FC = () => {
           deleteCookie('user_id');
           deleteCookie('refreshToken');
           deleteCookie('provider');
+          deleteCookie('reward');
           navigate('/');
         } else {
           console.log('실패');
@@ -72,6 +73,7 @@ const WithDrawal: React.FC = () => {
           deleteCookie('user_id');
           deleteCookie('refreshToken');
           deleteCookie('provider');
+          deleteCookie('reward');
           navigate('/');
         } else {
           console.log('실패');

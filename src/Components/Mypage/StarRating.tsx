@@ -22,15 +22,8 @@ const StarRating = () => {
         `${process.env.REACT_APP_BASE_URL}/users/${userId}`,
       );
       console.log(response.data, 'asdas');
-      // return response;
+
       return setData(response.data.score);
-      // .then((res) => {
-      //   console.log(res);
-      //   setData(res.data);
-      // })
-      // .catch((error) => {
-      //   console.error(error);
-      // });
     };
     fetchPayments();
   }, []);
