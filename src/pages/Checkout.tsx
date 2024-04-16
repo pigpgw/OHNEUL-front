@@ -11,6 +11,7 @@ type PaymentWidget = {
 type PaymentInfo = {
   orderId: string;
   orderName: string;
+  coin:number,
   amount: number;
   successUrl: string;
   failUrl: string;
@@ -62,12 +63,12 @@ function Checkout() {
       <PaymentBtn
         onClick={async () => {
           const paymentWidget = paymentWidgetRef.current;
-
           try {
             await paymentWidget?.requestPayment({
               orderId: generateRandomString(),
               orderName: '토스 티셔츠 외 2건',
               amount: price,
+              coin:200,
               successUrl: `${window.location.origin}/success`,
               failUrl: `${window.location.origin}/fail`,
             });
