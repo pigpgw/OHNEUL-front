@@ -1,3 +1,54 @@
 .as {
   border-bottom: 10px solid #2412;
 }
+
+.outlet-container {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  /* iphone se */
+  @media screen and (width: 375px) and (height: 667px) {
+    margin-top: 20px;
+  }
+
+  /* galaxy s8  */
+  @media screen and (width: 360px) and (height: 740px) {
+    margin-top: 20%;
+  }
+
+  /* iphone 12por */
+  @media screen and (width: 390px) and (height: 844px) {
+    margin-top: 25%;
+  }
+
+  /* galaxy s20 ultra  */
+  @media screen and (width: 412px) and (height: 915px) {
+    margin-top: 30%;
+  }
+  /* iphone XR */
+  @media screen and (width: 414px) and (height: 896px) {
+    margin-top: 120px;
+  }
+
+  /* iphone 14pro */
+  @media screen and (width: 430px) and (height: 932px) {
+    margin-top: 30%;
+  }
+
+  /* ipad mini  */
+  @media screen and (width: 768px) and (height: 1024px) {
+    margin-top: 20%;
+  }
+
+  /* ipad air  */
+  @media screen and (width: 820px) and (height: 1180px) {
+    margin-top: 25%;
+  }
+
+  /* ipad air  */
+  @media screen and (width: 1024px) and (height: 1366px) {
+    margin-top: 25%;
+  }
+}

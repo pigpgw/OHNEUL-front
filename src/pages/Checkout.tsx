@@ -24,6 +24,7 @@ function Checkout() {
   const paymentMethodsWidgetRef = useRef<any>(null);
   const agreementWidgetRef = useRef<any>(null);
   const [price, setPrice] = useState<number>(500);
+  const [coin, setCoin] = useState<number>(500)
   //   const clientKey = 'test_ck_vZnjEJeQVxK4P0RDgevd3PmOoBN0';
   const customerKey = '4a394e47-64a1-44de-91c2-6bcd30d72c57'; // 내 상점에서 고객을 구분하기 위해 발급한 고객의 고유 ID
   const generateRandomString = (): string => {
@@ -66,9 +67,9 @@ function Checkout() {
           try {
             await paymentWidget?.requestPayment({
               orderId: generateRandomString(),
-              orderName: '토스 티셔츠 외 2건',
+              orderName: `코인 ${coin}개`,
               amount: price,
-              coin:200,
+              coin,
               successUrl: `${window.location.origin}/success`,
               failUrl: `${window.location.origin}/fail`,
             });
