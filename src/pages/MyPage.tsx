@@ -1,7 +1,5 @@
 import React, { useState } from 'react';
-import styled from 'styled-components';
 import Logout from 'Components/Auth/Logout';
-import Header from 'Components/Common/Header/Header';
 import StarRating from 'Components/Mypage/StarRating';
 import Interest from 'Components/Mypage/Interest';
 import PaymentsDetails from 'Components/Mypage/PaymentsDetails';
