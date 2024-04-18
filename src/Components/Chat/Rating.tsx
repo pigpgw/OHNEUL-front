@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { FaStar } from 'react-icons/fa';
+import { FaStar } from '@react-icons/all-files/fa/FaStar';
 import { useNavigate } from 'react-router-dom';
 import { extractOtherUserId } from 'utils/extractCookie';
 import styled from 'styled-components';

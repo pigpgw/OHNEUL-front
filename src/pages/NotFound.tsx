@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import { Container, Title } from 'Components/styles/Common';
-import { FaRegSurprise } from 'react-icons/fa';
+import { FaRegSurprise } from '@react-icons/all-files/fa/FaRegSurprise';
 
 function NotFound() {
   return (

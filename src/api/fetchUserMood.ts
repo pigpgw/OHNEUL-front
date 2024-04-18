@@ -9,5 +9,4 @@ interface Mood {
 export const fetchAddUserMood = async (userMood: Mood): Promise<Mood> => {
   const userId = extractUserId()
   return axios.patch(`${process.env.REACT_APP_BASE_URL}/users/${userId}`, userMood);
-  // http://localhost:3000/moods/join
 };

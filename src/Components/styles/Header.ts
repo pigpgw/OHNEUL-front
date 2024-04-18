@@ -1,7 +1,7 @@
 import styled from 'styled-components';
-import { IoPersonOutline } from 'react-icons/io5';
-import { GiExitDoor } from 'react-icons/gi';
-import { RiAlarmWarningFill } from "react-icons/ri";
+import { IoPersonOutline } from '@react-icons/all-files/io5/IoPersonOutline';
+import { GiExitDoor } from '@react-icons/all-files/gi/GiExitDoor';
+import { RiAlarmWarningFill } from "@react-icons/all-files/ri/RiAlarmWarningFill";
 
 export const HeaderContainer = styled.div`
   display: flex;
