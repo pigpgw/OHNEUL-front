@@ -1,4 +1,3 @@
-import React from 'react';
 import styled from 'styled-components';
 import NaverImg from '../../assets/images/naverLoginButton.png';
 

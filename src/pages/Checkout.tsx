@@ -1,5 +1,5 @@
-import React, { useEffect, useRef, useState } from 'react';
-import { loadPaymentWidget, ANONYMOUS } from '@tosspayments/payment-widget-sdk';
+import { useEffect, useRef, useState } from 'react';
+import { loadPaymentWidget} from '@tosspayments/payment-widget-sdk';
 import styled from 'styled-components';
 
 type PaymentWidget = {

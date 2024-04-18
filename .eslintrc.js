@@ -11,6 +11,8 @@ module.exports = {
     'plugin:prettier/recommended',
   ],
   rules: {
+    'react/react-in-jsx-scope' : 'off',
+    'react/jsx-uses-react': 'off',
     'prettier/prettier': 0,
     'no-underscore-dangle': 'off',
     'prefer-regex-literals': 'off',

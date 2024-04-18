@@ -1,5 +1,5 @@
 /* eslint-disable no-useless-return */
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import ChatHeader from 'Components/Chat/ChatHeader';
 import ChatInfo from 'Components/Chat/ChatInfo';
 import ChatMessages from 'Components/Chat/ChatMessages';

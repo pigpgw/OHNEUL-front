@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { extractUserId } from 'utils/extractCookie';
 import { useNavigate } from 'react-router-dom';
 import { useQuery } from 'react-query';

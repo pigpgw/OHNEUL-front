@@ -1,4 +1,3 @@
-import React from 'react';
 import NaverBogo from 'assets/images/naverBogo.jpeg';
 import KakaoBogo from 'assets/images/kakaoBogo.png';
 import meltedCookie from 'utils/meltedCookie';

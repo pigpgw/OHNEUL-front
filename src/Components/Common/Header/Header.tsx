@@ -1,4 +1,3 @@
-import React, { useEffect } from 'react';
 import '../../../fonts/font.css';
 import { useNavigate } from 'react-router-dom';
 import PropTypes from 'prop-types';

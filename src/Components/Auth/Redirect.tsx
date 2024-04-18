@@ -1,10 +1,7 @@
 import React, { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
-import axios from 'axios';
-import { useQuery, QueryClient, QueryClientProvider } from 'react-query';
 import { useDispatch } from 'react-redux';
-import { setAuth } from 'stores/slices/userSlice';
 
 const Wrap = styled.div`
   margin-top: 200px;

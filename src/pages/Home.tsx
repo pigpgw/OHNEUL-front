@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { Outlet } from 'react-router-dom';
 import CoinShopModal from 'Components/Shop/CoinShopModal';
 import Header from 'Components/Common/Header/Header';

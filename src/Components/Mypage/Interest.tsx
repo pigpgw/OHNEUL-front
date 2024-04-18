@@ -1,7 +1,7 @@
 import axios from 'axios';
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import meltedCookie from 'utils/meltedCookie';
-import styled, { css } from 'styled-components';
+import styled from 'styled-components';
 
 interface HobbyData {
   hobby_id: number;
