@@ -79,15 +79,19 @@ function Mood() {
       <Container>
         <Title>오늘 당신은?</Title>
         <ItemContainer>
-          {mood?.map((item) => (
-            <ItemBtn
-              key={item.mood_id}
-              onClick={() => clickBtn(item.mood_id)}
-              clicked={item.clicked}
-            >
-              {item.mood}
-            </ItemBtn>
-          ))}
+        {isLoading ? (
+            <div>mood data 가져오는중</div>
+          ) : (
+            mood?.map((item) => (
+              <ItemBtn
+                key={item.mood_id}
+                onClick={() => clickBtn(item.mood_id)}
+                clicked={item.clicked}
+              >
+                {item.mood}
+              </ItemBtn>
+            ))
+          )}
         </ItemContainer>
         <InfoText>최대 1개만 선택 가능합니다.</InfoText>
         <MarginTag margin={50}></MarginTag>

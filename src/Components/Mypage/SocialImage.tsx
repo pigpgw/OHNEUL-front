@@ -8,7 +8,7 @@ const Kakao = styled.img`
   width: 20px;
 `;
 const Naver = styled.img`
-  width: 20px;ㅈ
+  width: 20px;
 `;
 
 function SocialImage() {

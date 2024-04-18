@@ -79,7 +79,7 @@ function CoinItem({ coins, price, onClick }: CoinItemProps) {
   return (
     <CoinItemCointainer onClick={onClick}>
       <Wrapper>
-        <CashIcon src={coin} alt="코인 이미지" />
+        <CashIcon src={coin} alt="코인 이미지" loading='lazy'/>
         <CoinAmount>{coins}개</CoinAmount>
       </Wrapper>
       <CoinPrice>{price}원</CoinPrice>
@@ -97,7 +97,7 @@ function CoinItemModal({ onClose, selectedCoin }: CoinModalProps) {
       {selectedCoin && (
         <>
           <FlexWrapper>
-            <CoinIcon src={coin} alt="" />
+            <CoinIcon src={coin} alt="" loading='lazy'/>
             <ItemTitle>코인 {selectedCoin.coins}개</ItemTitle>
           </FlexWrapper>
           <SubmitBtn onClick={startPayment}>{selectedCoin.price}원</SubmitBtn>

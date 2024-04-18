@@ -50,10 +50,10 @@ const StarRating = () => {
     const count = [];
     const desc = [];
     for (let i = 0; i < plusCount; i += 1) {
-      count.push(<Heart src={plusHeart} alt="ph"></Heart>);
+      count.push(<Heart src={plusHeart} alt="ph" loading='lazy'></Heart>);
     }
     for (let j = 0; j < minusCount; j += 1) {
-      count.push(<Heart src={minusHeart} alt=""></Heart>);
+      count.push(<Heart src={minusHeart} alt="" loading='lazy'></Heart>);
     }
     switch (plusCount) {
       case 0.0:
