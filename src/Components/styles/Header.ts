@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 import { IoPersonOutline } from '@react-icons/all-files/io5/IoPersonOutline';
 import { GiExitDoor } from '@react-icons/all-files/gi/GiExitDoor';
-import { RiAlarmWarningFill } from "@react-icons/all-files/ri/RiAlarmWarningFill";
+import { RiAlarmWarningFill } from '@react-icons/all-files/ri/RiAlarmWarningFill';
 
 export const HeaderContainer = styled.div`
   display: flex;
@@ -11,7 +11,9 @@ export const HeaderContainer = styled.div`
   width: 100%;
 `;
 export const LogoContainer = styled.div`
+  width: 33%;
   display: flex;
+  align-items: center;
 `;
 export const LogoImage = styled.img`
   width: 40px;
@@ -29,10 +31,15 @@ export const LogoTitle = styled.p`
   color: black;
   text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
 `;
+
+export const TimerContainer = styled.div`
+  width: 33%;
+  margin-top: 7px;
+`;
+
 export const InfoContainer = styled.div`
+  width: 33%;
   display: flex;
-  justify-content: center;
-  align-items: center;
   font-weight: 500;
 `;
 export const CashContainer = styled.div`
@@ -40,11 +47,12 @@ export const CashContainer = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
+  margin-left: auto;
 `;
 export const CashIcon = styled.img`
   width: 17px;
   margin-right: 3px;
-  margin: 2px 5px;
+  margin: 5px 5px;
 `;
 export const CashAmount = styled.p`
   font-size: 13px;
@@ -62,7 +70,7 @@ export const IconExit = styled(GiExitDoor)`
   color: gray;
 `;
 export const IconReport = styled(RiAlarmWarningFill)`
-  margin: 4px 7px 2px 10px;
+  margin: 8px 7px 2px 10px;
   font-size: 28px;
   color: gray;
 `;

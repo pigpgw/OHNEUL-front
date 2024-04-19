@@ -5,14 +5,18 @@ import {
   LogoContainer,
   IconExit,
   InfoContainer,
+  TimerContainer,
   CashAmount,
   CashIcon,
   CashContainer,
   IconReport,
 } from '../styles/Header';
+import Timer from './Timer';
 
 interface ChatHeaderProps {
   socket?: void;
+  minutes: number;
+  seconds: number;
   onCashIconClick?: () => void;
   reportIconClick: () => void;
   onRefuse?: () => void;
@@ -22,6 +26,8 @@ interface ChatHeaderProps {
 function ChatHeader({
   reportIconClick,
   onForExitModal,
+  minutes,
+  seconds,
 }: ChatHeaderProps) {
   const userId = extractUserId();
   const { isCoinLoading, isCoinError, userCoinState } = useCoinQuery(userId);
@@ -33,6 +39,9 @@ function ChatHeader({
       <LogoContainer>
         <IconExit onClick={onForExitModal} />
       </LogoContainer>
+      <TimerContainer>
+        <Timer minutes={minutes} seconds={seconds} />
+      </TimerContainer>
       <InfoContainer>
         <CashContainer>
           <CashIcon />
