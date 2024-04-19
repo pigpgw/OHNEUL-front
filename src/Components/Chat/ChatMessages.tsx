@@ -44,9 +44,9 @@ export default ChatMessages;
 
 const ChatMessagesContainer = styled.div`
   width: 100%;
-  height: calc(100vh - 220px);
+  height: calc(100vh - 150px);
   flex-direction: column;
-  overflow: hidden;
+  overflow: auto;
 `;
 
 const ChatMessagesWrapper = styled.div`
@@ -71,6 +71,9 @@ const ChatMessageItemBox = styled.li`
   &.other {
     text-align: left;
     margin-left: 2px;
+  }
+  &.startChat {
+
   }
 `;
 

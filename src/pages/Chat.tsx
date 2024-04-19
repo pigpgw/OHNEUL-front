@@ -25,7 +25,13 @@ function Chat({ socket }: any): JSX.Element {
   const [intervalId, setIntervalId] = useState<NodeJS.Timeout | undefined>(
     undefined,
   );
-  const [messageList, setMessageList] = useState<Message[]>([]);
+  const [messageList, setMessageList] = useState<Message[]>([
+    {
+      type: 'startChat',
+      msg: '상대방과 연결되었습니다.',
+      id: '',
+    },
+  ]);
   const [msg, setMsg] = useState<string>('');
   const [consentModal, setConsentModal] = useState<boolean>(false);
   const [remainingTime, setRemainingTime] = useState<number>(6);
@@ -72,7 +78,7 @@ function Chat({ socket }: any): JSX.Element {
     }, 1000);
     setIntervalId(newIntervalId);
   }
-  
+
   useEffect(() => {
     return () => {
       if (intervalId) clearInterval(intervalId);
@@ -250,7 +256,7 @@ function Chat({ socket }: any): JSX.Element {
         onForExitModal={onForExitModal}
       ></ChatHeader>
       <div>{`${minutes}:${seconds}`}</div>
-      <ChatInfo />
+      {/* <ChatInfo /> */}
       {consentModal && !exitModal && (
         <ConsentModal onAgree={onAgree} onRefuse={onRefuse}></ConsentModal>
       )}
