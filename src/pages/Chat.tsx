@@ -1,7 +1,7 @@
 /* eslint-disable no-useless-return */
 import { useEffect, useState } from 'react';
-import ChatHeader from 'Components/Chat/ChatHeader';
 import ChatInfo from 'Components/Chat/ChatInfo';
+import ChatHeader from 'Components/Chat/ChatHeader';
 import ChatMessages from 'Components/Chat/ChatMessages';
 import ChatInputForm from 'Components/Chat/ChatInputForm';
 import { extractUserId, extractOtherUserId } from 'utils/extractCookie';
@@ -249,8 +249,8 @@ function Chat({ socket }: any): JSX.Element {
         onRefuse={onRefuse}
         onForExitModal={onForExitModal}
       ></ChatHeader>
-      <ChatInfo />
       <div>{`${minutes}:${seconds}`}</div>
+      <ChatInfo />
       {consentModal && !exitModal && (
         <ConsentModal onAgree={onAgree} onRefuse={onRefuse}></ConsentModal>
       )}

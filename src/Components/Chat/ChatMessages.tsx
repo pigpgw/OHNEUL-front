@@ -19,7 +19,10 @@ function ChatMessages({ messageList }: MessageListProps): JSX.Element {
   }, [messageList]);
 
   const scrollToBottom = () => {
-    messagesEndRef.current?.scrollIntoView({ behavior: 'smooth', block: 'end'});
+    messagesEndRef.current?.scrollIntoView({
+      behavior: 'smooth',
+      block: 'end',
+    });
   };
 
   return (
@@ -41,11 +44,9 @@ export default ChatMessages;
 
 const ChatMessagesContainer = styled.div`
   width: 100%;
-  height: calc(
-    100vh - 200px
-  ); 
+  height: calc(100vh - 220px);
   flex-direction: column;
-  overflow: hidden; 
+  overflow: hidden;
 `;
 
 const ChatMessagesWrapper = styled.div`
@@ -53,10 +54,11 @@ const ChatMessagesWrapper = styled.div`
   padding: 10px;
   margin: 0;
   border-radius: 10px;
-  overflow: scroll;
+  overflow-y: scroll;
 
   display: flex;
   flex-direction: column;
+  height: calc(100vh - 100px);
 `;
 
 const ChatMessageItemBox = styled.li`
