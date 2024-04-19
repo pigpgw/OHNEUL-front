@@ -65,6 +65,7 @@ const ChatMessageItemBox = styled.li`
   border-radius: 10px;
   display: inline-block;
   padding: 2px;
+  margin: 5px 1px;;
   &.me {
     text-align: right;
   }
