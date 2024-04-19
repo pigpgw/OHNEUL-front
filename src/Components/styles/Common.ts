@@ -31,7 +31,7 @@ export const Container = styled.div`
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  height: 570px;
+  /* height: 570px; */
   max-width: 500px;
 `;
 
@@ -42,7 +42,6 @@ export const ThemeItemContainer = styled.div`
   align-items: center;
   flex-wrap: wrap;
   flex-direction: row;
-  height: 180px;
   max-width: 500px;
   margin: 40px 0 40px 0;
 `;
