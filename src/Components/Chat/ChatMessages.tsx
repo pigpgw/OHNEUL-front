@@ -19,7 +19,7 @@ function ChatMessages({ messageList }: MessageListProps): JSX.Element {
   }, [messageList]);
 
   const scrollToBottom = () => {
-    messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
+    messagesEndRef.current?.scrollIntoView({ behavior: 'smooth', block: 'end'});
   };
 
   return (
@@ -41,63 +41,22 @@ export default ChatMessages;
 
 const ChatMessagesContainer = styled.div`
   width: 100%;
-  height: 80%;
+  height: calc(
+    100vh - 200px
+  ); 
+  flex-direction: column;
+  overflow: hidden; 
 `;
 
-const ChatMessagesWrapper = styled.ul`
+const ChatMessagesWrapper = styled.div`
   list-style: none;
-  height: 450px;
   padding: 10px;
   margin: 0;
   border-radius: 10px;
-  overflow: hidden;
+  overflow: scroll;
 
   display: flex;
   flex-direction: column;
-
-  /* iphone se */
-  @media screen and (width: 375px) and (height: 667px) {
-    height: 450px;
-  }
-
-  /* galaxy s8  */
-  @media screen and (width: 360px) and (height: 740px) {
-    height: 500px;
-  }
-
-  /* iphone 12por */
-  @media screen and (width: 390px) and (height: 844px) {
-    height: 620px;
-  }
-
-  /* galaxy s20 ultra  */
-  @media screen and (width: 412px) and (height: 915px) {
-    height: 700px;
-  }
-  /* iphone XR */
-  @media screen and (width: 414px) and (height: 896px) {
-    height: 660px;
-  }
-
-  /* iphone 14pro */
-  @media screen and (width: 430px) and (height: 932px) {
-    height: 720px;
-  }
-
-  /* ipad mini  */
-  @media screen and (width: 768px) and (height: 1024px) {
-    height: 800px;
-  }
-
-  /* ipad air  */
-  @media screen and (width: 820px) and (height: 1180px) {
-    height: 950px;
-  }
-
-  /* ipad air  */
-  @media screen and (width: 1024px) and (height: 1366px) {
-    height: 1120px;
-  }
 `;
 
 const ChatMessageItemBox = styled.li`

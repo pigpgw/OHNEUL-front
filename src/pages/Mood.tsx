@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import  { useEffect, useState } from 'react';
 import {
   ItemBtn,
   InfoText,
@@ -39,6 +39,7 @@ function Mood() {
       }, 1000);
     }
   }, []);
+  
   const userSelectMood = mood
     .filter((item) => item.clicked === true)
     .map((item) => item.mood_id)[0];
@@ -61,7 +62,7 @@ function Mood() {
   const navigate = useNavigate();
 
   const handleSubmit = () => {
-    if (userSelectMood) {
+    if (userSelectMood !== null) {
       addUserMood({
         mood_id: userSelectMood,
       });

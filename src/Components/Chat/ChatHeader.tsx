@@ -13,17 +13,14 @@ import {
 
 interface ChatHeaderProps {
   socket?: void;
-  onCashIconClick: () => void;
+  onCashIconClick?: () => void;
   reportIconClick: () => void;
-  onRefuse: () => void;
+  onRefuse?: () => void;
   onForExitModal: () => void;
 }
 
 function ChatHeader({
-  socket,
-  onCashIconClick,
   reportIconClick,
-  onRefuse,
   onForExitModal,
 }: ChatHeaderProps) {
   const userId = extractUserId();
@@ -37,7 +34,7 @@ function ChatHeader({
         <IconExit onClick={onForExitModal} />
       </LogoContainer>
       <InfoContainer>
-        <CashContainer onClick={onCashIconClick}>
+        <CashContainer>
           <CashIcon />
           <CashAmount>{userCoinState}</CashAmount>
         </CashContainer>

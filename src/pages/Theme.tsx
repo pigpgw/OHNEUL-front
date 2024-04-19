@@ -38,8 +38,6 @@ function Theme({ socket }: any) {
 
   useEffect(() => {
     if (availableThemes) setTheme(availableThemes);
-    // document.cookie = `other=`;
-    console.log('check clicked button', userSelectTheme);
   }, [availableThemes]);
 
   const clickBtn = (id: number) => {

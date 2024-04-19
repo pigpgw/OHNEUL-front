@@ -45,8 +45,6 @@ function Chat({ socket }: any): JSX.Element {
     if (!socket) return;
   }, [socket]);
 
-  const clickCashIcon = () => console.log('캐쉬 아이콘을 클릭하였습니다');
-
   function onForExitModal() {
     setForExitModal(true);
   }
@@ -247,7 +245,6 @@ function Chat({ socket }: any): JSX.Element {
   return (
     <>
       <ChatHeader
-        onCashIconClick={clickCashIcon}
         reportIconClick={onReportModal}
         onRefuse={onRefuse}
         onForExitModal={onForExitModal}

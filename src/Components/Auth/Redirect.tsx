@@ -20,7 +20,6 @@ const Redirect: React.FC = () => {
         }
       } catch (error) {
         alert('로그인에 실패했습니다.');
-        console.error('로그인 요청 중 오류 발생:', error);
       }
     };
     fetchToken();

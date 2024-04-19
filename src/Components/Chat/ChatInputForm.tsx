@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import styled from 'styled-components';
 
 interface ChatInputProps {
@@ -12,10 +12,31 @@ function ChatInputForm({
   msg,
   msgChangeHandler,
 }: ChatInputProps): JSX.Element {
+  const inputRef = useRef<HTMLInputElement>(null);
+  const [keyboardHeight, setKeyboardHeight] = useState<number>(0);
+
+  useEffect(() => {
+    const handleResize = () => {
+      setKeyboardHeight(window.innerHeight);
+    };
+
+    window.addEventListener('resize', handleResize);
+
+    return () => {
+      window.removeEventListener('resize', handleResize);
+    };
+  }, []);
+
+  useEffect(() => {
+    if (inputRef.current) {
+      inputRef.current.scrollIntoView({ behavior: 'smooth', block: 'end', inline: 'nearest' });
+    }
+  }, [keyboardHeight]);
+
   return (
-    <ChatInputContainer>
+    <ChatInputContainer style={{ marginBottom: keyboardHeight }}>
       <form onSubmit={msgSubmitHandler}>
-        <ChatInput value={msg} onChange={msgChangeHandler} />
+        <ChatInput ref={inputRef} value={msg} onChange={msgChangeHandler} />
         {msg && <ChatSubmitBtn>전송</ChatSubmitBtn>}
       </form>
     </ChatInputContainer>
@@ -24,7 +45,6 @@ function ChatInputForm({
 
 const ChatInputContainer = styled.div`
   width: 100%;
-  height: 50px;
 `;
 
 const ChatInput = styled.input`

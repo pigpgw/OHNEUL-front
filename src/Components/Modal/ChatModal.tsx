@@ -1,6 +1,5 @@
 /* eslint-disable import/prefer-default-export */
-import React, { ReactNode } from 'react';
-import { MouseEvent } from 'react';
+import React, { ReactNode, MouseEvent } from 'react';
 import { createPortal } from 'react-dom';
 import styled from 'styled-components';
 
