@@ -1,22 +1,7 @@
 import axios from 'axios';
 import React, { useState, useEffect } from 'react';
 import meltedCookie from 'utils/meltedCookie';
-import styled, { css } from 'styled-components';
-import {
-  Container,
-  SocialContainer,
-  InterestSection,
-  StarAndInterest,
-  StarRatingSection,
-  Title,
-  TabSection,
-  Tab,
-  TabTitle,
-  ContentContainer,
-  AuthContainer,
-  LogoutCont,
-  WithDrawalCont,
-} from 'Components/styles/Mypage';
+import styled from 'styled-components';
 import InterestModal from 'Components/Mypage/InterestModal';
 
 interface HobbyData {

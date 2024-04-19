@@ -10,10 +10,12 @@ import {
 } from 'Components/styles/Common';
 import { useNavigate } from 'react-router-dom';
 import { useQuery } from 'react-query';
-import useCheckHobbiesAndNavigate from 'hooks/useCheckHobbiesAndNavigateHook';
 import { extractUserId } from 'utils/extractCookie';
 import { useAddUserHobbyMutation } from 'hooks/useUserHobbyMutation';
 import { fetchGetHobbys } from 'api/fetchHobby';
+import { fetchGetOneUserHobby } from 'api/fetchGetOneUser';
+import { useDispatch } from 'react-redux';
+import { setHobby } from 'stores/slices/hobbySlice';
 
 interface Hobby {
   hobby_id: number;
@@ -22,7 +24,28 @@ interface Hobby {
 }
 
 function InterestModal() {
+  const dispatch = useDispatch();
+  const useCheckHobbiesAndNavigate = () => {
+    const navigate = useNavigate();
+
+    useEffect(() => {
+      const fetchDataAndNavigate = async () => {
+        try {
+          const user = await fetchGetOneUserHobby();
+          if (Object.keys(user).length > 0) {
+            navigate('/mypage');
+          }
+        } catch (error) {
+          console.error('Error fetching user data:', error);
+        }
+      };
+
+      fetchDataAndNavigate();
+    }, [navigate]);
+  };
+
   useCheckHobbiesAndNavigate();
+
   const [hobby, setHobby] = useState<Hobby[]>([]);
   const userSelectHobby = hobby
     .filter((item) => item.clicked === true)
@@ -69,7 +92,6 @@ function InterestModal() {
 
   if (isLoading) return <div>Loading...</div>;
   if (error) return <div>Error: error</div>;
-
   return (
     <Container>
       <Title>평소 당신은?</Title>
