@@ -14,8 +14,6 @@ import { extractUserId } from 'utils/extractCookie';
 import { useAddUserHobbyMutation } from 'hooks/useUserHobbyMutation';
 import { fetchGetHobbys } from 'api/fetchHobby';
 import { fetchGetOneUserHobby } from 'api/fetchGetOneUser';
-import { useDispatch } from 'react-redux';
-import { setHobby } from 'stores/slices/hobbySlice';
 
 interface Hobby {
   hobby_id: number;
@@ -24,7 +22,6 @@ interface Hobby {
 }
 
 function InterestModal() {
-  const dispatch = useDispatch();
   const useCheckHobbiesAndNavigate = () => {
     const navigate = useNavigate();
 

@@ -15,6 +15,7 @@ import MyPage from 'pages/MyPage';
 import Checkout from 'pages/Checkout';
 import Success from 'pages/Success';
 import Fail from 'pages/Fail';
+import Admin from 'pages/Admin';
 
 const socket = io('http://localhost:4000');
 
@@ -36,6 +37,7 @@ function AppRouter() {
         <Route path="/fail" element={<Fail />} />
         <Route path="/chat" element={<Chat socket={socket} />} />
         <Route path="/*" element={<NotFound />} />
+        <Route path="/admin" element={<Admin />} />
       </Routes>
     </BrowserRouter>
   );

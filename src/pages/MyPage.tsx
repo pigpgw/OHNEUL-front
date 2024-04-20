@@ -8,6 +8,8 @@ import Terms from 'Components/Mypage/Terms';
 import Announcement from 'Components/Mypage/Announcement';
 import WithDrawal from 'Components/Auth/WithDrawal';
 import SocialImage from 'Components/Mypage/SocialImage';
+import MyMood from 'Components/Mypage/MyMood';
+import AdminButton from 'Components/Admin/AdminButton';
 import {
   Container,
   SocialContainer,
@@ -21,7 +23,9 @@ import {
   ContentContainer,
   AuthContainer,
   LogoutCont,
+  AdminCont,
   WithDrawalCont,
+  MyMoodSection,
 } from 'Components/styles/Mypage';
 
 const MyPage: React.FC = () => {
@@ -29,7 +33,6 @@ const MyPage: React.FC = () => {
   const handleModal = (itemName: any) => {
     setOpen(open === itemName ? null : itemName);
   };
-
   return (
     <>
       <ContentContainer>
@@ -38,6 +41,9 @@ const MyPage: React.FC = () => {
           <SocialContainer>
             <SocialImage></SocialImage>
           </SocialContainer>
+          <MyMoodSection>
+            <MyMood />
+          </MyMoodSection>
           <StarAndInterest>
             <StarRatingSection>
               <StarRating />
@@ -70,6 +76,11 @@ const MyPage: React.FC = () => {
           <LogoutCont>
             <Logout></Logout>
           </LogoutCont>
+
+          <AdminCont>
+            <AdminButton></AdminButton>
+          </AdminCont>
+
           <WithDrawalCont>
             <WithDrawal></WithDrawal>
           </WithDrawalCont>

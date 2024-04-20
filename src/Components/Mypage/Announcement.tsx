@@ -2,6 +2,7 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
 import Pagination from 'utils/Pagination';
+import axios from 'axios';
 import AnnouncementItem from './AnnouncementItem';
 
 const AnnouncementContainer = styled.div`
@@ -12,6 +13,8 @@ const AnnouncementContainer = styled.div`
 `;
 
 const Announcement: React.FC = () => {
+  const data = axios.get(`${process.env.REACT_APP_BASE_URL}/notices`);
+  console.log(data);
   const [announcements] = useState([
     {
       id: 1,

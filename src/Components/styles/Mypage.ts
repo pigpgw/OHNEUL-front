@@ -13,6 +13,13 @@ export const InterestSection = styled.div`
   text-align: left;
   display: flex;
 `;
+
+export const MyMoodSection = styled.div`
+  margin-top: 10px;
+  margin-bottom: 20px;
+  text-align: left;
+  display: flex;
+`;
 export const StarAndInterest = styled.div`
   margin-top: 10px;
   margin-bottom: 10px;
@@ -60,6 +67,9 @@ export const AuthContainer = styled.div`
 `;
 export const LogoutCont = styled.div`
   margin-right: 30px;
+`;
+export const AdminCont = styled.div`
+  margin-right: 10px;
 `;
 
 export const WithDrawalCont = styled.div`
