@@ -44,7 +44,7 @@ export default ChatMessages;
 
 const ChatMessagesContainer = styled.div`
   width: 100%;
-  height: calc(100vh - 150px);
+  height: calc(100vh - 120px);
   flex-direction: column;
   overflow: auto;
 `;
