@@ -5,6 +5,7 @@ import ChatHeader from 'Components/Chat/ChatHeader';
 import ChatMessages from 'Components/Chat/ChatMessages';
 import ChatInputForm from 'Components/Chat/ChatInputForm';
 import { extractUserId, extractOtherUserId } from 'utils/extractCookie';
+import { fetchGetOtherMood } from 'api/fetchMood';
 import {
   ConsentModal,
   InfoModal,
@@ -25,16 +26,10 @@ function Chat({ socket }: any): JSX.Element {
   const [intervalId, setIntervalId] = useState<NodeJS.Timeout | undefined>(
     undefined,
   );
-  const [messageList, setMessageList] = useState<Message[]>([
-    {
-      type: 'startChat',
-      msg: '상대방과 연결되었습니다.',
-      id: '',
-    },
-  ]);
+  const [messageList, setMessageList] = useState<Message[]>([]);
   const [msg, setMsg] = useState<string>('');
   const [consentModal, setConsentModal] = useState<boolean>(false);
-  const [remainingTime, setRemainingTime] = useState<number>(6);
+  const [remainingTime, setRemainingTime] = useState<number>(600);
   const [consent, setConsent] = useState<boolean>(false);
   const [consentWaitModal, setConsentWaitModal] = useState<boolean>(false);
   const [forExitModal, setForExitModal] = useState<boolean>(false);
@@ -48,8 +43,28 @@ function Chat({ socket }: any): JSX.Element {
   const { userCoinState } = useCoinQuery(userId);
   const [aniTime, setAniTime] = useState(remainingTime);
 
+  const [otherMood, setOtherMood] = useState<string>('');
+
   useEffect(() => {
     if (!socket) return;
+    const fetchOtherUserMood = async () => {
+      try {
+        const otherUserId = extractOtherUserId();
+        const mood = await fetchGetOtherMood(otherUserId);
+        setOtherMood(mood);
+        setMessageList([
+          {
+            type: 'startChat',
+            msg: `상대방은 지금 ${mood}`,
+            id: '',
+          },
+        ]);
+      } catch (error) {
+        console.error('상대방 기분 가져오기 실패', error);
+      }
+    };
+
+    fetchOtherUserMood();
   }, [socket]);
 
   function onForExitModal() {
@@ -58,10 +73,6 @@ function Chat({ socket }: any): JSX.Element {
   function offForExitModal() {
     setForExitModal(false);
   }
-
-  useEffect(() => {
-    console.log('ani time', aniTime);
-  }, [aniTime]);
 
   function countTime() {
     if (intervalId) clearInterval(intervalId);
@@ -152,7 +163,7 @@ function Chat({ socket }: any): JSX.Element {
 
     function extendTimeCallback(extendedTime: number) {
       clearInterval(intervalId);
-      setRemainingTime(extendedTime); // Set remainingTime first
+      setRemainingTime(extendedTime);
       setAniTime(extendedTime);
     }
 

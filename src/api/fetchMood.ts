@@ -1,16 +1,36 @@
 /* eslint-disable import/prefer-default-export */
 import axios from 'axios';
 
-interface Mood {
-  mood_id: number;
-  mood: string;
-}
-
 export const fetchGetMood = async (): Promise<Mood[]> => {
   try {
     const response = await axios.get(`${process.env.REACT_APP_BASE_URL}/moods`);
     return response.data;
   } catch (error) {
-    throw new Error('mood data를 가져오는데 실패했습니다.');
+    throw new Error('전체 기분 데이터 가져오기 실패');
+  }
+};
+
+export interface Mood {
+  mood_id: number;
+  mood: string;
+}
+
+export const fetchGetOtherMood = async (otherId: string): Promise<string> => {
+  try {
+    const response = await axios.get(
+      `${process.env.REACT_APP_BASE_URL}/users/${otherId}`,
+    );
+    const otherMoodId = response.data.mood_id;
+
+    const allMoods = await fetchGetMood();
+
+    const otherMoodObject = allMoods.find(
+      (mood) => mood.mood_id === otherMoodId,
+    );
+
+    return otherMoodObject ? otherMoodObject.mood : '';
+  } catch (error) {
+    console.error('상대방 기분 가져오기 실패 :', error);
+    throw new Error('상대방 기분 가져오기 실패');
   }
 };

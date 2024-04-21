@@ -1,6 +1,6 @@
 import { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { fetchGetOneUserHobby } from 'api/fetchGetOneUser';
+import { fetchGetOneUserHobby } from 'api/fetchGetOneUserHobby';
 
 const useCheckHobbiesAndNavigate = () => {
   const navigate = useNavigate();

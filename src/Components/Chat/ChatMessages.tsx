@@ -49,6 +49,12 @@ const ChatMessagesContainer = styled.div`
   overflow: auto;
 `;
 
+const ChatMessageUserInfo = styled.div`
+  margin-top: 1px;
+  font-size: 13px;
+  font-weight: bold;
+`;
+
 const ChatMessagesWrapper = styled.div`
   list-style: none;
   padding: 10px;
@@ -77,7 +83,7 @@ const ChatMessageItemBox = styled.li`
 
 const ChatMessageContent = styled.div`
   display: inline-block;
-  font-size: 2.5vh;
+  font-size: 2vh;
   font-family: sans-serif;
   font-family: 100;
   padding: 8px 12px 8px 12px;
@@ -99,7 +105,7 @@ const ChatMessageContent = styled.div`
     border-bottom-right-radius: 15px;
   }
   &.startChat {
-    font-size: 15px;;
+    font-size: 17px;
     color: white;
     box-sizing: border-box;
     background-color: lightgray;
