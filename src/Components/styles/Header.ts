@@ -1,4 +1,4 @@
-import styled, { keyframes } from 'styled-components';
+import styled from 'styled-components';
 import { IoPersonOutline } from '@react-icons/all-files/io5/IoPersonOutline';
 import { GiExitDoor } from '@react-icons/all-files/gi/GiExitDoor';
 import { RiAlarmWarningFill } from '@react-icons/all-files/ri/RiAlarmWarningFill';
@@ -54,7 +54,7 @@ export const CashIcon = styled.img`
   margin: 5px 5px;
 `;
 export const CashAmount = styled.p`
-  font-size: 13px;
+  font-size: 2vh;
   font-weight: 800;
   font-family: sans-serif;
 `;
@@ -70,7 +70,7 @@ export const IconExit = styled(GiExitDoor)`
   color: gray;
 `;
 export const IconReport = styled(RiAlarmWarningFill)`
-  margin: 8px 7px 2px 10px;
+  margin: 2vh 7px 2px 10px;
   font-size: 28px;
   color: gray;
 `;

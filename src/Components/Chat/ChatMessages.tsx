@@ -73,8 +73,6 @@ const ChatMessageItemBox = styled.li`
     text-align: left;
     margin-left: 2px;
   }
-  &.startChat {
-  }
 `;
 
 const ChatMessageContent = styled.div`
@@ -99,5 +97,12 @@ const ChatMessageContent = styled.div`
     border-top-right-radius: 15px;
     border-bottom-left-radius: 15px;
     border-bottom-right-radius: 15px;
+  }
+  &.startChat {
+    font-size: 15px;;
+    color: white;
+    box-sizing: border-box;
+    background-color: lightgray;
+    border-radius: 20px;
   }
 `;
