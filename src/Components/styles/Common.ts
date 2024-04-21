@@ -70,6 +70,7 @@ export const Title = styled.p`
   font-size: 18px;
   font-weight: 600;
   margin-bottom: 10px;
+  font-family: sans-serif;
 `;
 
 export const ItemContainer = styled.div`

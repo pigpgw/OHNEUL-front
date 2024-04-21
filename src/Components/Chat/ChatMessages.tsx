@@ -30,7 +30,7 @@ function ChatMessages({ messageList }: MessageListProps): JSX.Element {
       <ChatMessagesWrapper>
         {messageList.map((v, i) => (
           <ChatMessageItemBox key={`${i}_li`} className={v.type}>
-            <ChatMessageUserInfo className="userId">{v.id}</ChatMessageUserInfo>
+            {/* <ChatMessageUserInfo className="userId">{v.id}</ChatMessageUserInfo> */}
             <ChatMessageContent className={v.type}>{v.msg}</ChatMessageContent>
           </ChatMessageItemBox>
         ))}
@@ -65,7 +65,7 @@ const ChatMessageItemBox = styled.li`
   border-radius: 10px;
   display: inline-block;
   padding: 2px;
-  margin: 5px 1px;;
+  margin: 5px 1px;
   &.me {
     text-align: right;
   }
@@ -74,7 +74,6 @@ const ChatMessageItemBox = styled.li`
     margin-left: 2px;
   }
   &.startChat {
-
   }
 `;
 
@@ -86,17 +85,30 @@ const ChatMessageUserInfo = styled.div`
 const ChatMessageContent = styled.div`
   display: inline-block;
   &.me {
+    color: black;
+    font-size: 12px;
+    font-family: 'Courier New', Courier, monospace;
+    padding: 10px 10px 10px 10px;
     color: white;
-    padding: 7px 10px 7px 10px;
     background: #0075ff;
+    /* box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25); */
     border-top-left-radius: 10px;
     border-bottom-left-radius: 10px;
     border-bottom-right-radius: 10px;
   }
+  /* Rectangle 520 */
+
   &.other {
-    padding: 5px 10px 7px 10px;
+    font-size: 12px;
+    font-family: 'Courier New', Courier, monospace;
+    padding: 10px 10px 7px 10px;
     text-align: left;
-    background: #d4d4d4;
+    color: white;
+    background: #0075ff;
+    /* color: black;
+    background: white; */
+    /* border: 0.1px solid black; */
+    /* box-shadow: 1px 1px 0.5px 0.5px lightgray; */
     border-top-right-radius: 10px;
     border-bottom-left-radius: 10px;
     border-bottom-right-radius: 10px;

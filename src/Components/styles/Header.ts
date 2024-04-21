@@ -21,20 +21,19 @@ export const LogoImage = styled.img`
   margin: 15px 0 0px 12px;
 `;
 export const LogoTitle = styled.p`
-  font-weight: 400;
-  width: 91px;
-  height: 26px;
-  font-style: normal;
-  font-weight: 700;
+  width: 10vh;
   font-size: 20px;
-  line-height: 26px;
+  font-family: 'Kodchasan', sans-serif;
+  font-weight: 700;
+
   color: black;
-  text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  position: relative;
+  top: 1vh;
 `;
 
 export const TimerContainer = styled.div`
   width: 33%;
-  margin-top: 7px;
+  margin-top: 1.5vh;
 `;
 
 export const InfoContainer = styled.div`

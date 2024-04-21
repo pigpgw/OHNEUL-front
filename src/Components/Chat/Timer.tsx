@@ -13,5 +13,7 @@ function Timer ({minutes,seconds}:timerProps):ReactElement {
 export default Timer;
 
 const TimerWrapper = styled.div`
-    font-size: 23px;
+    font-size: 3vh;
+    font-weight: 800;
+    color: #424242;
 `
