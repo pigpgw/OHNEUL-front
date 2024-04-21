@@ -29,7 +29,11 @@ function ChatInputForm({
 
   useEffect(() => {
     if (inputRef.current) {
-      inputRef.current.scrollIntoView({ behavior: 'smooth', block: 'end', inline: 'nearest' });
+      inputRef.current.scrollIntoView({
+        behavior: 'smooth',
+        block: 'end',
+        inline: 'nearest',
+      });
     }
   }, [keyboardHeight]);
 

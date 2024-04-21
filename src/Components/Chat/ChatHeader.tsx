@@ -31,7 +31,7 @@ function ChatHeader({
   onForExitModal,
   minutes,
   seconds,
-  aniTime
+  aniTime,
 }: ChatHeaderProps) {
   const userId = extractUserId();
   const { isCoinLoading, isCoinError, userCoinState } = useCoinQuery(userId);
@@ -57,7 +57,7 @@ function ChatHeader({
           <IconReport onClick={reportIconClick} />
         </InfoContainer>
       </HeaderContainer>
-      {time !== 0 && <HeaderTimerLine time={time} aniTime= {aniTime}/>}
+      {time !== 0 && <HeaderTimerLine TotaTime={aniTime} />}
     </>
   );
 }

@@ -1,19 +1,13 @@
-import { useEffect } from 'react';
 import styled from 'styled-components';
 
 type HeaderTimerLineProps = {
-  time: number;
-  aniTime: number;
+  TotaTime: number;
 };
 
-function HeaderTimerLine({ time, aniTime }: HeaderTimerLineProps) {
-  useEffect(() => {
-    console.log(time, aniTime);
-  }, [time]);
-
+function HeaderTimerLine({ TotaTime }: HeaderTimerLineProps) {
   return (
     <TimerWrapper>
-      <TimerLine time={aniTime}></TimerLine>
+      <TimerLine time={TotaTime}></TimerLine>
     </TimerWrapper>
   );
 }
