@@ -136,6 +136,7 @@ const ModalTitle = styled.div`
   font-weight: 800;
   text-align: center;
   margin: 10px;
+  font-family: sans-serif;
 `;
 
 const ModalBtnContainer = styled.div`
@@ -145,6 +146,7 @@ const ModalBtnContainer = styled.div`
   align-items: center;
   justify-content: center;
   margin: 10px;
+  font-family: sans-serif;
 `;
 
 const ModalBtn = styled.button`

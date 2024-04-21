@@ -77,40 +77,27 @@ const ChatMessageItemBox = styled.li`
   }
 `;
 
-const ChatMessageUserInfo = styled.div`
-  margin-top: 1px;
-  font-size: 13px;
-  font-weight: bold;
-`;
 const ChatMessageContent = styled.div`
   display: inline-block;
+  font-size: 2.5vh;
+  font-family: sans-serif;
+  font-family: 100;
+  padding: 8px 12px 8px 12px;
+
   &.me {
-    color: black;
-    font-size: 12px;
-    font-family: 'Courier New', Courier, monospace;
-    padding: 10px 10px 10px 10px;
     color: white;
     background: #0075ff;
-    /* box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25); */
-    border-top-left-radius: 10px;
-    border-bottom-left-radius: 10px;
-    border-bottom-right-radius: 10px;
+    border-top-left-radius: 15px;
+    border-bottom-left-radius: 15px;
+    border-bottom-right-radius: 15px;
   }
-  /* Rectangle 520 */
 
   &.other {
-    font-size: 12px;
-    font-family: 'Courier New', Courier, monospace;
-    padding: 10px 10px 7px 10px;
     text-align: left;
     color: white;
     background: #0075ff;
-    /* color: black;
-    background: white; */
-    /* border: 0.1px solid black; */
-    /* box-shadow: 1px 1px 0.5px 0.5px lightgray; */
-    border-top-right-radius: 10px;
-    border-bottom-left-radius: 10px;
-    border-bottom-right-radius: 10px;
+    border-top-right-radius: 15px;
+    border-bottom-left-radius: 15px;
+    border-bottom-right-radius: 15px;
   }
 `;

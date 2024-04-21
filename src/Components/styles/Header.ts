@@ -28,7 +28,7 @@ export const LogoTitle = styled.p`
 
   color: black;
   position: relative;
-  top: 1vh;
+  top: 1.1vh;
 `;
 
 export const TimerContainer = styled.div`
@@ -55,11 +55,12 @@ export const CashIcon = styled.img`
 `;
 export const CashAmount = styled.p`
   font-size: 13px;
-  font-weight: 600;
+  font-weight: 800;
+  font-family: sans-serif;
 `;
 export const IconPerson = styled(IoPersonOutline)`
   font-size: 28px;
-  margin: 10px 10px 5px 5px;
+  margin: 2vh 10px 5px 10px;
   color: gray;
 `;
 

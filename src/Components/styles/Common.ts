@@ -8,6 +8,7 @@ export const ItemBtn = styled.button<{ clicked?: boolean }>`
   padding: 0 15px;
   margin: 10px;
   font-size: 13px;
+  font-family: sans-serif;
 
   background: white;
   box-shadow: 1px 1px 1px rgba(41, 41, 41, 0.25);
@@ -23,6 +24,7 @@ export const ItemBtn = styled.button<{ clicked?: boolean }>`
 
 export const InfoText = styled.p`
   font-size: 13px;
+  font-family: sans-serif;
 `;
 
 export const Container = styled.div`
@@ -125,8 +127,8 @@ export const SubmitBtn = styled.button`
     top: 50%;
   }
 
-    /* ipad air  */
-    @media screen and (width: 1024px) and (height: 1366px) {
+  /* ipad air  */
+  @media screen and (width: 1024px) and (height: 1366px) {
     top: 55%;
   }
 `;
