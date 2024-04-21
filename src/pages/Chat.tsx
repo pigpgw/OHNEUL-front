@@ -87,7 +87,6 @@ function Chat({ socket }: any): JSX.Element {
         }
         return prevTime - 1;
       });
-      // 총 대화시간 체크
       setTotalTime((prev) => {
         return prev + 1;
       });
@@ -248,13 +247,10 @@ function Chat({ socket }: any): JSX.Element {
   const selectReportReason = (e: React.MouseEvent<HTMLButtonElement>): void => {
     const { value } = e.target as HTMLButtonElement;
     setReportReson(value);
-    // console.log('누른 신고사유', reportReason);
   };
 
   const reportUser = () => {
     const reportedUserId = extractOtherUserId();
-    // console.log('상대방 uuid', reportedUserId);
-    // console.log('상대방 신고 사유', reportReason);
     const reportInfo = {
       reportedUserId,
       reportReason,

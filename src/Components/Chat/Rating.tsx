@@ -26,7 +26,6 @@ function Rating({ socket }: any): JSX.Element {
   const sendReview = (): void => {
     const score = clicked.filter(Boolean).length;
     const otherId: string = extractOtherUserId();
-    // console.log('상대방 아이디', otherId, '내가 준 평점', score);
     const data: {
       userId: string;
       score: number;

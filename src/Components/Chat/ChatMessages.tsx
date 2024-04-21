@@ -30,7 +30,6 @@ function ChatMessages({ messageList }: MessageListProps): JSX.Element {
       <ChatMessagesWrapper>
         {messageList.map((v, i) => (
           <ChatMessageItemBox key={`${i}_li`} className={v.type}>
-            {/* <ChatMessageUserInfo className="userId">{v.id}</ChatMessageUserInfo> */}
             <ChatMessageContent className={v.type}>{v.msg}</ChatMessageContent>
           </ChatMessageItemBox>
         ))}

@@ -13,7 +13,7 @@ const useCheckHobbiesAndNavigate = () => {
           navigate('/mood');
         }
       } catch (error) {
-        console.error('Error fetching user data:', error);
+        console.error('유저의 취미 등록여부 확인 실패', error);
       }
     };
 

@@ -20,7 +20,6 @@ const fetchUser = async (userId: string) => {
 };
 
 export const useCoinQuery = (userId: string): CoinQueryClient => {
-  // console.log('유저 id',userId)
   const {
     isLoading: isCoinLoading,
     isError: isCoinError,
