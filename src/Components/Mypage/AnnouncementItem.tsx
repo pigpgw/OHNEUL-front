@@ -2,10 +2,9 @@ import React from 'react';
 import styled from 'styled-components';
 
 interface Announcement {
-  id: number;
   title: string;
-  content: string;
-  date: string;
+  notice: string;
+  created_at: string;
 }
 
 interface AnnouncementItemProps {
@@ -15,13 +14,13 @@ interface AnnouncementItemProps {
 const AnnouncementItem: React.FC<AnnouncementItemProps> = ({
   announcement,
 }) => {
-  const { title, content, date } = announcement;
+  const { title, notice, created_at: createdAt } = announcement;
 
   return (
     <div>
-      <h6>{date}</h6>
+      <h6>{createdAt}</h6>
       <h4>{title}</h4>
-      <p>{content}</p>
+      <p>{notice}</p>
     </div>
   );
 };

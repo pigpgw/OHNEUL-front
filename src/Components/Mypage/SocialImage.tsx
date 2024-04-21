@@ -5,20 +5,26 @@ import meltedCookie from 'utils/meltedCookie';
 import styled from 'styled-components';
 
 const Kakao = styled.img`
-  width: 20px;
+  width: 8%;
 `;
 const Naver = styled.img`
-  width: 20px;ㅈ
+  width: 6%;
 `;
 
 function SocialImage() {
-  const [flatform] = meltedCookie();
+  const [flatform, token, rewardCoin, userId] = meltedCookie();
+  console.log('userId:', userId);
+  console.log('flatform:', flatform); // flatform 값 확인
   return (
     <div>
-      {flatform === 'naver' ? (
-        <Naver src={NaverBogo}></Naver>
+      {flatform === 'kakao' ? (
+        <>
+          <Kakao src={KakaoBogo}></Kakao>
+        </>
       ) : (
-        <Kakao src={KakaoBogo}></Kakao>
+        <>
+          <Naver src={NaverBogo}></Naver>
+        </>
       )}
     </div>
   );

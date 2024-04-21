@@ -37,7 +37,7 @@ const Logout: React.FC = () => {
   }, [user.isLogin, navigate]);
 
   const handleLogOut = () => {
-    const [flatform] = meltedCookie();
+    const [flatform, token, rewardCoin, userId] = meltedCookie();
     // if (flatform === 'naver') {
     // try {
     // const response = await axios.post(

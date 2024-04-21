@@ -22,7 +22,7 @@ const Button = styled.button`
 // }
 
 function AdminButton() {
-  const [isAdmin] = meltedCookie();
+  const [flatform, token, rewardCoin, userId, isAdmin] = meltedCookie();
   const navigate = useNavigate();
   const navigateToAdmin = () => {
     navigate('/admin');

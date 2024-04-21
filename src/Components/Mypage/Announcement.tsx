@@ -1,5 +1,4 @@
-// src/Components/Mypage/Announcement.tsx
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 import Pagination from 'utils/Pagination';
 import axios from 'axios';
@@ -13,26 +12,23 @@ const AnnouncementContainer = styled.div`
 `;
 
 const Announcement: React.FC = () => {
-  const data = axios.get(`${process.env.REACT_APP_BASE_URL}/notices`);
-  console.log(data);
-  const [announcements] = useState([
-    {
-      id: 1,
-      date: '2024-05-05',
-      title: 'OHNEUL 오픈 기념 이벤트',
-      content: '매일 접속시 코인 증정',
-    },
-    {
-      id: 2,
-      date: '2024-05-05',
-      title: 'OHNEUL 오픈 기념 이벤트',
-      content: '매일 접속시 코인 증정',
-    },
-    { id: 3, date: '3', title: '공지 제목 3', content: '공지 내용 3' },
-  ]);
-
+  const [announcements, setAnnouncements] = useState<any[]>([]);
   const [currentPage, setCurrentPage] = useState(1);
   const pageSize = 1;
+
+  useEffect(() => {
+    const fetchAnnouncements = async () => {
+      try {
+        const response = await axios.get(
+          `${process.env.REACT_APP_BASE_URL}/notices`,
+        );
+        setAnnouncements(response.data);
+      } catch (error) {
+        console.error('Error fetching announcements:', error);
+      }
+    };
+    fetchAnnouncements();
+  }, []);
 
   const handlePageChange = (pageNumber: number) => {
     setCurrentPage(pageNumber);
@@ -47,8 +43,8 @@ const Announcement: React.FC = () => {
 
   return (
     <AnnouncementContainer>
-      {currentAnnouncements.map((announcement) => (
-        <AnnouncementItem key={announcement.id} announcement={announcement} />
+      {currentAnnouncements.map((announcement: any, id: number) => (
+        <AnnouncementItem key={id} announcement={announcement} />
       ))}
       <Pagination
         itemsCount={announcements.length}

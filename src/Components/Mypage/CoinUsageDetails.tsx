@@ -18,7 +18,7 @@ const DateCont = styled.div``;
 
 const CoinUsageDetails = () => {
   const [usage, setUsage] = useState<Usage[]>([]);
-  const [userId] = meltedCookie();
+  const [flatform, token, rewardCoin, userId] = meltedCookie();
 
   useEffect(() => {
     const fetchUsage = async () => {

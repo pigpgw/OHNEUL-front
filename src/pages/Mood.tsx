@@ -42,7 +42,7 @@ function Mood() {
   const userSelectMood = mood
     .filter((item) => item.clicked === true)
     .map((item) => item.mood_id)[0];
-  
+
   useEffect(() => {
     if (availableMoods) setMood(availableMoods);
   }, [availableMoods]);

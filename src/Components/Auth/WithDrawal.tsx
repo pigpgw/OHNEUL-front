@@ -38,7 +38,7 @@ const WithDrawal: React.FC = () => {
   // }, [user.isLogin, navigate]);
 
   const handleWithDrawal = () => {
-    const [flatform] = meltedCookie();
+    const [flatform, token, rewardCoin] = meltedCookie();
     // if (flatform === 'naver') {
     //   try {
     // const response = await axios.post(
@@ -54,7 +54,7 @@ const WithDrawal: React.FC = () => {
       deleteCookie('refreshToken');
       deleteCookie('provider');
       deleteCookie('reward');
-      deleteCookie('admin');
+
       navigate('/');
     }
     //     }

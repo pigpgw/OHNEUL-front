@@ -41,13 +41,13 @@ const MyPage: React.FC = () => {
           <SocialContainer>
             <SocialImage></SocialImage>
           </SocialContainer>
-          <MyMoodSection>
-            <MyMood />
-          </MyMoodSection>
           <StarAndInterest>
             <StarRatingSection>
               <StarRating />
             </StarRatingSection>
+            <MyMoodSection>
+              <MyMood />
+            </MyMoodSection>
             <InterestSection>
               <Interest />
             </InterestSection>

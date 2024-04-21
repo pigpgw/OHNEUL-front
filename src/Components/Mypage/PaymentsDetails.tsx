@@ -22,7 +22,7 @@ interface PaymentData {
 }
 
 const PaymentsDetails = () => {
-  const [userId] = meltedCookie();
+  const [flatform, token, rewardCoin, userId] = meltedCookie();
   const [datas, setData] = useState<PaymentData[]>([]);
   useEffect(() => {
     const fetchPayments = async () => {

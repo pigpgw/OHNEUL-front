@@ -16,18 +16,18 @@ const Desc = styled.div`
 `;
 
 const StarRating = () => {
-  const [userId] = meltedCookie();
+  const [flatform, token, rewardCoin, userId] = meltedCookie();
+  console.log('user', userId);
   const [data, setData] = useState<number>(0);
   useEffect(() => {
-    const fetchPayments = async () => {
+    const fetchScore = async () => {
       const response = await axios.get(
         `${process.env.REACT_APP_BASE_URL}/users/${userId}`,
       );
-      console.log(response.data, 'asdas');
 
       return setData(response.data.score);
     };
-    fetchPayments();
+    fetchScore();
   }, []);
 
   const renderHerat = (score: number) => {
@@ -45,7 +45,7 @@ const StarRating = () => {
       plusCount = Math.floor(strToNumb);
     }
 
-    console.log('strtumd',strToNumb)
+    console.log('strtumd', strToNumb);
 
     const count = [];
     const desc = [];
@@ -77,6 +77,7 @@ const StarRating = () => {
       default:
         break;
     }
+
     return [desc, count];
   };
 

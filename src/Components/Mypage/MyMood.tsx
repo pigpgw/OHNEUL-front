@@ -3,6 +3,7 @@ import React, { useState, useEffect } from 'react';
 import meltedCookie from 'utils/meltedCookie';
 import styled from 'styled-components';
 import MyMoodModal from 'Components/Mypage/MyMoodModal';
+import editButton from 'assets/images/editButton.png';
 
 interface MoodData {
   mood: string;
@@ -17,15 +18,13 @@ const MoodBtn = styled.button`
   background: white;
   box-shadow: 1px 1px 1px rgba(41, 41, 41, 0.25);
 `;
-const MoodEditBtn = styled.button`
+const MoodEditBtn = styled.img`
   height: 23px;
   border-radius: 10px;
   border: 0;
   padding: 0 5px;
   margin: 20px;
-  font-size: 10px;
-  background: white-gray;
-  box-shadow: 1px 1px 1px rgba(41, 41, 41, 0.25);
+  cursor: pointer;
 `;
 const MoodBtnContainer = styled.div`
   display: flex;
@@ -39,7 +38,7 @@ const MyMood = () => {
   const handleModal = (itemName: any) => {
     setOpen(open === itemName ? null : itemName);
   };
-  const [userId] = meltedCookie();
+  const [flatform, token, rewardCoin, userId] = meltedCookie();
   const [datas, setData] = useState<string[]>([]);
   useEffect(() => {
     const fetchMoods = async () => {
@@ -75,7 +74,10 @@ const MyMood = () => {
     <MoodBtnContainer>
       <MoodBtn>{datas}</MoodBtn>
 
-      <MoodEditBtn onClick={() => handleModal('mood')}>수정</MoodEditBtn>
+      <MoodEditBtn
+        src={editButton}
+        onClick={() => handleModal('mood')}
+      ></MoodEditBtn>
       {open === 'mood' && <MyMoodModal />}
     </MoodBtnContainer>
   );
