@@ -56,7 +56,6 @@ const Login: React.FC = () => {
 
   useEffect(() => {
     if (isLogin) {
-      console.log(storedUserInfo, '확인');
       const timer = window.setTimeout(() => {
         navigate('/favorite');
       }, 2000);

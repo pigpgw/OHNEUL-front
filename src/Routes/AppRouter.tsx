@@ -16,6 +16,11 @@ import Checkout from 'pages/Checkout';
 import Success from 'pages/Success';
 import Fail from 'pages/Fail';
 import Admin from 'pages/Admin';
+import EditHobby from 'pages/admin/EditHobby';
+import ManageUsers from 'pages/admin/ManageUsers';
+import EditTheme from 'pages/admin/EditTheme';
+import EditMood from 'pages/admin/EditMood';
+import PostAnnouncement from 'pages/admin/PostAnnouncement';
 
 const socket = io('http://localhost:4000');
 
@@ -37,7 +42,13 @@ function AppRouter() {
         <Route path="/fail" element={<Fail />} />
         <Route path="/chat" element={<Chat socket={socket} />} />
         <Route path="/*" element={<NotFound />} />
-        <Route path="/admin" element={<Admin />} />
+        <Route path="/admin" element={<Admin />}>
+          <Route path="manageusers" element={<ManageUsers />} />
+          <Route path="edithobby" element={<EditHobby />} />
+          <Route path="edittheme" element={<EditTheme />} />
+          <Route path="editmood" element={<EditMood />} />
+          <Route path="postannouncement" element={<PostAnnouncement />} />
+        </Route>
       </Routes>
     </BrowserRouter>
   );

@@ -17,7 +17,6 @@ const Desc = styled.div`
 
 const StarRating = () => {
   const [flatform, token, rewardCoin, userId] = meltedCookie();
-  console.log('user', userId);
   const [data, setData] = useState<number>(0);
   useEffect(() => {
     const fetchScore = async () => {
@@ -45,15 +44,13 @@ const StarRating = () => {
       plusCount = Math.floor(strToNumb);
     }
 
-    console.log('strtumd', strToNumb);
-
     const count = [];
     const desc = [];
     for (let i = 0; i < plusCount; i += 1) {
-      count.push(<Heart src={plusHeart} alt="ph"></Heart>);
+      count.push(<Heart key={`plus${i}`} src={plusHeart} alt="ph"></Heart>);
     }
     for (let j = 0; j < minusCount; j += 1) {
-      count.push(<Heart src={minusHeart} alt=""></Heart>);
+      count.push(<Heart key={`minus${j}`} src={minusHeart} alt=""></Heart>);
     }
     switch (plusCount) {
       case 0.0:

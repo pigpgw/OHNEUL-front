@@ -13,8 +13,6 @@ const Naver = styled.img`
 
 function SocialImage() {
   const [flatform, token, rewardCoin, userId] = meltedCookie();
-  console.log('userId:', userId);
-  console.log('flatform:', flatform); // flatform 값 확인
   return (
     <div>
       {flatform === 'kakao' ? (

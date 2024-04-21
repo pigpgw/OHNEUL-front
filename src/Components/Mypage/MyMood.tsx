@@ -52,14 +52,12 @@ const MyMood = () => {
 
         const mood = (): void => {
           const res = [];
-          console.log(userMoodResponse);
 
           for (let i = 0; i < allMoodResponse.length; i += 1) {
             if (allMoodResponse[i].mood_id === userMoodResponse) {
               res.push(allMoodResponse[i].mood);
             }
           }
-          console.log(res);
           setData(res);
         };
         mood();
