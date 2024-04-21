@@ -2,6 +2,7 @@
 import React, { ReactNode, MouseEvent } from 'react';
 import { createPortal } from 'react-dom';
 import styled from 'styled-components';
+import LoadingBox from 'Components/Common/LoadingBox/LoadingBox';
 
 type ModalProps = {
   children: React.ReactNode;
@@ -43,6 +44,7 @@ export const WaitModal = ({ onClose }: WatiModalProps) => {
   return (
     <ModalWrapper>
       <ModalTitle>대화 상대를 찾고 있어요</ModalTitle>
+      <LoadingBox />
       <ModalBtnContainer>
         <ModalBtn onClick={onClose}>취소</ModalBtn>
       </ModalBtnContainer>

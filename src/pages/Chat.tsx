@@ -46,6 +46,7 @@ function Chat({ socket }: any): JSX.Element {
   const [reportReason, setReportReson] = useState<string>('');
   const userId = extractUserId();
   const { userCoinState } = useCoinQuery(userId);
+  const [aniTime, setAniTime] = useState(remainingTime);
 
   useEffect(() => {
     if (!socket) return;
@@ -58,15 +59,19 @@ function Chat({ socket }: any): JSX.Element {
     setForExitModal(false);
   }
 
+  useEffect(() => {
+    console.log('ani time', aniTime);
+  }, [aniTime]);
+
   function countTime() {
     if (intervalId) clearInterval(intervalId);
-
     const newIntervalId = setInterval(() => {
       setRemainingTime((prevTime) => {
         if (prevTime === 0) {
           clearInterval(newIntervalId);
           setConsentModal(true);
           setConsent(false);
+          setAniTime(0);
           return 0;
         }
         return prevTime - 1;
@@ -147,7 +152,8 @@ function Chat({ socket }: any): JSX.Element {
 
     function extendTimeCallback(extendedTime: number) {
       clearInterval(intervalId);
-      setRemainingTime(extendedTime);
+      setRemainingTime(extendedTime); // Set remainingTime first
+      setAniTime(extendedTime);
     }
 
     socket.on('wait', consentWaitCallback);
@@ -204,6 +210,7 @@ function Chat({ socket }: any): JSX.Element {
   useEffect(() => {
     function userExistCallback() {
       clearInterval(intervalId);
+      setAniTime(0);
       if (totalTime < 5) {
         setExitModal(true);
         setTimeout(() => {
@@ -256,6 +263,7 @@ function Chat({ socket }: any): JSX.Element {
         reportIconClick={onReportModal}
         onRefuse={onRefuse}
         onForExitModal={onForExitModal}
+        aniTime={aniTime}
       ></ChatHeader>
       {/* <ChatInfo /> */}
       {consentModal && !exitModal && (

@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled, { keyframes } from 'styled-components';
 import { IoPersonOutline } from '@react-icons/all-files/io5/IoPersonOutline';
 import { GiExitDoor } from '@react-icons/all-files/gi/GiExitDoor';
 import { RiAlarmWarningFill } from '@react-icons/all-files/ri/RiAlarmWarningFill';
