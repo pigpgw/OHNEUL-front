@@ -86,7 +86,6 @@ function Hobby() {
         ))}
       </ItemContainer>
       <InfoText>최소 1개, 최대 3개만 선택 가능</InfoText>
-      <MarginTag margin={50}></MarginTag>
       <SubmitBtn onClick={handleSubmit}>선택 완료</SubmitBtn>
     </Container>
   );
