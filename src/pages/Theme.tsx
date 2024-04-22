@@ -123,7 +123,6 @@ function Theme({ socket }: any) {
         </ThemeItemContainer>
         {wait && <WaitModal onClose={onClose} />}
         <InfoText>최대 1개만 선택 가능합니다.</InfoText>
-        <MarginTag margin={50}></MarginTag>
         <SubmitBtn disabled={wait} onClick={matchingcStart}>
           선택 완료
         </SubmitBtn>

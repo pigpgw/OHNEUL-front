@@ -49,25 +49,28 @@ function ChatInputForm({
 
 const ChatInputContainer = styled.div`
   width: 100%;
+  margin-top: 1vh;
 `;
 
 const ChatInput = styled.input`
-  width: 80%;
-  height: 35px;
-  background: #bfddff;
-  border-radius: 20px;
+  width: 70%;
+  height: 4vh;
+  background: #dbdbdb;
+  border-radius: 5px;
   border: 0;
+  margin: 0;
   max-width: 400px;
 `;
 
 const ChatSubmitBtn = styled.button`
-  font-size: 14px;
+  font-size: 2vh;
+  height: 4.5vh;
   color: white;
   font-weight: 800;
-  background: #6cb0ff;
+  background: #b3b3b3;
   border-radius: 5px;
   border: 0;
-  padding: 10px;
+  padding: 1vh;
   margin-left: 10px;
 `;
 

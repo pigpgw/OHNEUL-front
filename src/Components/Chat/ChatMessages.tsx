@@ -48,12 +48,6 @@ const ChatMessagesContainer = styled.div`
   overflow: auto;
 `;
 
-const ChatMessageUserInfo = styled.div`
-  margin-top: 1px;
-  font-size: 13px;
-  font-weight: bold;
-`;
-
 const ChatMessagesWrapper = styled.div`
   list-style: none;
   padding: 10px;
@@ -85,7 +79,7 @@ const ChatMessageContent = styled.div`
   font-size: 2vh;
   font-family: sans-serif;
   font-family: 100;
-  padding: 8px 12px 8px 12px;
+
 
   &.me {
     color: white;
@@ -93,6 +87,8 @@ const ChatMessageContent = styled.div`
     border-top-left-radius: 15px;
     border-bottom-left-radius: 15px;
     border-bottom-right-radius: 15px;
+
+    padding: 5px 10px 7px 10px;
   }
 
   &.other {
@@ -102,12 +98,16 @@ const ChatMessageContent = styled.div`
     border-top-right-radius: 15px;
     border-bottom-left-radius: 15px;
     border-bottom-right-radius: 15px;
+
+    padding: 5px 10px 7px 10px;
   }
   &.startChat {
-    font-size: 17px;
+    font-size: 12px;
     color: white;
     box-sizing: border-box;
     background-color: lightgray;
     border-radius: 20px;
+
+    padding: 3px 8px 5px 8px;
   }
 `;

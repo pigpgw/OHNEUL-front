@@ -5,10 +5,10 @@ import { RiAlarmWarningFill } from '@react-icons/all-files/ri/RiAlarmWarningFill
 
 export const HeaderContainer = styled.div`
   display: flex;
-  margin-top: 5px;
   justify-content: space-between;
   align-items: center;
   width: 100%;
+  height: 5vh;
 `;
 export const LogoContainer = styled.div`
   width: 33%;
@@ -42,7 +42,7 @@ export const InfoContainer = styled.div`
   font-weight: 500;
 `;
 export const CashContainer = styled.div`
-  margin-top: 5px;
+  margin-top: 1vh;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -66,11 +66,11 @@ export const IconPerson = styled(IoPersonOutline)`
 
 export const IconExit = styled(GiExitDoor)`
   margin: 7px 7px 2px 10px;
-  font-size: 28px;
+  font-size: 4vh;
   color: gray;
 `;
 export const IconReport = styled(RiAlarmWarningFill)`
   margin: 2vh 7px 2px 10px;
-  font-size: 28px;
+  font-size: 4vh;
   color: gray;
 `;

@@ -26,10 +26,16 @@ function Chat({ socket }: any): JSX.Element {
   const [intervalId, setIntervalId] = useState<NodeJS.Timeout | undefined>(
     undefined,
   );
-  const [messageList, setMessageList] = useState<Message[]>([]);
+  const [messageList, setMessageList] = useState<Message[]>([
+    {
+      type: 'startChat',
+      msg: `상대방과 연결되었습니다.`,
+      id: '',
+    },
+  ]);
   const [msg, setMsg] = useState<string>('');
   const [consentModal, setConsentModal] = useState<boolean>(false);
-  const [remainingTime, setRemainingTime] = useState<number>(600);
+  const [remainingTime, setRemainingTime] = useState<number>(300);
   const [consent, setConsent] = useState<boolean>(false);
   const [consentWaitModal, setConsentWaitModal] = useState<boolean>(false);
   const [forExitModal, setForExitModal] = useState<boolean>(false);
@@ -52,13 +58,15 @@ function Chat({ socket }: any): JSX.Element {
         const otherUserId = extractOtherUserId();
         const mood = await fetchGetOtherMood(otherUserId);
         setOtherMood(mood);
-        setMessageList([
-          {
-            type: 'startChat',
-            msg: `상대방은 지금 ${mood}`,
-            id: '',
-          },
-        ]);
+        setMessageList((prev) =>
+          [...prev,
+            {
+              type: 'start',
+              msg: `상대방은 지금 ${mood}`,
+              id: '',
+            },
+          ],
+        );
       } catch (error) {
         console.error('상대방 기분 가져오기 실패', error);
       }

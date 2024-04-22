@@ -2,12 +2,11 @@
 import styled, { css } from 'styled-components';
 
 export const ItemBtn = styled.button<{ clicked?: boolean }>`
-  height: 33px;
   border-radius: 10px;
   border: 0;
-  padding: 0 15px;
-  margin: 10px;
-  font-size: 13px;
+  padding: 1.1vh;
+  margin: 1vh;
+  font-size: 1.7vh;
   font-family: sans-serif;
 
   background: white;
@@ -29,8 +28,49 @@ export const InfoText = styled.p`
 
 export const Container = styled.div`
   width: 95%;
+  height: 80vh;
+
+  /* iphone se */
+  @media screen and (width: 375px) and (height: 667px) {
+    height: 95vh;
+  }
+
+  /* galaxy s8  */
+  @media screen and (width: 360px) and (height: 740px) {
+    height: 93vh;
+  }
+
+  /* iphone 12por */
+  @media screen and (width: 390px) and (height: 844px) {
+    height: 83vh;
+  }
+
+  /* galaxy s20 ultra  */
+  @media screen and (width: 412px) and (height: 915px) {
+    height: 93vh;
+  }
+  /* iphone XR */
+  @media screen and (width: 414px) and (height: 896px) {
+    height: 95vh;
+  }
+
+  /* iphone 14pro */
+  @media screen and (width: 430px) and (height: 932px) {
+    height: 82vh;
+  }
+
+  /* ipad mini  */
+  @media screen and (width: 768px) and (height: 1024px) {
+    height: 90vh;
+  }
+
+  /* ipad air  */
+  @media screen and (width: 820px) and (height: 1180px) {
+    height: 90vh;
+  }
+
   display: flex;
-  justify-content: center;
+  justify-content: space-around;
   align-items: center;
   flex-direction: column;
   /* height: 570px; */
@@ -39,6 +79,7 @@ export const Container = styled.div`
 
 export const ThemeItemContainer = styled.div`
   width: 100%;
+  height: 30vh;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -49,12 +90,12 @@ export const ThemeItemContainer = styled.div`
 `;
 
 export const ThemeItemBtn = styled.button<{ clicked?: boolean }>`
-  height: 33px;
+  height: 4vh;
   border-radius: 10px;
   border: 0;
-  padding: 0 10px;
-  margin: 5px;
-  font-size: 13px;
+  padding: 0 1vh;
+  margin: 1vh;
+  font-size: 1.6vh;
 
   background: white;
   box-shadow: 1px 1px 1px rgba(41, 41, 41, 0.25);
@@ -69,18 +110,23 @@ export const ThemeItemBtn = styled.button<{ clicked?: boolean }>`
 `;
 
 export const Title = styled.p`
-  font-size: 18px;
+  font-size: 2.5vh;
   font-weight: 600;
-  margin-bottom: 10px;
+  position: relative;
+  top: 8%;
   font-family: sans-serif;
 `;
 
 export const ItemContainer = styled.div`
+  width: 80%;
+  height: 20vh;
   display: flex;
-  flex-wrap: wrap;
   justify-content: center;
   align-items: center;
-  margin: 50px 0 30px 0;
+  flex-wrap: wrap;
+  flex-direction: row;
+  max-width: 500px;
+  margin: 40px 0 40px 0;
 `;
 
 export const SubmitBtn = styled.button`
@@ -91,46 +137,6 @@ export const SubmitBtn = styled.button`
   border-radius: 5px;
   border: 0;
   position: relative;
-
-  /* iphone XR */
-  @media screen and (width: 414px) and (height: 896px) {
-    top: 25%;
-  }
-
-  /* iphone 12por */
-  @media screen and (width: 390px) and (height: 844px) {
-    top: 20%;
-  }
-
-  /* iphone 14pro */
-  @media screen and (width: 430px) and (height: 932px) {
-    top: 30%;
-  }
-
-  /* galaxy s8  */
-  @media screen and (width: 360px) and (height: 740px) {
-    top: 5%;
-  }
-
-  /* galaxy s20 ultra  */
-  @media screen and (width: 412px) and (height: 915px) {
-    top: 22%;
-  }
-
-  /* ipad mini  */
-  @media screen and (width: 768px) and (height: 1024px) {
-    top: 25%;
-  }
-
-  /* ipad air  */
-  @media screen and (width: 820px) and (height: 1180px) {
-    top: 50%;
-  }
-
-  /* ipad air  */
-  @media screen and (width: 1024px) and (height: 1366px) {
-    top: 55%;
-  }
 `;
 export const MarginTag = styled.div<{ margin?: number | null }>`
   margin: ${(props) => (props.margin !== null ? `${props.margin}px` : '0px')};

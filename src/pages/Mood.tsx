@@ -91,7 +91,6 @@ function Mood() {
           ))}
         </ItemContainer>
         <InfoText>최대 1개만 선택 가능합니다.</InfoText>
-        <MarginTag margin={50}></MarginTag>
         <SubmitBtn onClick={handleSubmit}>선택 완료</SubmitBtn>
       </Container>
     </>
