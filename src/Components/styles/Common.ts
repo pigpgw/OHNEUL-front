@@ -90,10 +90,9 @@ export const ThemeItemContainer = styled.div`
 `;
 
 export const ThemeItemBtn = styled.button<{ clicked?: boolean }>`
-  height: 4vh;
   border-radius: 10px;
   border: 0;
-  padding: 0 1vh;
+  padding: 1.5vh 1.5vh;
   margin: 1vh;
   font-size: 1.6vh;
 

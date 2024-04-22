@@ -108,6 +108,6 @@ const ChatMessageContent = styled.div`
     background-color: lightgray;
     border-radius: 20px;
 
-    padding: 3px 8px 5px 8px;
+    padding: 5px 8px 5px 8px;
   }
 `;

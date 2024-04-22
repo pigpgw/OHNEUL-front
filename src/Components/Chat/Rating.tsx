@@ -35,6 +35,7 @@ function Rating({ socket }: any): JSX.Element {
     };
     socket.emit('score', data);
     document.cookie = 'other=';
+    alert("리뷰가 성공적으로 등록되었습니다.")
     navigate('/theme');
   };
 
@@ -63,11 +64,16 @@ const Wrap = styled.div`
   display: flex;
   flex-direction: column;
   padding-bottom: 15px;
+  overflow-x: hidden;
+  
 `;
 
 const Stars = styled.div`
   display: flex;
   padding: 15px;
+  justify-content: space-between;
+  width: 100%;
+  padding: 10px 10px 2vh 0;
 
   & svg {
     color: gray;
@@ -90,6 +96,8 @@ const Stars = styled.div`
 const RatingBtn = styled.button`
   font-size: 13px;
   font-weight: 900;
+  position: relative;
+  top: 1vh;
   border: 0;
   background-color: white;
   cursor: pointer;
