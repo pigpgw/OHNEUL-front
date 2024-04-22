@@ -185,7 +185,6 @@ const ReportModalLayout = styled.div`
   width: 73%;
 
   max-width: 450px;
-  max-height: 320px;
 
   background: #ffffff;
   border: 1px solid #cccccc;
