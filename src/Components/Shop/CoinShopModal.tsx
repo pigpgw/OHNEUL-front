@@ -90,7 +90,8 @@ function CoinItem({ coins, price, onClick }: CoinItemProps) {
 function CoinItemModal({ onClose, selectedCoin }: CoinModalProps) {
   if (!selectedCoin) return null;
   const navigator = useNavigate()
-  const startPayment = () => navigator('/payment')
+  // const startPayment = () => navigator('/payment')
+  const startPayment = () => alert('서비스가 준비중입니다. ㅠㅠ')
   return (
     <ModalWrapper>
       <ItemCancelBtn onClick={onClose}>X</ItemCancelBtn>

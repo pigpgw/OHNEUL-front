@@ -50,17 +50,17 @@ export const CashContainer = styled.div`
 `;
 export const CashIcon = styled.img`
   width: 17px;
-  margin-right: 3px;
-  margin: 5px 5px;
+  margin: 2vh 1vh 1vh 1vh;
 `;
 export const CashAmount = styled.p`
   font-size: 2vh;
   font-weight: 800;
   font-family: sans-serif;
+  margin: 1.2vh 0 0 0 ;
 `;
 export const IconPerson = styled(IoPersonOutline)`
   font-size: 28px;
-  margin: 2vh 10px 5px 10px;
+  margin: 2.5vh 10px 5px 10px;
   color: gray;
 `;
 

@@ -80,26 +80,26 @@ const ChatMessageContent = styled.div`
   font-family: sans-serif;
   font-family: 100;
 
-
   &.me {
     color: white;
-    background: #0075ff;
-    border-top-left-radius: 15px;
-    border-bottom-left-radius: 15px;
-    border-bottom-right-radius: 15px;
-
-    padding: 5px 10px 7px 10px;
+    background: #FF7E95;
+    border-top-left-radius: 8px;
+    border-bottom-left-radius: 8px;
+    border-bottom-right-radius: 8px;
+    box-shadow: 2px 2px 0 0 lightgray;
+    padding: 7px 10px 7px 10px;
   }
 
   &.other {
     text-align: left;
     color: white;
-    background: #0075ff;
-    border-top-right-radius: 15px;
-    border-bottom-left-radius: 15px;
-    border-bottom-right-radius: 15px;
+    background: #FF7E95;
+    box-shadow: 2px 2px 0 0 lightgray;
+    border-top-right-radius: 8px;
+    border-bottom-left-radius: 8px;
+    border-bottom-right-radius: 8px;
 
-    padding: 5px 10px 7px 10px;
+    padding: 7px 10px 7px 10px;
   }
   &.startChat {
     font-size: 12px;
