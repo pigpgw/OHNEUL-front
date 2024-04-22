@@ -4,7 +4,7 @@ import styled, { css } from 'styled-components';
 export const ItemBtn = styled.button<{ clicked?: boolean }>`
   border-radius: 10px;
   border: 0;
-  padding: 1vh 1.5vh;
+  padding: 1.2vh 1.5vh;
   margin: 1vh;
   font-size: 1.7vh;
   font-family: sans-serif;
@@ -92,7 +92,7 @@ export const ThemeItemContainer = styled.div`
 export const ThemeItemBtn = styled.button<{ clicked?: boolean }>`
   border-radius: 10px;
   border: 0;
-  padding: 1.5vh 1.5vh;
+  padding: 1.2vh 1.5vh;
   margin: 1vh;
   font-size: 1.6vh;
 
