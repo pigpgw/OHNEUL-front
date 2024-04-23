@@ -1,4 +1,4 @@
-import  { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import {
   ItemBtn,
   InfoText,
@@ -6,6 +6,8 @@ import {
   Title,
   ItemContainer,
   SubmitBtn,
+  InfoContent,
+  InfoContainer,
   MarginTag,
 } from 'Components/styles/Common';
 import { useQuery } from 'react-query';
@@ -39,11 +41,11 @@ function Mood() {
       }, 1000);
     }
   }, []);
-  
+
   const userSelectMood = mood
     .filter((item) => item.clicked === true)
     .map((item) => item.mood_id)[0];
-  
+
   useEffect(() => {
     if (availableMoods) setMood(availableMoods);
   }, [availableMoods]);
@@ -78,7 +80,10 @@ function Mood() {
   return (
     <>
       <Container>
-        <Title>오늘 당신은?</Title>
+        <InfoContainer>
+          <Title>오늘 당신은?</Title>
+          <InfoContent>오늘 기분을 선택해주세요</InfoContent>
+        </InfoContainer>
         <ItemContainer>
           {mood?.map((item) => (
             <ItemBtn

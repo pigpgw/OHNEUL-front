@@ -9,6 +9,8 @@ import {
   ThemeItemContainer,
   ThemeItemBtn,
   SubmitBtn,
+  InfoTitleContent,
+  InfoTitleContainer,
   MarginTag,
 } from '../Components/styles/Common';
 import { fetchGetThemes } from '../api/fetchTheme';
@@ -109,7 +111,10 @@ function Theme({ socket }: any) {
   return (
     <>
       <Container>
-        <Title>오늘 당신은?</Title>
+        <InfoTitleContainer>
+          <Title>오늘 당신은?</Title>
+          <InfoTitleContent>대화 주제를 선택해주세요</InfoTitleContent>
+        </InfoTitleContainer>
         <ThemeItemContainer>
           {theme?.map((item) => (
             <ThemeItemBtn

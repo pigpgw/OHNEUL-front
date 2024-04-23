@@ -169,7 +169,7 @@ const ModalBtn = styled.button`
 const ModalLayout = styled.div`
   box-sizing: border-box;
   width: 73%;
-  padding: 2px;
+  padding: 1vh;
 
   max-width: 450px;
   min-height: 100px;

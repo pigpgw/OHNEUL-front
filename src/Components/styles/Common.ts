@@ -3,47 +3,7 @@ import styled, { css } from 'styled-components';
 
 export const Container = styled.div`
   width: 100%;
-  height: 80vh;
-
-  /* iphone se */
-  @media screen and (width: 375px) and (height: 667px) {
-    height: 95vh;
-  }
-
-  /* galaxy s8  */
-  @media screen and (width: 360px) and (height: 740px) {
-    height: 93vh;
-  }
-
-  /* iphone 12por */
-  @media screen and (width: 390px) and (height: 844px) {
-    height: 83vh;
-  }
-
-  /* galaxy s20 ultra  */
-  @media screen and (width: 412px) and (height: 915px) {
-    height: 93vh;
-  }
-  /* iphone XR */
-  @media screen and (width: 414px) and (height: 896px) {
-    height: 95vh;
-  }
-
-  /* iphone 14pro */
-  @media screen and (width: 430px) and (height: 932px) {
-    height: 82vh;
-  }
-
-  /* ipad mini  */
-  @media screen and (width: 768px) and (height: 1024px) {
-    height: 90vh;
-  }
-
-  /* ipad air  */
-  @media screen and (width: 820px) and (height: 1180px) {
-    height: 90vh;
-  }
-
+  height: 95vh;
   display: flex;
   justify-content: space-around;
   align-items: center;
@@ -107,11 +67,20 @@ export const ThemeItemBtn = styled.button<{ clicked?: boolean }>`
     `}
 `;
 
+export const InfoTitleContainer = styled.div`
+  position: relative;
+  top: 7%;
+`;
+
+export const InfoContainer = styled.div`
+  position: relative;
+  top: 7%;
+`;
+
 export const Title = styled.p`
   font-size: 2.5vh;
   font-weight: 600;
-  position: relative;
-  top: 8%;
+  margin: 0;
   font-family: sans-serif;
 `;
 
@@ -138,4 +107,15 @@ export const SubmitBtn = styled.button`
 `;
 export const MarginTag = styled.div<{ margin?: number | null }>`
   margin: ${(props) => (props.margin !== null ? `${props.margin}px` : '0px')};
+`;
+
+export const InfoContent = styled.p`
+  font-size: 1.1vh;
+  color: lightgray;
+`;
+
+export const InfoTitleContent = styled.p`
+  font-size: 1.1vh;
+  color: lightgray;
+  position: relative;
 `;
