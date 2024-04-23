@@ -15,7 +15,10 @@ const BeatAnimation = keyframes`
     transform: scale(0.7) rotate(-45deg);
   }
   50% {
-    transform: scale(0.2) rotate(-45deg);
+    transform: scale(0.25) rotate(-45deg);
+  }
+  100% {
+    transform: scale(0.7) rotate(-45deg);
   }
 `;
 
@@ -28,8 +31,8 @@ const Heart = styled.div`
   left: 40%;
   top: 40%;
   background: pink;
-  width: 50px;
-  height: 50px;
+  width: 25px;
+  height: 25px;
   transform: rotate(-45deg);
   animation: ${BeatAnimation} 1s infinite;
 
@@ -38,18 +41,18 @@ const Heart = styled.div`
     content: '';
     position: absolute;
     background: pink;
-    width: 50px;
-    height: 50px;
+    width: 25px;
+    height: 25px;
     border-radius: 50%;
   }
 
   &::after {
-    left: 25px;
+    left: 12.5px;
     top: 0;
   }
 
   &::before {
     left: 0px;
-    top: -25px;
+    top: -12.5px;
   }
 `;
