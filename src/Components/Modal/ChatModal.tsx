@@ -3,6 +3,7 @@ import React, { ReactNode, MouseEvent } from 'react';
 import { createPortal } from 'react-dom';
 import styled from 'styled-components';
 import LoadingBox from 'Components/Common/LoadingBox/LoadingBox';
+import HeartBeat from './Heart';
 
 type ModalProps = {
   children: React.ReactNode;
@@ -125,6 +126,16 @@ export const ReviewModal = ({ children }: ReviewModalProps) => {
     <ModalWrapper>
       <ModalTitle>오늘 대화는 어떠셨나요?</ModalTitle>
       {children}
+    </ModalWrapper>
+  );
+};
+
+export const AgreeModal = () => {
+  return (
+    <ModalWrapper>
+      <ModalTitle>연장 성공!</ModalTitle>
+      <HeartBeat />
+      <ModalInfo>5초후 대화가 자동으로 시작됩니다.</ModalInfo>
     </ModalWrapper>
   );
 };

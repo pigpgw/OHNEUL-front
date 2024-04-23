@@ -11,6 +11,7 @@ import {
   InfoModal,
   ReportModal,
   ReviewModal,
+  AgreeModal,
 } from 'Components/Modal/ChatModal';
 import { useCoinQuery } from 'hooks/useCoinQuery';
 import { useNavigate } from 'react-router-dom';
@@ -35,7 +36,7 @@ function Chat({ socket }: any): JSX.Element {
   ]);
   const [msg, setMsg] = useState<string>('');
   const [consentModal, setConsentModal] = useState<boolean>(false);
-  const [remainingTime, setRemainingTime] = useState<number>(300);
+  const [remainingTime, setRemainingTime] = useState<number>(3);
   const [consent, setConsent] = useState<boolean>(false);
   const [consentWaitModal, setConsentWaitModal] = useState<boolean>(false);
   const [forExitModal, setForExitModal] = useState<boolean>(false);
@@ -51,6 +52,8 @@ function Chat({ socket }: any): JSX.Element {
 
   const [otherMood, setOtherMood] = useState<string>('');
 
+  const [agreeModal, setAgreeModal] = useState(false);
+
   useEffect(() => {
     if (!socket) return;
     const fetchOtherUserMood = async () => {
@@ -58,15 +61,14 @@ function Chat({ socket }: any): JSX.Element {
         const otherUserId = extractOtherUserId();
         const mood = await fetchGetOtherMood(otherUserId);
         setOtherMood(mood);
-        setMessageList((prev) =>
-          [...prev,
-            {
-              type: 'start',
-              msg: `상대방은 지금 ${mood}`,
-              id: '',
-            },
-          ],
-        );
+        setMessageList((prev) => [
+          ...prev,
+          {
+            type: 'start',
+            msg: `상대방은 지금 ${mood}`,
+            id: '',
+          },
+        ]);
       } catch (error) {
         console.error('상대방 기분 가져오기 실패', error);
       }
@@ -160,18 +162,24 @@ function Chat({ socket }: any): JSX.Element {
   useEffect(() => {
     function consentWaitCallback() {
       setConsentWaitModal(true);
+      setConsentModal(false);
     }
 
     function consentSuccessCallback() {
-      setConsentModal(false);
-      setConsent(true);
+      // setConsentModal(false);
+      // setConsent(true);
+      // setConsentWaitModal(false);
+      setAgreeModal(true);
       setConsentWaitModal(false);
     }
 
     function extendTimeCallback(extendedTime: number) {
+      setConsent(true);
+      setAgreeModal(false);
       clearInterval(intervalId);
       setRemainingTime(extendedTime);
       setAniTime(extendedTime);
+      setConsentModal(false);
     }
 
     socket.on('wait', consentWaitCallback);
@@ -312,6 +320,7 @@ function Chat({ socket }: any): JSX.Element {
           doReport={reportUser}
         />
       )}
+      {agreeModal && <AgreeModal />}
       {reviewModal && (
         <ReviewModal>
           <Rating socket={socket} />
