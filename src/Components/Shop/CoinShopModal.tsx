@@ -79,7 +79,7 @@ function CoinItem({ coins, price, onClick }: CoinItemProps) {
   return (
     <CoinItemCointainer onClick={onClick}>
       <Wrapper>
-        <CashIcon src={coin} alt="코인 이미지" loading='lazy'/>
+        <CashIcon src={coin} alt="코인 이미지" loading="lazy" />
         <CoinAmount>{coins}개</CoinAmount>
       </Wrapper>
       <CoinPrice>{price}원</CoinPrice>
@@ -89,16 +89,16 @@ function CoinItem({ coins, price, onClick }: CoinItemProps) {
 
 function CoinItemModal({ onClose, selectedCoin }: CoinModalProps) {
   if (!selectedCoin) return null;
-  const navigator = useNavigate()
+  const navigator = useNavigate();
   // const startPayment = () => navigator('/payment')
-  const startPayment = () => alert('서비스가 준비중입니다. ㅠㅠ')
+  const startPayment = () => alert('서비스가 준비중입니다. ㅠㅠ');
   return (
     <ModalWrapper>
       <ItemCancelBtn onClick={onClose}>X</ItemCancelBtn>
       {selectedCoin && (
         <>
           <FlexWrapper>
-            <CoinIcon src={coin} alt="" loading='lazy'/>
+            <CoinIcon src={coin} alt="" loading="lazy" />
             <ItemTitle>코인 {selectedCoin.coins}개</ItemTitle>
           </FlexWrapper>
           <SubmitBtn onClick={startPayment}>{selectedCoin.price}원</SubmitBtn>
@@ -139,9 +139,10 @@ const FlexWrapper = styled.div`
 `;
 
 const CoinShopContainer = styled.div`
-  position: relative;
+  position: absolute;
   z-index: 10;
   width: 90%;
+  top: 25%;
   bottom: 530px;
   height: 400px;
   background: #ffffff;

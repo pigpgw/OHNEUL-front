@@ -12,10 +12,10 @@ export default HeartBeat;
 
 const BeatAnimation = keyframes`
   0% {
-    transform: scale(1) rotate(-45deg);
+    transform: scale(0.7) rotate(-45deg);
   }
   50% {
-    transform: scale(0.5) rotate(-45deg);
+    transform: scale(0.2) rotate(-45deg);
   }
 `;
 
@@ -24,10 +24,9 @@ const Container = styled.div`
   padding: 1vh;
 `;
 
-
 const Heart = styled.div`
-  left: 50%;
-  top: 50%;
+  left: 40%;
+  top: 40%;
   background: pink;
   width: 50px;
   height: 50px;

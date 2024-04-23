@@ -16,16 +16,16 @@ function LoadingBox() {
 export default LoadingBox;
 
 const LoadingContainer = styled.div`
-  width: 10vh;
-  height: 10vh;
+  width: 9vh;
+  height: 9vh;
   display: flex;
   justify-content: center;
   align-items: center;
 `;
 
 const LodingWrapper = styled.div`
-  width: 50%;
-  height: 50%;
+  width: 40%;
+  height: 40%;
   animation-name: outline-wrapper;
   animation-duration: 5s;
   animation-iteration-count: infinite;

@@ -169,7 +169,7 @@ const ModalBtn = styled.button`
 const ModalLayout = styled.div`
   box-sizing: border-box;
   width: 73%;
-  padding: 20px;
+  padding: 2px;
 
   max-width: 450px;
   min-height: 100px;
@@ -186,7 +186,7 @@ const ModalLayout = styled.div`
 
   position: fixed;
   top: 45%;
-  left: 51%;
+  left: 50%;
   transform: translate(-50%, -50%);
 `;
 

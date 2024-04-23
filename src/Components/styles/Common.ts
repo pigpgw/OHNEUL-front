@@ -1,33 +1,8 @@
 /* eslint-disable import/prefer-default-export */
 import styled, { css } from 'styled-components';
 
-export const ItemBtn = styled.button<{ clicked?: boolean }>`
-  border-radius: 10px;
-  border: 0;
-  padding: 1.2vh 1.5vh;
-  margin: 1vh;
-  font-size: 1.7vh;
-  font-family: sans-serif;
-
-  background: white;
-  box-shadow: 1px 1px 1px rgba(41, 41, 41, 0.25);
-
-  ${({ clicked }) =>
-    clicked &&
-    css`
-      background: #0075ff;
-      box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-      color: white;
-    `}
-`;
-
-export const InfoText = styled.p`
-  font-size: 13px;
-  font-family: sans-serif;
-`;
-
 export const Container = styled.div`
-  width: 95%;
+  width: 100%;
   height: 80vh;
 
   /* iphone se */
@@ -74,7 +49,32 @@ export const Container = styled.div`
   align-items: center;
   flex-direction: column;
   /* height: 570px; */
-  max-width: 500px;
+  max-width: 700px;
+`;
+
+export const ItemBtn = styled.button<{ clicked?: boolean }>`
+  border-radius: 10px;
+  border: 0;
+  padding: 1.2vh 1.5vh;
+  margin: 1vh;
+  font-size: 1.7vh;
+  font-family: sans-serif;
+
+  background: white;
+  box-shadow: 1px 1px 1px rgba(41, 41, 41, 0.25);
+
+  ${({ clicked }) =>
+    clicked &&
+    css`
+      background: #0075ff;
+      box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+      color: white;
+    `}
+`;
+
+export const InfoText = styled.p`
+  font-size: 13px;
+  font-family: sans-serif;
 `;
 
 export const ThemeItemContainer = styled.div`
@@ -85,7 +85,6 @@ export const ThemeItemContainer = styled.div`
   align-items: center;
   flex-wrap: wrap;
   flex-direction: row;
-  max-width: 500px;
   margin: 40px 0 40px 0;
 `;
 

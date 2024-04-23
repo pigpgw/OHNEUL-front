@@ -64,13 +64,14 @@ const ChatMessageItemBox = styled.li`
   border-radius: 10px;
   display: inline-block;
   padding: 2px;
-  margin: 5px 1px;
   &.me {
     text-align: right;
+    margin: 5px 1px;
   }
   &.other {
     text-align: left;
     margin-left: 2px;
+    margin: 5px 1px;
   }
 `;
 
@@ -82,7 +83,7 @@ const ChatMessageContent = styled.div`
 
   &.me {
     color: white;
-    background: #FF7E95;
+    background: #ff7e95;
     border-top-left-radius: 8px;
     border-bottom-left-radius: 8px;
     border-bottom-right-radius: 8px;
@@ -93,7 +94,7 @@ const ChatMessageContent = styled.div`
   &.other {
     text-align: left;
     color: white;
-    background: #FF7E95;
+    background: #ff7e95;
     box-shadow: 2px 2px 0 0 lightgray;
     border-top-right-radius: 8px;
     border-bottom-left-radius: 8px;
@@ -101,13 +102,22 @@ const ChatMessageContent = styled.div`
 
     padding: 7px 10px 7px 10px;
   }
+
+  &.start {
+    font-size: 1.5vh;
+    color: lightgray;
+    margin: 0;
+    border: 0;
+    padding: 0;
+  }
+
   &.startChat {
     font-size: 12px;
     color: white;
     box-sizing: border-box;
     background-color: lightgray;
     border-radius: 20px;
-
+    margin: 0;
     padding: 5px 8px 5px 8px;
   }
 `;
