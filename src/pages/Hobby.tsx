@@ -1,21 +1,18 @@
 import { useEffect, useState } from 'react';
 import {
   ItemBtn,
-  InfoText,
   Container,
-  Title,
   ItemContainer,
   SubmitBtn,
-  InfoTitleContent,
-  InfoTitleContainer,
 } from 'Components/styles/Common';
 import { useNavigate } from 'react-router-dom';
 import { useQuery } from 'react-query';
+import InfoHeader from 'Components/Common/InfoHeader';
+import InfoFooter from 'Components/Common/InfoFooter';
 import useCheckHobbiesAndNavigate from 'hooks/useCheckHobbiesAndNavigateHook';
 import { extractUserId } from 'utils/extractCookie';
 import { useAddUserHobbyMutation } from '../hooks/useUserHobbyMutation';
 import { fetchGetHobbys } from '../api/fetchHobby';
-import InfoHeader from '../Components/Common/InfoHeader';
 
 interface Hobby {
   hobby_id: number;
@@ -76,9 +73,9 @@ function Hobby() {
   return (
     <Container>
       <InfoHeader
-          infoTitle="평소 당신은?"
-          infoContent="관심사를 선택해주세요"
-        />
+        infoTitle="평소 당신은?"
+        infoContent="관심사를 선택해주세요"
+      />
       <ItemContainer>
         {hobby.map((category) => (
           <ItemBtn
@@ -90,7 +87,7 @@ function Hobby() {
           </ItemBtn>
         ))}
       </ItemContainer>
-      <InfoText>최소 1개, 최대 3개만 선택 가능</InfoText>
+      <InfoFooter infoText="최소 1개, 최대 3개만 선택 가능" />
       <SubmitBtn onClick={handleSubmit}>선택 완료</SubmitBtn>
     </Container>
   );

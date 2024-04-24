@@ -1,7 +1,6 @@
 import { useEffect, useState } from 'react';
 import {
   ItemBtn,
-  InfoText,
   Container,
   ItemContainer,
   SubmitBtn,
@@ -10,7 +9,8 @@ import { useQuery } from 'react-query';
 import { fetchGetMood } from 'api/fetchMood';
 import { useNavigate } from 'react-router-dom';
 import { extractReward } from 'utils/extractCookie';
-import InfoHeader  from '../Components/Common/InfoHeader';
+import InfoHeader from 'Components/Common/InfoHeader';
+import InfoFooter from 'Components/Common/InfoFooter';
 import { useAddUserMoodMutation } from '../hooks/useUserMoodMutation';
 
 interface MoodTs {
@@ -77,7 +77,10 @@ function Mood() {
   return (
     <>
       <Container>
-        <InfoHeader infoTitle='오늘 당신은?' infoContent='오늘 기분을 선택해주세요'/>
+        <InfoHeader
+          infoTitle="오늘 당신은?"
+          infoContent="오늘 기분을 선택해주세요"
+        />
         <ItemContainer>
           {mood?.map((item) => (
             <ItemBtn
@@ -89,7 +92,7 @@ function Mood() {
             </ItemBtn>
           ))}
         </ItemContainer>
-        <InfoText>최대 1개만 선택 가능합니다.</InfoText>
+        <InfoFooter infoText="최대 1개만 선택 가능합니다." />
         <SubmitBtn onClick={handleSubmit}>선택 완료</SubmitBtn>
       </Container>
     </>

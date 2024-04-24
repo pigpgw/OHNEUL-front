@@ -2,18 +2,15 @@ import { useEffect, useMemo, useState } from 'react';
 import { extractUserId } from 'utils/extractCookie';
 import { useNavigate } from 'react-router-dom';
 import { useQuery } from 'react-query';
+import InfoHeader from 'Components/Common/InfoHeader';
+import InfoFooter from 'Components/Common/InfoFooter';
 import {
-  InfoText,
   Container,
-  Title,
   ItemContainer,
   ItemBtn,
   SubmitBtn,
-  InfoTitleContent,
-  InfoTitleContainer,
 } from '../Components/styles/Common';
 import { fetchGetThemes } from '../api/fetchTheme';
-import InfoHeader  from '../Components/Common/InfoHeader';
 import { WaitModal } from '../Components/Modal/ChatModal';
 
 interface Themes {
@@ -36,9 +33,9 @@ function Theme({ socket }: any) {
   const [wait, setWait] = useState<boolean>(false);
   const userSelectTheme: string = useMemo(() => {
     return theme
-    .filter((item) => item.clicked === true)
-    .map((item) => item.theme)[0];
-  },[theme])
+      .filter((item) => item.clicked === true)
+      .map((item) => item.theme)[0];
+  }, [theme]);
 
   useEffect(() => {
     if (availableThemes) setTheme(availableThemes);
@@ -113,7 +110,10 @@ function Theme({ socket }: any) {
   return (
     <>
       <Container>
-        <InfoHeader infoTitle='오늘 당신은?' infoContent='대화 주제를 선택해주세요'/>
+        <InfoHeader
+          infoTitle="오늘 당신은?"
+          infoContent="대화 주제를 선택해주세요"
+        />
         <ItemContainer>
           {theme?.map((item) => (
             <ItemBtn
@@ -126,7 +126,7 @@ function Theme({ socket }: any) {
           ))}
         </ItemContainer>
         {wait && <WaitModal onClose={onClose} />}
-        <InfoText>최대 1개만 선택 가능합니다.</InfoText>
+        <InfoFooter infoText="최대 1개만 선택 가능합니다." />
         <SubmitBtn disabled={wait} onClick={matchingcStart}>
           선택 완료
         </SubmitBtn>
