@@ -31,7 +31,7 @@ export const InfoTitleContent = styled.p`
 `;
 
 export const ItemContainer = styled.div`
-  width: 90%;
+  width: 100%;
   height: 30vh;
   display: flex;
   justify-content: center;
@@ -78,3 +78,4 @@ export const SubmitBtn = styled.button`
   font-size: 1.5vh;
   max-width: 500px;
 `;
+

@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 import { extractUserId } from 'utils/extractCookie';
 import { useNavigate } from 'react-router-dom';
 import { useQuery } from 'react-query';
@@ -33,9 +33,11 @@ function Theme({ socket }: any) {
 
   const [theme, setTheme] = useState<Themes[]>([]);
   const [wait, setWait] = useState<boolean>(false);
-  const userSelectTheme: string = theme
+  const userSelectTheme: string = useMemo(() => {
+    return theme
     .filter((item) => item.clicked === true)
     .map((item) => item.theme)[0];
+  },[theme])
 
   useEffect(() => {
     if (availableThemes) setTheme(availableThemes);

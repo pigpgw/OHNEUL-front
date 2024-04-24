@@ -12,13 +12,13 @@ export default HeartBeat;
 
 const BeatAnimation = keyframes`
   0% {
-    transform: scale(0.7) rotate(-45deg);
+    transform: scale(1) rotate(-45deg);
   }
   50% {
-    transform: scale(0.25) rotate(-45deg);
+    transform: scale(0.5) rotate(-45deg);
   }
   100% {
-    transform: scale(0.7) rotate(-45deg);
+    transform: scale(1) rotate(-45deg);
   }
 `;
 
