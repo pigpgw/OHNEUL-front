@@ -15,6 +15,7 @@ import useCheckHobbiesAndNavigate from 'hooks/useCheckHobbiesAndNavigateHook';
 import { extractUserId } from 'utils/extractCookie';
 import { useAddUserHobbyMutation } from '../hooks/useUserHobbyMutation';
 import { fetchGetHobbys } from '../api/fetchHobby';
+import InfoHeader from '../Components/Common/InfoHeader';
 
 interface Hobby {
   hobby_id: number;
@@ -74,10 +75,10 @@ function Hobby() {
 
   return (
     <Container>
-      <InfoTitleContainer>
-        <Title>평소 당신은?</Title>
-        <InfoTitleContent>관심사를 선택해주세요</InfoTitleContent>
-      </InfoTitleContainer>
+      <InfoHeader
+          infoTitle="평소 당신은?"
+          infoContent="관심사를 선택해주세요"
+        />
       <ItemContainer>
         {hobby.map((category) => (
           <ItemBtn

@@ -3,16 +3,14 @@ import {
   ItemBtn,
   InfoText,
   Container,
-  Title,
   ItemContainer,
   SubmitBtn,
-  InfoTitleContent,
-  InfoTitleContainer,
 } from 'Components/styles/Common';
 import { useQuery } from 'react-query';
 import { fetchGetMood } from 'api/fetchMood';
 import { useNavigate } from 'react-router-dom';
 import { extractReward } from 'utils/extractCookie';
+import InfoHeader  from '../Components/Common/InfoHeader';
 import { useAddUserMoodMutation } from '../hooks/useUserMoodMutation';
 
 interface MoodTs {
@@ -79,10 +77,7 @@ function Mood() {
   return (
     <>
       <Container>
-        <InfoTitleContainer>
-          <Title>오늘 당신은?</Title>
-          <InfoTitleContent>오늘 기분을 선택해주세요</InfoTitleContent>
-        </InfoTitleContainer>
+        <InfoHeader infoTitle='오늘 당신은?' infoContent='오늘 기분을 선택해주세요'/>
         <ItemContainer>
           {mood?.map((item) => (
             <ItemBtn

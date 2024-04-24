@@ -13,6 +13,7 @@ import {
   InfoTitleContainer,
 } from '../Components/styles/Common';
 import { fetchGetThemes } from '../api/fetchTheme';
+import InfoHeader  from '../Components/Common/InfoHeader';
 import { WaitModal } from '../Components/Modal/ChatModal';
 
 interface Themes {
@@ -112,10 +113,7 @@ function Theme({ socket }: any) {
   return (
     <>
       <Container>
-        <InfoTitleContainer>
-          <Title>오늘 당신은?</Title>
-          <InfoTitleContent>대화 주제를 선택해주세요</InfoTitleContent>
-        </InfoTitleContainer>
+        <InfoHeader infoTitle='오늘 당신은?' infoContent='대화 주제를 선택해주세요'/>
         <ItemContainer>
           {theme?.map((item) => (
             <ItemBtn

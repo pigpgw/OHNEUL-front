@@ -31,14 +31,13 @@ export const InfoTitleContent = styled.p`
 `;
 
 export const ItemContainer = styled.div`
-  width: 100%;
+  width:90%;
   height: 30vh;
   display: flex;
   justify-content: center;
   align-items: center;
   flex-wrap: wrap;
   flex-direction: row;
-  margin: 40px 0 40px 0;
   max-width: 700px;
 `;
 
