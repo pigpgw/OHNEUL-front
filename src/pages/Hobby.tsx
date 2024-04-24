@@ -6,8 +6,8 @@ import {
   Title,
   ItemContainer,
   SubmitBtn,
-  InfoContent,
-  MarginTag,
+  InfoTitleContent,
+  InfoTitleContainer,
 } from 'Components/styles/Common';
 import { useNavigate } from 'react-router-dom';
 import { useQuery } from 'react-query';
@@ -74,8 +74,10 @@ function Hobby() {
 
   return (
     <Container>
-      <Title>평소 당신은?</Title>
-      <InfoContent>관심사를 선택해주세요</InfoContent>
+      <InfoTitleContainer>
+        <Title>평소 당신은?</Title>
+        <InfoTitleContent>관심사를 선택해주세요</InfoTitleContent>
+      </InfoTitleContainer>
       <ItemContainer>
         {hobby.map((category) => (
           <ItemBtn

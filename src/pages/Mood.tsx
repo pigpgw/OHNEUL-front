@@ -6,9 +6,8 @@ import {
   Title,
   ItemContainer,
   SubmitBtn,
-  InfoContent,
-  InfoContainer,
-  MarginTag,
+  InfoTitleContent,
+  InfoTitleContainer,
 } from 'Components/styles/Common';
 import { useQuery } from 'react-query';
 import { fetchGetMood } from 'api/fetchMood';
@@ -80,10 +79,10 @@ function Mood() {
   return (
     <>
       <Container>
-        <InfoContainer>
+        <InfoTitleContainer>
           <Title>오늘 당신은?</Title>
-          <InfoContent>오늘 기분을 선택해주세요</InfoContent>
-        </InfoContainer>
+          <InfoTitleContent>오늘 기분을 선택해주세요</InfoTitleContent>
+        </InfoTitleContainer>
         <ItemContainer>
           {mood?.map((item) => (
             <ItemBtn

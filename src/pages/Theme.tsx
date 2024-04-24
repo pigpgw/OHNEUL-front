@@ -6,12 +6,11 @@ import {
   InfoText,
   Container,
   Title,
-  ThemeItemContainer,
-  ThemeItemBtn,
+  ItemContainer,
+  ItemBtn,
   SubmitBtn,
   InfoTitleContent,
   InfoTitleContainer,
-  MarginTag,
 } from '../Components/styles/Common';
 import { fetchGetThemes } from '../api/fetchTheme';
 import { WaitModal } from '../Components/Modal/ChatModal';
@@ -115,17 +114,17 @@ function Theme({ socket }: any) {
           <Title>오늘 당신은?</Title>
           <InfoTitleContent>대화 주제를 선택해주세요</InfoTitleContent>
         </InfoTitleContainer>
-        <ThemeItemContainer>
+        <ItemContainer>
           {theme?.map((item) => (
-            <ThemeItemBtn
+            <ItemBtn
               key={item.theme_id}
               onClick={() => clickBtn(item.theme_id)}
               clicked={item.clicked}
             >
               {item.theme}
-            </ThemeItemBtn>
+            </ItemBtn>
           ))}
-        </ThemeItemContainer>
+        </ItemContainer>
         {wait && <WaitModal onClose={onClose} />}
         <InfoText>최대 1개만 선택 가능합니다.</InfoText>
         <SubmitBtn disabled={wait} onClick={matchingcStart}>
