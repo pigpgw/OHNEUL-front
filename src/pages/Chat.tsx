@@ -16,6 +16,7 @@ import {
 import { useCoinQuery } from 'hooks/useCoinQuery';
 import { useNavigate } from 'react-router-dom';
 import Rating from 'Components/Chat/Rating';
+import { fecthGetOtherHobby } from 'api/fetchGetOneUserHobby';
 
 interface Message {
   msg: string;
@@ -60,9 +61,15 @@ function Chat({ socket }: any): JSX.Element {
       try {
         const otherUserId = extractOtherUserId();
         const mood = await fetchGetOtherMood(otherUserId);
+        const hobby = await fecthGetOtherHobby(otherUserId);
         setOtherMood(mood);
         setMessageList((prev) => [
           ...prev,
+          {
+            type: 'start',
+            msg: `상대방은 ${hobby.join(', ')}에 관심있어요`,
+            id: '',
+          },
           {
             type: 'start',
             msg: `상대방은 지금 ${mood}`,
