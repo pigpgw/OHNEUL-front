@@ -1,3 +1,4 @@
+import React from 'react';
 import { useEffect, useRef } from 'react';
 import styled from 'styled-components';
 
@@ -24,7 +25,9 @@ function ChatMessages({ messageList }: MessageListProps): JSX.Element {
       block: 'end',
     });
   };
-
+  useEffect(() => {
+    console.log("messageList 렌더링됨")
+  })
   return (
     <ChatMessagesContainer>
       <ChatMessagesWrapper>
@@ -39,7 +42,7 @@ function ChatMessages({ messageList }: MessageListProps): JSX.Element {
   );
 }
 
-export default ChatMessages;
+export default React.memo(ChatMessages);
 
 const ChatMessagesContainer = styled.div`
   width: 100%;

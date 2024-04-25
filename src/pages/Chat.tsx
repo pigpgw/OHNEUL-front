@@ -1,5 +1,5 @@
 /* eslint-disable no-useless-return */
-import { useEffect, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import ChatHeader from 'Components/Chat/ChatHeader';
 import ChatMessages from 'Components/Chat/ChatMessages';
 import ChatInputForm from 'Components/Chat/ChatInputForm';
@@ -119,10 +119,13 @@ function Chat({ socket }: any): JSX.Element {
   const minutes = Math.floor(remainingTime / 60);
   const seconds = remainingTime % 60;
 
-  const msgChangeHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
-    e.preventDefault();
-    setMsg(e.target.value);
-  };
+  const msgChangeHandler = useCallback(
+    (e: React.ChangeEvent<HTMLInputElement>) => {
+      e.preventDefault();
+      setMsg(e.target.value);
+    },
+    [],
+  );
 
   const msgSubmitHandler = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
