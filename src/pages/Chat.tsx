@@ -292,7 +292,6 @@ function Chat({ socket }: any): JSX.Element {
         onForExitModal={onForExitModal}
         aniTime={aniTime}
       ></ChatHeader>
-      {/* <ChatInfo /> */}
       {consentModal && !exitModal && (
         <ConsentModal onAgree={onAgree} onRefuse={onRefuse}></ConsentModal>
       )}
@@ -314,9 +313,9 @@ function Chat({ socket }: any): JSX.Element {
           reportReasons={[
             '성적 발언',
             '혐오발언',
-            '패드립',
-            '부적절한 발언',
+            '불법 정보',
             '도배',
+            '개인정보노출 및 강요',
           ]}
           onClick={selectReportReason}
           onClose={offReportModal}
