@@ -1,4 +1,5 @@
 import { ItemBtn, ItemContainer } from 'Components/styles/Common';
+import React from 'react';
 
 interface Mood {
   mood_id: number;
@@ -63,4 +64,4 @@ const ButtonList = ({ items, onClick }: ButtonListProps) => {
   );
 };
 
-export default ButtonList;
+export default React.memo(ButtonList);
