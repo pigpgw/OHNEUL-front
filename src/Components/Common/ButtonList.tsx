@@ -1,10 +1,10 @@
 import { ItemBtn, ItemContainer } from 'Components/styles/Common';
 
-type Mood = {
+interface Mood {
   mood_id: number;
   mood: string;
   clicked?: boolean;
-};
+}
 
 interface Hobby {
   hobby_id: number;

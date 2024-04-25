@@ -59,7 +59,7 @@ function Success() {
             alt="완료 이미지"
             width="120"
             height="120"
-            loading='lazy'
+            loading="lazy"
           />
           <CheckPaymentTitle>결제를 완료했어요</CheckPaymentTitle>
           <CheckPaymentContentWrapper>
@@ -80,7 +80,7 @@ function Success() {
             <img
               src="https://static.toss.im/lotties/loading-spot-apng.png"
               alt=""
-              loading='lazy'
+              loading="lazy"
             />
           </Wrapper>
         </Wrapper>

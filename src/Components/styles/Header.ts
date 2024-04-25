@@ -56,7 +56,7 @@ export const CashAmount = styled.p`
   font-size: 2vh;
   font-weight: 800;
   font-family: sans-serif;
-  margin: 1.2vh 0 0 0 ;
+  margin: 1.2vh 0 0 0;
 `;
 export const IconPerson = styled(IoPersonOutline)`
   font-size: 28px;

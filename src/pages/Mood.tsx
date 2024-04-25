@@ -44,7 +44,7 @@ function Mood() {
     .filter((item) => item.clicked === true)
     .map((item) => item.mood_id)[0];
 
-  const seletedMood = useMemo(() => userSelectMood,[mood])
+  const seletedMood = useMemo(() => userSelectMood, [mood]);
 
   useEffect(() => {
     if (availableMoods) setMood(availableMoods);
@@ -70,7 +70,7 @@ function Mood() {
       });
       navigate('/theme');
     } else {
-      alert('1개 이상 골라주세요!')
+      alert('1개 이상 골라주세요!');
     }
   };
 
@@ -84,7 +84,7 @@ function Mood() {
           infoTitle="오늘 당신은?"
           infoContent="오늘 기분을 선택해주세요"
         />
-        <ButtonList items={mood} onClick={clickBtn}/>
+        <ButtonList items={mood} onClick={clickBtn} />
         <InfoFooter infoText="최대 1개만 선택 가능합니다." />
         <SubmitBtn onClick={handleSubmit}>선택 완료</SubmitBtn>
       </Container>

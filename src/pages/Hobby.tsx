@@ -77,7 +77,7 @@ function Hobby() {
         infoTitle="평소 당신은?"
         infoContent="관심사를 선택해주세요"
       />
-      <ButtonList items={hobby} onClick={clickBtn}/>
+      <ButtonList items={hobby} onClick={clickBtn} />
       <ItemContainer>
         {hobby.map((category) => (
           <ItemBtn

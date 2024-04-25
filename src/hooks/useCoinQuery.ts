@@ -13,9 +13,10 @@ interface CoinQueryClient {
   isSuccess: boolean;
 }
 
-
 const fetchUser = async (userId: string) => {
-  const response = await axios.get(`${process.env.REACT_APP_BASE_URL}/users/${userId}`);
+  const response = await axios.get(
+    `${process.env.REACT_APP_BASE_URL}/users/${userId}`,
+  );
   return response.data;
 };
 

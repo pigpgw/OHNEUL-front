@@ -5,12 +5,7 @@ import { useQuery } from 'react-query';
 import InfoHeader from 'Components/Common/InfoHeader';
 import ButtonList from 'Components/Common/ButtonList';
 import InfoFooter from 'Components/Common/InfoFooter';
-import {
-  Container,
-  ItemContainer,
-  ItemBtn,
-  SubmitBtn,
-} from '../Components/styles/Common';
+import { Container, SubmitBtn } from '../Components/styles/Common';
 import { fetchGetThemes } from '../api/fetchTheme';
 import { WaitModal } from '../Components/Modal/ChatModal';
 
@@ -62,7 +57,6 @@ function Theme({ socket }: any) {
         userSelectTheme,
       };
       socket.emit('selectTheme', data);
-      console.log('내가 매칭 선택시 서버에 보낸 나의 정보', data);
     }
   };
 
@@ -100,7 +94,6 @@ function Theme({ socket }: any) {
 
   const onClose = (e: React.MouseEvent<HTMLButtonElement>): void => {
     e.stopPropagation();
-    // console.log('상대 찾기 취소버튼', wait);
     socket.emit('userExit');
     setWait(false);
   };

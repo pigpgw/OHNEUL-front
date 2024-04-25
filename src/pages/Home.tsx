@@ -3,7 +3,7 @@ import { Outlet } from 'react-router-dom';
 import CoinShopModal from 'Components/Shop/CoinShopModal';
 import Header from 'Components/Common/Header/Header';
 
-import './css.css'
+import './css.css';
 
 function Home() {
   const [showCoinSopModal, setShowCoinSopModal] = useState<boolean>(false);
@@ -15,10 +15,14 @@ function Home() {
   return (
     <>
       <Header onCashIconClick={handleCashIconClick} />
-      <div className="outlet-container"> {/* 여기에 여백을 추가 */}
+      <div className="outlet-container">
+        {' '}
+        {/* 여기에 여백을 추가 */}
         <Outlet />
       </div>
-      {showCoinSopModal && <CoinShopModal onCashIconClick={handleCashIconClick}/>}
+      {showCoinSopModal && (
+        <CoinShopModal onCashIconClick={handleCashIconClick} />
+      )}
     </>
   );
 }

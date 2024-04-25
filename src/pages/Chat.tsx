@@ -1,6 +1,5 @@
 /* eslint-disable no-useless-return */
 import { useEffect, useState } from 'react';
-import Timer from 'Components/Chat/Timer';
 import ChatHeader from 'Components/Chat/ChatHeader';
 import ChatMessages from 'Components/Chat/ChatMessages';
 import ChatInputForm from 'Components/Chat/ChatInputForm';
@@ -229,9 +228,7 @@ function Chat({ socket }: any): JSX.Element {
   const navigate = useNavigate();
 
   const goThemePage = () => {
-    console.log('쿠키 초기화 이전 cookie 확인', document.cookie);
     document.cookie = 'other=';
-    console.log('방 나나고 쿠키 삭제', document.cookie);
     navigate('/theme');
     socket.emit('userExit');
   };

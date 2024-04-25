@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from 'react';
-import { loadPaymentWidget} from '@tosspayments/payment-widget-sdk';
+import { loadPaymentWidget } from '@tosspayments/payment-widget-sdk';
 import styled from 'styled-components';
 
 type PaymentWidget = {
@@ -11,12 +11,11 @@ type PaymentWidget = {
 type PaymentInfo = {
   orderId: string;
   orderName: string;
-  coin:number,
+  coin: number;
   amount: number;
   successUrl: string;
   failUrl: string;
 };
-
 
 function Checkout() {
   const clientKey = process.env.REACT_APP_TOSS_PAYMENTS_CLIENT_KEY as string;
@@ -24,8 +23,7 @@ function Checkout() {
   const paymentMethodsWidgetRef = useRef<any>(null);
   const agreementWidgetRef = useRef<any>(null);
   const [price, setPrice] = useState<number>(500);
-  const [coin, setCoin] = useState<number>(500)
-  //   const clientKey = 'test_ck_vZnjEJeQVxK4P0RDgevd3PmOoBN0';
+  const [coin, setCoin] = useState<number>(500);
   const customerKey = '4a394e47-64a1-44de-91c2-6bcd30d72c57'; // 내 상점에서 고객을 구분하기 위해 발급한 고객의 고유 ID
   const generateRandomString = (): string => {
     return Math.random().toString(36).substr(2, 10);
