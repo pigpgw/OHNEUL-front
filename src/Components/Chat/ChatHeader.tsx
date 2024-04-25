@@ -1,24 +1,18 @@
-import { useEffect, useState } from 'react';
-import { useCoinQuery } from 'hooks/useCoinQuery';
-import { extractUserId } from 'utils/extractCookie';
 import Coin from 'Components/Common/Header/Coin';
+import Exit from 'Components/Common/Header/Exit';
 import {
   HeaderContainer,
   LogoContainer,
   IconExit,
   InfoContainer,
   TimerContainer,
-  CashAmount,
-  CashIcon,
-  CashContainer,
   IconReport,
 } from '../styles/Header';
+
 import HeaderTimerLine from './HeaderLineTimer';
 import Timer from './Timer';
 
-
 interface ChatHeaderProps {
-  socket?: void;
   minutes: number;
   seconds: number;
   aniTime: number;
@@ -40,9 +34,7 @@ function ChatHeader({
   return (
     <>
       <HeaderContainer>
-        <LogoContainer>
-          <IconExit onClick={onForExitModal} />
-        </LogoContainer>
+        <Exit onForExitModal={onForExitModal} />
         <TimerContainer>
           <Timer minutes={minutes} seconds={seconds} />
         </TimerContainer>

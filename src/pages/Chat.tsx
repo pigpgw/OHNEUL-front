@@ -83,9 +83,9 @@ function Chat({ socket }: any): JSX.Element {
     fetchOtherUserMood();
   }, [socket]);
 
-  function onForExitModal() {
+  const onForExitModal = useCallback(() => {
     setForExitModal(true);
-  }
+  }, []);
   function offForExitModal() {
     setForExitModal(false);
   }
@@ -119,10 +119,13 @@ function Chat({ socket }: any): JSX.Element {
   const minutes = Math.floor(remainingTime / 60);
   const seconds = remainingTime % 60;
 
-  const msgChangeHandler = useCallback((e: React.ChangeEvent<HTMLInputElement>) => {
-    e.preventDefault();
-    setMsg(e.target.value);
-  },[])
+  const msgChangeHandler = useCallback(
+    (e: React.ChangeEvent<HTMLInputElement>) => {
+      e.preventDefault();
+      setMsg(e.target.value);
+    },
+    [],
+  );
 
   const msgSubmitHandler = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
