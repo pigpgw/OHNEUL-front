@@ -78,17 +78,6 @@ function Hobby() {
         infoContent="관심사를 선택해주세요"
       />
       <ButtonList items={hobby} onClick={clickBtn} />
-      <ItemContainer>
-        {hobby.map((category) => (
-          <ItemBtn
-            key={category.hobby_id}
-            clicked={category.clicked}
-            onClick={() => clickBtn(category.hobby_id)}
-          >
-            {category.hobby}
-          </ItemBtn>
-        ))}
-      </ItemContainer>
       <InfoFooter infoText="최소 1개, 최대 3개만 선택 가능" />
       <SubmitBtn onClick={handleSubmit}>선택 완료</SubmitBtn>
     </Container>

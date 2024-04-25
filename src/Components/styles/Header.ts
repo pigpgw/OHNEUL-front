@@ -1,5 +1,4 @@
 import styled from 'styled-components';
-import { IoPersonOutline } from '@react-icons/all-files/io5/IoPersonOutline';
 import { GiExitDoor } from '@react-icons/all-files/gi/GiExitDoor';
 import { RiAlarmWarningFill } from '@react-icons/all-files/ri/RiAlarmWarningFill';
 
@@ -57,11 +56,6 @@ export const CashAmount = styled.p`
   font-weight: 800;
   font-family: sans-serif;
   margin: 1.2vh 0 0 0;
-`;
-export const IconPerson = styled(IoPersonOutline)`
-  font-size: 28px;
-  margin: 2.5vh 10px 5px 10px;
-  color: gray;
 `;
 
 export const IconExit = styled(GiExitDoor)`

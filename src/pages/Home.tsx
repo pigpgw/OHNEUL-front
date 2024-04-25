@@ -1,4 +1,4 @@
-import { useCallback, useState } from 'react';
+import { useCallback, useMemo, useState } from 'react';
 import { Outlet } from 'react-router-dom';
 import CoinShopModal from 'Components/Shop/CoinShopModal';
 import Header from 'Components/Common/Header/Header';
@@ -12,9 +12,13 @@ function Home() {
     setShowCoinSopModal(!showCoinSopModal);
   },[showCoinSopModal]);
 
+  const MemoizedHeader = useMemo(() => (
+    <Header onCashIconClick={handleCashIconClick} />
+  ), [handleCashIconClick]);
+
   return (
     <>
-      <Header onCashIconClick={handleCashIconClick} />
+      {MemoizedHeader}
       <div className="outlet-container">
         <Outlet />
       </div>
