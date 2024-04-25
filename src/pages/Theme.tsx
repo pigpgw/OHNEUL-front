@@ -3,6 +3,7 @@ import { extractUserId } from 'utils/extractCookie';
 import { useNavigate } from 'react-router-dom';
 import { useQuery } from 'react-query';
 import InfoHeader from 'Components/Common/InfoHeader';
+import ButtonList from 'Components/Common/ButtonList';
 import InfoFooter from 'Components/Common/InfoFooter';
 import {
   Container,
@@ -114,17 +115,7 @@ function Theme({ socket }: any) {
           infoTitle="오늘 당신은?"
           infoContent="대화 주제를 선택해주세요"
         />
-        <ItemContainer>
-          {theme?.map((item) => (
-            <ItemBtn
-              key={item.theme_id}
-              onClick={() => clickBtn(item.theme_id)}
-              clicked={item.clicked}
-            >
-              {item.theme}
-            </ItemBtn>
-          ))}
-        </ItemContainer>
+        <ButtonList items={theme} onClick={clickBtn} />
         {wait && <WaitModal onClose={onClose} />}
         <InfoFooter infoText="최대 1개만 선택 가능합니다." />
         <SubmitBtn disabled={wait} onClick={matchingcStart}>

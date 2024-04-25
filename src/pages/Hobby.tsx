@@ -8,6 +8,7 @@ import {
 import { useNavigate } from 'react-router-dom';
 import { useQuery } from 'react-query';
 import InfoHeader from 'Components/Common/InfoHeader';
+import ButtonList from 'Components/Common/ButtonList';
 import InfoFooter from 'Components/Common/InfoFooter';
 import useCheckHobbiesAndNavigate from 'hooks/useCheckHobbiesAndNavigateHook';
 import { extractUserId } from 'utils/extractCookie';
@@ -76,6 +77,7 @@ function Hobby() {
         infoTitle="평소 당신은?"
         infoContent="관심사를 선택해주세요"
       />
+      <ButtonList items={hobby} onClick={clickBtn}/>
       <ItemContainer>
         {hobby.map((category) => (
           <ItemBtn

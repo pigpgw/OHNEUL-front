@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 import {
   ItemBtn,
   Container,
@@ -10,6 +10,7 @@ import { fetchGetMood } from 'api/fetchMood';
 import { useNavigate } from 'react-router-dom';
 import { extractReward } from 'utils/extractCookie';
 import InfoHeader from 'Components/Common/InfoHeader';
+import ButtonList from 'Components/Common/ButtonList';
 import InfoFooter from 'Components/Common/InfoFooter';
 import { useAddUserMoodMutation } from '../hooks/useUserMoodMutation';
 
@@ -43,6 +44,8 @@ function Mood() {
     .filter((item) => item.clicked === true)
     .map((item) => item.mood_id)[0];
 
+  const seletedMood = useMemo(() => userSelectMood,[mood])
+
   useEffect(() => {
     if (availableMoods) setMood(availableMoods);
   }, [availableMoods]);
@@ -61,13 +64,13 @@ function Mood() {
   const navigate = useNavigate();
 
   const handleSubmit = () => {
-    if (userSelectMood !== null) {
+    if (seletedMood !== null) {
       addUserMood({
-        mood_id: userSelectMood,
+        mood_id: seletedMood,
       });
       navigate('/theme');
     } else {
-      console.log('Please select a mood before submitting.');
+      alert('1개 이상 골라주세요!')
     }
   };
 
@@ -81,17 +84,7 @@ function Mood() {
           infoTitle="오늘 당신은?"
           infoContent="오늘 기분을 선택해주세요"
         />
-        <ItemContainer>
-          {mood?.map((item) => (
-            <ItemBtn
-              key={item.mood_id}
-              onClick={() => clickBtn(item.mood_id)}
-              clicked={item.clicked}
-            >
-              {item.mood}
-            </ItemBtn>
-          ))}
-        </ItemContainer>
+        <ButtonList items={mood} onClick={clickBtn}/>
         <InfoFooter infoText="최대 1개만 선택 가능합니다." />
         <SubmitBtn onClick={handleSubmit}>선택 완료</SubmitBtn>
       </Container>
