@@ -1,5 +1,4 @@
-import React from 'react';
-import { useEffect, useRef } from 'react';
+import React, { useEffect, useRef } from 'react';
 import styled from 'styled-components';
 
 interface Message {
@@ -25,9 +24,7 @@ function ChatMessages({ messageList }: MessageListProps): JSX.Element {
       block: 'end',
     });
   };
-  useEffect(() => {
-    console.log("messageList 렌더링됨")
-  })
+
   return (
     <ChatMessagesContainer>
       <ChatMessagesWrapper>

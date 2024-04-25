@@ -119,13 +119,10 @@ function Chat({ socket }: any): JSX.Element {
   const minutes = Math.floor(remainingTime / 60);
   const seconds = remainingTime % 60;
 
-  const msgChangeHandler = useCallback(
-    (e: React.ChangeEvent<HTMLInputElement>) => {
-      e.preventDefault();
-      setMsg(e.target.value);
-    },
-    [],
-  );
+  const msgChangeHandler = useCallback((e: React.ChangeEvent<HTMLInputElement>) => {
+    e.preventDefault();
+    setMsg(e.target.value);
+  },[])
 
   const msgSubmitHandler = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();

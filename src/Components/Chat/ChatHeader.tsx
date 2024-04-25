@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import { useCoinQuery } from 'hooks/useCoinQuery';
 import { extractUserId } from 'utils/extractCookie';
+import Coin from 'Components/Common/Header/Coin';
 import {
   HeaderContainer,
   LogoContainer,
@@ -14,6 +15,7 @@ import {
 } from '../styles/Header';
 import HeaderTimerLine from './HeaderLineTimer';
 import Timer from './Timer';
+
 
 interface ChatHeaderProps {
   socket?: void;
@@ -33,12 +35,7 @@ function ChatHeader({
   seconds,
   aniTime,
 }: ChatHeaderProps) {
-  const userId = extractUserId();
-  const { isCoinLoading, isCoinError, userCoinState } = useCoinQuery(userId);
   const time: number = minutes * 60 + seconds;
-
-  if (isCoinLoading) return <div>로딩중</div>;
-  if (isCoinError) return <div>에러 발생</div>;
 
   return (
     <>
@@ -50,10 +47,7 @@ function ChatHeader({
           <Timer minutes={minutes} seconds={seconds} />
         </TimerContainer>
         <InfoContainer>
-          <CashContainer>
-            <CashIcon />
-            <CashAmount>{userCoinState}</CashAmount>
-          </CashContainer>
+          <Coin />
           <IconReport onClick={reportIconClick} />
         </InfoContainer>
       </HeaderContainer>

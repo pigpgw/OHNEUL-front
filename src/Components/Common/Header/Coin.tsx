@@ -4,7 +4,7 @@ import coin from '../../../assets/images/coin.png';
 import { CashAmount, CashIcon, CashContainer } from '../../styles/Header';
 
 type CoinProps = {
-    onClick: () => void;
+    onClick?: () => void;
 };
 
 function Coin({ onClick }: CoinProps) {
