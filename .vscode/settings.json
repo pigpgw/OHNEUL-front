@@ -1,3 +1,7 @@
 {
+<<<<<<< HEAD
   "liveServer.settings.port": 5501
+=======
+  "liveshare.accessibility.accessibilityFeaturesEnabled": "off"
+>>>>>>> feature/login
 }

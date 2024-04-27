@@ -6,10 +6,18 @@ export const Container = styled.div`
   width: 70%;
   min-width: 300px;
 `;
-export const SocialContainer = styled.div``;
+export const SocialContainer = styled.div`
+  position: relative;
+`;
 export const InterestSection = styled.div`
   margin-top: 10px;
-  margin-bottom: 20px;
+  margin-bottom: 10px;
+  text-align: left;
+  display: flex;
+`;
+
+export const MyMoodSection = styled.div`
+  margin-top: 10px;
   text-align: left;
   display: flex;
 `;
@@ -28,7 +36,7 @@ export const Title = styled.div`
 `;
 
 export const TabSection = styled.div`
-  margin-top: 30px;
+  margin-top: 10px;
   width: 50%;
   min-width: 370px;
   margin: 10px 0 0 0 auto;
@@ -60,6 +68,9 @@ export const AuthContainer = styled.div`
 `;
 export const LogoutCont = styled.div`
   margin-right: 30px;
+`;
+export const AdminCont = styled.div`
+  margin-right: 10px;
 `;
 
 export const WithDrawalCont = styled.div`

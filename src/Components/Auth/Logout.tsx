@@ -2,7 +2,7 @@ import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { logout, clearAuth } from 'stores/slices/userSlice';
-import axios from 'axios';
+
 import meltedCookie from 'utils/meltedCookie';
 import styled from 'styled-components';
 
@@ -33,55 +33,58 @@ const Logout: React.FC = () => {
   useEffect(() => {
     if (!user.isLogin) {
       navigate('/');
-      console.log(user.isLogin, 'handle끝2');
     }
   }, [user.isLogin, navigate]);
 
-  const handleLogOut = async () => {
-    const [userId, token, flatform] = meltedCookie();
-    console.log(flatform);
-    if (flatform === 'naver') {
-      try {
-        const response = await axios.post(
-          `${process.env.REACT_APP_BASE_URL}/logout/naver`,
-        );
-        console.log(response.data);
-        if (response.status === 200) {
-          console.log('로그아웃');
-          dispatch(clearAuth());
-          dispatch(logout());
-          deleteCookie('user_id');
-          deleteCookie('refreshToken');
-          deleteCookie('provider');
-          deleteCookie('reward');
-          navigate('/');
-        } else {
-          console.log('실패');
-        }
-      } catch (error) {
-        console.error('로그아웃', error);
-      }
-    } else if (flatform === 'kakao') {
-      try {
-        const response = await axios.post(
-          `${process.env.REACT_APP_BASE_URL}/logout/kakao`,
-        );
-        console.log(response.data);
-        if (response.status === 200) {
-          console.log('로그아웃');
-          dispatch(clearAuth());
-          dispatch(logout());
-          deleteCookie('user_id');
-          deleteCookie('refreshToken');
-          deleteCookie('provider');
-          navigate('/');
-        } else {
-          console.log('실패');
-        }
-      } catch (error) {
-        console.error('로그아웃', error);
-      }
-    }
+  const handleLogOut = () => {
+    const [flatform, token, rewardCoin, userId] = meltedCookie();
+    // if (flatform === 'naver') {
+    // try {
+    // const response = await axios.post(
+    //   `${process.env.REACT_APP_BASE_URL}/logout/naver`,
+    // );
+    // console.log(response.data);
+    // if (response.status === 200) {
+    console.log(`${flatform}-로그아웃`);
+    dispatch(clearAuth());
+    dispatch(logout());
+    deleteCookie('user_id');
+    deleteCookie('refreshToken');
+    deleteCookie('provider');
+    deleteCookie('reward');
+    deleteCookie('admin');
+    navigate('/');
+    // } else {
+    // console.log('네이버-실패');
+    // }
+    // } catch (error) {
+    //   console.error('네이버-로그아웃', error);
+    //   throw error;
+    // }
+    // } else if (flatform === 'kakao') {
+    // try {
+    // const response = await axios.post(
+    //   `${process.env.REACT_APP_BASE_URL}/logout/kakao`,
+    // );
+    // console.log(response.data);
+    // if (response.status === 200) {
+    // console.log('카카오-로그아웃');
+    // dispatch(clearAuth());
+    // dispatch(logout());
+    // deleteCookie('user_id');
+    // deleteCookie('refreshToken');
+    // deleteCookie('provider');
+    // deleteCookie('reward');
+    // deleteCookie('admin');
+    // navigate('/');
+    // } else {
+    //   console.log('카카오-실패');
+    // }
+    // } catch (error) {
+    //   console.error('카카오-로그아웃', error);
+    //   throw error;
+    // }
+    // }
   };
   return (
     <div>
