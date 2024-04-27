@@ -1,17 +1,12 @@
 import React, { useEffect, useState } from 'react';
 import {
   ItemBtn,
-  InfoText,
   Container,
-  Title,
   ItemContainer,
-  SubmitBtn,
-  MarginTag,
+  SubmitBtn
 } from 'Components/styles/Common';
 import { useQuery } from 'react-query';
 import { fetchGetMood } from 'api/fetchMood';
-import { useNavigate } from 'react-router-dom';
-import { extractReward } from 'utils/extractCookie';
 import { useAddUserMoodMutation } from 'hooks/useUserMoodMutation';
 
 interface MoodTs {
@@ -31,21 +26,17 @@ function Mood() {
   });
 
   const [mood, setMood] = useState<MoodTs[]>([]);
-  useEffect(() => {
-    const data = extractReward();
-    if (data !== 'F') {
-      setTimeout(() => {
-        alert('매일 접속 보상이 지급되었습니다');
-      }, 1000);
-    }
-  }, []);
   const userSelectMood = mood
     .filter((item) => item.clicked === true)
     .map((item) => item.mood_id)[0];
 
   useEffect(() => {
     if (availableMoods) setMood(availableMoods);
+
+    console.log(availableMoods)
+    console.log(mood)
   }, [availableMoods]);
+
 
   const clickBtn = (id: number) => {
     setMood((prev) =>
@@ -58,7 +49,6 @@ function Mood() {
   };
 
   const { mutate: addUserMood } = useAddUserMoodMutation();
-  const navigate = useNavigate();
 
   const handleSubmit = () => {
     if (userSelectMood) {
@@ -66,7 +56,7 @@ function Mood() {
         mood_id: userSelectMood,
       });
     } else {
-      console.log('Please select a mood before submitting.');
+      alert('적어도 하나의 기분을 선택해주세요')
     }
   };
 
@@ -76,7 +66,6 @@ function Mood() {
   return (
     <>
       <Container>
-        <Title>오늘 당신은?</Title>
         <ItemContainer>
           {mood?.map((item) => (
             <ItemBtn
@@ -88,8 +77,6 @@ function Mood() {
             </ItemBtn>
           ))}
         </ItemContainer>
-        <InfoText>최대 1개만 선택 가능합니다.</InfoText>
-        <MarginTag margin={50}></MarginTag>
         <SubmitBtn onClick={handleSubmit}>선택 완료</SubmitBtn>
       </Container>
     </>

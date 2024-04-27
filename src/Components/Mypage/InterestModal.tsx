@@ -6,14 +6,12 @@ import {
   Title,
   ItemContainer,
   SubmitBtn,
-  MarginTag,
 } from 'Components/styles/Common';
 import { useNavigate } from 'react-router-dom';
 import { useQuery } from 'react-query';
 import { extractUserId } from 'utils/extractCookie';
 import { useAddUserHobbyMutation } from 'hooks/useUserHobbyMutation';
 import { fetchGetHobbys } from 'api/fetchHobby';
-import { fetchGetOneUserHobby } from 'api/fetchGetOneUser';
 
 interface Hobby {
   hobby_id: number;
@@ -22,27 +20,6 @@ interface Hobby {
 }
 
 function InterestModal() {
-  const useCheckHobbiesAndNavigate = () => {
-    const navigate = useNavigate();
-
-    useEffect(() => {
-      const fetchDataAndNavigate = async () => {
-        try {
-          const user = await fetchGetOneUserHobby();
-          if (Object.keys(user).length > 0) {
-            navigate('/mypage');
-          }
-        } catch (error) {
-          console.error('Error fetching user data:', error);
-        }
-      };
-
-      fetchDataAndNavigate();
-    }, [navigate]);
-  };
-
-  useCheckHobbiesAndNavigate();
-
   const [hobby, setHobby] = useState<Hobby[]>([]);
   const userSelectHobby = hobby
     .filter((item) => item.clicked === true)
@@ -104,7 +81,6 @@ function InterestModal() {
         ))}
       </ItemContainer>
       <InfoText>최소 1개, 최대 3개만 선택 가능</InfoText>
-      <MarginTag margin={50}></MarginTag>
       <SubmitBtn onClick={handleSubmit}>선택 완료</SubmitBtn>
     </Container>
   );

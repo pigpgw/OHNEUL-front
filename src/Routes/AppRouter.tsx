@@ -52,15 +52,15 @@ function AppRouter() {
           <Route path="/fail" element={<Fail />} />
           <Route path="/chat" element={<Chat socket={socket} />} />
           <Route path="/*" element={<NotFound />} />
-        </Routes>
 
-        <Route path="/admin" element={<Admin />}>
-          <Route path="manageusers" element={<ManageUsers />} />
-          <Route path="edithobby" element={<EditHobby />} />
-          <Route path="edittheme" element={<EditTheme />} />
-          <Route path="editmood" element={<EditMood />} />
-          <Route path="postannouncement" element={<PostAnnouncement />} />
-        </Route>
+          <Route path="/admin" element={<Admin />}>
+            <Route path="manageusers" element={<ManageUsers />} />
+            <Route path="edithobby" element={<EditHobby />} />
+            <Route path="edittheme" element={<EditTheme />} />
+            <Route path="editmood" element={<EditMood />} />
+            <Route path="postannouncement" element={<PostAnnouncement />} />
+          </Route>
+        </Routes>
       </Suspense>
     </BrowserRouter>
   );

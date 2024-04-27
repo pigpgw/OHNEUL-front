@@ -1,5 +1,6 @@
 import React from 'react';
-import { delUser } from 'Components/Admin/FetchManageUsers';
+// import { delUser } from 'Components/Admin/FetchManageUsers';
+
 function ManageUser() {
   return <div>ManageUser</div>;
 }
