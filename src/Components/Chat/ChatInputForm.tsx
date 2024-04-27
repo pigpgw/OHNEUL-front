@@ -25,7 +25,7 @@ function ChatInputForm({
     return () => {
       window.removeEventListener('resize', handleResize);
     };
-  }, []);
+  }, [msg,msgSubmitHandler]);
 
   useEffect(() => {
     if (inputRef.current) {
@@ -74,4 +74,4 @@ const ChatSubmitBtn = styled.button`
   margin-left: 10px;
 `;
 
-export default ChatInputForm;
+export default React.memo(ChatInputForm);

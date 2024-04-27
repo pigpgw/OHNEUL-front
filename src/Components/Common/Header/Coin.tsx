@@ -1,3 +1,4 @@
+import React from 'react';
 import { useCoinQuery } from 'hooks/useCoinQuery';
 import { extractUserId } from 'utils/extractCookie';
 import coin from '../../../assets/images/coin.png';
@@ -21,4 +22,4 @@ function Coin({ onClick }: CoinProps) {
   );
 }
 
-export default Coin;
+export default React.memo(Coin);

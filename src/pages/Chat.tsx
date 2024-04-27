@@ -36,7 +36,7 @@ function Chat({ socket }: any): JSX.Element {
   ]);
   const [msg, setMsg] = useState<string>('');
   const [consentModal, setConsentModal] = useState<boolean>(false);
-  const [remainingTime, setRemainingTime] = useState<number>(3);
+  const [remainingTime, setRemainingTime] = useState<number>(10);
   const [consent, setConsent] = useState<boolean>(false);
   const [consentWaitModal, setConsentWaitModal] = useState<boolean>(false);
   const [forExitModal, setForExitModal] = useState<boolean>(false);
@@ -99,6 +99,7 @@ function Chat({ socket }: any): JSX.Element {
           setConsentModal(true);
           setConsent(false);
           setAniTime(0);
+          
           return 0;
         }
         return prevTime - 1;
@@ -124,27 +125,30 @@ function Chat({ socket }: any): JSX.Element {
       e.preventDefault();
       setMsg(e.target.value);
     },
-    [],
+    [msg],
   );
 
-  const msgSubmitHandler = (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    if (msg.length === 0) return;
-    const sendData = {
-      data: msg,
-      id: socket.id,
-    };
-    setMessageList((prev) => [
-      ...prev,
-      {
-        msg,
-        type: 'me',
+  const msgSubmitHandler = useCallback(
+    (e: React.FormEvent<HTMLFormElement>) => {
+      e.preventDefault();
+      if (msg.length === 0) return;
+      const sendData = {
+        data: msg,
         id: socket.id,
-      },
-    ]);
-    socket.emit('sendMessage', sendData);
-    setMsg('');
-  };
+      };
+      setMessageList((prev) => [
+        ...prev,
+        {
+          msg,
+          type: 'me',
+          id: socket.id,
+        },
+      ]);
+      socket.emit('sendMessage', sendData);
+      setMsg('');
+    },
+    [msg],
+  );
 
   useEffect(() => {
     if (!socket) return;

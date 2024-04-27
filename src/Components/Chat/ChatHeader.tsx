@@ -1,12 +1,10 @@
 import Coin from 'Components/Common/Header/Coin';
 import Exit from 'Components/Common/Header/Exit';
+import ReportIcon from 'Components/Common/Header/Report';
 import {
   HeaderContainer,
-  LogoContainer,
-  IconExit,
   InfoContainer,
   TimerContainer,
-  IconReport,
 } from '../styles/Header';
 
 import HeaderTimerLine from './HeaderLineTimer';
@@ -38,10 +36,8 @@ function ChatHeader({
         <TimerContainer>
           <Timer minutes={minutes} seconds={seconds} />
         </TimerContainer>
-        <InfoContainer>
-          <Coin />
-          <IconReport onClick={reportIconClick} />
-        </InfoContainer>
+        <Coin />
+        <ReportIcon reportIconClick={reportIconClick} />
       </HeaderContainer>
       {time !== 0 && <HeaderTimerLine TotaTime={aniTime} />}
     </>
