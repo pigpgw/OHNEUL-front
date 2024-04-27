@@ -1,5 +1,5 @@
 /* eslint-disable no-useless-return */
-import { useCallback, useEffect, useState } from 'react';
+import { useCallback, useEffect, useRef, useState } from 'react';
 import ChatHeader from 'Components/Chat/ChatHeader';
 import ChatMessages from 'Components/Chat/ChatMessages';
 import ChatInputForm from 'Components/Chat/ChatInputForm';
@@ -36,7 +36,9 @@ function Chat({ socket }: any): JSX.Element {
   ]);
   const [msg, setMsg] = useState<string>('');
   const [consentModal, setConsentModal] = useState<boolean>(false);
-  const [remainingTime, setRemainingTime] = useState<number>(3);
+
+  const timeRef = useRef(null)
+  const [remainingTime, setRemainingTime] = useState<number>(30);
   const [consent, setConsent] = useState<boolean>(false);
   const [consentWaitModal, setConsentWaitModal] = useState<boolean>(false);
   const [forExitModal, setForExitModal] = useState<boolean>(false);
@@ -90,26 +92,6 @@ function Chat({ socket }: any): JSX.Element {
     setForExitModal(false);
   }
 
-  function countTime() {
-    if (intervalId) clearInterval(intervalId);
-    const newIntervalId = setInterval(() => {
-      setRemainingTime((prevTime) => {
-        if (prevTime === 0) {
-          clearInterval(newIntervalId);
-          setConsentModal(true);
-          setConsent(false);
-          setAniTime(0);
-          return 0;
-        }
-        return prevTime - 1;
-      });
-      setTotalTime((prev) => {
-        return prev + 1;
-      });
-    }, 1000);
-    setIntervalId(newIntervalId);
-  }
-
   useEffect(() => {
     return () => {
       if (intervalId) clearInterval(intervalId);
@@ -124,27 +106,30 @@ function Chat({ socket }: any): JSX.Element {
       e.preventDefault();
       setMsg(e.target.value);
     },
-    [],
+    [msg],
   );
 
-  const msgSubmitHandler = (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    if (msg.length === 0) return;
-    const sendData = {
-      data: msg,
-      id: socket.id,
-    };
-    setMessageList((prev) => [
-      ...prev,
-      {
-        msg,
-        type: 'me',
+  const msgSubmitHandler = useCallback(
+    (e: React.FormEvent<HTMLFormElement>) => {
+      e.preventDefault();
+      if (msg.length === 0) return;
+      const sendData = {
+        data: msg,
         id: socket.id,
-      },
-    ]);
-    socket.emit('sendMessage', sendData);
-    setMsg('');
-  };
+      };
+      setMessageList((prev) => [
+        ...prev,
+        {
+          msg,
+          type: 'me',
+          id: socket.id,
+        },
+      ]);
+      socket.emit('sendMessage', sendData);
+      setMsg('');
+    },
+    [msg],
+  );
 
   useEffect(() => {
     if (!socket) return;
@@ -202,8 +187,25 @@ function Chat({ socket }: any): JSX.Element {
   }, [consent]);
 
   useEffect(() => {
-    countTime();
-  }, [consent]);
+    if (intervalId) clearInterval(intervalId);
+    const newIntervalId = setInterval(() => {
+      setRemainingTime((prevTime) => {
+        if (prevTime === 0) {
+          clearInterval(newIntervalId);
+          setConsentModal(true);
+          setConsent(false);
+          setAniTime(0);
+          
+          return 0;
+        }
+        return prevTime - 1;
+      });
+      setTotalTime((prev) => {
+        return prev + 1;
+      });
+    }, 1000);
+    setIntervalId(newIntervalId);
+  }, [totalTime]);
 
   const onAgree = () => {
     if (userCoinState < 5) {
@@ -259,9 +261,9 @@ function Chat({ socket }: any): JSX.Element {
     };
   }, [goThemePage, socket]);
 
-  const onReportModal = () => {
+  const onReportModal = useCallback(() => {
     setReportModal(true);
-  };
+  },[])
 
   const offReportModal = () => {
     setReportModal(false);

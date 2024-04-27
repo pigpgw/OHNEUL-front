@@ -9,7 +9,9 @@ type TimerProps = {
 function Timer({ minutes, seconds }: TimerProps): ReactElement {
   return (
     <TimerWrapper>
-      {seconds > 9 ? `${minutes}:${seconds}` : `${minutes}:0${seconds}`}
+      {seconds > 9
+        ? `${minutes}:${seconds}`
+        : `${minutes}:0${seconds}`}
     </TimerWrapper>
   );
 }
