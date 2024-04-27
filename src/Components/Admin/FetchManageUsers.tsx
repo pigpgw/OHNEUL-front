@@ -1,7 +1,9 @@
 import React from 'react';
+import axios from 'axios';
 
-function FetchManageUsers() {
-  return <div>FetchManageUsers</div>;
-}
-
-export default FetchManageUsers;
+export const delUser = async (selectedUser: any) => {
+  const fetchUser = await axios.delete(
+    `http://localhost:4000/users/${selectedUser}`,
+  );
+  return fetchUser;
+};

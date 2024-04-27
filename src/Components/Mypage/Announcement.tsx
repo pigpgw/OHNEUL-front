@@ -40,7 +40,6 @@ const Announcement: React.FC = () => {
     indexOfFirstAnnouncement,
     indexOfLastAnnouncement,
   );
-
   return (
     <AnnouncementContainer>
       {currentAnnouncements.map((announcement: any, id: number) => (
