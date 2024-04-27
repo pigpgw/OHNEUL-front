@@ -1,5 +1,5 @@
 /* eslint-disable no-useless-return */
-import { useCallback, useEffect, useState } from 'react';
+import { useCallback, useEffect, useRef, useState } from 'react';
 import ChatHeader from 'Components/Chat/ChatHeader';
 import ChatMessages from 'Components/Chat/ChatMessages';
 import ChatInputForm from 'Components/Chat/ChatInputForm';
@@ -88,27 +88,6 @@ function Chat({ socket }: any): JSX.Element {
   }, []);
   function offForExitModal() {
     setForExitModal(false);
-  }
-
-  function countTime() {
-    if (intervalId) clearInterval(intervalId);
-    const newIntervalId = setInterval(() => {
-      setRemainingTime((prevTime) => {
-        if (prevTime === 0) {
-          clearInterval(newIntervalId);
-          setConsentModal(true);
-          setConsent(false);
-          setAniTime(0);
-          
-          return 0;
-        }
-        return prevTime - 1;
-      });
-      setTotalTime((prev) => {
-        return prev + 1;
-      });
-    }, 1000);
-    setIntervalId(newIntervalId);
   }
 
   useEffect(() => {
@@ -206,8 +185,25 @@ function Chat({ socket }: any): JSX.Element {
   }, [consent]);
 
   useEffect(() => {
-    countTime();
-  }, [consent]);
+    if (intervalId) clearInterval(intervalId);
+    const newIntervalId = setInterval(() => {
+      setRemainingTime((prevTime) => {
+        if (prevTime === 0) {
+          clearInterval(newIntervalId);
+          setConsentModal(true);
+          setConsent(false);
+          setAniTime(0);
+          
+          return 0;
+        }
+        return prevTime - 1;
+      });
+      setTotalTime((prev) => {
+        return prev + 1;
+      });
+    }, 1000);
+    setIntervalId(newIntervalId);
+  }, [totalTime]);
 
   const onAgree = () => {
     if (userCoinState < 5) {
@@ -263,9 +259,9 @@ function Chat({ socket }: any): JSX.Element {
     };
   }, [goThemePage, socket]);
 
-  const onReportModal = () => {
+  const onReportModal = useCallback(() => {
     setReportModal(true);
-  };
+  },[])
 
   const offReportModal = () => {
     setReportModal(false);
