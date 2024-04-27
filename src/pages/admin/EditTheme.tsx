@@ -4,6 +4,7 @@ import {
   FetchDelTheme,
   FetchUpdateTheme,
 } from 'Components/Admin/FetchEditTheme';
+
 function EditTheme() {
   return <div>EditTheme</div>;
 }
