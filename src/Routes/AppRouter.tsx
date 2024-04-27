@@ -5,6 +5,12 @@ import Login from 'pages/Login';
 import NotFound from 'pages/NotFound';
 import Redirect from 'Components/Auth/Redirect';
 import io from 'socket.io-client';
+import Admin from 'pages/Admin';
+import ManageUsers from 'pages/admin/ManageUsers';
+import EditHobby from 'pages/admin/EditHobby';
+import EditTheme from 'pages/admin/EditTheme';
+import EditMood from 'pages/admin/EditMood';
+import PostAnnouncement from 'pages/admin/PostAnnouncement';
 
 const Home = React.lazy(() => import('pages/Home'));
 const Favorite = React.lazy(() => import('pages/Hobby'));
@@ -46,6 +52,14 @@ function AppRouter() {
           <Route path="/fail" element={<Fail />} />
           <Route path="/chat" element={<Chat socket={socket} />} />
           <Route path="/*" element={<NotFound />} />
+
+          <Route path="/admin" element={<Admin />}>
+            <Route path="manageusers" element={<ManageUsers />} />
+            <Route path="edithobby" element={<EditHobby />} />
+            <Route path="edittheme" element={<EditTheme />} />
+            <Route path="editmood" element={<EditMood />} />
+            <Route path="postannouncement" element={<PostAnnouncement />} />
+          </Route>
         </Routes>
       </Suspense>
     </BrowserRouter>

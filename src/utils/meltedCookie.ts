@@ -11,12 +11,13 @@ const meltedCookie = () => {
     {},
   ) as { [key in string]: string };
   const {
-    user_id: userId,
-    refreshToken: token,
     provider: flatform,
+    refreshToken: token,
     reward: rewardCoin,
+    user_id: userId,
+    admin: isAdmin,
   } = userInfo;
-  const cookie = [userId, token, flatform, rewardCoin];
+  const cookie = [flatform, token, rewardCoin, userId, isAdmin];
   return cookie;
 };
 

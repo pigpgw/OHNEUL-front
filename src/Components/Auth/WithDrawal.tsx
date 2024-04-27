@@ -30,76 +30,73 @@ const WithDrawal: React.FC = () => {
   };
   const userId = user.value.user_id;
 
-  useEffect(() => {
-    if (!user.isLogin) {
-      alert('로그인상태를 확인해주세요.');
-      console.log(user.isLogin, 'handle끝2');
-    }
-  }, [user.isLogin, navigate]);
+  // useEffect(() => {
+  //   if (!user.isLogin) {
+  //     alert('로그인상태를 확인해주세요.');
+  //     console.log(user.isLogin, 'handle끝2');
+  //   }
+  // }, [user.isLogin, navigate]);
 
-  const handleWithDrawal = async () => {
-    const [flatform] = meltedCookie();
-    if (flatform === 'naver') {
-      try {
-        const response = await axios.post(
-          `${process.env.REACT_APP_BASE_URL}/logout/naver`,
-        );
-        // console.log(response.data);
-        if (response.status === 200) {
-          console.log('로그아웃');
-          dispatch(clearAuth());
-          dispatch(logout());
-          deleteCookie('user_id');
-          deleteCookie('refreshToken');
-          deleteCookie('provider');
-          deleteCookie('reward');
-          navigate('/');
-        } else {
-          console.log('실패');
-        }
-      } catch (error) {
-        console.error('로그아웃', error);
-      }
-    } else if (flatform === 'kakao') {
-      try {
-        const response = await axios.post(
-          `${process.env.REACT_APP_BASE_URL}/logout/kakao`,
-        );
-        console.log(response.data);
-        if (response.status === 200) {
-          console.log('로그아웃');
-          dispatch(clearAuth());
-          dispatch(logout());
-          deleteCookie('user_id');
-          deleteCookie('refreshToken');
-          deleteCookie('provider');
-          deleteCookie('reward');
-          navigate('/');
-        } else {
-          console.log('실패');
-        }
-      } catch (error) {
-        console.error('로그아웃', error);
-      }
+  const handleWithDrawal = () => {
+    const [flatform, token, rewardCoin] = meltedCookie();
+    // if (flatform === 'naver') {
+    //   try {
+    // const response = await axios.post(
+    //   `${process.env.REACT_APP_BASE_URL}/logout/naver`,
+    // );
+    // console.log(response.data);
+    // if (response.status === 200) {
+    // console.log('네이버 로그아웃');
+    if (flatform) {
+      dispatch(clearAuth());
+      dispatch(logout());
+      deleteCookie('user_id');
+      deleteCookie('refreshToken');
+      deleteCookie('provider');
+      deleteCookie('reward');
+
+      navigate('/');
     }
+    //     }
+    //   } catch (error) {
+    //     console.error('네이버-로그아웃-에러', error);
+    //   }
+    // } else if (flatform === 'kakao') {
+    //   try {
+    //     const response = await axios.post(
+    //       `${process.env.REACT_APP_BASE_URL}/logout/kakao`,
+    //     );
+    //     console.log(response.data);
+    //     if (response.status === 200) {
+    //       console.log('카카오 로그아웃');
+    //       dispatch(clearAuth());
+    //       dispatch(logout());
+    //       deleteCookie('user_id');
+    //       deleteCookie('refreshToken');
+    //       deleteCookie('provider');
+    //       deleteCookie('reward');
+    //       deleteCookie('admin');
+    //       navigate('/');
+    //     }
+    //   } catch (error) {
+    //     console.error('네이버 - 로그아웃', error);
+    //   }
 
     const userDelete = async (userid: string) => {
       try {
         const response = await axios.delete(
           `${process.env.REACT_APP_BASE_URL}/users/${userid}`,
         );
-        console.log(response);
         return response.data;
       } catch (error) {
-        console.error(error);
+        console.error('회원탈퇴 실패', error);
         throw error;
       }
     };
 
     userDelete(userId)
       .then((res) => {
-        console.log(res, 1);
-        console.log(res, 'success to delete user');
+        console.log(res, 'success');
         navigate('/');
       })
       .catch((error) => {

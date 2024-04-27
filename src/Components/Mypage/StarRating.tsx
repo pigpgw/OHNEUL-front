@@ -16,18 +16,17 @@ const Desc = styled.div`
 `;
 
 const StarRating = () => {
-  const [userId] = meltedCookie();
+  const [flatform, token, rewardCoin, userId] = meltedCookie();
   const [data, setData] = useState<number>(0);
   useEffect(() => {
-    const fetchPayments = async () => {
+    const fetchScore = async () => {
       const response = await axios.get(
         `${process.env.REACT_APP_BASE_URL}/users/${userId}`,
       );
-      console.log(response.data, 'asdas');
 
       return setData(response.data.score);
     };
-    fetchPayments();
+    fetchScore();
   }, []);
 
   const renderHerat = (score: number) => {
@@ -45,38 +44,37 @@ const StarRating = () => {
       plusCount = Math.floor(strToNumb);
     }
 
-    console.log('strtumd',strToNumb)
-
     const count = [];
     const desc = [];
     for (let i = 0; i < plusCount; i += 1) {
-      count.push(<Heart src={plusHeart} alt="ph" loading='lazy'></Heart>);
+      count.push(<Heart key={`plus${i}`} src={plusHeart} alt="ph"></Heart>);
     }
     for (let j = 0; j < minusCount; j += 1) {
-      count.push(<Heart src={minusHeart} alt="" loading='lazy'></Heart>);
+      count.push(<Heart key={`minus${j}`} src={minusHeart} alt=""></Heart>);
     }
     switch (plusCount) {
       case 0.0:
-        desc.push(<Desc>채팅을시작해주세요!!!!!!</Desc>);
+        desc.push(<Desc key="desc">채팅을시작해주세요!!!!!!</Desc>);
         break;
       case 1:
-        desc.push(<Desc>별이한개!!!!!!</Desc>);
+        desc.push(<Desc key="desc">별이한개!!!!!!</Desc>);
         break;
       case 2:
-        desc.push(<Desc>별이두개!!!!!!!</Desc>);
+        desc.push(<Desc key="desc">별이두개!!!!!!!</Desc>);
         break;
       case 3:
-        desc.push(<Desc>별이세개!!!!!!!!</Desc>);
+        desc.push(<Desc key="desc">별이세개!!!!!!!!</Desc>);
         break;
       case 4:
-        desc.push(<Desc>별이네개!!!!!!!!</Desc>);
+        desc.push(<Desc key="desc">별이네개!!!!!!!!</Desc>);
         break;
       case 5:
-        desc.push(<Desc>별이다섯개!!!!!!!!!</Desc>);
+        desc.push(<Desc key="desc">별이다섯개!!!!!!!!!</Desc>);
         break;
       default:
         break;
     }
+
     return [desc, count];
   };
 

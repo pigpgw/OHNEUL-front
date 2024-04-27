@@ -26,12 +26,7 @@ const PhraseContainer = styled.div``;
 
 interface User {
   user: {
-    value: {
-      user_id: string;
-      refreshToken: string;
-      provider: string;
-      isAdmin: boolean;
-    };
+    value: { user_id: string; refreshToken: string; provider: string };
     isLogin: boolean;
   };
 }
@@ -42,47 +37,25 @@ const Login: React.FC = () => {
   const navigate = useNavigate();
   const isLogin = useSelector((state: User) => state.user.isLogin);
   const [userId, token, flatform] = meltedCookie();
-  const Admin = ['3e6a23d5-85ff-4075-8b77-217017088772'];
+
   useEffect(() => {
-    if (!Admin.includes(userId)) {
-      dispatch(
-        setAuth({ user_id: userId, refreshToken: token, provider: flatform }),
+    dispatch(
+      setAuth({ user_id: userId, refreshToken: token, provider: flatform }),
+    );
+    const isCookie = (): boolean => {
+      return (
+        document.cookie.includes('user_id') &&
+        document.cookie.includes('refreshToken') &&
+        document.cookie.includes('provider')
       );
-      const isCookie = (): boolean => {
-        return (
-          document.cookie.includes('user_id') &&
-          document.cookie.includes('refreshToken') &&
-          document.cookie.includes('provider')
-        );
-      };
-      if (isCookie() && !isLogin) {
-        dispatch(login());
-      }
-    } else {
-      dispatch(
-        setAuth({
-          user_id: userId,
-          refreshToken: token,
-          provider: flatform,
-          isAdmin: true,
-        }),
-      );
-      const isCookie = (): boolean => {
-        return (
-          document.cookie.includes('user_id') &&
-          document.cookie.includes('refreshToken') &&
-          document.cookie.includes('provider')
-        );
-      };
-      if (isCookie() && !isLogin) {
-        dispatch(login());
-      }
+    };
+    if (isCookie() && !isLogin) {
+      dispatch(login());
     }
   }, [dispatch, isLogin]);
 
   useEffect(() => {
     if (isLogin) {
-      console.log(storedUserInfo, '확인');
       const timer = window.setTimeout(() => {
         navigate('/favorite');
       }, 2000);
