@@ -25,6 +25,7 @@ export const useCoinQuery = (userId: string): CoinQueryClient => {
     isLoading: isCoinLoading,
     isError: isCoinError,
     data,
+    
     isSuccess,
   } = useQuery<UserCoin>(['coin', userId], () => fetchUser(userId), {
     refetchInterval: 6000,

@@ -9,28 +9,25 @@ interface MoodData {
   mood: string;
 }
 const MoodBtn = styled.button`
-  height: 33px;
+  height: 50px;
   border-radius: 10px;
   border: 0;
-  padding: 0 15px;
-  margin: 10px;
-  font-size: 10px;
+  padding:10px 15px;
+  margin: 15px;
+  font-size: 1rem;
   background: white;
   box-shadow: 1px 1px 1px rgba(41, 41, 41, 0.25);
 `;
 const MoodEditBtn = styled.img`
-  height: 23px;
-  border-radius: 10px;
-  border: 0;
-  padding: 0 5px;
-  margin: 20px;
   cursor: pointer;
+  margin: 5px;
+  width: 8%;
+  max-width: 30px;
 `;
 const MoodBtnContainer = styled.div`
   display: flex;
-  flex-wrap: wrap;
-  flex-direction: row;
-  justify-content: center;
+  flex-direction: column;
+  width: 100%;
 `;
 
 const MyMood = () => {
@@ -69,16 +66,37 @@ const MyMood = () => {
   }, []);
 
   return (
-    <MoodBtnContainer>
-      <MoodBtn>{datas}</MoodBtn>
-
-      <MoodEditBtn
-        src={editButton}
-        onClick={() => handleModal('mood')}
-      ></MoodEditBtn>
+    <>
+      <MoodBtnContainer>
+        <Div>
+          <Title>현재 기분</Title>
+          <MoodEditBtn src={editButton} onClick={() => handleModal('mood')} />
+        </Div>
+        <Wrapper>
+          <MoodBtn>{datas}</MoodBtn>
+        </Wrapper>
+      </MoodBtnContainer>
       {open === 'mood' && <MyMoodModal />}
-    </MoodBtnContainer>
+    </>
   );
 };
+
+const Title = styled.p`
+  font-size: 1.2rem;
+  margin: 0;
+  border: 0;
+`;
+
+const Div = styled.div`
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  min-height: 20px;
+  align-items: center;
+`;
+
+const Wrapper = styled.div`
+  display: flex;
+`;
 
 export default MyMood;

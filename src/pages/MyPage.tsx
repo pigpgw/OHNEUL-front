@@ -11,22 +11,13 @@ import SocialImage from 'Components/Mypage/SocialImage';
 import MyMood from 'Components/Mypage/MyMood';
 import AdminButton from 'Components/Admin/AdminButton';
 import {
-  Container,
-  SocialContainer,
-  InterestSection,
-  StarAndInterest,
-  StarRatingSection,
   Title,
   TabSection,
   Tab,
   TabTitle,
   ContentContainer,
-  AuthContainer,
-  LogoutCont,
-  AdminCont,
-  WithDrawalCont,
-  MyMoodSection,
 } from 'Components/styles/Mypage';
+import { styled } from 'styled-components';
 
 const MyPage: React.FC = () => {
   const [open, setOpen] = useState<string | null>(null);
@@ -37,57 +28,35 @@ const MyPage: React.FC = () => {
     <>
       <ContentContainer>
         <Title>마이페이지</Title>
-        <Container>
-          <SocialContainer>
-            <SocialImage></SocialImage>
-          </SocialContainer>
-          <StarAndInterest>
-            <StarRatingSection>
-              <StarRating />
-            </StarRatingSection>
-            <MyMoodSection>
-              <MyMood />
-            </MyMoodSection>
-            <InterestSection>
-              <Interest />
-            </InterestSection>
-          </StarAndInterest>
-        </Container>
+        <SocialImage />
+        <StarRating />
+        <MyMood />
+        <Interest />
         <TabSection>
-          <Tab onClick={() => handleModal('payments')}>
-            <TabTitle>결제내역</TabTitle>
-          </Tab>
+          <Tab onClick={() => handleModal('payments')}>결제내역</Tab>
           {open === 'payments' && <PaymentsDetails />}
-          <Tab onClick={() => handleModal('coinusage')}>
-            <TabTitle>코인내역</TabTitle>
-          </Tab>
+          <Tab onClick={() => handleModal('coinusage')}>코인내역</Tab>
           {open === 'coinusage' && <CoinUsageDetails />}
-          <Tab onClick={() => handleModal('terms')}>
-            <TabTitle>이용정책 </TabTitle>
-          </Tab>
+          <Tab onClick={() => handleModal('terms')}>이용정책</Tab>
           {open === 'terms' && <Terms />}
-          <Tab onClick={() => handleModal('announcement')}>
-            <TabTitle> 공지사항 </TabTitle>
-          </Tab>
+          <Tab onClick={() => handleModal('announcement')}>공지사항</Tab>
           {open === 'announcement' && <Announcement />}
         </TabSection>
-
-        <AuthContainer>
-          <LogoutCont>
-            <Logout></Logout>
-          </LogoutCont>
-
-          <AdminCont>
-            <AdminButton></AdminButton>
-          </AdminCont>
-
-          <WithDrawalCont>
-            <WithDrawal></WithDrawal>
-          </WithDrawalCont>
-        </AuthContainer>
+        <BtnContainer>
+          <Logout></Logout>
+          <AdminButton></AdminButton>
+          <WithDrawal></WithDrawal>
+        </BtnContainer>
       </ContentContainer>
     </>
   );
 };
 
 export default MyPage;
+
+const BtnContainer = styled.div`
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  margin: 2vh 0 0 0;
+`;

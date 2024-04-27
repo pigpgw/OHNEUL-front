@@ -6,10 +6,10 @@ import minusHeart from 'assets/images/minusHeart.png';
 import styled from 'styled-components';
 
 const Heart = styled.img`
-  width: 40px;
+  width: 4vh;
 `;
 const Desc = styled.div`
-  font-size: 20px;
+  font-size: 2vh;
   font-weight: 600;
   color: #000000;
   margin: 10px;

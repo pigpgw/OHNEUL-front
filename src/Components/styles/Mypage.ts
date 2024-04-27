@@ -33,16 +33,19 @@ export const Title = styled.div`
   padding-bottom: 10px;
   border-bottom: 2px solid #dbdbdb;
   width: 100%;
+  font-size:3vh;
 `;
 
 export const TabSection = styled.div`
   margin-top: 10px;
-  width: 50%;
+  width: 100%;
   min-width: 370px;
   margin: 10px 0 0 0 auto;
 `;
 export const Tab = styled.div`
-  padding: 1px;
+  text-align: left;
+  border: 2px solid #dbdbdb;
+  padding: 10px;
   cursor: pointer;
 `;
 export const TabTitle = styled.div`
