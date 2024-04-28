@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import axios from 'axios';
+import { FaStar } from '@react-icons/all-files/fa/FaStar';
 import meltedCookie from 'utils/meltedCookie';
 import plusHeart from 'assets/images/plusHeart.png';
 import minusHeart from 'assets/images/minusHeart.png';
@@ -25,67 +26,98 @@ const Desc = styled.div`
 const StarRating = () => {
   const [flatform, token, rewardCoin, userId] = meltedCookie();
   const [data, setData] = useState<number>(0);
-  useEffect(() => {
-    const fetchScore = async () => {
-      const response = await axios.get(
-        `${process.env.REACT_APP_BASE_URL}/users/${userId}`,
-      );
+  const [star, setStar] = useState<boolean[]>([
+    false,
+    false,
+    false,
+    false,
+    false,
+  ]);
 
-      return setData(response.data.score);
-    };
+  // const scoreNumbData = scoreNumb.data.score;
+  const fetchScore: any = async () => {
+    const response = await axios.get(
+      `${process.env.REACT_APP_BASE_URL}/users/${userId}`,
+    );
+    const { score } = response.data;
+    setData(Number(score));
+    const clickStates = [...star];
+    for (let i = 0; i < score; i += 1) {
+      clickStates[i] = true;
+    }
+    setStar(clickStates);
+  };
+  useEffect(() => {
     fetchScore();
   }, []);
+  // const renderDesc = (score: number) => {
+  //   const desc = [];
+  //   switch (score) {
+  //     case 0.0:
+  //       desc.push(<Desc key="desc">채팅을시작해주세요.</Desc>);
+  //       break;
+  //     case 1:
+  //       desc.push(<Desc key="desc">1점</Desc>);
+  //       break;
+  //     case 2:
+  //       desc.push(<Desc key="desc">2점</Desc>);
+  //       break;
+  //     case 3:
+  //       desc.push(<Desc key="desc">3점</Desc>);
+  //       break;
+  //     case 4:
+  //       desc.push(<Desc key="desc">4점</Desc>);
+  //       break;
+  //     case 5:
+  //       desc.push(<Desc key="desc">5점</Desc>);
+  //       break;
+  //     default:
+  //       break;
+  //   }
 
-  const renderHerat = (score: number) => {
-    const strToNumb = Number(score);
-    let plusCount;
-    let minusCount;
-    if (strToNumb >= 4.5) {
-      plusCount = 5;
-      minusCount = 0;
-    } else if (strToNumb >= 4) {
-      plusCount = 4;
-      minusCount = 1;
-    } else {
-      minusCount = Math.ceil(5 - strToNumb);
-      plusCount = Math.floor(strToNumb);
-    }
+  //   return desc;
+  // };
 
-    const count = [];
-    const desc = [];
-    for (let i = 0; i < plusCount; i += 1) {
-      count.push(<Heart key={`plus${i}`} src={plusHeart} alt="ph"></Heart>);
-    }
-    for (let j = 0; j < minusCount; j += 1) {
-      count.push(<Heart key={`minus${j}`} src={minusHeart} alt=""></Heart>);
-    }
-    switch (plusCount) {
-      case 0.0:
-        desc.push(<Desc key="desc">채팅을시작해주세요.</Desc>);
-        break;
-      case 1:
-        desc.push(<Desc key="desc">1점</Desc>);
-        break;
-      case 2:
-        desc.push(<Desc key="desc">2점</Desc>);
-        break;
-      case 3:
-        desc.push(<Desc key="desc">3점</Desc>);
-        break;
-      case 4:
-        desc.push(<Desc key="desc">4점</Desc>);
-        break;
-      case 5:
-        desc.push(<Desc key="desc">5점</Desc>);
-        break;
-      default:
-        break;
-    }
-
-    return [desc, count];
-  };
-
-  return <div>{renderHerat(data)}</div>;
+  return (
+    <div>
+      {/* {renderDesc(data)[0]} */}
+      <Stars>
+        {[0, 1, 2, 3, 4].map((el, idx) => {
+          return (
+            <FaStar
+              key={idx}
+              size="50"
+              className={star[el] ? 'yellowStar' : ''}
+            />
+          );
+        })}
+      </Stars>
+    </div>
+  );
 };
 
 export default StarRating;
+
+const Stars = styled.div`
+  display: flex;
+  padding: 15px;
+  justify-content: space-between;
+  width: 100%;
+  padding: 10px 10px 2vh 0;
+
+  & svg {
+    color: gray;
+  }
+
+  :hover svg {
+    color: #fcc419;
+  }
+
+  & svg:hover ~ svg {
+    color: gray;
+  }
+
+  .yellowStar {
+    color: #fcc419;
+  }
+`;

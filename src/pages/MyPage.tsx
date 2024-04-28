@@ -30,8 +30,7 @@ const MyPage: React.FC = () => {
         <Title>마이페이지</Title>
         <SocialImage />
         <StarRating />
-        <MyMood />
-        <Interest />
+        <MyMood /> <Interest />
         <TabSection>
           <Tab onClick={() => handleModal('payments')}>결제내역</Tab>
           {open === 'payments' && <PaymentsDetails />}
@@ -53,7 +52,13 @@ const MyPage: React.FC = () => {
 };
 
 export default MyPage;
+const Wrapper = styled.div`
+  display: flex;
+`;
 
+const EqualSizeComponent = styled.div`
+  flex-grow: 1;
+`;
 const BtnContainer = styled.div`
   width: 100%;
   display: flex;

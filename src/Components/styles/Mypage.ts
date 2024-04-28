@@ -33,7 +33,8 @@ export const Title = styled.div`
   padding-bottom: 10px;
   border-bottom: 2px solid #dbdbdb;
   width: 100%;
-  font-size:3vh;
+  font-size: 1.5vh;
+  font-weight: 600;
 `;
 
 export const TabSection = styled.div`

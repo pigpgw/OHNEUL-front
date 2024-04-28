@@ -35,7 +35,7 @@ function Rating({ socket }: any): JSX.Element {
     };
     socket.emit('score', data);
     document.cookie = 'other=';
-    alert("리뷰가 성공적으로 등록되었습니다.")
+    alert('리뷰가 성공적으로 등록되었습니다.');
     navigate('/theme');
   };
 
@@ -65,7 +65,6 @@ const Wrap = styled.div`
   flex-direction: column;
   padding-bottom: 15px;
   overflow-x: hidden;
-  
 `;
 
 const Stars = styled.div`
