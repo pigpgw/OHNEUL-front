@@ -18,8 +18,10 @@ interface Hobby {
   hobby: string;
   clicked?: boolean;
 }
-
-function InterestModal() {
+interface MyHobbyModal {
+  onClose: () => void;
+}
+function InterestModal({ onClose }: MyHobbyModal) {
   const [hobby, setHobby] = useState<Hobby[]>([]);
   const userSelectHobby = hobby
     .filter((item) => item.clicked === true)
@@ -62,6 +64,7 @@ function InterestModal() {
     } catch (e) {
       alert('오류가 발생했습니다. 나중에 다시 시도해주세요.');
     }
+    onClose();
   };
 
   if (isLoading) return <div>Loading...</div>;

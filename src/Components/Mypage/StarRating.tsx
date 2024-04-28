@@ -6,7 +6,7 @@ import minusHeart from 'assets/images/minusHeart.png';
 import styled from 'styled-components';
 
 const Heart = styled.img`
-  width: 4vh;
+  width: 8vh;
 `;
 const Desc = styled.div`
   font-size: 2vh;
@@ -54,22 +54,22 @@ const StarRating = () => {
     }
     switch (plusCount) {
       case 0.0:
-        desc.push(<Desc key="desc">채팅을시작해주세요!!!!!!</Desc>);
+        desc.push(<Desc key="desc">채팅을시작해주세요.</Desc>);
         break;
       case 1:
-        desc.push(<Desc key="desc">별이한개!!!!!!</Desc>);
+        desc.push(<Desc key="desc">1점</Desc>);
         break;
       case 2:
-        desc.push(<Desc key="desc">별이두개!!!!!!!</Desc>);
+        desc.push(<Desc key="desc">2점</Desc>);
         break;
       case 3:
-        desc.push(<Desc key="desc">별이세개!!!!!!!!</Desc>);
+        desc.push(<Desc key="desc">3점</Desc>);
         break;
       case 4:
-        desc.push(<Desc key="desc">별이네개!!!!!!!!</Desc>);
+        desc.push(<Desc key="desc">4점</Desc>);
         break;
       case 5:
-        desc.push(<Desc key="desc">별이다섯개!!!!!!!!!</Desc>);
+        desc.push(<Desc key="desc">5점</Desc>);
         break;
       default:
         break;

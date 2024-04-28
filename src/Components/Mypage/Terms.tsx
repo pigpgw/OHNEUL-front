@@ -9,11 +9,7 @@ const Container = styled.div`
 const Terms = () => {
   return (
     <Container>
-      <div>여미새 남미새 불법충 변태 사기꾼 및 벌레는 사형에 처한다.</div>
-      <div>여미새 남미새 불법충 변태 사기꾼 및 벌레는 사형에 처한다.</div>
-      <div>여미새 남미새 불법충 변태 사기꾼 및 벌레는 사형에 처한다.</div>
-      <div>여미새 남미새 불법충 변태 사기꾼 및 벌레는 사형에 처한다.</div>
-      <div>여미새 남미새 불법충 변태 사기꾼 및 벌레는 사형에 처한다.</div>
+      <div>이용정책은 준비 중입니다.</div>
     </Container>
   );
 };

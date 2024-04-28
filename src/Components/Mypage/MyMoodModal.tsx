@@ -3,7 +3,7 @@ import {
   ItemBtn,
   Container,
   ItemContainer,
-  SubmitBtn
+  SubmitBtn,
 } from 'Components/styles/Common';
 import { useQuery } from 'react-query';
 import { fetchGetMood } from 'api/fetchMood';
@@ -14,8 +14,10 @@ interface MoodTs {
   mood: string;
   clicked?: boolean;
 }
-
-function Mood() {
+interface MyMoodModal {
+  onClose: () => void;
+}
+function MyMood({ onClose }: MyMoodModal) {
   const {
     data: availableMoods,
     isLoading,
@@ -33,17 +35,14 @@ function Mood() {
   useEffect(() => {
     if (availableMoods) setMood(availableMoods);
 
-    console.log(availableMoods)
-    console.log(mood)
+    console.log(availableMoods);
+    console.log(mood);
   }, [availableMoods]);
-
 
   const clickBtn = (id: number) => {
     setMood((prev) =>
       prev.map((item) =>
-        item.mood_id === id
-          ? { ...item, clicked: true }
-          : { ...item, clicked: false },
+        item.mood_id === id ? { ...item, clicked: !item.clicked } : item,
       ),
     );
   };
@@ -55,8 +54,9 @@ function Mood() {
       addUserMood({
         mood_id: userSelectMood,
       });
+      onClose();
     } else {
-      alert('적어도 하나의 기분을 선택해주세요')
+      alert('적어도 하나의 기분을 선택해주세요');
     }
   };
 
@@ -83,4 +83,4 @@ function Mood() {
   );
 }
 
-export default Mood;
+export default MyMood;

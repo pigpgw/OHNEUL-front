@@ -12,7 +12,7 @@ interface HobbyData {
 const HobbyBtn = styled.button`
   border-radius: 10px;
   border: 0;
-  padding:10px 15px;
+  padding: 10px 15px;
   margin: 15px;
   font-size: 1rem;
   background: white;
@@ -38,7 +38,9 @@ const Interest = () => {
   const [flatform, token, rewardCoin, userId] = meltedCookie();
 
   const [datas, setData] = useState<HobbyData[]>([]);
-
+  const handleCloseModal = () => {
+    setOpen(null);
+  };
   useEffect(() => {
     const fetchPayments = async () => {
       try {
@@ -77,7 +79,7 @@ const Interest = () => {
     <>
       <HobbyBtnContainer>
         <Div>
-          <Title>현재 기분</Title>
+          <Title>나의 관심사</Title>
           <HobbyEditBtn
             src={editButton}
             onClick={() => handleModal('interest')}
@@ -89,7 +91,7 @@ const Interest = () => {
           ))}
         </Wrapper>
       </HobbyBtnContainer>
-      {open === 'interest' && <InterestModal />}
+      {open === 'interest' && <InterestModal onClose={handleCloseModal} />}
     </>
   );
 };
