@@ -1,13 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import {
-  ItemBtn,
-  InfoText,
-  Container,
-  Title,
-  ItemContainer,
-  SubmitBtn,
-  CloseBtn,
-} from 'Components/styles/Common';
+import { ItemBtn, InfoText } from 'Components/styles/Common';
 import { useNavigate } from 'react-router-dom';
 import { useQuery } from 'react-query';
 import { extractUserId } from 'utils/extractCookie';
@@ -87,30 +79,80 @@ function InterestModal({ onClose }: MyHobbyModal) {
           ))}
         </ItemContainer>
         <InfoText>최소 1개, 최대 3개만 선택 가능</InfoText>
-        <SubmitBtn onClick={handleSubmit}>선택 완료</SubmitBtn>
-        <CloseBtn onClick={onClose}>닫기</CloseBtn>
+        <BtnWrapper>
+          <SubmitBtn onClick={handleSubmit}>선택 완료</SubmitBtn>
+          <CloseBtn onClick={onClose}>닫기</CloseBtn>
+        </BtnWrapper>
       </Wrapper>
     </>
   );
 }
-const Wrapper = styled.div`
-  position: absolute;
-  bottom: 300px;
-  width: 60%;
-  height: 60%;
-  border: 1px solid black;
-  height: 50vh;
-  background-color: white;
+
+const Title = styled.p`
+  margin-top: 4vh;
+  font-size: 3vh;
+  font-weight: 600;
+  font-family: sans-serif;
+`;
+
+const ItemContainer = styled.div`
+  width: 80%;
+  height: 30vh;
   display: flex;
-  flex-direction: column;
   justify-content: center;
   align-items: center;
+  flex-wrap: wrap;
+  flex-direction: row;
+  max-width: 700px;
+`;
 
-  @media (max-width: 768px) {
-    width: 90%;
-    bottom: 150px;
-    height: 70%;
-  }
+const Wrapper = styled.div`
+  width: 80%;
+  height: 75vh;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  flex-direction: column;
+  /* height: 570px; */
+  max-width: 700px;
+  position: absolute;
+  background-color: white;
+  border: 1px solid black;
+`;
+
+const BtnWrapper = styled.div`
+  width: 100%;
+  height: 12vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+`;
+
+const SubmitBtn = styled.button`
+  cursor: pointer;
+  width: 80%;
+  height: 5vh;
+  max-height: 40px;
+  color: white;
+  background: #0075ff;
+  border-radius: 5px;
+  border: 0;
+  font-size: 1.5vh;
+  max-width: 500px;
+`;
+
+const CloseBtn = styled.button`
+  cursor: pointer;
+  width: 80%;
+  height: 5vh;
+  max-height: 40px;
+  color: white;
+  background: gray;
+  border-radius: 5px;
+  border: 0;
+  font-size: 1.5vh;
+  max-width: 500px;
 `;
 
 export default InterestModal;

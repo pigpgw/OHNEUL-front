@@ -88,6 +88,7 @@ function MyMood({ onClose }: MyMoodModal) {
 }
 
 const Title = styled.p`
+  margin-top: 4vh;
   font-size: 3vh;
   font-weight: 600;
   font-family: sans-serif;
@@ -116,24 +117,6 @@ const Wrapper = styled.div`
   position: absolute;
   background-color: white;
   border: 1px solid black;
-
-  /* position: absolute;
-  bottom: 300px;
-  width: 60%;
-  height: 80%;
-  border: 1px solid black;
-  height: 50vh;
-  background-color: white;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-
-  @media (max-width: 768px) {
-    width: 90%;
-    bottom: 150px;
-    height: 70%;
-  } */
 `;
 
 const BtnWrapper = styled.div`
@@ -148,7 +131,7 @@ const BtnWrapper = styled.div`
 const SubmitBtn = styled.button`
   cursor: pointer;
   width: 80%;
-  height: 20vh;
+  height: 5vh;
   max-height: 40px;
   color: white;
   background: #0075ff;
@@ -161,7 +144,7 @@ const SubmitBtn = styled.button`
 const CloseBtn = styled.button`
   cursor: pointer;
   width: 80%;
-  height: 10vh;
+  height: 5vh;
   max-height: 40px;
   color: white;
   background: gray;
