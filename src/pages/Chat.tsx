@@ -1,22 +1,22 @@
 /* eslint-disable no-useless-return */
-import { useCallback, useEffect, useRef, useState } from 'react';
+import { useCallback, useEffect, useId, useRef, useState } from 'react';
 import ChatHeader from 'Components/Chat/ChatHeader';
 import ChatMessages from 'Components/Chat/ChatMessages';
 import ChatInputForm from 'Components/Chat/ChatInputForm';
+import ProfileModal from 'Components/Chat/Profile';
 import { extractUserId, extractOtherUserId } from 'utils/extractCookie';
-import { fetchGetOtherMood } from 'api/fetchMood';
+import { fetchUserMood } from 'api/fetchMood';
 import {
   ConsentModal,
   InfoModal,
   ReportModal,
   ReviewModal,
   AgreeModal,
-  ProfileModal,
 } from 'Components/Modal/ChatModal';
 import { useCoinQuery } from 'hooks/useCoinQuery';
 import { useNavigate } from 'react-router-dom';
 import Rating from 'Components/Chat/Rating';
-import { fecthGetOtherHobby } from 'api/fetchGetOneUserHobby';
+import { fecthGetUserHobby } from 'api/fetchGetOneUserHobby';
 
 interface Message {
   msg: string;
@@ -52,18 +52,23 @@ function Chat({ socket }: any): JSX.Element {
   const [aniTime, setAniTime] = useState(remainingTime);
 
   const [otherMood, setOtherMood] = useState<string>('');
+  const [otherHobby, setOtherHobby] = useState<string>('');
+  const [myMood, setMyMood] = useState('');
+  const [myHobby, setMyHobby] = useState('');
 
   const [agreeModal, setAgreeModal] = useState(false);
-  const [profileModal, setProfileModal] = useState(false);
+  const [myProfileModal, setMyProfileModal] = useState(false);
+  const [otherProfileModal, setOtherProfileModal] = useState(false);
 
   useEffect(() => {
     if (!socket) return;
-    const fetchOtherUserMood = async () => {
+    const setOtherInfo = async () => {
       try {
         const otherUserId = extractOtherUserId();
-        const mood = await fetchGetOtherMood(otherUserId);
-        const hobby = await fecthGetOtherHobby(otherUserId);
+        const mood = await fetchUserMood(otherUserId);
+        const hobby = await fecthGetUserHobby(otherUserId);
         setOtherMood(mood);
+        setOtherHobby(hobby.join(', '));
         setMessageList((prev) => [
           ...prev,
           {
@@ -78,12 +83,24 @@ function Chat({ socket }: any): JSX.Element {
           },
         ]);
       } catch (error) {
-        console.error('상대방 기분 가져오기 실패', error);
+        console.error('상대방 기분, 취미 가져오기 실패', error);
       }
     };
 
-    fetchOtherUserMood();
-  }, [socket]);
+    const setMyInfo = async () => {
+      try {
+        const mood = await fetchUserMood(userId);
+        const hobby = await fecthGetUserHobby(userId);
+        setMyMood(mood);
+        setMyHobby(hobby.join(', '));
+      } catch (error) {
+        console.error('내 기분, 취미 가져오기 실패', error);
+      }
+    };
+
+    setOtherInfo();
+    setMyInfo();
+  }, []);
 
   const onForExitModal = useCallback(() => {
     setForExitModal(true);
@@ -288,9 +305,12 @@ function Chat({ socket }: any): JSX.Element {
     setReportModal(false);
   };
 
-  const onProfile = () => {
-    console.log('버튼 누름');
-    setProfileModal(!profileModal);
+  const handleMyProfile = () => {
+    setMyProfileModal(!myProfileModal);
+  };
+
+  const handleOtherProfile = () => {
+    setOtherProfileModal(!otherProfileModal);
   };
 
   return (
@@ -349,7 +369,11 @@ function Chat({ socket }: any): JSX.Element {
           btnName2="나가기"
         />
       )}
-      <ChatMessages messageList={messageList} handleProfileModal={onProfile} />
+      <ChatMessages
+        messageList={messageList}
+        handleMyProFile={handleMyProfile}
+        handleOhterProFile={handleOtherProfile}
+      />
       {remainingTime !== 0 && (
         <ChatInputForm
           msgSubmitHandler={msgSubmitHandler}
@@ -357,12 +381,20 @@ function Chat({ socket }: any): JSX.Element {
           msgChangeHandler={msgChangeHandler}
         />
       )}
-      {profileModal && (
+      {myProfileModal && (
         <ProfileModal
-          reviewScore={0}
-          favorite={''}
-          mood={''}
-          handleModal={onProfile}
+          reviewScore={1}
+          favorite={myMood}
+          mood={'내꺼'}
+          handleModal={handleMyProfile}
+        />
+      )}
+      {otherProfileModal && (
+        <ProfileModal
+          reviewScore={3}
+          favorite={otherHobby}
+          mood={'상대꺼'}
+          handleModal={handleOtherProfile}
         />
       )}
     </>

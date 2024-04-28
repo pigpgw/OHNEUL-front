@@ -32,7 +32,7 @@ function Star({ score }: StarProps): JSX.Element {
           return (
             <FaStar
               key={idx}
-              size="50"
+              size={'3vh'}
               className={clicked[el] ? 'yellowStar' : ''}
             />
           );
@@ -49,6 +49,7 @@ const Wrap = styled.div`
   flex-direction: column;
   padding-bottom: 15px;
   overflow-x: hidden;
+  font-size: 1vh;
 `;
 
 const Stars = styled.div`

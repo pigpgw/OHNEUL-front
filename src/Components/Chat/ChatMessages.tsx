@@ -9,10 +9,15 @@ interface Message {
 
 interface MessageListProps {
   messageList: Message[];
-  handleProfileModal: () => void;
+  handleMyProFile: () => void;
+  handleOhterProFile: () => void;
 }
 
-function ChatMessages({ messageList,handleProfileModal }: MessageListProps): JSX.Element {
+function ChatMessages({
+  messageList,
+  handleMyProFile,
+  handleOhterProFile
+}: MessageListProps): JSX.Element {
   const messagesEndRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -31,7 +36,10 @@ function ChatMessages({ messageList,handleProfileModal }: MessageListProps): JSX
       <ChatMessagesWrapper>
         {messageList.map((v, i) => (
           <ChatMessageItemBox key={`${i}_li`} className={v.type}>
-            <Profile className={v.type} onClick={handleProfileModal}></Profile>
+            <Profile
+              className={v.type}
+              onClick={(v.type === 'me' ? handleMyProFile : handleOhterProFile)}
+            />
             <ChatMessageWrapper className={v.type}>{v.msg}</ChatMessageWrapper>
           </ChatMessageItemBox>
         ))}

@@ -15,7 +15,7 @@ export interface Mood {
   mood: string;
 }
 
-export const fetchGetOtherMood = async (otherId: string): Promise<string> => {
+export const fetchUserMood = async (otherId: string): Promise<string> => {
   try {
     const response = await axios.get(
       `${process.env.REACT_APP_BASE_URL}/users/${otherId}`,

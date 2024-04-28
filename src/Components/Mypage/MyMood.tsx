@@ -56,6 +56,7 @@ const MyMood = () => {
             }
           }
           setData(res);
+   
         };
         mood();
       } catch (error) {

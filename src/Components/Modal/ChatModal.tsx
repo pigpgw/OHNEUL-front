@@ -3,7 +3,6 @@ import React, { ReactNode, MouseEvent } from 'react';
 import { createPortal } from 'react-dom';
 import styled from 'styled-components';
 import LoadingBox from 'Components/Common/LoadingBox/LoadingBox';
-import Star from 'Components/Common/Star';
 import HeartBeat from './Heart';
 
 type ModalProps = {
@@ -137,34 +136,6 @@ export const AgreeModal = () => {
       <ModalTitle>연장 성공!</ModalTitle>
       <HeartBeat />
       <ModalInfo>5초후 대화가 자동으로 시작됩니다.</ModalInfo>
-    </ModalWrapper>
-  );
-};
-
-type ProfileProps = {
-  reviewScore: number;
-  favorite: string;
-  mood: string;
-  handleModal: () => void;
-};
-
-export const ProfileModal = ({
-  reviewScore,
-  favorite,
-  mood,
-  handleModal,
-}: ProfileProps) => {
-  return (
-    <ModalWrapper>
-      <ModalBtn
-        onClick={() => {
-          handleModal();
-        }}
-      >
-        X
-      </ModalBtn>
-      <ModalTitle>별점</ModalTitle>
-      <Star score={3}/>
     </ModalWrapper>
   );
 };
