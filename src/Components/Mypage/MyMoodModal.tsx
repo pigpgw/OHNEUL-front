@@ -1,11 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import {
-  ItemBtn,
-  Container,
-  ItemContainer,
-  SubmitBtn,
-  CloseBtn,
-} from 'Components/styles/Common';
+import { ItemBtn, Container } from 'Components/styles/Common';
 import { useQuery } from 'react-query';
 import { fetchGetMood } from 'api/fetchMood';
 import { useAddUserMoodMutation } from 'hooks/useUserMoodMutation';
@@ -44,7 +38,9 @@ function MyMood({ onClose }: MyMoodModal) {
   const clickBtn = (id: number) => {
     setMood((prev) =>
       prev.map((item) =>
-        item.mood_id === id ? { ...item, clicked: !item.clicked } : item,
+        item.mood_id === id
+          ? { ...item, clicked: true }
+          : { ...item, clicked: false },
       ),
     );
   };
@@ -69,6 +65,7 @@ function MyMood({ onClose }: MyMoodModal) {
   return (
     <>
       <Wrapper>
+        <Title>오늘 당신은?</Title>
         <ItemContainer>
           {mood?.map((item) => (
             <ItemBtn
@@ -80,19 +77,50 @@ function MyMood({ onClose }: MyMoodModal) {
             </ItemBtn>
           ))}
         </ItemContainer>
-        <SubmitBtn onClick={handleSubmit}>선택 완료</SubmitBtn>
+        <BtnWrapper>
+          <SubmitBtn onClick={handleSubmit}>선택 완료</SubmitBtn>
 
-        <CloseBtn onClick={onClose}>닫기</CloseBtn>
+          <CloseBtn onClick={onClose}>닫기</CloseBtn>
+        </BtnWrapper>
       </Wrapper>
     </>
   );
 }
 
+const Title = styled.p`
+  font-size: 3vh;
+  font-weight: 600;
+  font-family: sans-serif;
+`;
+
+const ItemContainer = styled.div`
+  width: 100%;
+  height: 30vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  flex-direction: row;
+  max-width: 700px;
+`;
+
 const Wrapper = styled.div`
+  width: 80%;
+  height: 75vh;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  flex-direction: column;
+  /* height: 570px; */
+  max-width: 700px;
   position: absolute;
+  background-color: white;
+  border: 1px solid black;
+
+  /* position: absolute;
   bottom: 300px;
   width: 60%;
-  height: 60%;
+  height: 80%;
   border: 1px solid black;
   height: 50vh;
   background-color: white;
@@ -105,7 +133,42 @@ const Wrapper = styled.div`
     width: 90%;
     bottom: 150px;
     height: 70%;
-  }
+  } */
+`;
+
+const BtnWrapper = styled.div`
+  width: 100%;
+  height: 12vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+`;
+
+const SubmitBtn = styled.button`
+  cursor: pointer;
+  width: 80%;
+  height: 20vh;
+  max-height: 40px;
+  color: white;
+  background: #0075ff;
+  border-radius: 5px;
+  border: 0;
+  font-size: 1.5vh;
+  max-width: 500px;
+`;
+
+const CloseBtn = styled.button`
+  cursor: pointer;
+  width: 80%;
+  height: 10vh;
+  max-height: 40px;
+  color: white;
+  background: gray;
+  border-radius: 5px;
+  border: 0;
+  font-size: 1.5vh;
+  max-width: 500px;
 `;
 
 export default MyMood;

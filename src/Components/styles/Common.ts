@@ -85,7 +85,7 @@ export const CloseBtn = styled.button`
   height: 5%;
   max-height: 100px;
   color: white;
-  background: #gray;
+  background: gray;
   border-radius: 5px;
   border: 0;
   position: relative;
