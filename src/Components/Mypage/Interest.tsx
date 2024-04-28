@@ -73,11 +73,10 @@ const Interest = () => {
     },
     { refetchInterval: 3000 },
   );
-  useEffect(() => {
-    setData(data);
-  }, [data]);
+
   if (isLoading) return <div>취미를 가져오는 중입니다.</div>;
   if (isError) return <div>취미를 가져오기를 실패했습니다.</div>;
+
   return (
     <>
       <HobbyBtnContainer>

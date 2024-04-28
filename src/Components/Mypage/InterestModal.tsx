@@ -6,12 +6,14 @@ import {
   Title,
   ItemContainer,
   SubmitBtn,
+  CloseBtn,
 } from 'Components/styles/Common';
 import { useNavigate } from 'react-router-dom';
 import { useQuery } from 'react-query';
 import { extractUserId } from 'utils/extractCookie';
 import { useAddUserHobbyMutation } from 'hooks/useUserHobbyMutation';
 import { fetchGetHobbys } from 'api/fetchHobby';
+import styled from 'styled-components';
 
 interface Hobby {
   hobby_id: number;
@@ -70,23 +72,44 @@ function InterestModal({ onClose }: MyHobbyModal) {
   if (isLoading) return <div>Loading...</div>;
   if (error) return <div>Error: error</div>;
   return (
-    <Container>
-      <Title>평소 당신은?</Title>
-      <ItemContainer>
-        {hobby.map((category) => (
-          <ItemBtn
-            key={category.hobby_id}
-            clicked={category.clicked}
-            onClick={() => clickBtn(category.hobby_id)}
-          >
-            {category.hobby}
-          </ItemBtn>
-        ))}
-      </ItemContainer>
-      <InfoText>최소 1개, 최대 3개만 선택 가능</InfoText>
-      <SubmitBtn onClick={handleSubmit}>선택 완료</SubmitBtn>
-    </Container>
+    <>
+      <Wrapper>
+        <ItemContainer>
+          {hobby.map((category) => (
+            <ItemBtn
+              key={category.hobby_id}
+              clicked={category.clicked}
+              onClick={() => clickBtn(category.hobby_id)}
+            >
+              {category.hobby}
+            </ItemBtn>
+          ))}
+        </ItemContainer>
+        <InfoText>최소 1개, 최대 3개만 선택 가능</InfoText>
+        <SubmitBtn onClick={handleSubmit}>선택 완료</SubmitBtn>
+        <CloseBtn onClick={onClose}>닫기</CloseBtn>
+      </Wrapper>
+    </>
   );
 }
+const Wrapper = styled.div`
+  position: absolute;
+  bottom: 300px;
+  width: 60%;
+  height: 60%;
+  border: 1px solid black;
+  height: 50vh;
+  background-color: white;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  @media (max-width: 768px) {
+    width: 90%;
+    bottom: 150px;
+    height: 70%;
+  }
+`;
 
 export default InterestModal;

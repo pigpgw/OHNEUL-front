@@ -6,13 +6,20 @@ import minusHeart from 'assets/images/minusHeart.png';
 import styled from 'styled-components';
 
 const Heart = styled.img`
-  width: 4vh;
+  width: 5vh;
+  @media (max-width: 768px) {
+    width: 5vh;
+  }
 `;
+
 const Desc = styled.div`
   font-size: 2vh;
   font-weight: 600;
   color: #000000;
   margin: 10px;
+  @media (max-width: 768px) {
+    font-size: 2vh;
+  }
 `;
 
 const StarRating = () => {

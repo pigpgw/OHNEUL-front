@@ -4,6 +4,7 @@ import {
   Container,
   ItemContainer,
   SubmitBtn,
+  CloseBtn,
 } from 'Components/styles/Common';
 import { useQuery } from 'react-query';
 import { fetchGetMood } from 'api/fetchMood';
@@ -55,7 +56,7 @@ function MyMood({ onClose }: MyMoodModal) {
       addUserMood({
         mood_id: userSelectMood,
       });
-      alert('기분 수정에 성공하였습니다.')
+      alert('기분 수정에 성공하였습니다.');
       onClose();
     } else {
       alert('적어도 하나의 기분을 선택해주세요');
@@ -80,6 +81,8 @@ function MyMood({ onClose }: MyMoodModal) {
           ))}
         </ItemContainer>
         <SubmitBtn onClick={handleSubmit}>선택 완료</SubmitBtn>
+
+        <CloseBtn onClick={onClose}>닫기</CloseBtn>
       </Wrapper>
     </>
   );
@@ -95,8 +98,14 @@ const Wrapper = styled.div`
   background-color: white;
   display: flex;
   flex-direction: column;
-  justify-content:center;
+  justify-content: center;
   align-items: center;
+
+  @media (max-width: 768px) {
+    width: 90%;
+    bottom: 150px;
+    height: 70%;
+  }
 `;
 
 export default MyMood;

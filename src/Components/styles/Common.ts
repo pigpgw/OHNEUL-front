@@ -66,11 +66,26 @@ export const ItemBtn = styled.button<{ clicked?: boolean }>`
 `;
 
 export const SubmitBtn = styled.button`
+  margin-bottom: 15px;
+  cursor: pointer;
   width: 80%;
   height: 5%;
   max-height: 100px;
   color: white;
   background: #0075ff;
+  border-radius: 5px;
+  border: 0;
+  position: relative;
+  font-size: 1.5vh;
+  max-width: 500px;
+`;
+export const CloseBtn = styled.button`
+  cursor: pointer;
+  width: 80%;
+  height: 5%;
+  max-height: 100px;
+  color: white;
+  background: #gray;
   border-radius: 5px;
   border: 0;
   position: relative;
