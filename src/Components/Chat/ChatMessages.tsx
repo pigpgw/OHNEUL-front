@@ -29,9 +29,14 @@ function ChatMessages({ messageList }: MessageListProps): JSX.Element {
     <ChatMessagesContainer>
       <ChatMessagesWrapper>
         {messageList.map((v, i) => (
-          <ChatMessageItemBox key={`${i}_li`} className={v.type}>
-            <ChatMessageContent className={v.type}>{v.msg}</ChatMessageContent>
-          </ChatMessageItemBox>
+          <>
+            <ChatMessageItemBox key={`${i}_li`} className={v.type}>
+              <Img className={v.type}>d</Img>
+              <ChatMessageContent className={v.type}>
+                {v.msg}
+              </ChatMessageContent>
+            </ChatMessageItemBox>
+          </>
         ))}
         <div ref={messagesEndRef} />
       </ChatMessagesWrapper>
@@ -40,6 +45,20 @@ function ChatMessages({ messageList }: MessageListProps): JSX.Element {
 }
 
 export default React.memo(ChatMessages);
+
+const Img = styled.div`
+  width: 10px;
+  height: 10px;
+  background-color: white;
+  &.me {
+    float: right;
+    margin-bottom: 20px;
+  }
+  &.other {
+    margin-left: 2px;
+    margin: 5px 1px;
+  }
+`;
 
 const ChatMessagesContainer = styled.div`
   width: 100%;
@@ -54,13 +73,13 @@ const ChatMessagesWrapper = styled.div`
   margin: 0;
   border-radius: 10px;
   overflow-y: scroll;
-
   display: flex;
+  width: 100%;
   flex-direction: column;
   height: calc(100vh - 100px);
 `;
 
-const ChatMessageItemBox = styled.li`
+const ChatMessageItemBox = styled.div`
   border-radius: 10px;
   display: inline-block;
   padding: 2px;

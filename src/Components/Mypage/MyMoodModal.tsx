@@ -8,6 +8,7 @@ import {
 import { useQuery } from 'react-query';
 import { fetchGetMood } from 'api/fetchMood';
 import { useAddUserMoodMutation } from 'hooks/useUserMoodMutation';
+import styled from 'styled-components';
 
 interface MoodTs {
   mood_id: number;
@@ -54,6 +55,7 @@ function MyMood({ onClose }: MyMoodModal) {
       addUserMood({
         mood_id: userSelectMood,
       });
+      alert('기분 수정에 성공하였습니다.')
       onClose();
     } else {
       alert('적어도 하나의 기분을 선택해주세요');
@@ -65,7 +67,7 @@ function MyMood({ onClose }: MyMoodModal) {
 
   return (
     <>
-      <Container>
+      <Wrapper>
         <ItemContainer>
           {mood?.map((item) => (
             <ItemBtn
@@ -78,9 +80,23 @@ function MyMood({ onClose }: MyMoodModal) {
           ))}
         </ItemContainer>
         <SubmitBtn onClick={handleSubmit}>선택 완료</SubmitBtn>
-      </Container>
+      </Wrapper>
     </>
   );
 }
+
+const Wrapper = styled.div`
+  position: absolute;
+  bottom: 300px;
+  width: 60%;
+  height: 60%;
+  border: 1px solid black;
+  height: 50vh;
+  background-color: white;
+  display: flex;
+  flex-direction: column;
+  justify-content:center;
+  align-items: center;
+`;
 
 export default MyMood;

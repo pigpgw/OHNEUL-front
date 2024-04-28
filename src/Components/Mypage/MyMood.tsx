@@ -6,6 +6,9 @@ import MyMoodModal from 'Components/Mypage/MyMoodModal';
 import editButton from 'assets/images/editButton.png';
 import { useDispatch, useSelector } from 'react-redux';
 import { setMood } from 'stores/slices/InfoSlice';
+import { fetchGetOtherMood } from 'api/fetchMood';
+import { useQuery } from 'react-query';
+import { extractUserId } from '../../utils/extractCookie';
 
 interface MoodData {
   mood: string;
@@ -49,40 +52,63 @@ const MyMood = () => {
   const handleCloseModal = () => {
     setOpen(null);
   };
+
+  interface MoodTs {
+    mood_id: number;
+    mood: string;
+  }
+  const [mymood, setMyMood] = useState(null);
+  const { isLoading, isError, data } = useQuery<MoodTs | any>(
+    ['mymood'],
+    async () => {
+      const response = await axios.get(
+        `${process.env.REACT_APP_BASE_URL}/users/${userId}`,
+      );
+      return response.data.mood_id;
+    },
+    {
+      refetchInterval: 3000
+    },
+  
+  );
+
+  useEffect(() => {
+    setMyMood(data);
+  }, [data]);
   // useEffect(() => {
 
   // }, []);
 
-  useEffect(() => {
-    const interval = setInterval(() => {
-      const fetchMoods = async () => {
-        try {
-          const allMoodResponse: any = await axios
-            .get(`${process.env.REACT_APP_BASE_URL}/moods`)
-            .then((res) => res.data);
-          const userMoodResponse: any = await axios
-            .get(`${process.env.REACT_APP_BASE_URL}/users/${userId}`)
-            .then((res) => res.data.mood_id);
+  if (isLoading) return <div>내 기분 가져오는 중</div>;
+  if (isError) return <div>내 기분 가져오기 실패</div>;
 
-          const mood = (): void => {
-            const res = [];
-            for (let i = 0; i < allMoodResponse.length; i += 1) {
-              if (allMoodResponse[i].mood_id === userMoodResponse) {
-                res.push(allMoodResponse[i].mood);
-              }
+  useEffect(() => {
+    const fetchMoods = async () => {
+      try {
+        const allMoodResponse: any = await axios
+          .get(`${process.env.REACT_APP_BASE_URL}/moods`)
+          .then((res) => res.data);
+        const userMoodResponse: any = await axios
+          .get(`${process.env.REACT_APP_BASE_URL}/users/${userId}`)
+          .then((res) => res.data.mood_id);
+
+        const mood = (): void => {
+          const res = [];
+          for (let i = 0; i < allMoodResponse.length; i += 1) {
+            if (allMoodResponse[i].mood_id === userMoodResponse) {
+              res.push(allMoodResponse[i].mood);
             }
-            dispatch(setMood({ user_mood: res }));
-            setData(res);
-            console.log(settedMood);
-          };
-          mood();
-        } catch (error) {
-          console.error(error);
-        }
-      };
-      fetchMoods();
-    }, 1000);
-    return () => clearInterval(interval);
+          }
+          dispatch(setMood({ user_mood: res }));
+          setData(res);
+          console.log(settedMood);
+        };
+        mood();
+      } catch (error) {
+        console.error(error);
+      }
+    };
+    fetchMoods();
   }, []);
 
   return (
@@ -93,7 +119,7 @@ const MyMood = () => {
           <MoodEditBtn src={editButton} onClick={() => handleModal('mood')} />
         </Div>
         <Wrapper>
-          <MoodBtn>{datas}</MoodBtn>
+          <MoodBtn>{mymood}</MoodBtn>
         </Wrapper>
       </MoodBtnContainer>
       {open === 'mood' && <MyMoodModal onClose={handleCloseModal} />}
