@@ -11,6 +11,7 @@ import {
   ReportModal,
   ReviewModal,
   AgreeModal,
+  ProfileModal,
 } from 'Components/Modal/ChatModal';
 import { useCoinQuery } from 'hooks/useCoinQuery';
 import { useNavigate } from 'react-router-dom';
@@ -53,6 +54,7 @@ function Chat({ socket }: any): JSX.Element {
   const [otherMood, setOtherMood] = useState<string>('');
 
   const [agreeModal, setAgreeModal] = useState(false);
+  const [profileModal, setProfileModal] = useState(false);
 
   useEffect(() => {
     if (!socket) return;
@@ -286,6 +288,11 @@ function Chat({ socket }: any): JSX.Element {
     setReportModal(false);
   };
 
+  const onProfile = () => {
+    console.log('버튼 누름');
+    setProfileModal(!profileModal);
+  };
+
   return (
     <>
       <ChatHeader
@@ -342,12 +349,20 @@ function Chat({ socket }: any): JSX.Element {
           btnName2="나가기"
         />
       )}
-      <ChatMessages messageList={messageList} />
+      <ChatMessages messageList={messageList} handleProfileModal={onProfile} />
       {remainingTime !== 0 && (
         <ChatInputForm
           msgSubmitHandler={msgSubmitHandler}
           msg={msg}
           msgChangeHandler={msgChangeHandler}
+        />
+      )}
+      {profileModal && (
+        <ProfileModal
+          reviewScore={0}
+          favorite={''}
+          mood={''}
+          handleModal={onProfile}
         />
       )}
     </>

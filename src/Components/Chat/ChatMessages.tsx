@@ -9,9 +9,10 @@ interface Message {
 
 interface MessageListProps {
   messageList: Message[];
+  handleProfileModal: () => void;
 }
 
-function ChatMessages({ messageList }: MessageListProps): JSX.Element {
+function ChatMessages({ messageList,handleProfileModal }: MessageListProps): JSX.Element {
   const messagesEndRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -30,7 +31,8 @@ function ChatMessages({ messageList }: MessageListProps): JSX.Element {
       <ChatMessagesWrapper>
         {messageList.map((v, i) => (
           <ChatMessageItemBox key={`${i}_li`} className={v.type}>
-            <ChatMessageContent className={v.type}>{v.msg}</ChatMessageContent>
+            <Profile className={v.type} onClick={handleProfileModal}></Profile>
+            <ChatMessageWrapper className={v.type}>{v.msg}</ChatMessageWrapper>
           </ChatMessageItemBox>
         ))}
         <div ref={messagesEndRef} />
@@ -40,6 +42,28 @@ function ChatMessages({ messageList }: MessageListProps): JSX.Element {
 }
 
 export default React.memo(ChatMessages);
+
+const Profile = styled.div`
+  border-radius: 100%;
+  position: relative;
+  &.me {
+    text-align: right;
+    margin: 4px 0;
+    width: 2vh;
+    height: 2vh;
+    background-color: #e1e1e1;
+    /* box-shadow: 2px 2px 1px 1px #e3e3e3; */
+    margin-left: auto;
+  }
+
+  &.other {
+    text-align: left;
+    margin: 4px 0;
+    width: 2vh;
+    height: 2vh;
+    background-color: #e1e1e1;
+  }
+`;
 
 const ChatMessagesContainer = styled.div`
   width: 100%;
@@ -66,16 +90,16 @@ const ChatMessageItemBox = styled.li`
   padding: 2px;
   &.me {
     text-align: right;
-    margin: 5px 1px;
+    margin: 3px 1px;
   }
   &.other {
     text-align: left;
     margin-left: 2px;
-    margin: 5px 1px;
+    margin: 3px 1px;
   }
 `;
 
-const ChatMessageContent = styled.div`
+const ChatMessageWrapper = styled.div`
   display: inline-block;
   font-size: 2vh;
   font-family: sans-serif;
