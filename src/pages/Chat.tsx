@@ -162,6 +162,7 @@ function Chat({ socket }: any): JSX.Element {
       // setConsent(true);
       // setConsentWaitModal(false);
       setAgreeModal(true);
+      setConsentModal(false);
       setConsentWaitModal(false);
     }
 
@@ -193,7 +194,7 @@ function Chat({ socket }: any): JSX.Element {
           setConsentModal(true);
           setConsent(false);
           setAniTime(0);
-          
+
           return 0;
         }
         return prevTime - 1;
@@ -203,7 +204,7 @@ function Chat({ socket }: any): JSX.Element {
       });
     }, 1000);
     setIntervalId(newIntervalId);
-  }, [totalTime]);
+  }, [consent]);
 
   const onAgree = () => {
     if (userCoinState < 5) {
@@ -261,7 +262,7 @@ function Chat({ socket }: any): JSX.Element {
 
   const onReportModal = useCallback(() => {
     setReportModal(true);
-  },[])
+  }, []);
 
   const offReportModal = () => {
     setReportModal(false);
