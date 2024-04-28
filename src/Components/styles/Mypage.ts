@@ -45,8 +45,10 @@ export const TabSection = styled.div`
 `;
 export const Tab = styled.div`
   text-align: left;
+  font-size: 2vh;
   border: 2px solid #dbdbdb;
   padding: 10px;
+  margin: 1vh 0;
   cursor: pointer;
 `;
 export const TabTitle = styled.div`

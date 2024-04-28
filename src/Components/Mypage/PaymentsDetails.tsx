@@ -8,6 +8,7 @@ const Container = styled.div`
   padding: 20px;
   border: 1px solid #ccc;
   border-radius: 5px;
+  font-size: 2vh;
 `;
 
 const PaymentsWrapper = styled.div`

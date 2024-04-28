@@ -11,7 +11,7 @@ const Button = styled.button`
   border: none;
   padding: 0;
   font: inherit;
-  color: #dbdbdb;
+  color: red;
   cursor: pointer;
   outline: inherit;
 `;
