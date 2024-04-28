@@ -6,7 +6,7 @@ import minusHeart from 'assets/images/minusHeart.png';
 import styled from 'styled-components';
 
 const Heart = styled.img`
-  width: 8vh;
+  width: 4vh;
 `;
 const Desc = styled.div`
   font-size: 2vh;

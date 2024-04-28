@@ -4,6 +4,7 @@ import editButton from 'assets/images/editButton.png';
 import meltedCookie from 'utils/meltedCookie';
 import styled from 'styled-components';
 import InterestModal from 'Components/Mypage/InterestModal';
+import { useQuery } from 'react-query';
 
 interface HobbyData {
   hobby_id: number;
@@ -41,40 +42,42 @@ const Interest = () => {
   const handleCloseModal = () => {
     setOpen(null);
   };
-  useEffect(() => {
-    const fetchPayments = async () => {
-      try {
-        const allHobbiesResponse: any = await axios
-          .get(`${process.env.REACT_APP_BASE_URL}/hobbies`)
-          .then((res) => res.data);
-        const userHobbieseResponse: any = await axios
-          .get(`${process.env.REACT_APP_BASE_URL}/user-hobby/${userId}`)
-          .then((res) => res.data);
-
-        const hobby = () => {
-          const res = [];
-          for (let i = 0; i < allHobbiesResponse.length; i += 1) {
-            for (let j = 0; j < userHobbieseResponse.length; j += 1) {
-              if (
-                allHobbiesResponse[i].hobby_id ===
-                userHobbieseResponse[j].hobby_id
-              ) {
-                res.push(allHobbiesResponse[i]);
-              }
+  interface HobbyTs {
+    hobby_id: number;
+    hobby: string;
+  }
+  const { isLoading, isError, data } = useQuery<HobbyTs | any>(
+    ['myhobby'],
+    async () => {
+      const allHobbiesResponse: any = await axios
+        .get(`${process.env.REACT_APP_BASE_URL}/hobbies`)
+        .then((res) => res.data);
+      const userHobbieseResponse: any = await axios
+        .get(`${process.env.REACT_APP_BASE_URL}/user-hobby/${userId}`)
+        .then((res) => res.data);
+      const hobby = () => {
+        const res = [];
+        for (let i = 0; i < allHobbiesResponse.length; i += 1) {
+          for (let j = 0; j < userHobbieseResponse.length; j += 1) {
+            if (
+              allHobbiesResponse[i].hobby_id ===
+              userHobbieseResponse[j].hobby_id
+            ) {
+              res.push(allHobbiesResponse[i]);
             }
           }
-          return res;
-        };
-
-        setData(hobby());
-      } catch (error) {
-        console.error(error);
-      }
-    };
-
-    fetchPayments();
-  }, []);
-
+        }
+        setData(res);
+      };
+      return hobby();
+    },
+    { refetchInterval: 3000 },
+  );
+  useEffect(() => {
+    setData(data);
+  }, [data]);
+  if (isLoading) return <div>취미를 가져오는 중입니다.</div>;
+  if (isError) return <div>취미를 가져오기를 실패했습니다.</div>;
   return (
     <>
       <HobbyBtnContainer>
