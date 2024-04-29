@@ -72,25 +72,29 @@ const ConsentModal = React.memo(({ onAgree, onRefuse }: ConsentModalProps) => {
 
 ConsentModal.displayName = 'ConsentModal';
 
-const InfoModal = ({
-  infoContent,
-  continueEvent,
-  finishEvent,
-  btnName1,
-  btnName2,
-}: InfoModal) => {
-  return (
-    <ModalWrapper>
-      <ModalTitle>{infoContent}</ModalTitle>
-      <ModalBtnContainer>
-        {continueEvent && (
-          <ModalBtn onClick={continueEvent}>{btnName1}</ModalBtn>
-        )}
-        {finishEvent && <ModalBtn onClick={finishEvent}>{btnName2}</ModalBtn>}
-      </ModalBtnContainer>
-    </ModalWrapper>
-  );
-};
+const InfoModal = React.memo(
+  ({
+    infoContent,
+    continueEvent,
+    finishEvent,
+    btnName1,
+    btnName2,
+  }: InfoModal) => {
+    return (
+      <ModalWrapper>
+        <ModalTitle>{infoContent}</ModalTitle>
+        <ModalBtnContainer>
+          {continueEvent && (
+            <ModalBtn onClick={continueEvent}>{btnName1}</ModalBtn>
+          )}
+          {finishEvent && <ModalBtn onClick={finishEvent}>{btnName2}</ModalBtn>}
+        </ModalBtnContainer>
+      </ModalWrapper>
+    );
+  },
+);
+
+InfoModal.displayName = 'InfoModal';
 
 const ReportModal = React.memo(
   ({

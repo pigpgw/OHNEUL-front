@@ -112,9 +112,10 @@ function Chat({ socket }: any): JSX.Element {
   const onForExitModal = useCallback(() => {
     setForExitModal(true);
   }, []);
-  function offForExitModal() {
-    setForExitModal(false);
-  }
+
+  const offForExitModal = useCallback(() => {
+    setForExitModal(false)
+  },[])
 
   useEffect(() => {
     return () => {
