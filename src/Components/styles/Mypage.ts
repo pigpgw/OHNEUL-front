@@ -40,15 +40,16 @@ export const Title = styled.div`
 export const TabSection = styled.div`
   margin-top: 10px;
   width: 100%;
-  min-width: 370px;
-  margin: 10px 0 0 0 auto;
 `;
-export const Tab = styled.div`
+export const Tab = styled.div<{ last?: string }>`
   text-align: left;
   font-size: 2vh;
-  border: 2px solid #dbdbdb;
+  border-top: 2px solid #dbdbdb;
+  border-bottom: ${(props) => (props.last ? '1px solid #dbdbdb' : 'none')};
+  border-left: none;
+  border-right: none;
   padding: 2vh 1vh;
-  margin: 0 0;
+  margin: 0;
   cursor: pointer;
 `;
 export const TabTitle = styled.div`

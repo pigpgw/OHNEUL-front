@@ -106,17 +106,18 @@ const ItemContainer = styled.div`
 `;
 
 const Wrapper = styled.div`
-  width: 80%;
+  width: 90%;
   height: 75vh;
   display: flex;
   justify-content: space-around;
   align-items: center;
   flex-direction: column;
   /* height: 570px; */
-  max-width: 700px;
+  max-width: 500px;
   position: absolute;
   background-color: white;
-  border: 1px solid black;
+  border: 1px solid gray;
+  border-radius: 20px;
 `;
 
 const BtnWrapper = styled.div`

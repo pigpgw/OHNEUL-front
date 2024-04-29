@@ -13,11 +13,9 @@ const Kakao = styled.img`
   max-height: 30px;
 `;
 const Naver = styled.img`
-  width: 4%;
-  height: 4%;
+  width: 30px;
+  height: 30px;
   margin: 1%;
-  max-width: 30px;
-  max-height: 30px;
 `;
 
 function SocialImage() {

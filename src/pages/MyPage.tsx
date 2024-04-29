@@ -38,7 +38,7 @@ const MyPage: React.FC = () => {
           {open === 'coinusage' && <CoinUsageDetails />}
           <Tab onClick={() => handleModal('terms')}>이용정책</Tab>
           {open === 'terms' && <Terms />}
-          <Tab onClick={() => handleModal('announcement')}>공지사항</Tab>
+          <Tab onClick={() => handleModal('announcement')} last={'true'}>공지사항</Tab>
           {open === 'announcement' && <Announcement />}
         </TabSection>
         <BtnContainer>
