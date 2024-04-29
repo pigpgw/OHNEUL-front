@@ -43,7 +43,9 @@ const ProfileModal = ({
       >
         X
       </ModalBtn>
-      <ModalTitle>{user}</ModalTitle>
+      <Div>
+        <ModalTitle>{user}</ModalTitle>
+      </Div>
       <Wrapper>
         <ModalsubTitle>평점</ModalsubTitle>
         <Star score={reviewScore} paddingBottom="1vh" size={'3vh'} />
@@ -58,6 +60,11 @@ const ProfileModal = ({
 
 export default React.memo(ProfileModal);
 
+const Div = styled.div`
+  width: 100%;
+  background-color: #0075FF;
+`;
+
 const ProfileContainer = styled.div`
   display: flex;
   justify-content: space-around;
@@ -65,7 +72,6 @@ const ProfileContainer = styled.div`
   flex-direction: column;
   background-color: white;
   border: 1px solid black;
-  padding: 1vh 5vh;
   border-radius: 20px;
   width: 17vh;
   position: fixed;

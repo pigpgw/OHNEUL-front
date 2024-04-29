@@ -5,6 +5,7 @@ import { useQuery } from 'react-query';
 import InfoHeader from 'Components/Common/InfoHeader';
 import ButtonList from 'Components/Common/ButtonList';
 import InfoFooter from 'Components/Common/InfoFooter';
+import Button from 'Components/Common/Button';
 import { Container, SubmitBtn } from '../Components/styles/Common';
 import { fetchGetThemes } from '../api/fetchTheme';
 import { WaitModal } from '../Components/Modal/ChatModal';
@@ -111,9 +112,7 @@ function Theme({ socket }: any) {
         <ButtonList items={theme} onClick={clickBtn} />
         {wait && <WaitModal onClose={onClose} />}
         <InfoFooter infoText="최대 1개만 선택 가능합니다." />
-        <SubmitBtn disabled={wait} onClick={matchingcStart}>
-          선택 완료
-        </SubmitBtn>
+        <Button disabled={wait} onClick={matchingcStart}>선택 완료</Button>
       </Container>
     </>
   );

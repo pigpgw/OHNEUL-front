@@ -135,11 +135,11 @@ const ChatMessageWrapper = styled.div`
 
   &.me {
     color: white;
-    background: #ff7e95;
+    background: #0075FF;
     border-top-left-radius: 8px;
     border-bottom-left-radius: 8px;
     border-bottom-right-radius: 8px;
-    box-shadow: 2px 2px 0 0 lightgray;
+    box-shadow: 1px 1px 0 0 lightgray;
     padding: 7px 10px 7px 10px;
     right: 1%;
     margin-right: 1vh;
@@ -148,8 +148,8 @@ const ChatMessageWrapper = styled.div`
   &.other {
     text-align: left;
     color: white;
-    background: #ff7e95;
-    box-shadow: 2px 2px 0 0 lightgray;
+    background: #0075FF;
+    box-shadow: 1px 1px 0 0 lightgray;
     border-top-right-radius: 8px;
     border-bottom-left-radius: 8px;
     border-bottom-right-radius: 8px;
