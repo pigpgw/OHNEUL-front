@@ -60,6 +60,7 @@ const ChatInput = styled.input`
   border: 0;
   margin: 0;
   max-width: 400px;
+  min-height: 25px;
 `;
 
 const ChatSubmitBtn = styled.button`

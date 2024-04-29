@@ -75,7 +75,8 @@ const Profile = styled(IoPerson)`
 
 const ChatMessagesContainer = styled.div`
   width: 100%;
-  height: calc(100vh - 120px);
+  /* height: calc(120vh - 37vh); */
+  flex: 1;
   flex-direction: column;
   overflow: auto;
 `;
@@ -89,7 +90,7 @@ const ChatMessagesWrapper = styled.div`
 
   display: flex;
   flex-direction: column;
-  height: calc(100vh - 100px);
+  height: calc(100vh - 20vh);
 `;
 
 const ChatMessageItemBox = styled.li`

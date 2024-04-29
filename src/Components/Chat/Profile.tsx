@@ -88,9 +88,10 @@ const ModalBtn = styled.button`
   border: 0;
   cursor: pointer;
   position: absolute;
-  background-color: #0075ff;
+  background-color: transparent;
+  margin: 0;
   color: white;
-  left: 95%;
+  left: 88%;
   bottom: 82%;
 `;
 
