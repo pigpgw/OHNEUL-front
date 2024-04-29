@@ -1,6 +1,7 @@
 import Star from 'Components/Common/Star';
 import { styled } from 'styled-components';
 import { createPortal } from 'react-dom';
+
 import React from 'react';
 
 type ModalProps = {

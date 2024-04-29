@@ -1,5 +1,6 @@
 import React, { useEffect, useRef } from 'react';
 import styled from 'styled-components';
+import { IoPerson } from '@react-icons/all-files/io5/IoPerson';
 
 interface Message {
   msg: string;
@@ -16,7 +17,7 @@ interface MessageListProps {
 function ChatMessages({
   messageList,
   handleMyProFile,
-  handleOhterProFile
+  handleOhterProFile,
 }: MessageListProps): JSX.Element {
   const messagesEndRef = useRef<HTMLDivElement>(null);
 
@@ -36,10 +37,16 @@ function ChatMessages({
       <ChatMessagesWrapper>
         {messageList.map((v, i) => (
           <ChatMessageItemBox key={`${i}_li`} className={v.type}>
-            <Profile
-              className={v.type}
-              onClick={(v.type === 'me' ? handleMyProFile : handleOhterProFile)}
-            />
+            {v.type === 'me' || v.type === 'other' ? (
+              <ProfileWrapper>
+                <Profile
+                  className={v.type}
+                  onClick={
+                    v.type === 'me' ? handleMyProFile : handleOhterProFile
+                  }
+                />
+              </ProfileWrapper>
+            ) : null}
             <ChatMessageWrapper className={v.type}>{v.msg}</ChatMessageWrapper>
           </ChatMessageItemBox>
         ))}
@@ -51,24 +58,23 @@ function ChatMessages({
 
 export default React.memo(ChatMessages);
 
-const Profile = styled.div`
+const Profile = styled(IoPerson)`
   border-radius: 100%;
   position: relative;
+  color: #747474;
   &.me {
-    text-align: right;
-    margin: 4px 0;
-    width: 2vh;
-    height: 2vh;
+    margin: 1px 0;
+    width: 3vh;
+    height: 3vh;
     background-color: #e1e1e1;
     /* box-shadow: 2px 2px 1px 1px #e3e3e3; */
     margin-left: auto;
   }
 
   &.other {
-    text-align: left;
-    margin: 4px 0;
-    width: 2vh;
-    height: 2vh;
+    margin: 1px 0;
+    width: 3vh;
+    height: 3vh;
     background-color: #e1e1e1;
   }
 `;
@@ -98,12 +104,32 @@ const ChatMessageItemBox = styled.li`
   padding: 2px;
   &.me {
     text-align: right;
-    margin: 3px 1px;
+    margin: 4px 1px;
   }
   &.other {
     text-align: left;
     margin-left: 2px;
-    margin: 3px 1px;
+    margin: 4px 1px;
+  }
+`;
+
+const ProfileWrapper = styled.div`
+  &.me {
+    text-align: right;
+    margin: 4px 0;
+    width: 3vh;
+    height: 3vh;
+    background-color: #e1e1e1;
+    /* box-shadow: 2px 2px 1px 1px #e3e3e3; */
+    margin-left: auto;
+  }
+
+  &.other {
+    text-align: left;
+    margin: 4px 0;
+    width: 2vh;
+    height: 2vh;
+    background-color: #e1e1e1;
   }
 `;
 
@@ -112,6 +138,7 @@ const ChatMessageWrapper = styled.div`
   font-size: 2vh;
   font-family: sans-serif;
   font-family: 100;
+  position: relative;
 
   &.me {
     color: white;
@@ -121,6 +148,8 @@ const ChatMessageWrapper = styled.div`
     border-bottom-right-radius: 8px;
     box-shadow: 2px 2px 0 0 lightgray;
     padding: 7px 10px 7px 10px;
+    right: 1%;
+    margin-right: 1vh;
   }
 
   &.other {
@@ -131,8 +160,9 @@ const ChatMessageWrapper = styled.div`
     border-top-right-radius: 8px;
     border-bottom-left-radius: 8px;
     border-bottom-right-radius: 8px;
-
+    margin-left: 1vh;
     padding: 7px 10px 7px 10px;
+    left: 1%;
   }
 
   &.start {

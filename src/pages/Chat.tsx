@@ -403,7 +403,7 @@ function Chat({ socket }: any): JSX.Element {
           user={'상대방'}
           reviewScore={Math.floor(Number(otherScore))}
           favorite={otherHobby}
-          mood={otherHobby}
+          mood={otherMood}
           handleModal={handleOtherProfile}
         />
       )}

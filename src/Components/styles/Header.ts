@@ -42,7 +42,6 @@ export const InfoContainer = styled.div`
   font-weight: 500;
 `;
 export const CashContainer = styled.div`
-  margin-top: 1vh;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -65,7 +64,7 @@ export const IconExit = styled(GiExitDoor)`
   color: gray;
 `;
 export const IconReport = styled(RiAlarmWarningFill)`
-  margin: 2vh 7px 2px 10px;
+  margin: 2vh 7px 1.5vh 10px;
   font-size: 4vh;
   color: gray;
 `;
