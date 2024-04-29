@@ -59,23 +59,17 @@ function ChatMessages({
 export default React.memo(ChatMessages);
 
 const Profile = styled(IoPerson)`
-  border-radius: 100%;
-  position: relative;
-  color: #747474;
-  &.me {
-    margin: 1px 0;
-    width: 3vh;
-    height: 3vh;
-    background-color: #e1e1e1;
-    /* box-shadow: 2px 2px 1px 1px #e3e3e3; */
-    margin-left: auto;
-  }
-
+  &.me,
   &.other {
-    margin: 1px 0;
     width: 3vh;
     height: 3vh;
+    color: #747474;
+    margin: 1px 0;
+    border: 2px solid #d7d7d7;
     background-color: #e1e1e1;
+    margin-left: auto;
+    border-radius: 100%;
+    position: relative;
   }
 `;
 
@@ -120,7 +114,6 @@ const ProfileWrapper = styled.div`
     width: 3vh;
     height: 3vh;
     background-color: #e1e1e1;
-    /* box-shadow: 2px 2px 1px 1px #e3e3e3; */
     margin-left: auto;
   }
 
