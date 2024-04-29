@@ -66,25 +66,7 @@ const Stars = styled.div`
     cursor: pointer;
   }
 
-  :hover svg {
-    color: #fcc419;
-  }
-
-  & svg:hover ~ svg {
-    color: gray;
-  }
-
   .yellowStar {
     color: #fcc419;
   }
-`;
-
-const StarBtn = styled.button`
-  font-size: 13px;
-  font-weight: 900;
-  position: relative;
-  top: 1vh;
-  border: 0;
-  background-color: white;
-  cursor: pointer;
 `;

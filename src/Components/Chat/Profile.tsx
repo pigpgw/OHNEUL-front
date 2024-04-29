@@ -71,7 +71,7 @@ const ProfileContainer = styled.div`
   align-items: center;
   flex-direction: column;
   background-color: white;
-  border: 1px solid black;
+  border: 1px solid lightgray;
   border-radius: 20px;
   width: 17vh;
   position: fixed;
