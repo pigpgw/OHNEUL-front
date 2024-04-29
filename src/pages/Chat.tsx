@@ -1,5 +1,5 @@
 /* eslint-disable no-useless-return */
-import { useCallback, useEffect, useId, useRef, useState } from 'react';
+import React, { useCallback, useEffect, useId, useRef, useState } from 'react';
 import ChatHeader from 'Components/Chat/ChatHeader';
 import ChatMessages from 'Components/Chat/ChatMessages';
 import ChatInputForm from 'Components/Chat/ChatInputForm';
@@ -38,7 +38,7 @@ function Chat({ socket }: any): JSX.Element {
   ]);
   const [msg, setMsg] = useState<string>('');
   const [consentModal, setConsentModal] = useState<boolean>(false);
-  const [remainingTime, setRemainingTime] = useState<number>(10);
+  const [remainingTime, setRemainingTime] = useState<number>(300);
   const [consent, setConsent] = useState<boolean>(false);
   const [consentWaitModal, setConsentWaitModal] = useState<boolean>(false);
   const [forExitModal, setForExitModal] = useState<boolean>(false);
@@ -184,9 +184,6 @@ function Chat({ socket }: any): JSX.Element {
     }
 
     function consentSuccessCallback() {
-      // setConsentModal(false);
-      // setConsent(true);
-      // setConsentWaitModal(false);
       setAgreeModal(true);
       setConsentModal(false);
       setConsentWaitModal(false);
@@ -232,7 +229,7 @@ function Chat({ socket }: any): JSX.Element {
     setIntervalId(newIntervalId);
   }, [consent]);
 
-  const onAgree = () => {
+  const onAgree = useCallback(() => {
     if (userCoinState < 5) {
       alert('ㅠㅠㅠ 코인이 부족합니다.');
     } else {
@@ -244,16 +241,16 @@ function Chat({ socket }: any): JSX.Element {
       setConsentWaitModal(true);
       setConsentModal(false);
     }
-  };
+  }, []);
 
-  const onRefuse = () => {
+  const onRefuse = useCallback(() => {
     const data = {
       user_id: userId,
       consent: 'no',
     };
     socket.emit('consent', data);
     goThemePage();
-  };
+  }, []);
 
   const navigate = useNavigate();
 
@@ -290,16 +287,19 @@ function Chat({ socket }: any): JSX.Element {
     setReportModal(true);
   }, []);
 
-  const offReportModal = () => {
+  const offReportModal = useCallback(() => {
     setReportModal(false);
-  };
+  }, []);
 
-  const selectReportReason = (e: React.MouseEvent<HTMLButtonElement>): void => {
-    const { value } = e.target as HTMLButtonElement;
-    setReportReson(value);
-  };
+  const selectReportReason = useCallback(
+    (e: React.MouseEvent<HTMLButtonElement>): void => {
+      const { value } = e.target as HTMLButtonElement;
+      setReportReson(value);
+    },
+    [],
+  );
 
-  const reportUser = () => {
+  const reportUser = useCallback(() => {
     const reportedUserId = extractOtherUserId();
     const reportInfo = {
       reportedUserId,
@@ -310,7 +310,7 @@ function Chat({ socket }: any): JSX.Element {
     alert('신고가 완료되었습니다.');
     goThemePage();
     setReportModal(false);
-  };
+  }, []);
 
   const handleMyProfile = useCallback(() => {
     setMyProfileModal(!myProfileModal);
