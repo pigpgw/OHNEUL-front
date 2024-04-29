@@ -18,7 +18,6 @@ const Naver = styled.img`
   margin: 1%;
   max-width: 30px;
   max-height: 30px;
-  position: relative;
 `;
 
 function SocialImage() {
@@ -42,7 +41,7 @@ function SocialImage() {
       ) : (
         <>
           <Naver src={NaverBogo}></Naver>
-          <p>{name}님, 당신의 오늘은 어땠나요</p>
+          <p>당신의 오늘은 어땠나요 {name}님?</p>
         </>
       )}
     </Wrapper>

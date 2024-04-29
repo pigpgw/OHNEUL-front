@@ -33,7 +33,7 @@ export const Title = styled.div`
   padding-bottom: 10px;
   border-bottom: 2px solid #dbdbdb;
   width: 100%;
-  font-size: 1.5vh;
+  font-size: 3vh;
   font-weight: 600;
 `;
 

@@ -86,7 +86,7 @@ const StarRating = () => {
           return (
             <FaStar
               key={idx}
-              size="50"
+              size="40"
               className={star[el] ? 'yellowStar' : ''}
             />
           );
