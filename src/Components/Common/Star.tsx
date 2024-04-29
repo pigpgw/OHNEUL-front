@@ -6,9 +6,11 @@ import styled from 'styled-components';
 
 type StarProps = {
   score: number;
+  paddingBottom?: string;
+  size?: string
 };
 
-function Star({ score }: StarProps): JSX.Element {
+function Star({ score, size,paddingBottom }: StarProps): JSX.Element {
   const [clicked, setClicked] = useState<boolean[]>([
     false,
     false,
@@ -26,13 +28,13 @@ function Star({ score }: StarProps): JSX.Element {
   }, []);
 
   return (
-    <Wrap>
+    <Wrap paddingBtm={paddingBottom}>
       <Stars>
         {[0, 1, 2, 3, 4].map((el, idx) => {
           return (
             <FaStar
               key={idx}
-              size={'3vh'}
+              size={size || '3vh'}
               className={clicked[el] ? 'yellowStar' : ''}
             />
           );
@@ -44,10 +46,10 @@ function Star({ score }: StarProps): JSX.Element {
 
 export default Star;
 
-const Wrap = styled.div`
+const Wrap = styled.div<{ paddingBtm?: string }>`
   display: flex;
   flex-direction: column;
-  padding-bottom: 15px;
+  padding-bottom: ${(props) => props.paddingBtm || '15px'};
   overflow-x: hidden;
   font-size: 1vh;
 `;

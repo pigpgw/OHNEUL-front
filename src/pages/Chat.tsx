@@ -17,6 +17,7 @@ import { useCoinQuery } from 'hooks/useCoinQuery';
 import { useNavigate } from 'react-router-dom';
 import Rating from 'Components/Chat/Rating';
 import { fecthGetUserHobby } from 'api/fetchGetOneUserHobby';
+import { fetchGetUserScore } from 'api/fetchGetUserScore';
 
 interface Message {
   msg: string;
@@ -55,6 +56,8 @@ function Chat({ socket }: any): JSX.Element {
   const [otherHobby, setOtherHobby] = useState<string>('');
   const [myMood, setMyMood] = useState('');
   const [myHobby, setMyHobby] = useState('');
+  const [otherScore, setOtherScore] = useState('');
+  const [myScore, setMyScore] = useState('');
 
   const [agreeModal, setAgreeModal] = useState(false);
   const [myProfileModal, setMyProfileModal] = useState(false);
@@ -67,6 +70,8 @@ function Chat({ socket }: any): JSX.Element {
         const otherUserId = extractOtherUserId();
         const mood = await fetchUserMood(otherUserId);
         const hobby = await fecthGetUserHobby(otherUserId);
+        const getOtherScore = await fetchGetUserScore(otherUserId);
+        setOtherScore(getOtherScore);
         setOtherMood(mood);
         setOtherHobby(hobby.join(', '));
         setMessageList((prev) => [
@@ -91,8 +96,10 @@ function Chat({ socket }: any): JSX.Element {
       try {
         const mood = await fetchUserMood(userId);
         const hobby = await fecthGetUserHobby(userId);
+        const getMyScore = await fetchGetUserScore(userId);
         setMyMood(mood);
         setMyHobby(hobby.join(', '));
+        setMyScore(getMyScore);
       } catch (error) {
         console.error('내 기분, 취미 가져오기 실패', error);
       }
@@ -383,17 +390,19 @@ function Chat({ socket }: any): JSX.Element {
       )}
       {myProfileModal && (
         <ProfileModal
-          reviewScore={1}
-          favorite={myMood}
-          mood={'내꺼'}
+          user={'나'}
+          reviewScore={Math.floor(Number(myScore))}
+          favorite={myHobby}
+          mood={myMood}
           handleModal={handleMyProfile}
         />
       )}
       {otherProfileModal && (
         <ProfileModal
-          reviewScore={3}
+          user={'상대방'}
+          reviewScore={Math.floor(Number(otherScore))}
           favorite={otherHobby}
-          mood={'상대꺼'}
+          mood={otherHobby}
           handleModal={handleOtherProfile}
         />
       )}
