@@ -107,8 +107,10 @@ const ItemContainer = styled.div`
 `;
 
 const Wrapper = styled.div`
-  width: 80%;
-  height: 75vh;
+  width: 95%;
+  height: 82vh;
+  position: relative;
+  top: 13%;
   display: flex;
   justify-content: space-around;
   align-items: center;
@@ -116,8 +118,9 @@ const Wrapper = styled.div`
   /* height: 570px; */
   max-width: 700px;
   position: absolute;
+  border-radius: 10px;
   background-color: white;
-  border: 1px solid black;
+  border: 1px solid gray;
 `;
 
 const BtnWrapper = styled.div`
