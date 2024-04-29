@@ -312,13 +312,13 @@ function Chat({ socket }: any): JSX.Element {
     setReportModal(false);
   };
 
-  const handleMyProfile = () => {
+  const handleMyProfile = useCallback(() => {
     setMyProfileModal(!myProfileModal);
-  };
+  }, [myProfileModal]);
 
-  const handleOtherProfile = () => {
+  const handleOtherProfile = useCallback(() => {
     setOtherProfileModal(!otherProfileModal);
-  };
+  }, [otherProfileModal]);
 
   return (
     <>

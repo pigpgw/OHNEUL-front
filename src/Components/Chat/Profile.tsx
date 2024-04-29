@@ -1,6 +1,7 @@
 import Star from 'Components/Common/Star';
 import { styled } from 'styled-components';
 import { createPortal } from 'react-dom';
+import React from 'react';
 
 type ModalProps = {
   children: React.ReactNode;
@@ -54,7 +55,7 @@ const ProfileModal = ({
   );
 };
 
-export default ProfileModal;
+export default React.memo(ProfileModal);
 
 const ProfileContainer = styled.div`
   display: flex;
