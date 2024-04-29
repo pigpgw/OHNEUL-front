@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 import { GiExitDoor } from '@react-icons/all-files/gi/GiExitDoor';
+import { IoExitOutline } from "@react-icons/all-files/io5/IoExitOutline";
 import { RiAlarmWarningFill } from '@react-icons/all-files/ri/RiAlarmWarningFill';
 
 export const HeaderContainer = styled.div`
@@ -58,10 +59,11 @@ export const CashAmount = styled.p`
   margin: 1.2vh 0 0 0;
 `;
 
-export const IconExit = styled(GiExitDoor)`
-  margin: 7px 7px 2px 10px;
+export const IconExit = styled(IoExitOutline)`
+  margin: 1.5vh 7px 2px 10px;
   font-size: 4vh;
   color: gray;
+  transform: rotate(180deg);
 `;
 export const IconReport = styled(RiAlarmWarningFill)`
   margin: 2vh 7px 1.5vh 10px;
