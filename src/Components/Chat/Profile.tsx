@@ -36,14 +36,14 @@ const ProfileModal = ({
 }: ProfileProps) => {
   return (
     <ModalWrapper>
-      <ModalBtn
-        onClick={() => {
-          handleModal();
-        }}
-      >
-        X
-      </ModalBtn>
       <Div>
+        <ModalBtn
+          onClick={() => {
+            handleModal();
+          }}
+        >
+          X
+        </ModalBtn>
         <ModalTitle>{user}</ModalTitle>
       </Div>
       <Wrapper>
@@ -62,7 +62,9 @@ export default React.memo(ProfileModal);
 
 const Div = styled.div`
   width: 100%;
-  background-color: #0075FF;
+  background-color: #0075ff;
+  border-radius: 10px 10px 0 0;
+  padding: 1px;
 `;
 
 const ProfileContainer = styled.div`
@@ -73,7 +75,7 @@ const ProfileContainer = styled.div`
   background-color: white;
   border: 1px solid lightgray;
   border-radius: 20px;
-  width: 17vh;
+  width: 30vh;
   position: fixed;
   top: 45%;
   left: 50%;
@@ -97,13 +99,14 @@ const ModalTitle = styled.div`
   text-align: center;
   margin: 1vh 0;
   font-family: sans-serif;
+  color: white;
 `;
 
 const ModalsubTitle = styled.div`
   font-size: 2vh;
   font-weight: 600;
   text-align: center;
-  margin: 3px;
+  margin: 2vh 0 0 0;
   font-family: sans-serif;
 `;
 
