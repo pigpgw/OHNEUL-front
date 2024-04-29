@@ -86,11 +86,12 @@ const ModalBtn = styled.button`
   font-size: 2.5vh;
   font-weight: 900;
   border: 0;
-  background-color: white;
   cursor: pointer;
   position: absolute;
-  left: 83%;
-  bottom: 80%;
+  background-color: #0075ff;
+  color: white;
+  left: 85%;
+  bottom: 82%;
 `;
 
 const ModalTitle = styled.div`
