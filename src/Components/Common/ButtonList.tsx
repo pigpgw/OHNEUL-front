@@ -1,5 +1,6 @@
-import { ItemBtn, ItemContainer } from 'Components/styles/Common';
 import React from 'react';
+import { ItemContainer } from 'Components/styles/Common';
+import Button from 'Components/Common/Button';
 
 interface Mood {
   mood_id: number;
@@ -30,34 +31,58 @@ const ButtonList = ({ items, onClick }: ButtonListProps) => {
       {items?.map((item) => {
         if ('mood_id' in item) {
           return (
-            <ItemBtn
+            <Button
+              fontColor="black"
+              fontSize="1.6vh"
+              margin="1vh"
+              borderRadius="10px"
+              border="0"
+              padding="1.2vh 1.5vh"
+              buttonColor="white"
+              boxShadow="0px 2px 2px rgba(0, 0, 0, 0.25);"
               key={item.mood_id}
               onClick={() => onClick(item.mood_id)}
               clicked={item.clicked}
             >
               {item.mood}
-            </ItemBtn>
+            </Button>
           );
         }
         if ('hobby_id' in item) {
           return (
-            <ItemBtn
+            <Button
+              fontColor="black"
+              fontSize="1.6vh"
+              margin="1vh"
+              borderRadius="10px"
+              border="0"
+              padding="1.2vh 1.5vh"
+              buttonColor="white"
+              boxShadow="0px 2px 2px rgba(0, 0, 0, 0.25);"
               key={item.hobby_id}
               onClick={() => onClick(item.hobby_id)}
               clicked={item.clicked}
             >
               {item.hobby}
-            </ItemBtn>
+            </Button>
           );
         }
         return (
-          <ItemBtn
+          <Button
+            fontColor="black"
+            fontSize="1.6vh"
+            margin="1vh"
+            borderRadius="10px"
+            border="0"
+            padding="1.2vh 1.5vh"
+            buttonColor="white"
+            boxShadow="0px 2px 2px rgba(0, 0, 0, 0.25);"
             key={item.theme_id}
             onClick={() => onClick(item.theme_id)}
             clicked={item.clicked}
           >
             {item.theme}
-          </ItemBtn>
+          </Button>
         );
       })}
     </ItemContainer>

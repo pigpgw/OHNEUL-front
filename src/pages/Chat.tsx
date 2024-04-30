@@ -38,14 +38,13 @@ function Chat({ socket }: any): JSX.Element {
   ]);
   const [msg, setMsg] = useState<string>('');
   const [consentModal, setConsentModal] = useState<boolean>(false);
-  const [remainingTime, setRemainingTime] = useState<number>(300);
+  const [remainingTime, setRemainingTime] = useState<number>(10);
   const [consent, setConsent] = useState<boolean>(false);
   const [consentWaitModal, setConsentWaitModal] = useState<boolean>(false);
   const [forExitModal, setForExitModal] = useState<boolean>(false);
   const [exitModal, setExitModal] = useState<boolean>(false);
   const [reviewModal, setReviewModal] = useState<boolean>(false);
   const [totalTime, setTotalTime] = useState<number>(0);
-
   const [reportModal, setReportModal] = useState<boolean>(false);
   const [reportReason, setReportReson] = useState<string>('');
   const userId = extractUserId();

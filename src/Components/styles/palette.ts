@@ -6,6 +6,7 @@ const palette = {
   yellow: '#fcc419',
   lightBlack: '#424242',
   blue: '#0075ff',
+  black: '#000000'
 };
 
 export default palette;

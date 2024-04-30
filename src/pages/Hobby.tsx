@@ -1,15 +1,11 @@
 import { useEffect, useState } from 'react';
-import {
-  ItemBtn,
-  Container,
-  ItemContainer,
-  SubmitBtn,
-} from 'Components/styles/Common';
+import { Container, SubmitBtn } from 'Components/styles/Common';
 import { useNavigate } from 'react-router-dom';
 import { useQuery } from 'react-query';
 import InfoHeader from 'Components/Common/InfoHeader';
 import ButtonList from 'Components/Common/ButtonList';
 import InfoFooter from 'Components/Common/InfoFooter';
+import Button from 'Components/Common/Button';
 import useCheckHobbiesAndNavigate from 'hooks/useCheckHobbiesAndNavigateHook';
 import { extractUserId } from 'utils/extractCookie';
 import { useAddUserHobbyMutation } from '../hooks/useUserHobbyMutation';
@@ -79,7 +75,16 @@ function Hobby() {
       />
       <ButtonList items={hobby} onClick={clickBtn} />
       <InfoFooter infoText="최소 1개, 최대 3개만 선택 가능" />
-      <SubmitBtn onClick={handleSubmit}>선택 완료</SubmitBtn>
+      <Button
+        onClick={handleSubmit}
+        width="80%"
+        height="5%"
+        maxHeight="100px"
+        fontSize="1.5vh"
+        maxWidth="500px"
+      >
+        선택 완료
+      </Button>
     </Container>
   );
 }

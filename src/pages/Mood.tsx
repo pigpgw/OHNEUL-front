@@ -1,10 +1,5 @@
 import { useEffect, useMemo, useState } from 'react';
-import {
-  ItemBtn,
-  Container,
-  ItemContainer,
-  SubmitBtn,
-} from 'Components/styles/Common';
+import { Container } from 'Components/styles/Common';
 import { useQuery } from 'react-query';
 import { fetchGetMood } from 'api/fetchMood';
 import { useNavigate } from 'react-router-dom';
@@ -12,6 +7,7 @@ import { extractReward } from 'utils/extractCookie';
 import InfoHeader from 'Components/Common/InfoHeader';
 import ButtonList from 'Components/Common/ButtonList';
 import InfoFooter from 'Components/Common/InfoFooter';
+import Button from 'Components/Common/Button';
 import { useAddUserMoodMutation } from '../hooks/useUserMoodMutation';
 
 interface MoodTs {
@@ -86,7 +82,16 @@ function Mood() {
         />
         <ButtonList items={mood} onClick={clickBtn} />
         <InfoFooter infoText="최대 1개만 선택 가능합니다." />
-        <SubmitBtn onClick={handleSubmit}>선택 완료</SubmitBtn>
+        <Button
+          onClick={handleSubmit}
+          width="80%"
+          height="5%"
+          maxHeight="100px"
+          fontSize="1.5vh"
+          maxWidth="500px"
+        >
+          선택 완료
+        </Button>
       </Container>
     </>
   );

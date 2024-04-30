@@ -112,7 +112,17 @@ function Theme({ socket }: any) {
         <ButtonList items={theme} onClick={clickBtn} />
         {wait && <WaitModal onClose={onClose} />}
         <InfoFooter infoText="최대 1개만 선택 가능합니다." />
-        <Button disabled={wait} onClick={matchingcStart}>선택 완료</Button>
+        <Button
+          disabled={wait}
+          onClick={matchingcStart}
+          width="80%"
+          height="5%"
+          maxHeight="100px"
+          fontSize="1.5vh"
+          maxWidth="500px"
+        >
+          선택 완료
+        </Button>
       </Container>
     </>
   );
