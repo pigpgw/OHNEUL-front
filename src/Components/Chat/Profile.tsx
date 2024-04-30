@@ -99,7 +99,7 @@ const ModalTitle = styled.div`
   font-size: 2.5vh;
   font-weight: 800;
   text-align: center;
-  margin: 1vh 0;
+  margin: 2% 0;
   font-family: sans-serif;
   color: white;
 `;
@@ -113,7 +113,7 @@ const ModalsubTitle = styled.div`
 `;
 
 const InfoText = styled.p`
-  font-size: 1.7vh;
+  font-size: 2vh;
   font-family: sans-serif;
   margin: 2px 0;
 `;
