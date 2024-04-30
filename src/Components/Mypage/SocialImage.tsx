@@ -6,16 +6,24 @@ import axios from 'axios';
 import { useEffect, useState } from 'react';
 
 const Kakao = styled.img`
-  width: 4%;
-  height: 4%;
+  width: 3%;
+  height: 3%;
   margin: 1%;
+  min-width: 25px;
+  min-height: 25px;
   max-width: 30px;
   max-height: 30px;
+  border-radius: 5px;
 `;
 const Naver = styled.img`
-  width: 30px;
-  height: 30px;
+  width: 3%;
+  height: 3%;
   margin: 1%;
+  min-width: 25px;
+  min-height: 25px;
+  max-width: 30px;
+  max-height: 30px;
+  border-radius: 5px;
 `;
 
 function SocialImage() {
