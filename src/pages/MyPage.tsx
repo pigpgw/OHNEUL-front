@@ -3,7 +3,7 @@ import Logout from 'Components/Auth/Logout';
 import StarRating from 'Components/Mypage/StarRating';
 import Interest from 'Components/Mypage/Interest';
 import PaymentsDetails from 'Components/Mypage/PaymentsDetails';
-import CoinUsageDetails from 'Components/Mypage/CoinUsageDetails';
+import CoinUsageDetails from 'pages/CoinUsageDetails';
 import Terms from 'Components/Mypage/Terms';
 import Announcement from 'Components/Mypage/Announcement';
 import WithDrawal from 'Components/Auth/WithDrawal';
@@ -17,11 +17,16 @@ import {
   ContentContainer,
 } from 'Components/styles/Mypage';
 import { styled } from 'styled-components';
+import { useNavigate } from 'react-router-dom';
 
 const MyPage: React.FC = () => {
   const [open, setOpen] = useState<string | null>(null);
   const handleModal = (itemName: any) => {
     setOpen(open === itemName ? null : itemName);
+  };
+  const navigate = useNavigate();
+  const gocoinHistory = () => {
+    navigate('/coinHistory');
   };
   return (
     <Wrapper>
@@ -29,15 +34,16 @@ const MyPage: React.FC = () => {
       <ContentContainer>
         <SocialImage />
         <StarRating />
-        <MyMood /> 
+        <MyMood />
         <Interest />
         <TabSection>
           {/* <Tab onClick={() => handleModal('payments')}>결제내역</Tab>
           {open === 'payments' && <PaymentsDetails />} */}
-                    <Tab onClick={() => alert('서비스가 준비중입니다.!')}>결제내역</Tab>
-          <Tab onClick={() => handleModal('coinusage')}>코인내역</Tab>
+          <Tab onClick={() => alert('서비스가 준비중입니다.!')}>결제내역</Tab>
+          <Tab onClick={gocoinHistory}>코인내역</Tab>
           {open === 'coinusage' && <CoinUsageDetails />}
-          <Tab onClick={() => handleModal('terms')}>이용정책</Tab>
+          {/* <Tab onClick={() => handleModal('terms')}>이용정책</Tab> */}
+          <Tab onClick={() => alert('서비스가 준비중입니다.!')}>이용정책</Tab>
           {open === 'terms' && <Terms />}
           <Tab onClick={() => handleModal('announcement')} last={'true'}>
             공지사항

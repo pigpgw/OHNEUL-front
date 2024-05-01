@@ -21,6 +21,7 @@ const Checkout = React.lazy(() => import('pages/Checkout'));
 const Success = React.lazy(() => import('pages/Success'));
 const Fail = React.lazy(() => import('pages/Fail'));
 const Chat = React.lazy(() => import('pages/Chat'));
+const CoinHistory = React.lazy(() => import('pages/CoinHistory'));
 
 const socket = io('http://localhost:4000');
 
@@ -51,6 +52,7 @@ function AppRouter() {
           <Route path="/success" element={<Success />} />
           <Route path="/fail" element={<Fail />} />
           <Route path="/chat" element={<Chat socket={socket} />} />
+          <Route path="/coinhistory" element={<CoinHistory />} />
           <Route path="/*" element={<NotFound />} />
 
           <Route path="/admin" element={<Admin />}>

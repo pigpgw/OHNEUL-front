@@ -17,11 +17,91 @@ export const InfoTitleContainer = styled.div`
   top: 7%;
 `;
 
-export const Title = styled.p`
-  font-size: 3vh;
-  font-weight: 600;
-  margin: 0;
-  font-family: sans-serif;
+interface TitleProps {
+  fontSize?: string;
+  fontColor?: string;
+  fonstWeight?: string;
+
+  display?: string;
+  margin?: string;
+  padding?: string;
+  fontFamily?: string;
+  textAlign?: string;
+}
+
+export const Title = styled.h1<TitleProps>`
+  display: ${(props) => (props.display ? props.display : null)};
+  font-size: ${(props) => (props.fontSize ? props.fontSize : '3.5vh')};
+  font-weight: ${(props) => (props.fonstWeight ? props.fonstWeight : '700')};
+  margin: ${(props) => (props.margin ? props.margin : '0')};
+  font-family: ${(props) =>
+    props.fontFamily ? props.fontFamily : 'sans-serif'};
+  text-align: ${(props) => (props.textAlign ? props.textAlign : null)};
+`;
+
+interface ContentProps {
+  fontSize?: string;
+  fontColor?: string;
+  fonstWeight?: string;
+  textAlign?: string;
+
+  width?: string;
+  height?: string;
+  margin?: string;
+  padding?: string;
+  fontFamily?: string;
+}
+
+export const Content = styled.div<ContentProps>`
+  width: ${(props) => (props.width ? props.width : null)};
+  height: ${(props) => (props.height ? props.height : null)};
+  margin: ${(props) => (props.margin ? props.margin : '0')};
+
+  font-size: ${(props) => (props.fontSize ? props.fontSize : null)};
+  font-weight: ${(props) => (props.fonstWeight ? props.fonstWeight : '0')};
+  font-family: ${(props) =>
+    props.fontFamily ? props.fontFamily : 'sans-serif'};
+  text-align: ${(props) => (props.textAlign ? props.textAlign : null)};
+`;
+
+interface WrapperProps {
+  width?: string;
+  maxWidth?: string;
+  height?: string;
+  minHeight? : string;
+  maxHegith?: string;
+  margin?: string;
+  border?: string;
+  padding?: string;
+  backgroundColor?: string;
+
+  display?: string;
+  flexDirection?: string;
+  justifyContent?: string;
+  alignItems?: string;
+  overflowY?: string;
+}
+
+export const Wrapper = styled.div<WrapperProps>`
+  width: ${(props) => (props.width ? props.width : null)};
+  max-width: ${(props) => (props.maxWidth ? props.maxWidth : null)};
+  height: ${(props) => (props.height ? props.height : null)};
+  min-height:${(props) => (props.minHeight ? props.minHeight : null)};
+  max-height: ${(props) => (props.maxHegith ? props.maxHegith : null)};
+  margin: ${(props) => (props.margin ? props.margin : '0')};
+  padding: ${(props) => (props.padding ? props.padding : '0')};
+  background-color: ${(props) =>
+    props.backgroundColor ? props.backgroundColor : null};
+
+  display: ${(props) => (props.display ? props.display : null)};
+  flex-direction: ${(props) =>
+    props.flexDirection ? props.flexDirection : null};
+  justify-content: ${(props) =>
+    props.justifyContent ? props.justifyContent : null};
+  align-items: ${(props) => (props.alignItems ? props.alignItems : null)};
+  overflow-y: ${(props) => (props.overflowY ? props.overflowY : null)};
+  border: ${(props) => (props.border ? props.border : null)};
+  box-sizing: border-box;
 `;
 
 export const InfoTitleContent = styled.p`
