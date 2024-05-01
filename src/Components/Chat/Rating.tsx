@@ -78,15 +78,7 @@ const Stars = styled.div`
     color: #adadad;
     cursor: pointer;
   }
-
-  :hover svg {
-    color: #ffe598;
-  }
-
-  & svg:hover ~ svg {
-    color: #adadad;
-  }
-
+  
   .yellowStar {
     color: #ffe598;
   }

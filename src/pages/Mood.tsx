@@ -33,6 +33,7 @@ function Mood() {
       setTimeout(() => {
         alert('매일 접속 보상이 지급되었습니다');
       }, 1000);
+      document.cookie = 'reward=';
     }
   }, []);
 

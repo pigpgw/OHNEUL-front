@@ -8,7 +8,7 @@ import { useEffect, useState } from 'react';
 const Kakao = styled.img`
   width: 3%;
   height: 3%;
-  margin: 1%;
+  margin: 0 1%;
   min-width: 25px;
   min-height: 25px;
   max-width: 30px;

@@ -64,6 +64,7 @@ export const ContentContainer = styled.div`
   flex-direction: column;
   align-items: center;
   text-align: center;
+  max-width: 800px;
 `;
 
 export const AuthContainer = styled.div`

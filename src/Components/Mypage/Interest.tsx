@@ -13,16 +13,16 @@ interface HobbyData {
 const HobbyBtn = styled.button`
   border-radius: 10px;
   border: 0;
-  padding: 10px 15px;
+  padding: 1.5vh 2vh;
   margin: 15px;
-  font-size: 1rem;
+  font-size: 2vh;
   background: white;
   box-shadow: 1px 1px 1px rgba(41, 41, 41, 0.25);
 `;
 const HobbyEditBtn = styled.img`
   cursor: pointer;
-  margin: 5px;
-  width: 8%;
+  width: 4vh;
+  margin: 0 1vh 0.5vh 1vh;
   max-width: 30px;
 `;
 const HobbyBtnContainer = styled.div`
@@ -101,7 +101,7 @@ const Interest = () => {
 export default Interest;
 
 const Title = styled.p`
-  font-size: 1.2rem;
+  font-size: 1.1rem;
   margin: 0;
   border: 0;
 `;

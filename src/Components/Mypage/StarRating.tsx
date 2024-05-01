@@ -33,70 +33,71 @@ const StarRating = () => {
     false,
     false,
   ]);
+  const li: { [key: number]: string } = {
+    5: '멋쟁이 잰틀맨',
+    4: '신사',
+    3: '보통',
+    2: '좀 더 친절하게 대해주세요',
+    1: 'ㅠㅠ',
+  };
 
-  // const scoreNumbData = scoreNumb.data.score;
   const fetchScore: any = async () => {
     const response = await axios.get(
       `${process.env.REACT_APP_BASE_URL}/users/${userId}`,
     );
     const { score } = response.data;
-    setData(Number(score));
+    console.log('ㄴ책ㄷ',score)
+    const myScore = Number(score)
+    if (myScore >= 4.5) {
+      setData(5);
+    } else if (myScore >= 3.5) {
+      setData(4);
+      console.log('점수')
+    } else if (myScore >= 2.5) {
+      setData(3);
+      console.log('점수')
+    } else if (myScore >= 1.5) {
+      setData(2);
+    } else if (myScore >= 0.5) {
+      setData(1);
+    }
+
     const clickStates = [...star];
-    for (let i = 0; i < score; i += 1) {
+    for (let i = 0; i < data; i += 1) {
       clickStates[i] = true;
     }
     setStar(clickStates);
   };
   useEffect(() => {
     fetchScore();
-  }, []);
-  // const renderDesc = (score: number) => {
-  //   const desc = [];
-  //   switch (score) {
-  //     case 0.0:
-  //       desc.push(<Desc key="desc">채팅을시작해주세요.</Desc>);
-  //       break;
-  //     case 1:
-  //       desc.push(<Desc key="desc">1점</Desc>);
-  //       break;
-  //     case 2:
-  //       desc.push(<Desc key="desc">2점</Desc>);
-  //       break;
-  //     case 3:
-  //       desc.push(<Desc key="desc">3점</Desc>);
-  //       break;
-  //     case 4:
-  //       desc.push(<Desc key="desc">4점</Desc>);
-  //       break;
-  //     case 5:
-  //       desc.push(<Desc key="desc">5점</Desc>);
-  //       break;
-  //     default:
-  //       break;
-  //   }
-
-  //   return desc;
-  // };
+    console.log(data)
+  }, [data]);
 
   return (
-    <div>
-      {/* {renderDesc(data)[0]} */}
-      <Stars>
-        {[0, 1, 2, 3, 4].map((el, idx) => {
-          return (
-            <FaStar
-              key={idx}
-              size="40"
-              className={star[el] ? 'yellowStar' : ''}
-            />
-          );
-        })}
-      </Stars>
-    </div>
+    <>
+      <P>당신의 매너점수</P>
+      <Wrap>
+        <Stars>
+          {[0, 1, 2, 3, 4].map((el, idx) => {
+            return (
+              <FaStar
+                key={idx}
+                size="40"
+                className={star[el] ? 'yellowStar' : ''}
+              />
+            );
+          })}
+        </Stars>
+      </Wrap>
+    </>
   );
 };
 
 export default StarRating;
+
+const Wrap = styled.div`
+  margin: 0 0 6vh 0;
+`;
 
 const Stars = styled.div`
   display: flex;
@@ -112,4 +113,8 @@ const Stars = styled.div`
   .yellowStar {
     color: #fcc419;
   }
+`;
+
+const P = styled.p`
+  margin: 2%;
 `;

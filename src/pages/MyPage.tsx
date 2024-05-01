@@ -24,20 +24,24 @@ const MyPage: React.FC = () => {
     setOpen(open === itemName ? null : itemName);
   };
   return (
-    <>
+    <Wrapper>
+      <Title>마이페이지</Title>
       <ContentContainer>
-        <Title>마이페이지</Title>
         <SocialImage />
         <StarRating />
-        <MyMood /> <Interest />
+        <MyMood /> 
+        <Interest />
         <TabSection>
-          <Tab onClick={() => handleModal('payments')}>결제내역</Tab>
-          {open === 'payments' && <PaymentsDetails />}
+          {/* <Tab onClick={() => handleModal('payments')}>결제내역</Tab>
+          {open === 'payments' && <PaymentsDetails />} */}
+                    <Tab onClick={() => alert('서비스가 준비중입니다.!')}>결제내역</Tab>
           <Tab onClick={() => handleModal('coinusage')}>코인내역</Tab>
           {open === 'coinusage' && <CoinUsageDetails />}
           <Tab onClick={() => handleModal('terms')}>이용정책</Tab>
           {open === 'terms' && <Terms />}
-          <Tab onClick={() => handleModal('announcement')} last={'true'}>공지사항</Tab>
+          <Tab onClick={() => handleModal('announcement')} last={'true'}>
+            공지사항
+          </Tab>
           {open === 'announcement' && <Announcement />}
         </TabSection>
         <BtnContainer>
@@ -46,18 +50,19 @@ const MyPage: React.FC = () => {
           <WithDrawal></WithDrawal>
         </BtnContainer>
       </ContentContainer>
-    </>
+    </Wrapper>
   );
 };
 
 export default MyPage;
 const Wrapper = styled.div`
   display: flex;
+  flex-direction: column;
+  width: 100%;
+  justify-content: center;
+  align-items: center;
 `;
 
-const EqualSizeComponent = styled.div`
-  flex-grow: 1;
-`;
 const BtnContainer = styled.div`
   width: 100%;
   display: flex;

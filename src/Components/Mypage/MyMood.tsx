@@ -7,19 +7,18 @@ import editButton from 'assets/images/editButton.png';
 import { useQuery } from 'react-query';
 
 const MoodBtn = styled.button`
-  height: 50px;
   border-radius: 10px;
   border: 0;
-  padding: 10px 15px;
+  padding: 1.5vh 2vh;
   margin: 15px;
-  font-size: 1rem;
+  font-size: 2vh;
   background: white;
   box-shadow: 1px 1px 1px rgba(41, 41, 41, 0.25);
 `;
 const MoodEditBtn = styled.img`
   cursor: pointer;
-  margin: 5px;
-  width: 8%;
+  margin: 0 1vh 0.5vh 1vh;
+  width: 4vh;
   max-width: 30px;
 `;
 const MoodBtnContainer = styled.div`
@@ -93,7 +92,7 @@ const MyMood = () => {
 };
 
 const Title = styled.p`
-  font-size: 1.2rem;
+  font-size: 1.1rem;
   margin: 0;
   border: 0;
 `;
