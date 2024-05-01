@@ -75,20 +75,20 @@ const Stars = styled.div`
   padding: 10px 10px 2vh 0;
 
   & svg {
-    color: gray;
+    color: #adadad;
     cursor: pointer;
   }
 
   :hover svg {
-    color: #fcc419;
+    color: #ffe598;
   }
 
   & svg:hover ~ svg {
-    color: gray;
+    color: #adadad;
   }
 
   .yellowStar {
-    color: #fcc419;
+    color: #ffe598;
   }
 `;
 

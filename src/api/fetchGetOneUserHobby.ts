@@ -9,7 +9,7 @@ export const fetchGetOneUserHobby = async (userId: string) => {
   return response.data;
 };
 
-export const fecthGetOtherHobby = async (otherId: string) => {
+export const fecthGetUserHobby = async (otherId: string) => {
   try {
     const totalMoodData = await fetchGetHobbys();
     const response = await fetchGetOneUserHobby(otherId);

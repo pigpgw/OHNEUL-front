@@ -14,7 +14,6 @@ import {
   Title,
   TabSection,
   Tab,
-  TabTitle,
   ContentContainer,
 } from 'Components/styles/Mypage';
 import { styled } from 'styled-components';

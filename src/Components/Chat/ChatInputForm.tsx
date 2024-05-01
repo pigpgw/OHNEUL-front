@@ -1,5 +1,6 @@
 import React, { useEffect, useRef, useState } from 'react';
 import styled from 'styled-components';
+import ChatSubmitBtn from 'Components/Common/Button';
 
 interface ChatInputProps {
   msgSubmitHandler: (e: React.FormEvent<HTMLFormElement>) => void;
@@ -25,7 +26,7 @@ function ChatInputForm({
     return () => {
       window.removeEventListener('resize', handleResize);
     };
-  }, [msg,msgSubmitHandler]);
+  }, [msg, msgSubmitHandler]);
 
   useEffect(() => {
     if (inputRef.current) {
@@ -41,7 +42,11 @@ function ChatInputForm({
     <ChatInputContainer style={{ marginBottom: keyboardHeight }}>
       <form onSubmit={msgSubmitHandler}>
         <ChatInput ref={inputRef} value={msg} onChange={msgChangeHandler} />
-        {msg && <ChatSubmitBtn>전송</ChatSubmitBtn>}
+        {msg && (
+          <ChatSubmitBtn width="6vh" height='4.3vh' padding='1vh' fontSize="2vh" margin='1px 0 0 5px'>
+            전송
+          </ChatSubmitBtn>
+        )}
       </form>
     </ChatInputContainer>
   );
@@ -60,18 +65,7 @@ const ChatInput = styled.input`
   border: 0;
   margin: 0;
   max-width: 400px;
-`;
-
-const ChatSubmitBtn = styled.button`
-  font-size: 2vh;
-  height: 4.5vh;
-  color: white;
-  font-weight: 800;
-  background: #b3b3b3;
-  border-radius: 5px;
-  border: 0;
-  padding: 1vh;
-  margin-left: 10px;
+  min-height: 25px;
 `;
 
 export default React.memo(ChatInputForm);

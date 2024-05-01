@@ -35,13 +35,17 @@ interface ReportModalProps {
   selectedReason: string;
 }
 
+type ReviewModalProps = {
+  children: ReactNode;
+};
+
 function ModalWrapper({ children }: ModalProps) {
   return (
     <>{createPortal(<ModalLayout>{children}</ModalLayout>, document.body)}</>
   );
 }
 
-export const WaitModal = ({ onClose }: WatiModalProps) => {
+const WaitModal = ({ onClose }: WatiModalProps) => {
   return (
     <ModalWrapper>
       <ModalTitle>대화 상대를 찾고 있어요</ModalTitle>
@@ -53,7 +57,7 @@ export const WaitModal = ({ onClose }: WatiModalProps) => {
   );
 };
 
-export const ConsentModal = ({ onAgree, onRefuse }: ConsentModalProps) => {
+const ConsentModal = React.memo(({ onAgree, onRefuse }: ConsentModalProps) => {
   return (
     <ModalWrapper>
       <ModalTitle>상대방과 대화를 연장하시겠습니까?</ModalTitle>
@@ -64,64 +68,73 @@ export const ConsentModal = ({ onAgree, onRefuse }: ConsentModalProps) => {
       <ModalInfo>상호 동의시 코인이 차감되고 대화가 연장됩니다.</ModalInfo>
     </ModalWrapper>
   );
-};
+});
 
-export const InfoModal = ({
-  infoContent,
-  continueEvent,
-  finishEvent,
-  btnName1,
-  btnName2,
-}: InfoModal) => {
-  return (
-    <ModalWrapper>
-      <ModalTitle>{infoContent}</ModalTitle>
-      <ModalBtnContainer>
-        {continueEvent && (
-          <ModalBtn onClick={continueEvent}>{btnName1}</ModalBtn>
-        )}
-        {finishEvent && <ModalBtn onClick={finishEvent}>{btnName2}</ModalBtn>}
-      </ModalBtnContainer>
-    </ModalWrapper>
-  );
-};
+ConsentModal.displayName = 'ConsentModal';
 
-export const ReportModal = ({
-  infoContent,
-  onClick,
-  onClose,
-  doReport,
-  reportReasons = [],
-  selectedReason,
-}: ReportModalProps) => {
-  return (
-    <ReportModalLayout>
-      <ModalTitle>{infoContent}</ModalTitle>
-      <ReportModalBtnContainer>
-        {reportReasons.map((reason, index) => (
-          <ReportBtn
-            key={index}
-            value={reason}
-            onClick={onClick}
-            selected={selectedReason === reason}
-          >
-            {reason}
-          </ReportBtn>
-        ))}
+const InfoModal = React.memo(
+  ({
+    infoContent,
+    continueEvent,
+    finishEvent,
+    btnName1,
+    btnName2,
+  }: InfoModal) => {
+    return (
+      <ModalWrapper>
+        <ModalTitle>{infoContent}</ModalTitle>
         <ModalBtnContainer>
-          <ModalBtn onClick={doReport}>신고후 나가기</ModalBtn>
-          <ModalBtn onClick={onClose}>취소</ModalBtn>
+          {continueEvent && (
+            <ModalBtn onClick={continueEvent}>{btnName1}</ModalBtn>
+          )}
+          {finishEvent && <ModalBtn onClick={finishEvent}>{btnName2}</ModalBtn>}
         </ModalBtnContainer>
-      </ReportModalBtnContainer>
-    </ReportModalLayout>
-  );
-};
+      </ModalWrapper>
+    );
+  },
+);
 
-type ReviewModalProps = {
-  children: ReactNode;
-};
+InfoModal.displayName = 'InfoModal';
 
-export const ReviewModal = ({ children }: ReviewModalProps) => {
+const ReportModal = React.memo(
+  ({
+    infoContent,
+    onClick,
+    onClose,
+    doReport,
+    reportReasons = [],
+    selectedReason,
+  }: ReportModalProps) => {
+    return (
+      <ReportModalLayout>
+        <ModalTitle>{infoContent}</ModalTitle>
+        <ReportModalBtnContainer>
+          {reportReasons.map((reason, index) => (
+            <ReportBtn
+              key={index}
+              value={reason}
+              onClick={onClick}
+              selected={selectedReason === reason}
+            >
+              {reason}
+            </ReportBtn>
+          ))}
+          <ModalBtnContainer>
+            <ModalBtn onClick={doReport}>신고후 나가기</ModalBtn>
+            <ModalBtn onClick={onClose}>취소</ModalBtn>
+          </ModalBtnContainer>
+        </ReportModalBtnContainer>
+      </ReportModalLayout>
+    );
+  },
+  (prevProps, nextProps) => {
+    // Only re-render if the selectedReason prop changes
+    return prevProps.selectedReason === nextProps.selectedReason;
+  },
+);
+ReportModal.displayName = 'ReportModal';
+
+const ReviewModal = ({ children }: ReviewModalProps) => {
   return (
     <ModalWrapper>
       <ModalTitle>오늘 대화는 어떠셨나요?</ModalTitle>
@@ -130,7 +143,7 @@ export const ReviewModal = ({ children }: ReviewModalProps) => {
   );
 };
 
-export const AgreeModal = () => {
+const AgreeModal = () => {
   return (
     <ModalWrapper>
       <ModalTitle>연장 성공!</ModalTitle>
@@ -138,6 +151,15 @@ export const AgreeModal = () => {
       <ModalInfo>5초후 대화가 자동으로 시작됩니다.</ModalInfo>
     </ModalWrapper>
   );
+};
+
+export {
+  WaitModal,
+  ConsentModal,
+  InfoModal,
+  ReportModal,
+  ReviewModal,
+  AgreeModal,
 };
 
 const ModalTitle = styled.div`
@@ -206,7 +228,7 @@ const ReportModalLayout = styled.div`
 
   position: fixed;
   top: 45%;
-  left: 51%;
+  left: 50%;
   transform: translate(-50%, -50%);
 `;
 
