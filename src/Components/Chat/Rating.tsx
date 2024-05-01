@@ -72,13 +72,14 @@ const Stars = styled.div`
   padding: 15px;
   justify-content: space-between;
   width: 100%;
-  padding: 10px 10px 2vh 0;
+  padding: 10px
+  10px 2vh 0;
 
   & svg {
     color: #adadad;
     cursor: pointer;
   }
-  
+
   .yellowStar {
     color: #ffe598;
   }

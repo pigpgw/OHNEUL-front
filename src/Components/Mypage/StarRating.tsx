@@ -96,7 +96,7 @@ const StarRating = () => {
 export default StarRating;
 
 const Wrap = styled.div`
-  margin: 0 0 6vh 0;
+  margin: 0 0 3vh 0;
 `;
 
 const Stars = styled.div`
@@ -111,7 +111,7 @@ const Stars = styled.div`
   }
 
   .yellowStar {
-    color: #fcc419;
+    color: #ffe598;
   }
 `;
 

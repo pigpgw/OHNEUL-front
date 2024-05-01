@@ -67,6 +67,6 @@ const Stars = styled.div`
   }
 
   .yellowStar {
-    color: #fcc419;
+    color: #ffe598;
   }
 `;
