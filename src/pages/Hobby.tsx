@@ -93,9 +93,9 @@ function Hobby() {
         onClick={handleSubmit}
         width="80%"
         height="5%"
-        maxHeight="100px"
+        maxheight="100px"
         fontSize="1.5vh"
-        maxWidth="500px"
+        maxwidth="500px"
       >
         선택 완료
       </Button>

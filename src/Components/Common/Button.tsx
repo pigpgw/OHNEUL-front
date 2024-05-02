@@ -8,13 +8,13 @@ interface ButtonStyle {
   border?: string;
   padding?: string;
   margin?: string;
-  buttonColor?: PalletteKeyTypes;
-  fontColor?: PalletteKeyTypes;
+  buttoncolor?: PalletteKeyTypes;
+  fontcolor?: PalletteKeyTypes;
   fontSize?: string;
-  borderRadius?: string;
-  maxWidth?: string;
-  maxHeight?: string;
-  boxShadow?: string;
+  borderradius?: string;
+  maxwidth?: string;
+  maxheight?: string;
+  boxshadow?: string;
 }
 
 interface ButtonProps
@@ -39,18 +39,18 @@ const ButtonStyled = styled.button<ButtonProps>`
   height: ${(props) => (props.height ? props.height : null)};
   margin: ${(props) => (props.margin ? props.margin : '1px')};
   padding: ${(props) => (props.padding ? props.padding : '1px')};
-  max-width: ${(props) => (props.maxWidth ? props.maxWidth : '500px')};
-  max-height: ${(props) => (props.maxHeight ? props.maxHeight : '100px')};
+  max-width: ${(props) => (props.maxwidth ? props.maxwidth : '500px')};
+  max-height: ${(props) => (props.maxheight ? props.maxheight : '100px')};
 
-  color: ${(props) => (props.fontColor ? props.fontColor : palette.white)};
+  color: ${(props) => (props.fontcolor ? props.fontcolor : palette.white)};
   background: ${(props) =>
-    props.buttonColor ? palette[props.buttonColor] : palette.blue};
+    props.buttoncolor ? palette[props.buttoncolor] : palette.blue};
   font-size: ${(props) => (props.fontSize ? props.fontSize : '1.5vh')};
   border: ${(props) => (props.border ? props.border : '0')};
   border-radius: ${(props) =>
-    props.borderRadius ? props.borderRadius : '5px'};
+    props.borderradius ? props.borderradius : '5px'};
 
-  box-shadow: ${(props) => (props.boxShadow ? props.boxShadow : null)};
+  box-shadow: ${(props) => (props.boxshadow ? props.boxshadow : null)};
   ${({ clicked }) =>
     clicked &&
     css`

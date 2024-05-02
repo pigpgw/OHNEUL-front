@@ -32,14 +32,14 @@ const ButtonList = ({ items, onClick }: ButtonListProps) => {
         if ('mood_id' in item) {
           return (
             <Button
-              fontColor="black"
+              fontcolor="black"
               fontSize="1.6vh"
               margin="1vh"
-              borderRadius="10px"
+              borderradius="10px"
               border="0"
               padding="1.2vh 1.5vh"
-              buttonColor="white"
-              boxShadow="0px 2px 2px rgba(0, 0, 0, 0.25);"
+              buttoncolor="white"
+              boxshadow="0px 2px 2px rgba(0, 0, 0, 0.25);"
               key={item.mood_id}
               onClick={() => onClick(item.mood_id)}
               clicked={item.clicked}
@@ -51,14 +51,14 @@ const ButtonList = ({ items, onClick }: ButtonListProps) => {
         if ('hobby_id' in item) {
           return (
             <Button
-              fontColor="black"
+              fontcolor="black"
               fontSize="1.6vh"
               margin="1vh"
-              borderRadius="10px"
+              borderradius="10px"
               border="0"
               padding="1.2vh 1.5vh"
-              buttonColor="white"
-              boxShadow="0px 2px 2px rgba(0, 0, 0, 0.25);"
+              buttoncolor="white"
+              boxshadow="0px 2px 2px rgba(0, 0, 0, 0.25);"
               key={item.hobby_id}
               onClick={() => onClick(item.hobby_id)}
               clicked={item.clicked}
@@ -69,14 +69,14 @@ const ButtonList = ({ items, onClick }: ButtonListProps) => {
         }
         return (
           <Button
-            fontColor="black"
+            fontcolor="black"
             fontSize="1.6vh"
             margin="1vh"
-            borderRadius="10px"
+            borderradius="10px"
             border="0"
             padding="1.2vh 1.5vh"
-            buttonColor="white"
-            boxShadow="0px 2px 2px rgba(0, 0, 0, 0.25);"
+            buttoncolor="white"
+            boxshadow="0px 2px 2px rgba(0, 0, 0, 0.25);"
             key={item.theme_id}
             onClick={() => onClick(item.theme_id)}
             clicked={item.clicked}
