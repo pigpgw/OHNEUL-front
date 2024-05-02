@@ -160,7 +160,7 @@ function Chat({ socket }: any): JSX.Element {
 
   useEffect(() => {
     if (!socket) return;
-    function sMessageCallback(messageData: any) {
+    function sMessageCallback(messageData: { data: string; id: string }) {
       const { data, id } = messageData;
       if (id !== socket.id) {
         setMessageList((prev) => [

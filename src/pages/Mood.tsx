@@ -22,10 +22,7 @@ function Mood() {
     data: availableMoods,
     isLoading,
     isError,
-  } = useQuery<MoodTs[], Error>(['get-mood'], fetchGetMood, {
-    onSuccess: () => console.log('mood data 가져오기 성공'),
-    onError: () => console.log('mood data 가져오기 실패'),
-  });
+  } = useQuery<MoodTs[], Error>(['get-mood'], fetchGetMood);
 
   const [mood, setMood] = useState<MoodTs[]>([]);
   useEffect(() => {

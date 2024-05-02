@@ -31,10 +31,7 @@ function Hobby() {
     isLoading,
     error,
     data: availableHobbies,
-  } = useQuery('get-hobbys', fetchGetHobbys, {
-    onSuccess: () => console.log('가져오기 성공'),
-    onError: () => console.log('error '),
-  });
+  } = useQuery('get-hobbys', fetchGetHobbys);
 
   useEffect(() => {
     if (availableHobbies) setHobby(availableHobbies);
