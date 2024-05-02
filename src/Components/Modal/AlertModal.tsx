@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import { useEffect } from 'react';
 import Swal from 'sweetalert2';
 
 type CustomIcon = 'success' | 'error' | 'warning' | 'info' | 'question';
@@ -17,7 +17,7 @@ function AlertModal({ icon, title, msg, onClose }: AlertModalProps) {
       title,
       text: msg,
       confirmButtonText: '확인',
-      confirmButtonColor: ' #747474',
+      confirmButtonColor: ' #0075ff',
       preConfirm: onClose,
     });
   }, []);

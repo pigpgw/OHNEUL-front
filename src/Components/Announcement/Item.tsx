@@ -1,7 +1,7 @@
 import { Content, Wrapper } from 'Components/styles/Common';
 
 interface ItemProps {
-  usedCoin: string;
+  usedCoin: number;
   usedAt: string;
 }
 

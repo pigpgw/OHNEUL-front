@@ -9,6 +9,7 @@ import WithDrawal from 'Components/Auth/WithDrawal';
 import SocialImage from 'Components/Mypage/SocialImage';
 import MyMood from 'Components/Mypage/MyMood';
 import AdminButton from 'Components/Admin/AdminButton';
+import AlertModal from 'Components/Modal/AlertModal';
 import {
   Title,
   TabSection,
@@ -20,12 +21,21 @@ import { useNavigate } from 'react-router-dom';
 
 const MyPage: React.FC = () => {
   const [open, setOpen] = useState<string | null>(null);
+  const [alert, setAlert] = useState(false);
   const handleModal = (itemName: any) => {
     setOpen(open === itemName ? null : itemName);
   };
   const navigate = useNavigate();
   const gocoinHistory = () => {
     navigate('/coinHistory');
+  };
+
+  const offAlert = () => {
+    setAlert(false);
+  };
+
+  const onAlert = () => {
+    setAlert(true);
   };
   return (
     <Wrapper>
@@ -36,10 +46,18 @@ const MyPage: React.FC = () => {
         <MyMood />
         <Interest />
         <TabSection>
-          <Tab onClick={() => alert('서비스가 준비중입니다.!')}>결제내역</Tab>
+          {alert && (
+            <AlertModal
+              icon="warning"
+              title="서비스 준비중"
+              msg="서비스가 준비중입니다.!"
+              onClose={offAlert}
+            />
+          )}
+          <Tab onClick={onAlert}>결제내역</Tab>
           <Tab onClick={gocoinHistory}>코인내역</Tab>
           {open === 'coinusage' && <CoinUsageDetails />}
-          <Tab onClick={() => alert('서비스가 준비중입니다.!')}>이용정책</Tab>
+          <Tab onClick={onAlert}>이용정책</Tab>
           {open === 'terms' && <Terms />}
           <Tab onClick={() => handleModal('announcement')} last={'true'}>
             공지사항
