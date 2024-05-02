@@ -17,17 +17,20 @@ interface ButtonStyle {
   boxshadow?: string;
 }
 
-interface ButtonProps
-  extends ButtonStyle,
-    React.ButtonHTMLAttributes<HTMLButtonElement> {
+interface ButtonProps extends ButtonStyle, React.ButtonHTMLAttributes<HTMLButtonElement> {
   children: ReactNode;
   className?: string;
-  clicked?: boolean;
+  clicked?: boolean | string;
 }
 
-function Button({ className, children, ...rest }: ButtonProps): ReactElement {
+function Button({ className, children, clicked, ...rest }: ButtonProps): ReactElement {
+  const clickedValue = clicked ? clicked.toString() : undefined;
   return (
-    <ButtonStyled className={className} {...rest}>
+    <ButtonStyled
+      className={className}
+      clicked={clickedValue} 
+      {...rest}
+    >
       {children}
     </ButtonStyled>
   );

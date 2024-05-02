@@ -22,10 +22,7 @@ function Theme({ socket }: any) {
     data: availableThemes,
     isLoading,
     isError,
-  } = useQuery<Themes[], Error>(['get-theme'], fetchGetThemes, {
-    onSuccess: () => console.log('theme data 가져오기 성공'),
-    onError: () => console.log('theme data 가져오기 실패'),
-  });
+  } = useQuery<Themes[], Error>(['get-theme'], fetchGetThemes);
 
   const [theme, setTheme] = useState<Themes[]>([]);
   const [wait, setWait] = useState<boolean>(false);
