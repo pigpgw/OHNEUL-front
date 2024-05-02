@@ -83,7 +83,7 @@ function Theme({ socket }: any) {
       setWait(false);
       if (otherId && otherId.length > 0) {
         const other = otherId.filter(
-          (item: any) => item.socketId !== socket.id,
+          (item) => item.socketId !== socket.id,
         )[0].uuid;
         document.cookie = `other=${other}`;
         navigate('/chat');

@@ -3,7 +3,6 @@ import Exit from 'Components/Common/Header/Exit';
 import ReportIcon from 'Components/Common/Header/Report';
 import {
   HeaderContainer,
-  InfoContainer,
   TimerContainer,
 } from '../styles/Header';
 

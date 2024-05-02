@@ -1,5 +1,4 @@
 import '../../../fonts/font.css';
-import React from 'react';
 import Coin from './Coin';
 import MypageIcon from './MypageIcon';
 import Logo from './Logo';

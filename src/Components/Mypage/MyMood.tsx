@@ -1,5 +1,5 @@
 import axios from 'axios';
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import meltedCookie from 'utils/meltedCookie';
 import styled from 'styled-components';
 import MyMoodModal from 'Components/Mypage/MyMoodModal';

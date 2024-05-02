@@ -30,9 +30,6 @@ function MyMood({ onClose }: MyMoodModal) {
 
   useEffect(() => {
     if (availableMoods) setMood(availableMoods);
-
-    console.log(availableMoods);
-    console.log(mood);
   }, [availableMoods]);
 
   const clickBtn = (id: number) => {

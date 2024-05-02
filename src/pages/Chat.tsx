@@ -275,7 +275,7 @@ function Chat({ socket }: any): JSX.Element {
     function userExistCallback() {
       clearInterval(intervalId);
       setAniTime(0);
-      if (totalTime < 5) {
+      if (totalTime < 180) {
         setExitModal(true);
         setTimeout(() => {
           goThemePage();
@@ -419,7 +419,7 @@ function Chat({ socket }: any): JSX.Element {
       {myProfileModal && (
         <ProfileModal
           user={'나'}
-          reviewScore={Math.floor(Number(myScore))}
+          reviewScore={Number(myScore)}
           favorite={myHobby}
           mood={myMood}
           handleModal={handleMyProfile}
@@ -428,7 +428,7 @@ function Chat({ socket }: any): JSX.Element {
       {otherProfileModal && (
         <ProfileModal
           user={'상대방'}
-          reviewScore={Math.floor(Number(otherScore))}
+          reviewScore={Number(otherScore)}
           favorite={otherHobby}
           mood={otherMood}
           handleModal={handleOtherProfile}

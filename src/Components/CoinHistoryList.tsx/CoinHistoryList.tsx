@@ -1,8 +1,5 @@
-import { useState } from 'react';
 import { Content, Wrapper } from 'Components/styles/Common';
 import Item from 'Components/Announcement/Item';
-import useGetCoinHistory from 'hooks/useGetCoinHistory';
-import { extractUserId } from 'utils/extractCookie';
 
 interface ScoreProps {
   coin_history_id: number;
@@ -11,7 +8,12 @@ interface ScoreProps {
   used_at: string;
 }
 
-function CoinHistoryList({ visibleItems , data}: any) {
+interface CoinHistoryListProps {
+  visibleItems: number;
+  data: ScoreProps[];
+}
+
+function CoinHistoryList({ visibleItems, data }: CoinHistoryListProps) {
   return (
     <Wrapper width="100%" margin="2vh 0">
       <Content fontSize="2vh" textAlign="left" fonstWeight="700">
@@ -20,7 +22,7 @@ function CoinHistoryList({ visibleItems , data}: any) {
       <Wrapper width="100%" padding="10px 0" margin="0 auto">
         {data
           ?.slice(0, visibleItems)
-          .map((item:ScoreProps) => (
+          .map((item: ScoreProps) => (
             <Item
               key={item.coin_history_id}
               usedCoin={item.used_coin}

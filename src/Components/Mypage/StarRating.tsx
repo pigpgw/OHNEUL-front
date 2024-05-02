@@ -9,7 +9,6 @@ import styled from 'styled-components';
 
 const StarRating = () => {
   const [flatform, token, rewardCoin, userId] = meltedCookie();
-  const [data, setData] = useState<number>(0);
   const [star, setStar] = useState<number[]>([0, 0, 0, 0, 0]); // 2가 풀 1 반
   const li: { [key: number]: string } = {
     5: '멋쟁이 잰틀맨',
@@ -33,11 +32,9 @@ const StarRating = () => {
         roundedScore = 0;
       }
 
-      setData(roundedScore);
-
+  
       const starStates: number[] = [];
-      // eslint-disable-next-line no-plusplus
-      for (let i = 0; i < 5; i++) {
+      for (let i = 0; i < 5; i+=1) {
         if (roundedScore >= i + 1) starStates.push(2);
         else if (roundedScore === i + 0.5) starStates.push(1);
         else starStates.push(0);

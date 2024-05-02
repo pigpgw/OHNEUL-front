@@ -13,13 +13,6 @@ const Button = styled.button`
   cursor: pointer;
   outline: inherit;
 `;
-// interface User {
-//   user: {
-//     value: {
-//       isAdmin: boolean;
-//     };
-//   };
-// }
 
 function AdminButton() {
   const [flatform, token, rewardCoin, userId, isAdmin] = meltedCookie();
@@ -27,10 +20,6 @@ function AdminButton() {
   const navigateToAdmin = () => {
     navigate('/admin');
   };
-
-  //   const isAdmin = useSelector((state: User) => state.user.isAdmin);
-  // 1로그인시 쿠키에서 추출 후 스토어에 어드민 저장 이후 마이페이지에서 불러오기
-  // 2쿠키에서 추출 후 바로 적용.
 
   return (
     <>

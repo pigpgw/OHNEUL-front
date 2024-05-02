@@ -48,7 +48,7 @@ const ProfileModal = ({
       </Div>
       <Wrapper>
         <ModalsubTitle>평점</ModalsubTitle>
-        <Star score={reviewScore} paddingBottom="1vh" size={'3vh'} />
+        <Star score={reviewScore} size={'5vh'} />
       </Wrapper>
       <Wrapper>
         <InfoText>관심사 : {favorite}</InfoText>
@@ -119,7 +119,7 @@ const InfoText = styled.p`
 `;
 
 const Wrapper = styled.div`
-  height: 30%;
+  height: 15%;
   display: flex;
   justify-content: center;
   align-items: center;

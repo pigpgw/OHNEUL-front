@@ -1,43 +1,52 @@
 import { useEffect, useState } from 'react';
-import { FaStar } from '@react-icons/all-files/fa/FaStar';
-import { useNavigate } from 'react-router-dom';
-import { extractOtherUserId } from 'utils/extractCookie';
+import { TiStarFullOutline } from '@react-icons/all-files/ti/TiStarFullOutline';
+import { TiStarHalfOutline } from '@react-icons/all-files/ti/TiStarHalfOutline';
+import { TiStarOutline } from '@react-icons/all-files/ti/TiStarOutline';
+
 import styled from 'styled-components';
 
 type StarProps = {
   score: number;
   paddingBottom?: string;
-  size?: string
+  size?: string;
 };
 
-function Star({ score, size,paddingBottom }: StarProps): JSX.Element {
-  const [clicked, setClicked] = useState<boolean[]>([
-    false,
-    false,
-    false,
-    false,
-    false,
-  ]);
+function Star({ score, size, paddingBottom }: StarProps): JSX.Element {
+  const [star, setStar] = useState<number[]>([0, 0, 0, 0, 0]); // 2가 풀 1 반
 
   useEffect(() => {
-    const clickStates = [...clicked];
-    for (let i = 0; i < score; i += 1) {
-      clickStates[i] = true;
+    const myScore = Number(score);
+    let roundedScore = Math.round(myScore * 2) / 2;
+    if (roundedScore > 5) {
+      roundedScore = 5;
+    } else if (roundedScore < 0) {
+      roundedScore = 0;
     }
-    setClicked(clickStates);
+
+    const starStates: number[] = [];
+    for (let i = 0; i < 5; i += 1) {
+      if (roundedScore >= i + 1) starStates.push(2);
+      else if (roundedScore === i + 0.5) starStates.push(1);
+      else starStates.push(0);
+    }
+    setStar(starStates);
   }, []);
 
   return (
     <Wrap paddingBtm={paddingBottom}>
       <Stars>
-        {[0, 1, 2, 3, 4].map((el, idx) => {
-          return (
-            <FaStar
-              key={idx}
-              size={size || '3vh'}
-              className={clicked[el] ? 'yellowStar' : ''}
-            />
-          );
+        {star.map((starState, idx) => {
+          if (starState === 2) {
+            return <TiStarFullOutline key={idx} size={size} />;
+          }
+          if (starState === 1) {
+            return (
+              <div key={idx}>
+                <TiStarHalfOutline key={idx} size={size} />
+              </div>
+            );
+          }
+          return <TiStarOutline key={idx} size={size} />;
         })}
       </Stars>
     </Wrap>
@@ -60,13 +69,5 @@ const Stars = styled.div`
   justify-content: space-between;
   width: 100%;
   padding: 10px 10px 2vh 0;
-
-  & svg {
-    color: gray;
-    cursor: pointer;
-  }
-
-  .yellowStar {
-    color: #ffe598;
-  }
+  color: #ffe598;
 `;

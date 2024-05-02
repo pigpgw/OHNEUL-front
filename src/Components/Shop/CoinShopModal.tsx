@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import styled from 'styled-components';
 import CoinPriceData from 'assets/Data/CoinPriceData';
 import { createPortal } from 'react-dom';
-import { useNavigate } from 'react-router-dom';
 import coin from '../../assets/images/coin.png';
 
 type ModalProps = {
@@ -41,7 +40,6 @@ function CoinShopModal({ onCashIconClick }: CoinShopModalProps) {
   const [selectedCoin, setSelectedCoin] = useState<CoinProps | null>(null);
 
   const closeItemModal = () => {
-    console.log('캐수 아이템 안보이게');
     setSelectedCoin(null);
     setItemModal(false);
   };
@@ -89,8 +87,6 @@ function CoinItem({ coins, price, onClick }: CoinItemProps) {
 
 function CoinItemModal({ onClose, selectedCoin }: CoinModalProps) {
   if (!selectedCoin) return null;
-  const navigator = useNavigate();
-  // const startPayment = () => navigator('/payment')
   const startPayment = () => alert('서비스가 준비중입니다. ㅠㅠ');
   return (
     <ModalWrapper>

@@ -1,23 +1,14 @@
-import { useEffect, useRef, useState } from 'react';
+import { useState } from 'react';
 import { Wrapper, Title, Content } from 'Components/styles/Common';
 import GoBackHeader from 'Components/Common/Header/GoBackHeader';
-import Item from 'Components/Announcement/Item';
 import Button from 'Components/Common/Button';
 import useGetCoinHistory from 'hooks/useGetCoinHistory';
 import CoinHistoryList from 'Components/CoinHistoryList.tsx/CoinHistoryList';
 import { extractUserId } from '../utils/extractCookie';
 
-interface ScoreProps {
-  coin_history_id: string;
-  user_id: string;
-  used_coin: string;
-  used_at: string;
-}
-
 function CoinHistory() {
   const userId = extractUserId();
-  const { isLoading, isError, data, isSuccess } = useGetCoinHistory(userId);
-  const [score, setScore] = useState<ScoreProps[]>([]);
+  const { isLoading, isError, data } = useGetCoinHistory(userId);
   const [visibleItems, setVisibleItems] = useState<number>(5);
   const loadMoreItems = () => {
     setVisibleItems((prevVisibleItems) => prevVisibleItems + 5);
