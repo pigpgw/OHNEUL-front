@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from 'react';
-import { Container, Wrapper, Title, Content } from 'Components/styles/Common';
+import { Wrapper, Title, Content } from 'Components/styles/Common';
 import GoBackHeader from 'Components/Common/Header/GoBackHeader';
 import Item from 'Components/Announcement/Item';
 import Button from 'Components/Common/Button';

@@ -5,26 +5,7 @@ import { TiStarHalfOutline } from '@react-icons/all-files/ti/TiStarHalfOutline';
 import { TiStarOutline } from '@react-icons/all-files/ti/TiStarOutline';
 
 import meltedCookie from 'utils/meltedCookie';
-import plusHeart from 'assets/images/plusHeart.png';
-import minusHeart from 'assets/images/minusHeart.png';
 import styled from 'styled-components';
-
-const Heart = styled.img`
-  width: 5vh;
-  @media (max-width: 768px) {
-    width: 5vh;
-  }
-`;
-
-const Desc = styled.div`
-  font-size: 2vh;
-  font-weight: 600;
-  color: #ffe598;
-  margin: 10px;
-  @media (max-width: 768px) {
-    font-size: 2vh;
-  }
-`;
 
 const StarRating = () => {
   const [flatform, token, rewardCoin, userId] = meltedCookie();
@@ -44,9 +25,8 @@ const StarRating = () => {
         `${process.env.REACT_APP_BASE_URL}/users/${userId}`,
       );
       const { score } = response.data;
-      console.log('Score:', score);
       const myScore = Number(score);
-      let roundedScore = Math.round(myScore * 2) / 2; 
+      let roundedScore = Math.round(myScore * 2) / 2;
       if (roundedScore > 5) {
         roundedScore = 5;
       } else if (roundedScore < 0) {

@@ -1,5 +1,5 @@
 /* eslint-disable no-useless-return */
-import React, { useCallback, useEffect, useId, useRef, useState } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import ChatHeader from 'Components/Chat/ChatHeader';
 import ChatMessages from 'Components/Chat/ChatMessages';
 import ChatInputForm from 'Components/Chat/ChatInputForm';
@@ -113,8 +113,8 @@ function Chat({ socket }: any): JSX.Element {
   }, []);
 
   const offForExitModal = useCallback(() => {
-    setForExitModal(false)
-  },[])
+    setForExitModal(false);
+  }, []);
 
   useEffect(() => {
     return () => {

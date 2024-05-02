@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { Container, SubmitBtn } from 'Components/styles/Common';
+import { Container } from 'Components/styles/Common';
 import { useNavigate } from 'react-router-dom';
 import { useQuery } from 'react-query';
 import InfoHeader from 'Components/Common/InfoHeader';

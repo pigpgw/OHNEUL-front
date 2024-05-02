@@ -6,7 +6,7 @@ import InfoHeader from 'Components/Common/InfoHeader';
 import ButtonList from 'Components/Common/ButtonList';
 import InfoFooter from 'Components/Common/InfoFooter';
 import Button from 'Components/Common/Button';
-import { Container, SubmitBtn } from '../Components/styles/Common';
+import { Container } from '../Components/styles/Common';
 import { fetchGetThemes } from '../api/fetchTheme';
 import { WaitModal } from '../Components/Modal/ChatModal';
 
@@ -82,7 +82,7 @@ function Theme({ socket }: any) {
         document.cookie = `other=${other}`;
         navigate('/chat');
       } else {
-        console.log('상대방 정보가 없습니다.');
+        throw new Error('상대방 정보가 없습니다.')
       }
     }
     socket.on('wait', waitMessageCallback);
