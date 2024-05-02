@@ -6,6 +6,13 @@ import useGetCoinHistory from 'hooks/useGetCoinHistory';
 import CoinHistoryList from 'Components/CoinHistoryList.tsx/CoinHistoryList';
 import { extractUserId } from '../utils/extractCookie';
 
+interface ScoreProps {
+  coin_history_id: number;
+  user_id: string;
+  used_coin: number;
+  used_at: string;
+}
+
 function CoinHistory() {
   const userId = extractUserId();
   const { isLoading, isError, data } = useGetCoinHistory(userId);
@@ -31,6 +38,7 @@ function CoinHistory() {
       <CoinHistoryList visibleItems={visibleItems} data={[]} />{' '}
     </Wrapper>
   );
+  const coinHistory: ScoreProps[] = data ?? [];
 
   if (isLoading) return skeletonContent;
   if (isError) return <div>에러</div>;
@@ -48,10 +56,10 @@ function CoinHistory() {
       <GoBackHeader />
       <Title margin="3vh 0 3vh 1vh">당신의 코인 사용 내역</Title>
       <Content fontSize="2.7vh" fonstWeight="800" margin="3vh auto">
-        총 연장 성공 : {data?.length}회
+        총 연장 성공 : {coinHistory?.length}회
       </Content>
-      <CoinHistoryList visibleItems={visibleItems} data={data} />
-      {visibleItems < data?.length && (
+      <CoinHistoryList visibleItems={visibleItems} data={coinHistory} />
+      {visibleItems < coinHistory?.length && (
         <Button
           width="100%"
           height="5vh"

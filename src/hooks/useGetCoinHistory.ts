@@ -11,7 +11,7 @@ interface ScoreProps {
 interface useGetCoinHistoryProps {
   isLoading: boolean;
   isError: boolean;
-  data: any;
+  data: ScoreProps[] | null;
   isSuccess: boolean;
 }
 
@@ -31,7 +31,9 @@ export const useGetCoinHistory = (userId: string): useGetCoinHistoryProps => {
       return fetchGetUserCoinHistory(userId);
     },
   );
-  return { isLoading, isError, data, isSuccess };
+  const coinHistoryData = data ?? null;
+
+  return { isLoading, isError, data: coinHistoryData, isSuccess };
 };
 
 export default useGetCoinHistory;
