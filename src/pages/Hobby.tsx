@@ -77,7 +77,7 @@ function Hobby() {
     <Container>
       {Alert && (
         <AlertModal
-          icon="error"
+          icon="warning"
           title="기분 등록 실패"
           msg="취미는 1개 ~ 3개만 골라주세요"
           onClose={alertClose}

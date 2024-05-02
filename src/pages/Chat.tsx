@@ -352,7 +352,7 @@ function Chat({ socket }: any): JSX.Element {
       )}
       {alertModal && (
         <AlertModal
-          icon="error"
+          icon="warning"
           title="연장 불가"
           msg="코인이 부족합니다."
           onClose={offAlertModal}

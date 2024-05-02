@@ -110,7 +110,7 @@ function Theme({ socket }: any) {
     <>
       {alertModal && (
         <AlertModal
-          icon="error"
+          icon="warning"
           title="주제를 선택해주세요"
           msg="한개의 대화 주제를 골라주세요"
           onClose={offAlertModal}

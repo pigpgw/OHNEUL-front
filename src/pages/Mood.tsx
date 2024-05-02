@@ -104,7 +104,7 @@ function Mood() {
       )}
       {alertModal && (
         <AlertModal
-          icon="error"
+          icon="warning"
           title="에러"
           msg="기분을 1개 이상 선택해주세요!"
           onClose={closeAlet}

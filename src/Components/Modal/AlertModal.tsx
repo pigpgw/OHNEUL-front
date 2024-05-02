@@ -17,6 +17,7 @@ function AlertModal({ icon, title, msg, onClose }: AlertModalProps) {
       title,
       text: msg,
       confirmButtonText: '확인',
+      confirmButtonColor: ' #747474',
       preConfirm: onClose,
     });
   }, []);
