@@ -83,7 +83,6 @@ const ChatMessagesContainer = styled.div`
 
 const ChatMessagesWrapper = styled.div`
   list-style: none;
-  padding: 10px;
   margin: 0;
   border-radius: 10px;
   overflow-y: scroll;
