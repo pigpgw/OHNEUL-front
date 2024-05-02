@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
+import AlertModal from 'Components/Modal/AlertModal';
 import CoinPriceData from 'assets/Data/CoinPriceData';
 import { createPortal } from 'react-dom';
 import coin from '../../assets/images/coin.png';
@@ -86,10 +87,24 @@ function CoinItem({ coins, price, onClick }: CoinItemProps) {
 }
 
 function CoinItemModal({ onClose, selectedCoin }: CoinModalProps) {
+  const [alertModal, setAlertModal] = useState(false);
+
+  const closeAlert = () => {
+    setAlertModal(false);
+  };
+
   if (!selectedCoin) return null;
-  const startPayment = () => alert('서비스가 준비중입니다. ㅠㅠ');
+  const startPayment = () => setAlertModal(true);
   return (
     <ModalWrapper>
+      {alertModal && (
+        <AlertModal
+          icon="warning"
+          title="서비스 준비중"
+          msg="준비중인 서비스입니다."
+          onClose={closeAlert}
+        />
+      )}
       <ItemCancelBtn onClick={onClose}>X</ItemCancelBtn>
       {selectedCoin && (
         <>
