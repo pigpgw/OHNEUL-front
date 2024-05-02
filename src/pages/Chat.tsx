@@ -13,6 +13,7 @@ import {
   ReviewModal,
   AgreeModal,
 } from 'Components/Modal/ChatModal';
+import AlertModal from 'Components/Modal/AlertModal';
 import { useCoinQuery } from 'hooks/useCoinQuery';
 import { useNavigate } from 'react-router-dom';
 import Rating from 'Components/Chat/Rating';
@@ -38,7 +39,7 @@ function Chat({ socket }: any): JSX.Element {
   ]);
   const [msg, setMsg] = useState<string>('');
   const [consentModal, setConsentModal] = useState<boolean>(false);
-  const [remainingTime, setRemainingTime] = useState<number>(10);
+  const [remainingTime, setRemainingTime] = useState<number>(300);
   const [consent, setConsent] = useState<boolean>(false);
   const [consentWaitModal, setConsentWaitModal] = useState<boolean>(false);
   const [forExitModal, setForExitModal] = useState<boolean>(false);
@@ -46,6 +47,8 @@ function Chat({ socket }: any): JSX.Element {
   const [reviewModal, setReviewModal] = useState<boolean>(false);
   const [totalTime, setTotalTime] = useState<number>(0);
   const [reportModal, setReportModal] = useState<boolean>(false);
+  const [alertModal, setAlertModal] = useState<boolean>(false);
+
   const [reportReason, setReportReson] = useState<string>('');
   const userId = extractUserId();
   const { userCoinState } = useCoinQuery(userId);
@@ -229,9 +232,13 @@ function Chat({ socket }: any): JSX.Element {
     setIntervalId(newIntervalId);
   }, [consent]);
 
+  const offAlertModal = () => {
+    setAlertModal(true);
+  };
+
   const onAgree = useCallback(() => {
     if (userCoinState < 5) {
-      alert('ㅠㅠㅠ 코인이 부족합니다.');
+      setAlertModal(true);
     } else {
       const data = {
         user_id: userId,
@@ -299,6 +306,13 @@ function Chat({ socket }: any): JSX.Element {
     [],
   );
 
+  const [reportAlert, setReportAlert] = useState(false);
+  const offAlertReportModal = () => {
+    setReportAlert(false);
+    goThemePage();
+    setReportModal(false);
+  };
+
   const reportUser = useCallback(() => {
     const reportedUserId = extractOtherUserId();
     const reportInfo = {
@@ -307,9 +321,7 @@ function Chat({ socket }: any): JSX.Element {
     };
     socket.emit('reportUser', reportInfo);
     setReportReson('');
-    alert('신고가 완료되었습니다.');
-    goThemePage();
-    setReportModal(false);
+    setReportAlert(true);
   }, []);
 
   const handleMyProfile = useCallback(() => {
@@ -330,6 +342,22 @@ function Chat({ socket }: any): JSX.Element {
         onForExitModal={onForExitModal}
         aniTime={aniTime}
       ></ChatHeader>
+      {reportAlert && (
+        <AlertModal
+          icon="success"
+          title="신고 완료"
+          msg="신고가 정상적으로 완료되었습니다."
+          onClose={offAlertReportModal}
+        />
+      )}
+      {alertModal && (
+        <AlertModal
+          icon="error"
+          title="연장 불가"
+          msg="코인이 부족합니다."
+          onClose={offAlertModal}
+        />
+      )}
       {consentModal && !exitModal && (
         <ConsentModal onAgree={onAgree} onRefuse={onRefuse}></ConsentModal>
       )}

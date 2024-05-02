@@ -1,6 +1,7 @@
 import { useEffect, useMemo, useState } from 'react';
 import { Container } from 'Components/styles/Common';
 import { useQuery } from 'react-query';
+import AlertModal from 'Components/Modal/AlertModal';
 import { fetchGetMood } from 'api/fetchMood';
 import { useNavigate } from 'react-router-dom';
 import { extractReward } from 'utils/extractCookie';
@@ -31,7 +32,7 @@ function Mood() {
     const data = extractReward();
     if (data === 'T') {
       setTimeout(() => {
-        alert('매일 접속 보상이 지급되었습니다');
+        setDailyModal(true);
       }, 1000);
       document.cookie = 'reward=';
     }
@@ -61,14 +62,31 @@ function Mood() {
   const navigate = useNavigate();
 
   const handleSubmit = () => {
-    if (seletedMood !== null) {
+    if (seletedMood !== undefined) {
       addUserMood({
         mood_id: seletedMood,
       });
       navigate('/theme');
     } else {
-      alert('1개 이상 골라주세요!');
+      handleCompanyInfoClick();
     }
+  };
+  const handleCompanyInfoClick = () => {
+    if (alertModal === true) {
+      navigate('/mood');
+    } else {
+      setAlertModal(true);
+    }
+  };
+
+  const [dailyModal, setDailyModal] = useState(false);
+  const closeDailyModal = () => {
+    setDailyModal(false);
+  };
+
+  const [alertModal, setAlertModal] = useState(false);
+  const closeAlet = () => {
+    setAlertModal(false);
   };
 
   if (isLoading) return <div>mood data 가져오는 중입니다.</div>;
@@ -76,6 +94,22 @@ function Mood() {
 
   return (
     <>
+      {dailyModal && (
+        <AlertModal
+          icon="success"
+          title="매일 접속 보상이 지급되었습니다"
+          msg="접속 보상 100코인이 지급되었습니다."
+          onClose={closeDailyModal}
+        />
+      )}
+      {alertModal && (
+        <AlertModal
+          icon="error"
+          title="에러"
+          msg="기분을 1개 이상 선택해주세요!"
+          onClose={closeAlet}
+        />
+      )}
       <Container>
         <InfoHeader
           infoTitle="오늘 당신은?"

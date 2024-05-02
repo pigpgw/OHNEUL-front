@@ -5,6 +5,7 @@ import { useQuery } from 'react-query';
 import InfoHeader from 'Components/Common/InfoHeader';
 import ButtonList from 'Components/Common/ButtonList';
 import InfoFooter from 'Components/Common/InfoFooter';
+import AlertModal from 'Components/Modal/AlertModal';
 import Button from 'Components/Common/Button';
 import useCheckHobbiesAndNavigate from 'hooks/useCheckHobbiesAndNavigateHook';
 import { extractUserId } from 'utils/extractCookie';
@@ -19,6 +20,7 @@ interface Hobby {
 
 function Hobby() {
   useCheckHobbiesAndNavigate();
+  const [Alert, setAlert] = useState<boolean>(false);
 
   const [hobby, setHobby] = useState<Hobby[]>([]);
   const userSelectHobby = hobby
@@ -50,7 +52,7 @@ function Hobby() {
   const navigate = useNavigate();
   const handleSubmit = async () => {
     if (userSelectHobby.length >= 4 || userSelectHobby.length === 0) {
-      alert('취미는 1개 ~ 3개만 골라주세요');
+      setAlert(true);
       return;
     }
     try {
@@ -60,8 +62,12 @@ function Hobby() {
       });
       navigate('/mood');
     } catch (e) {
-      alert('오류가 발생했습니다. 나중에 다시 시도해주세요.');
+      console.log('유저 취미 등록 실패');
     }
+  };
+
+  const alertClose = () => {
+    setAlert(false);
   };
 
   if (isLoading) return <div>Loading...</div>;
@@ -69,6 +75,14 @@ function Hobby() {
 
   return (
     <Container>
+      {Alert && (
+        <AlertModal
+          icon="error"
+          title="기분 등록 실패"
+          msg="취미는 1개 ~ 3개만 골라주세요"
+          onClose={alertClose}
+        />
+      )}
       <InfoHeader
         infoTitle="평소 당신은?"
         infoContent="관심사를 선택해주세요"

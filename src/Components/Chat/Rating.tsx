@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { FaStar } from '@react-icons/all-files/fa/FaStar';
 import { useNavigate } from 'react-router-dom';
+import AlertModal from 'Components/Modal/AlertModal';
 import { extractOtherUserId } from 'utils/extractCookie';
 import styled from 'styled-components';
 
@@ -12,6 +13,7 @@ function Rating({ socket }: any): JSX.Element {
     false,
     false,
   ]);
+  const [Alert, setAlert] = useState(false);
 
   const handleStarClick = (index: number): void => {
     const clickStates = [...clicked];
@@ -35,12 +37,24 @@ function Rating({ socket }: any): JSX.Element {
     };
     socket.emit('score', data);
     document.cookie = 'other=';
-    alert('리뷰가 성공적으로 등록되었습니다.');
+    setAlert(true);
+  };
+
+  const offmodal = () => {
+    setAlert(false);
     navigate('/theme');
   };
 
   return (
     <Wrap>
+      {Alert && (
+        <AlertModal
+          icon="success"
+          title="리뷰 등록 성공"
+          msg="리뷰가 성공적으로 저장되없습니다."
+          onClose={offmodal}
+        />
+      )}
       <Stars>
         {[0, 1, 2, 3, 4].map((el, idx) => {
           return (
@@ -72,8 +86,7 @@ const Stars = styled.div`
   padding: 15px;
   justify-content: space-between;
   width: 100%;
-  padding: 10px
-  10px 2vh 0;
+  padding: 10px 10px 2vh 0;
 
   & svg {
     color: #adadad;

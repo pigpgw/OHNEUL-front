@@ -6,6 +6,7 @@ import InfoHeader from 'Components/Common/InfoHeader';
 import ButtonList from 'Components/Common/ButtonList';
 import InfoFooter from 'Components/Common/InfoFooter';
 import Button from 'Components/Common/Button';
+import AlertModal from 'Components/Modal/AlertModal';
 import { Container } from '../Components/styles/Common';
 import { fetchGetThemes } from '../api/fetchTheme';
 import { WaitModal } from '../Components/Modal/ChatModal';
@@ -28,6 +29,7 @@ function Theme({ socket }: any) {
 
   const [theme, setTheme] = useState<Themes[]>([]);
   const [wait, setWait] = useState<boolean>(false);
+  const [alertModal, setAlertModal] = useState(false);
   const userSelectTheme: string = useMemo(() => {
     return theme
       .filter((item) => item.clicked === true)
@@ -48,9 +50,14 @@ function Theme({ socket }: any) {
     );
   };
 
+  const offAlertModal = () => {
+    setAlertModal(false);
+  };
+
   const matchingcStart = (e: React.MouseEvent<HTMLButtonElement>) => {
-    if (!userSelectTheme) alert('최소 1개를 선택해주세요');
-    else {
+    if (!userSelectTheme) {
+      setAlertModal(true);
+    } else {
       const uuid = extractUserId();
       e.preventDefault();
       const data = {
@@ -74,15 +81,12 @@ function Theme({ socket }: any) {
 
     function startMessageCallback(otherId: uuidList[]) {
       setWait(false);
-
       if (otherId && otherId.length > 0) {
         const other = otherId.filter(
           (item: any) => item.socketId !== socket.id,
         )[0].uuid;
         document.cookie = `other=${other}`;
         navigate('/chat');
-      } else {
-        throw new Error('상대방 정보가 없습니다.')
       }
     }
     socket.on('wait', waitMessageCallback);
@@ -104,6 +108,14 @@ function Theme({ socket }: any) {
 
   return (
     <>
+      {alertModal && (
+        <AlertModal
+          icon="error"
+          title="주제를 선택해주세요"
+          msg="한개의 대화 주제를 골라주세요"
+          onClose={offAlertModal}
+        />
+      )}
       <Container>
         <InfoHeader
           infoTitle="오늘 당신은?"
