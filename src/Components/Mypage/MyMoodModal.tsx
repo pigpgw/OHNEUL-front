@@ -56,7 +56,7 @@ function MyMood({ onClose }: MyMoodModal) {
     }
   };
 
-  if (isLoading) return <div>mood data 가져오는 중입니다.</div>;
+  if (isLoading) return <div>Loading</div>;
   if (isError) return <div>mood data 가져오기 실패</div>;
 
   return (

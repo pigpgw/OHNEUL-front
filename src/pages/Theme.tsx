@@ -7,6 +7,7 @@ import ButtonList from 'Components/Common/ButtonList';
 import InfoFooter from 'Components/Common/InfoFooter';
 import Button from 'Components/Common/Button';
 import AlertModal from 'Components/Modal/AlertModal';
+import LoadingBox from 'Components/Common/LoadingBox/LoadingBox';
 import { Container } from '../Components/styles/Common';
 import { fetchGetThemes } from '../api/fetchTheme';
 import { WaitModal } from '../Components/Modal/ChatModal';
@@ -100,7 +101,7 @@ function Theme({ socket }: any) {
     setWait(false);
   };
 
-  if (isLoading) return <div>theme data 가져오는 중입니다.</div>;
+  if (isLoading) return <div>상대방과 같은 주제로 이야기를 나눠보세요</div>;
   if (isError) return <div>theme data 가져오기 실패</div>;
 
   return (

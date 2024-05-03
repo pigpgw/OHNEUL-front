@@ -54,7 +54,7 @@ function ChatInputForm({
 
 const ChatInputContainer = styled.div`
   width: 100%;
-  margin-top: 1vh;
+  margin-top: 4vh;
 `;
 
 const ChatInput = styled.input`
