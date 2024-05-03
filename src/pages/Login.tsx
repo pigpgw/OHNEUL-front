@@ -67,7 +67,7 @@ const Login: React.FC = () => {
   }, [isLogin, navigate]);
 
   return (
-    <>
+    <div>
       <LogoContainer>
         <MainLogo></MainLogo>
       </LogoContainer>
@@ -81,7 +81,7 @@ const Login: React.FC = () => {
           <KakaoLogin></KakaoLogin>
         </SocialContainer>
       )}
-    </>
+    </div>
   );
 };
 

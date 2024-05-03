@@ -72,8 +72,8 @@ const MyMood = () => {
     setData(data);
   }, [data]);
 
-  if (isLoading) return <div>Loading</div>;
-  if (isError) return <div>내 기분 가져오기 실패</div>;
+  // if (isLoading) return <div>Loading</div>;
+  // if (isError) return <div>내 기분 가져오기 실패</div>;
 
   return (
     <>

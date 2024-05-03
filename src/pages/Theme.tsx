@@ -80,9 +80,8 @@ function Theme({ socket }: any) {
     function startMessageCallback(otherId: uuidList[]) {
       setWait(false);
       if (otherId && otherId.length > 0) {
-        const other = otherId.filter(
-          (item) => item.socketId !== socket.id,
-        )[0].uuid;
+        const other = otherId.filter((item) => item.socketId !== socket.id)[0]
+          .uuid;
         document.cookie = `other=${other}`;
         navigate('/chat');
       }
@@ -101,9 +100,6 @@ function Theme({ socket }: any) {
     setWait(false);
   };
 
-  if (isLoading) return <div>Loading</div>;
-  if (isError) return <div>theme data 가져오기 실패</div>;
-
   return (
     <>
       {alertModal && (
@@ -111,7 +107,7 @@ function Theme({ socket }: any) {
           icon="warning"
           title="주제를 선택해주세요"
           msg="한개의 대화 주제를 골라주세요"
-          btn1='확인'
+          btn1="확인"
           onClose={offAlertModal}
         />
       )}
@@ -120,7 +116,12 @@ function Theme({ socket }: any) {
           infoTitle="오늘 당신은?"
           infoContent="대화 주제를 선택해주세요"
         />
-        <ButtonList items={theme} onClick={clickBtn} />
+        <ButtonList
+          items={theme}
+          onClick={clickBtn}
+          isLoading={isLoading}
+          isError={isError}
+        />
         {wait && <WaitModal onClose={onClose} />}
         <InfoFooter infoText="최대 1개만 선택 가능합니다." />
         <Button

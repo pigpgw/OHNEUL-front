@@ -86,8 +86,8 @@ function Mood() {
     setAlertModal(false);
   };
 
-  if (isLoading) return <div>Loading</div>;
-  if (isError) return <div>mood data 가져오기 실패</div>;
+  // if (isLoading) return <div>Loading</div>;
+  // if (isError) return <div>mood data 가져오기 실패</div>;
 
   return (
     <>
@@ -114,7 +114,7 @@ function Mood() {
           infoTitle="오늘 당신은?"
           infoContent="오늘 기분을 선택해주세요"
         />
-        <ButtonList items={mood} onClick={clickBtn} />
+        <ButtonList items={mood} onClick={clickBtn} isLoading={isLoading} isError={isError}/>
         <InfoFooter infoText="최대 1개만 선택 가능합니다." />
         <Button
           onClick={handleSubmit}

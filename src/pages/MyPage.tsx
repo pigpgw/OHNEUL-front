@@ -16,6 +16,7 @@ import {
   Tab,
   ContentContainer,
 } from 'Components/styles/Mypage';
+import { Container } from 'Components/styles/Common';
 import { styled } from 'styled-components';
 import { useNavigate } from 'react-router-dom';
 

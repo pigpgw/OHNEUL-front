@@ -74,8 +74,8 @@ const Interest = () => {
     { refetchInterval: 3000 },
   );
 
-  if (isLoading) return <div>Loading</div>;
-  if (isError) return <div>취미를 가져오기를 실패했습니다.</div>;
+  // if (isLoading) return <div>Loading</div>;
+  // if (isError) return <div>취미를 가져오기를 실패했습니다.</div>;
 
   return (
     <>

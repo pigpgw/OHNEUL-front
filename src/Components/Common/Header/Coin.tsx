@@ -5,14 +5,14 @@ import coin from '../../../assets/images/coin.png';
 import { CashAmount, CashIcon, CashContainer } from '../../styles/Header';
 
 type CoinProps = {
-    onClick?: () => void;
+  onClick?: () => void;
 };
 
 function Coin({ onClick }: CoinProps) {
   const userId = extractUserId();
   const { isCoinLoading, isCoinError, userCoinState } = useCoinQuery(userId);
 
-  if (isCoinLoading) return <div>로딩중</div>;
+  if (isCoinLoading) return null;
   if (isCoinError) return <div>에러 발생</div>;
   return (
     <CashContainer onClick={onClick}>

@@ -23,9 +23,18 @@ interface Themes {
 type ButtonListProps = {
   items: Array<Mood | Hobby | Themes>;
   onClick: (id: number) => void;
+  isLoading: boolean;
+  isError: boolean;
 };
 
-const ButtonList = ({ items, onClick }: ButtonListProps) => {
+const ButtonList = ({
+  items,
+  onClick,
+  isLoading,
+  isError,
+}: ButtonListProps) => {
+  if (isLoading) return <div>로딩중입니다.</div>;
+  if (isError) return <div>에러입니다.</div>;
   return (
     <ItemContainer>
       {items?.map((item) => {

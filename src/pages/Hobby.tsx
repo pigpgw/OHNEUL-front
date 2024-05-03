@@ -29,7 +29,7 @@ function Hobby() {
 
   const {
     isLoading,
-    error,
+    isError,
     data: availableHobbies,
   } = useQuery('get-hobbys', fetchGetHobbys);
 
@@ -67,9 +67,6 @@ function Hobby() {
     setAlert(false);
   };
 
-  if (isLoading) return <div>Loading...</div>;
-  if (error) return <div>Error: error</div>;
-
   return (
     <Container>
       {Alert && (
@@ -77,7 +74,7 @@ function Hobby() {
           icon="warning"
           title="기분 등록 실패"
           msg="취미는 1개 ~ 3개만 골라주세요"
-          btn1='확인'
+          btn1="확인"
           onClose={alertClose}
         />
       )}
@@ -85,7 +82,12 @@ function Hobby() {
         infoTitle="평소 당신은?"
         infoContent="관심사를 선택해주세요"
       />
-      <ButtonList items={hobby} onClick={clickBtn} />
+      <ButtonList
+        items={hobby}
+        onClick={clickBtn}
+        isLoading={isLoading}
+        isError={isError}
+      />
       <InfoFooter infoText="최소 1개, 최대 3개만 선택 가능" />
       <Button
         onClick={handleSubmit}
