@@ -101,7 +101,7 @@ function Theme({ socket }: any) {
     setWait(false);
   };
 
-  if (isLoading) return <div>상대방과 같은 주제로 이야기를 나눠보세요</div>;
+  if (isLoading) return <div>Loading</div>;
   if (isError) return <div>theme data 가져오기 실패</div>;
 
   return (
