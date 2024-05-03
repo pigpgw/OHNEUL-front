@@ -51,7 +51,8 @@ function Rating({ socket }: any): JSX.Element {
         <AlertModal
           icon="success"
           title="리뷰 등록 성공"
-          msg="리뷰가 성공적으로 저장되없습니다."
+          msg="리뷰가 성공적으로 저장되었습니다."
+          btn1="확인"
           onClose={offmodal}
         />
       )}

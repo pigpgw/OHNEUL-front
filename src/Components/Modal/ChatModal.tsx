@@ -163,7 +163,7 @@ export {
 };
 
 const ModalTitle = styled.div`
-  font-size: 15px;
+  font-size: 2vh;
   font-weight: 800;
   text-align: center;
   margin: 10px;
@@ -171,7 +171,7 @@ const ModalTitle = styled.div`
 `;
 
 const ModalBtnContainer = styled.div`
-  width: 80%;
+  width: 90%;
   height: 25%;
   display: flex;
   align-items: center;
@@ -181,7 +181,7 @@ const ModalBtnContainer = styled.div`
 `;
 
 const ModalBtn = styled.button`
-  font-size: 1.5vh;
+  font-size: 1.75vh;
   font-weight: 900;
   border: 0;
   background-color: white;
@@ -192,7 +192,7 @@ const ModalLayout = styled.div`
   box-sizing: border-box;
   width: 73%;
   padding: 1vh;
-
+  z-index: 2;
   max-width: 450px;
   min-height: 100px;
   max-height: 250px;
@@ -213,11 +213,11 @@ const ModalLayout = styled.div`
 `;
 
 const ReportModalLayout = styled.div`
-  width: 73%;
+  width: 80%;
 
   max-width: 450px;
-
-  background: #ffffff;
+  z-index: 1;
+  background: white;
   border: 1px solid #cccccc;
   border-radius: 20px;
 
@@ -233,7 +233,7 @@ const ReportModalLayout = styled.div`
 `;
 
 const ReportModalBtnContainer = styled.div`
-  width: 60%;
+  width: 80%;
   display: flex;
   align-items: center;
   flex-direction: column;
@@ -245,7 +245,8 @@ interface ReportBtnProps {
 }
 
 const ReportBtn = styled.button<ReportBtnProps>`
-  width: 200px;
+  width: 100%;
+  font-size: 2vh;
   height: 30px;
   margin: 10px;
   background: ${(props) => (props.selected ? '#0075ff' : '#ffffff')};

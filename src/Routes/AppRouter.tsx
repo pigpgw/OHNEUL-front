@@ -34,14 +34,7 @@ function AppRouter() {
           <Route path="/login/naver" element={<Redirect />} />
           <Route path="/" element={<Login />} />
           <Route path="/">
-            <Route
-              path=""
-              element={
-                <Suspense fallback={<div>Loading...</div>}>
-                  <Home />
-                </Suspense>
-              }
-            >
+            <Route path="" element={<Home />}>
               <Route path="favorite" element={<Favorite />} />
               <Route path="mood" element={<Mood />} />
               <Route path="theme" element={<Theme socket={socket} />} />

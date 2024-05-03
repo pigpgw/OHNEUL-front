@@ -2,14 +2,13 @@ import styled from 'styled-components';
 import NaverImg from '../../assets/images/naverLoginButton.png';
 
 const NaverLoginButton = styled.button`
-  width: 30%;
-  height: 20%;
   background: none;
   border: none;
   outline: none;
   cursor: pointer;
   img {
-    width: 100%;
+    width: 28vh;
+    height: 6vh;
   }
 `;
 const NaverLogin: React.FC = () => {

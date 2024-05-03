@@ -102,6 +102,7 @@ function CoinItemModal({ onClose, selectedCoin }: CoinModalProps) {
           icon="warning"
           title="서비스 준비중"
           msg="준비중인 서비스입니다."
+          btn1='확인'
           onClose={closeAlert}
         />
       )}

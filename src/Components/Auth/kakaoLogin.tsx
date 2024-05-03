@@ -2,14 +2,13 @@ import styled from 'styled-components';
 import KakaoImg from 'assets/images/kakaoLoginButton.png';
 
 const KakaoLoginButton = styled.button`
-  width: 30%;
-  height: 20%;
   background: none;
   border: none;
   outline: none;
   cursor: pointer;
   img {
-    width: 100%;
+    width: 28vh;
+    height: 6vh;
   }
 `;
 

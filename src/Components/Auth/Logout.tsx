@@ -1,5 +1,6 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import AlertModal from 'Components/Modal/AlertModal';
 import { useNavigate } from 'react-router-dom';
 import { logout, clearAuth } from 'stores/slices/userSlice';
 
@@ -23,6 +24,7 @@ interface User {
   };
 }
 const Logout: React.FC = () => {
+  const [logoutModal, setLogoutModal] = useState(false);
   const user = useSelector((state: User) => state.user);
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -50,7 +52,22 @@ const Logout: React.FC = () => {
   };
   return (
     <div>
-      <Button role="button" onClick={handleLogOut}>
+      {logoutModal && (
+        <AlertModal
+          icon="warning"
+          title="로그아웃"
+          msg="로그아웃 하시겠습니까?"
+          btn1='확인'
+          btn2='취소'
+          onClose={handleLogOut}
+          onCancel={() => {
+            setLogoutModal(false);
+          }}
+        />
+      )}
+      <Button role="button" onClick={() => {
+        setLogoutModal(true)
+      }}>
         로그아웃
       </Button>
     </div>

@@ -110,6 +110,7 @@ function Theme({ socket }: any) {
           icon="warning"
           title="주제를 선택해주세요"
           msg="한개의 대화 주제를 골라주세요"
+          btn1='확인'
           onClose={offAlertModal}
         />
       )}

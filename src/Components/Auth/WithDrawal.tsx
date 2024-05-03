@@ -1,10 +1,11 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { logout, clearAuth } from 'stores/slices/userSlice';
 import axios from 'axios';
 import meltedCookie from 'utils/meltedCookie';
 import styled from 'styled-components';
+import AlertModal from 'Components/Modal/AlertModal';
 
 const Button = styled.button`
   background: none;
@@ -22,6 +23,8 @@ interface User {
   };
 }
 const WithDrawal: React.FC = () => {
+  const [withDrawModal, setWithDrawModal] = useState(false);
+  const [withdrawn, setWithdrawn] = useState(false);
   const user = useSelector((state: User) => state.user);
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -66,7 +69,37 @@ const WithDrawal: React.FC = () => {
   };
   return (
     <div>
-      <Button onClick={handleWithDrawal}>회원탈퇴</Button>
+      {withDrawModal && (
+        <AlertModal
+          icon="warning"
+          title="회원탈퇴"
+          msg="회원탈퇴시 보유중인 코인은 사라집니다."
+          btn1="확인"
+          btn2="취소"
+          onClose={() => {
+            setWithdrawn(true);
+          }}
+          onCancel={() => {
+            setWithDrawModal(false);
+          }}
+        />
+      )}
+      {withdrawn && (
+        <AlertModal
+          icon="success"
+          title="회원탈퇴"
+          msg="성공하셨습니다."
+          btn1="확인"
+          onClose={handleWithDrawal}
+        />
+      )}
+      <Button
+        onClick={() => {
+          setWithDrawModal(true);
+        }}
+      >
+        회원탈퇴
+      </Button>
     </div>
   );
 };

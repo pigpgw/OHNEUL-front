@@ -13,14 +13,16 @@ const LogoContainer = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin-top: 200px;
+  margin-top: 20vh;
   height: 40vh;
 `;
 const SocialContainer = styled.div`
+  width: 100%;
   display: flex;
   flex-direction: column;
+  margin: 0 auto;
   align-items: center;
-  gap: 1px;
+  margin-top: 15vh;
 `;
 const PhraseContainer = styled.div``;
 

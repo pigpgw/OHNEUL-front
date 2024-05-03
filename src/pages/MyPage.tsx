@@ -51,6 +51,7 @@ const MyPage: React.FC = () => {
               icon="warning"
               title="서비스 준비중"
               msg="서비스가 준비중입니다.!"
+              btn1='확인'
               onClose={offAlert}
             />
           )}

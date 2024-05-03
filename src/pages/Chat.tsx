@@ -347,6 +347,7 @@ function Chat({ socket }: any): JSX.Element {
           icon="success"
           title="신고 완료"
           msg="신고가 정상적으로 완료되었습니다."
+          btn1='확인'
           onClose={offAlertReportModal}
         />
       )}
@@ -355,6 +356,7 @@ function Chat({ socket }: any): JSX.Element {
           icon="warning"
           title="연장 불가"
           msg="코인이 부족합니다."
+          btn1='확인'
           onClose={offAlertModal}
         />
       )}
