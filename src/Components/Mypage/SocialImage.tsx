@@ -42,12 +42,12 @@ function SocialImage() {
     <Wrapper>
       {flatform === 'kakao' ? (
         <>
-          <Kakao src={KakaoBogo}></Kakao> <p>당신의 오늘은 어떘나요 xxx님?</p>
+          <Kakao src={KakaoBogo}></Kakao> <p>당신의 오늘은 어떠셨나요 {name}님?</p>
         </>
       ) : (
         <>
           <Naver src={NaverBogo}></Naver>
-          <p>당신의 오늘은 어땠나요 {name}님?</p>
+          <p>당신의 오늘은 어떠셨나요 {name}님?</p>
         </>
       )}
     </Wrapper>
