@@ -1,4 +1,5 @@
 import { useEffect } from 'react';
+// eslint-disable-next-line import/no-extraneous-dependencies
 import Swal from 'sweetalert2';
 
 type CustomIcon = 'success' | 'error' | 'warning' | 'info' | 'question';

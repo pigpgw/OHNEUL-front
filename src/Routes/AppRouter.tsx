@@ -21,6 +21,8 @@ import Success from 'pages/Success';
 import Fail from 'pages/Fail';
 import Chat from 'pages/Chat';
 import CoinHistory from 'pages/CoinHistory';
+import Announcement from 'Components/Mypage/Announcement';
+import AnnouncementDetail from 'Components/Mypage/AnnouncementDetail';
 
 const socket = io('http://localhost:4000');
 
@@ -44,6 +46,14 @@ function AppRouter() {
         <Route path="/fail" element={<Fail />} />
         <Route path="/chat" element={<Chat socket={socket} />} />
         <Route path="/coinhistory" element={<CoinHistory />} />
+        <Route
+          path="mypage/announcement/"
+          element={<Announcement></Announcement>}
+        ></Route>
+        <Route
+          path="mypage/announcement/:id"
+          element={<AnnouncementDetail />}
+        />
         <Route path="/*" element={<NotFound />} />
 
         <Route path="/admin" element={<Admin />}>

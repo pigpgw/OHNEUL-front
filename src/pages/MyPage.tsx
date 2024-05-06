@@ -52,7 +52,7 @@ const MyPage: React.FC = () => {
               icon="warning"
               title="서비스 준비중"
               msg="서비스가 준비중입니다.!"
-              btn1='확인'
+              btn1="확인"
               onClose={offAlert}
             />
           )}
@@ -61,7 +61,7 @@ const MyPage: React.FC = () => {
           {open === 'coinusage' && <CoinUsageDetails />}
           <Tab onClick={onAlert}>이용정책</Tab>
           {open === 'terms' && <Terms />}
-          <Tab onClick={() => handleModal('announcement')} last={'true'}>
+          <Tab onClick={() => navigate('announcement')} last={'true'}>
             공지사항
           </Tab>
           {open === 'announcement' && <Announcement />}
