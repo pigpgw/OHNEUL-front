@@ -132,6 +132,9 @@ const ChatMessageWrapper = styled.div`
   font-family: sans-serif;
   font-family: 100;
   position: relative;
+  white-space: pre-wrap;
+  word-break: break-word;
+  text-align: left;
 
   &.me {
     color: white;
@@ -143,6 +146,7 @@ const ChatMessageWrapper = styled.div`
     padding: 7px 10px 7px 10px;
     right: 1%;
     margin-right: 1vh;
+    max-width: 88%;
   }
 
   &.other {
