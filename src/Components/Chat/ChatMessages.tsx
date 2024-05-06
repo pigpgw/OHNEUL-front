@@ -88,7 +88,8 @@ const ChatMessagesWrapper = styled.div`
   display: flex;
   width: 100%;
   flex-direction: column;
-  height: calc(100vh - 20vh);
+  /* height: calc(100vh - 18vh); */
+  padding: 2% 0;
 `;
 
 const ChatMessageItemBox = styled.div`

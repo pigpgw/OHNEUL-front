@@ -15,6 +15,7 @@ const Button = styled.button`
   color: #6f6f6f;
   cursor: pointer;
   outline: inherit;
+  font-size: 2vh;
 `;
 interface User {
   user: {

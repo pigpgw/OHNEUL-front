@@ -12,6 +12,7 @@ const Button = styled.button`
   color: #dbdbdb;
   cursor: pointer;
   outline: inherit;
+  font-size: 2vh;
 `;
 
 function AdminButton() {

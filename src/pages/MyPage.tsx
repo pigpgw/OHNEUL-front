@@ -78,16 +78,18 @@ const MyPage: React.FC = () => {
 
 export default MyPage;
 const Wrapper = styled.div`
-  display: flex;
-  flex-direction: column;
   width: 100%;
-  justify-content: center;
+  height: 90vh;
+  display: flex;
   align-items: center;
+  flex-direction: column;
+  /* height: 570px; */
+  max-width: 700px;
 `;
 
 const BtnContainer = styled.div`
-  width: 100%;
+  width: 95%;
   display: flex;
   justify-content: space-between;
-  margin: 2vh 0 0 0;
+  margin: 5% 0 2% 0;
 `;

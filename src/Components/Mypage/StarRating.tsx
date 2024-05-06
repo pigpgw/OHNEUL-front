@@ -51,8 +51,8 @@ const StarRating = () => {
 
   return (
     <>
-      <P>당신의 매너점수</P>
       <Wrap>
+      <P>당신의 매너점수</P>
         <Stars>
           {star.map((starState, idx) => {
             if (starState === 2) {
@@ -76,7 +76,7 @@ const StarRating = () => {
 export default StarRating;
 
 const Wrap = styled.div`
-  margin: 0 0 3vh 0;
+  margin: 5vh 0;
 `;
 
 const Stars = styled.div`

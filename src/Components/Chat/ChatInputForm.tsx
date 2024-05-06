@@ -39,11 +39,17 @@ function ChatInputForm({
   }, [keyboardHeight]);
 
   return (
-    <ChatInputContainer style={{ marginBottom: keyboardHeight }}>
+    <ChatInputContainer>
       <form onSubmit={msgSubmitHandler}>
         <ChatInput ref={inputRef} value={msg} onChange={msgChangeHandler} />
         {msg && (
-          <ChatSubmitBtn width="6vh" height='4.3vh' padding='1vh' fontSize="2vh" margin='1px 0 0 5px'>
+          <ChatSubmitBtn
+            width="6vh"
+            height="20%"
+            padding="1vh"
+            fontSize="2vh"
+            margin="0 0 0 5px"
+          >
             전송
           </ChatSubmitBtn>
         )}
@@ -54,12 +60,13 @@ function ChatInputForm({
 
 const ChatInputContainer = styled.div`
   width: 100%;
-  margin-top: 4vh;
+  /* max-height: 10px; */
+  margin: 2% 0 0 0;
 `;
 
 const ChatInput = styled.input`
   width: 70%;
-  height: 4vh;
+  height: 20%;
   background: #dbdbdb;
   border-radius: 5px;
   border: 0;

@@ -9,7 +9,7 @@ import { useQuery } from 'react-query';
 const MoodBtn = styled.button`
   border-radius: 10px;
   border: 0;
-  padding: 1.5vh 2vh;
+  padding: 1.5% 2vh;
   margin: 15px;
   font-size: 2vh;
   background: white;
@@ -72,8 +72,8 @@ const MyMood = () => {
     setData(data);
   }, [data]);
 
-  // if (isLoading) return <div>Loading</div>;
-  // if (isError) return <div>내 기분 가져오기 실패</div>;
+  if (isLoading) return <div>Loading</div>;
+  if (isError) return <div>내 기분 가져오기 실패</div>;
 
   return (
     <>

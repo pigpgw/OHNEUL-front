@@ -31,9 +31,8 @@ export const StarRatingSection = styled.div`
 `;
 export const Title = styled.div`
   padding-bottom: 10px;
-  border-bottom: 2px solid #dbdbdb;
+  border-bottom: 1px solid #dbdbdb;
   width: 100%;
-  font-size: 3vh;
   font-weight: 600;
 `;
 
@@ -59,7 +58,6 @@ export const TabTitle = styled.div`
 `;
 export const ContentContainer = styled.div`
   width: 100%;
-  margin-top: 30px;
   display: flex;
   flex-direction: column;
   align-items: center;
