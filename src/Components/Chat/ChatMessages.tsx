@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import styled from 'styled-components';
 import { IoPerson } from '@react-icons/all-files/io5/IoPerson';
 
@@ -19,21 +19,22 @@ function ChatMessages({
   handleMyProFile,
   handleOhterProFile,
 }: MessageListProps): JSX.Element {
-  const messagesEndRef = useRef<HTMLDivElement>(null);
+  const [windowHeight, setWindowHeight] = useState(window.innerHeight);
 
   useEffect(() => {
-    scrollToBottom();
-  }, [messageList]);
+    const handleKeyboardOpen = () => {
+      setWindowHeight(window.innerHeight);
+    };
 
-  const scrollToBottom = () => {
-    messagesEndRef.current?.scrollIntoView({
-      behavior: 'smooth',
-      block: 'end',
-    });
-  };
+    window.addEventListener('resize', handleKeyboardOpen);
+
+    return () => {
+      window.removeEventListener('resize', handleKeyboardOpen);
+    };
+  }, []);
 
   return (
-    <ChatMessagesContainer>
+    <ChatMessagesContainer style={{ height: `${windowHeight - 80}px` }}>
       <ChatMessagesWrapper>
         {messageList.map((v, i) => (
           <ChatMessageItemBox key={`${i}_li`} className={v.type}>
@@ -50,7 +51,6 @@ function ChatMessages({
             <ChatMessageWrapper className={v.type}>{v.msg}</ChatMessageWrapper>
           </ChatMessageItemBox>
         ))}
-        <div ref={messagesEndRef} />
       </ChatMessagesWrapper>
     </ChatMessagesContainer>
   );
@@ -84,11 +84,10 @@ const ChatMessagesWrapper = styled.div`
   list-style: none;
   margin: 0;
   border-radius: 10px;
-  overflow-y: scroll;
   display: flex;
   width: 100%;
   flex-direction: column;
-  /* height: calc(100vh - 18vh); */
+  overflow-y: scroll;
   padding: 2% 0;
 `;
 
@@ -138,7 +137,7 @@ const ChatMessageWrapper = styled.div`
 
   &.me {
     color: white;
-    background: #0075FF;
+    background: #0075ff;
     border-top-left-radius: 8px;
     border-bottom-left-radius: 8px;
     border-bottom-right-radius: 8px;
@@ -152,7 +151,7 @@ const ChatMessageWrapper = styled.div`
   &.other {
     text-align: left;
     color: white;
-    background: #0075FF;
+    background: #0075ff;
     box-shadow: 1px 1px 0 0 lightgray;
     border-top-right-radius: 8px;
     border-bottom-left-radius: 8px;
