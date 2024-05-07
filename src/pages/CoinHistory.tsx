@@ -38,6 +38,7 @@ function CoinHistory() {
       <CoinHistoryList visibleItems={visibleItems} data={[]} />{' '}
     </Wrapper>
   );
+  
   const coinHistory: ScoreProps[] = data ?? [];
 
   if (isLoading) return skeletonContent;
