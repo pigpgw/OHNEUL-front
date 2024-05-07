@@ -12,8 +12,8 @@ interface ButtonStyle {
   fontcolor?: PalletteKeyTypes;
   fontSize?: string;
   borderradius?: string;
-  minHeight?: string;
-  minWidth?: string;
+  minWidht?: string;
+  minHeigth?: string;
   maxwidth?: string;
   maxheight?: string;
   boxshadow?: string;
@@ -44,11 +44,10 @@ const ButtonStyled = styled.button<ButtonProps>`
   height: ${(props) => (props.height ? props.height : null)};
   margin: ${(props) => (props.margin ? props.margin : '1px')};
   padding: ${(props) => (props.padding ? props.padding : '1px')};
-  min-height: ${(props) => (props.minHeight ? props.minHeight : '35px')};
-  min-width: ${(props) => (props.maxwidth ? props.maxwidth : '45px')};  
+  min-width: ${(props) => (props.minWidht ? props.minWidht : null)};
+  min-height: ${(props) => (props.minHeigth ? props.minHeigth : null)};
   max-width: ${(props) => (props.maxwidth ? props.maxwidth : '500px')};
-  max-height: ${(props) => (props.maxheight ? props.maxheight : '40px')};
-
+  max-height: ${(props) => (props.maxheight ? props.maxheight : '100px')};
   color: ${(props) => (props.fontcolor ? props.fontcolor : palette.white)};
   background: ${(props) =>
     props.buttoncolor ? palette[props.buttoncolor] : palette.blue};

@@ -44,11 +44,13 @@ function ChatInputForm({
         <ChatInput ref={inputRef} value={msg} onChange={msgChangeHandler} />
         {msg && (
           <ChatSubmitBtn
-            width="6vh"
-            height="20%"
-            padding="1vh"
+            width="8vh"
+            height="5vh"
+            padding="1px"
             fontSize="2vh"
             margin="0 0 0 5px"
+            minHeigth='25px'
+            minWidht='30px'
           >
             전송
           </ChatSubmitBtn>
@@ -66,14 +68,14 @@ const ChatInputContainer = styled.div`
 
 const ChatInput = styled.input`
   width: 70%;
-  height: 30px;
-  padding: 2px;
+  height: 5vh;
   background: #dbdbdb;
   border-radius: 5px;
   border: 0;
   margin: 0;
   max-width: 300px;
-  font-size: 1.5vh;
+  font-size: 2vh;
+  min-height: 20px;
 `;
 
 export default React.memo(ChatInputForm);
