@@ -64,7 +64,9 @@ const AnnouncementDetail: React.FC = () => {
   if (!announcement) return <div>해당 공지를 찾을 수 없습니다.</div>;
 
   const { title, notice, created_at: createdAt } = announcement;
-
+  const editedNotice = notice
+    .split('/')
+    .map((paragraph: string, index: number) => <p key={index}>{paragraph}</p>);
   return (
     <Wrapper>
       <BackButton to="/mypage/announcement">
@@ -73,7 +75,7 @@ const AnnouncementDetail: React.FC = () => {
       <Title>공지사항</Title>
       <AnnouncementTitle>{title}</AnnouncementTitle>
       <DateP>{formatKoreanDateTime(createdAt)}</DateP>
-      <Notice>{notice}</Notice>
+      <Notice>{editedNotice}</Notice>
     </Wrapper>
   );
 };
