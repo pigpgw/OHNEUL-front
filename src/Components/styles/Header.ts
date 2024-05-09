@@ -1,7 +1,7 @@
 import styled from 'styled-components';
-import { GiExitDoor } from '@react-icons/all-files/gi/GiExitDoor';
 import { IoExitOutline } from "@react-icons/all-files/io5/IoExitOutline";
 import { RiAlarmWarningFill } from '@react-icons/all-files/ri/RiAlarmWarningFill';
+import font from './font'
 
 export const HeaderContainer = styled.div`
   display: flex;
@@ -50,23 +50,23 @@ export const CashContainer = styled.div`
 `;
 export const CashIcon = styled.img`
   width: 17px;
-  margin: 2vh 1vh 1vh 1vh;
+  margin: 20px 9px 10px 1vh;
 `;
 export const CashAmount = styled.p`
-  font-size: 2vh;
+  font-size: ${font.content};
   font-weight: 800;
   font-family: sans-serif;
-  margin: 1.2vh 0 0 0;
+  margin: 12px 0 0 0;
 `;
 
 export const IconExit = styled(IoExitOutline)`
   margin: 1.5vh 7px 2px 10px;
-  font-size: 4vh;
+  font-size: ${font.icon};
   color: gray;
   transform: rotate(180deg);
 `;
 export const IconReport = styled(RiAlarmWarningFill)`
-  margin: 2vh 7px 1.5vh 10px;
-  font-size: 4vh;
+  margin: 22px 7px 16px 10px;
+  font-size: ${font.icon};
   color: gray;
 `;

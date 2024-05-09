@@ -4,6 +4,7 @@ import { createPortal } from 'react-dom';
 import styled from 'styled-components';
 import LoadingBox from 'Components/Common/LoadingBox/LoadingBox';
 import HeartBeat from './Heart';
+import font from '../styles/font'
 
 type ModalProps = {
   children: React.ReactNode;
@@ -163,7 +164,7 @@ export {
 };
 
 const ModalTitle = styled.div`
-  font-size: 2vh;
+  font-size: ${font.content};
   font-weight: 800;
   text-align: center;
   margin: 10px;
@@ -181,7 +182,7 @@ const ModalBtnContainer = styled.div`
 `;
 
 const ModalBtn = styled.button`
-  font-size: 1.75vh;
+  font-size: ${font.btn};
   font-weight: 900;
   border: 0;
   background-color: white;
@@ -246,7 +247,7 @@ interface ReportBtnProps {
 
 const ReportBtn = styled.button<ReportBtnProps>`
   width: 100%;
-  font-size: 2vh;
+  font-size: ${font.btn};
   height: 30px;
   margin: 10px;
   background: ${(props) => (props.selected ? '#0075ff' : '#ffffff')};

@@ -1,6 +1,7 @@
 import React, { useEffect, useRef, useState } from 'react';
 import styled from 'styled-components';
 import { IoPerson } from '@react-icons/all-files/io5/IoPerson';
+import font from '../styles/font';
 
 interface Message {
   msg: string;
@@ -20,21 +21,33 @@ function ChatMessages({
   handleOhterProFile,
 }: MessageListProps): JSX.Element {
   const [windowHeight, setWindowHeight] = useState(window.innerHeight);
+  const messagesEndRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     const handleKeyboardOpen = () => {
       setWindowHeight(window.innerHeight);
     };
+    console.log('height', window.innerHeight);
 
     window.addEventListener('resize', handleKeyboardOpen);
 
     return () => {
       window.removeEventListener('resize', handleKeyboardOpen);
     };
-  }, []);
+  }, [windowHeight]);
+
+  useEffect(() => {
+    scrollToBottom();
+  }, [messageList]);
+
+  const scrollToBottom = () => {
+    if (messagesEndRef.current) {
+      messagesEndRef.current.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
 
   return (
-    <ChatMessagesContainer style={{ height: `${windowHeight - 80}px` }}>
+    <ChatMessagesContainer style={{ height: `${windowHeight - 100}px` }}>
       <ChatMessagesWrapper>
         {messageList.map((v, i) => (
           <ChatMessageItemBox key={`${i}_li`} className={v.type}>
@@ -51,6 +64,7 @@ function ChatMessages({
             <ChatMessageWrapper className={v.type}>{v.msg}</ChatMessageWrapper>
           </ChatMessageItemBox>
         ))}
+        <div ref={messagesEndRef} />
       </ChatMessagesWrapper>
     </ChatMessagesContainer>
   );
@@ -127,7 +141,7 @@ const ProfileWrapper = styled.div`
 
 const ChatMessageWrapper = styled.div`
   display: inline-block;
-  font-size: 2vh;
+  font-size: ${font.content};
   font-family: sans-serif;
   font-family: 100;
   position: relative;
