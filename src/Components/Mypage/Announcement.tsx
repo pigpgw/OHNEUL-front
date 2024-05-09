@@ -10,27 +10,28 @@ import { Link } from 'react-router-dom';
 import { Wrapper, Title, Content } from 'Components/styles/Common';
 import AnnouncementItem from './AnnouncementItem';
 
-const AnnouncementTitle = styled.h2`
-  font-size: 24px;
+const AnnouncementTitle = styled.div`
+  font-weight: 700;
   text-align: left;
-  font-weight: bold;
-  margin-bottom: 20px;
-`;
-const BorderLine = styled.div`
-  border-bottom: 1px solid #ccc;
+  margin-left: 0.5vh;
 `;
 const BackButton = styled(Link)`
-  display: flex;
   color: black;
   text-decoration: none;
   font-size: 16px;
-  margin-bottom: 20px;
-
   svg {
     width: 20px;
     height: 20px;
     margin-right: 10px;
   }
+`;
+const MenuTitle = styled.div`
+  display: flex;
+  flex-direction: row;
+`;
+const BorderLine = styled.div`
+  margin-top: 1vh;
+  border-bottom: 1px solid #ccc;
 `;
 const Item = styled.div`
   text-align: left;
@@ -38,7 +39,7 @@ const Item = styled.div`
 
 const Announcement: React.FC = () => {
   const [currentPage, setCurrentPage] = useState(1);
-  const pageSize = 5;
+  const pageSize = 6;
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -70,18 +71,20 @@ const Announcement: React.FC = () => {
     <Wrapper
       width="100%"
       maxWidth="600px"
-      minHeight="70vh"
+      minHeight="95vh"
       display="flex"
       justifyContent="space-between"
       flexDirection="column"
       align-items="flex-start"
     >
-      <BackButton to="/mypage">
-        <img src={Arrow} alt=""></img>
-      </BackButton>
-      <AnnouncementTitle>공지사항</AnnouncementTitle>
-      <BorderLine></BorderLine>
+      <MenuTitle>
+        <BackButton to="/mypage">
+          <img src={Arrow} alt=""></img>
+        </BackButton>
+        <AnnouncementTitle>공지사항</AnnouncementTitle>
+      </MenuTitle>
       <Item>
+        <BorderLine></BorderLine>
         {currentAnnouncements.map((announcement: any, id: number) => (
           <AnnouncementItem key={id} announcement={announcement} />
         ))}

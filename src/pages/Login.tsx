@@ -34,7 +34,6 @@ interface User {
 }
 
 const Login: React.FC = () => {
-  const storedUserInfo = useSelector((state: User) => state.user);
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const isLogin = useSelector((state: User) => state.user.isLogin);

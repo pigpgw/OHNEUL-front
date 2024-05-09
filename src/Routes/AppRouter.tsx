@@ -55,14 +55,12 @@ function AppRouter() {
           element={<AnnouncementDetail />}
         />
         <Route path="/*" element={<NotFound />} />
-
-        <Route path="/admin" element={<Admin />}>
-          <Route path="manageusers" element={<ManageUsers />} />
-          <Route path="edithobby" element={<EditHobby />} />
-          <Route path="edittheme" element={<EditTheme />} />
-          <Route path="editmood" element={<EditMood />} />
-          <Route path="postannouncement" element={<PostAnnouncement />} />
-        </Route>
+        <Route path="/admin" element={<Admin />} />
+        <Route path="/admin/manageusers" element={<ManageUsers />} />
+        <Route path="/admin/edithobby" element={<EditHobby />} />
+        <Route path="/admin/edittheme" element={<EditTheme />} />
+        <Route path="/admin/editmood" element={<EditMood />} />
+        <Route path="/admin/postannouncement" element={<PostAnnouncement />} />
       </Routes>
     </BrowserRouter>
   );
