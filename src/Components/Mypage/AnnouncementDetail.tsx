@@ -65,7 +65,7 @@ const AnnouncementDetail: React.FC = () => {
 
   const { title, notice, created_at: createdAt } = announcement;
   const editedNotice = notice
-    .split('/')
+    .split('^')
     .map((paragraph: string, index: number) => <p key={index}>{paragraph}</p>);
   return (
     <Wrapper>
