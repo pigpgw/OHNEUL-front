@@ -14,7 +14,7 @@ function MypageIcon() {
 export default React.memo(MypageIcon);
 
 const IconPerson = styled(IoPersonOutline)`
-  font-size: 28px;
-  margin: 1.5vh 10px 5px 10px;
+  font-size: 27px;
+  margin: 15px 10px 5px 10px;
   color: gray;
 `;
