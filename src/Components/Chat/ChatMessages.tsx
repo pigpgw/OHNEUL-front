@@ -159,7 +159,7 @@ const ChatMessageWrapper = styled.div`
     padding: 7px 10px 7px 10px;
     right: 1%;
     margin-right: 1vh;
-    max-width: 88%;
+    max-width: 87%;
   }
 
   &.other {
@@ -173,6 +173,7 @@ const ChatMessageWrapper = styled.div`
     margin-left: 1vh;
     padding: 7px 10px 7px 10px;
     left: 1%;
+    max-width: 87%;
   }
 
   &.start {
