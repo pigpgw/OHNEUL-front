@@ -53,7 +53,7 @@ export const CashIcon = styled.img`
   margin: 20px 9px 10px 1vh;
 `;
 export const CashAmount = styled.p`
-  font-size: ${font.content};
+  font-size: ${font.btn};
   font-weight: 800;
   font-family: sans-serif;
   margin: 12px 0 0 0;
