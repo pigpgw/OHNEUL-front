@@ -47,7 +47,7 @@ function ChatMessages({
   };
 
   return (
-    <ChatMessagesContainer style={{ height: `${windowHeight - 100}px` }}>
+    <ChatMessagesContainer style={{ height: windowHeight - 70}}>
       <ChatMessagesWrapper>
         {messageList.map((v, i) => (
           <ChatMessageItemBox key={`${i}_li`} className={v.type}>
@@ -89,7 +89,6 @@ const Profile = styled(IoPerson)`
 
 const ChatMessagesContainer = styled.div`
   width: 100%;
-  flex: 1;
   flex-direction: column;
   overflow: auto;
 `;

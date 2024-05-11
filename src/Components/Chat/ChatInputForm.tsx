@@ -62,20 +62,18 @@ function ChatInputForm({
 
 const ChatInputContainer = styled.div`
   width: 100%;
-  /* max-height: 10px; */
-  margin: 2% 0 0 0;
+  margin: 5px;
 `;
 
 const ChatInput = styled.input`
   width: 70%;
-  height: 5vh;
   background: #dbdbdb;
   border-radius: 5px;
   border: 0;
   margin: 0;
   max-width: 300px;
   font-size: 2vh;
-  min-height: 20px;
+  min-height: 30px;
 `;
 
 export default React.memo(ChatInputForm);
