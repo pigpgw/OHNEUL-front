@@ -27,7 +27,6 @@ function ChatMessages({
     const handleKeyboardOpen = () => {
       setWindowHeight(window.innerHeight);
     };
-    console.log('height', window.innerHeight);
 
     window.addEventListener('resize', handleKeyboardOpen);
 
@@ -47,7 +46,7 @@ function ChatMessages({
   };
 
   return (
-    <ChatMessagesContainer style={{ height: windowHeight - 70}}>
+    <ChatMessagesContainer style={{ height: `${windowHeight - 100}px` }}>
       <ChatMessagesWrapper>
         {messageList.map((v, i) => (
           <ChatMessageItemBox key={`${i}_li`} className={v.type}>
@@ -89,7 +88,6 @@ const Profile = styled(IoPerson)`
 
 const ChatMessagesContainer = styled.div`
   width: 100%;
-  flex-direction: column;
   overflow: auto;
 `;
 

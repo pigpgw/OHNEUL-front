@@ -323,6 +323,18 @@ function Chat({ socket }: any): JSX.Element {
     setOtherProfileModal(!otherProfileModal);
   }, [otherProfileModal]);
 
+  useEffect(() => {
+    const handleDisconnect = () => {
+      goThemePage();
+    };
+
+    socket.on('disconnect', handleDisconnect);
+
+    return () => {
+      socket.off('disconnect', handleDisconnect);
+    };
+  }, [socket]);
+
   return (
     <>
       <ChatHeader
