@@ -27,15 +27,6 @@ interface InfoModal {
   btnName2?: string;
 }
 
-interface ReportModalProps {
-  infoContent: string;
-  onClick?: (e: React.MouseEvent<HTMLButtonElement>) => void;
-  onClose: () => void;
-  doReport: () => void;
-  reportReasons?: string[];
-  selectedReason: string;
-}
-
 type ReviewModalProps = {
   children: ReactNode;
 };
@@ -97,24 +88,41 @@ const InfoModal = React.memo(
 
 InfoModal.displayName = 'InfoModal';
 
+interface ReportModalProps {
+  infoContent: string;
+  setReportReson?: (reason:string) => void;
+  onClose: () => void;
+  doReport: () => void;
+  reportReasons?: string[];
+  selectedReason: string;
+}
+
 const ReportModal = React.memo(
   ({
     infoContent,
-    onClick,
+    setReportReson,
     onClose,
     doReport,
-    reportReasons = [],
     selectedReason,
   }: ReportModalProps) => {
     return (
       <ReportModalLayout>
         <ModalTitle>{infoContent}</ModalTitle>
         <ReportModalBtnContainer>
-          {reportReasons.map((reason, index) => (
+          {[
+            '성적 발언',
+            '혐오발언',
+            '불법 정보',
+            '도배',
+            '개인정보노출 및 강요',
+          ].map((reason, index) => (
             <ReportBtn
               key={index}
               value={reason}
-              onClick={onClick}
+              onClick={() => {
+                // eslint-disable-next-line no-unused-expressions
+                setReportReson && setReportReson(reason);
+              }}
               selected={selectedReason === reason}
             >
               {reason}

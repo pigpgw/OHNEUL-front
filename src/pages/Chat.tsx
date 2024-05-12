@@ -1,3 +1,4 @@
+/* eslint-disable object-shorthand */
 /* eslint-disable no-useless-return */
 import React, { useCallback, useEffect, useState } from 'react';
 import ChatHeader from 'Components/Chat/ChatHeader';
@@ -49,7 +50,6 @@ function Chat({ socket }: any): JSX.Element {
   const [reportModal, setReportModal] = useState<boolean>(false);
   const [alertModal, setAlertModal] = useState<boolean>(false);
 
-  const [reportReason, setReportReson] = useState<string>('');
   const userId = extractUserId();
   const { userCoinState } = useCoinQuery(userId);
   const [aniTime, setAniTime] = useState(remainingTime);
@@ -290,29 +290,21 @@ function Chat({ socket }: any): JSX.Element {
     };
   }, [goThemePage, socket]);
 
+  const [reportAlert, setReportAlert] = useState(false);
   const onReportModal = useCallback(() => {
     setReportModal(true);
   }, []);
-
   const offReportModal = useCallback(() => {
     setReportModal(false);
   }, []);
 
-  const selectReportReason = useCallback(
-    (e: React.MouseEvent<HTMLButtonElement>): void => {
-      const { value } = e.target as HTMLButtonElement;
-      setReportReson(value);
-    },
-    [],
-  );
-
-  const [reportAlert, setReportAlert] = useState(false);
   const offAlertReportModal = () => {
     setReportAlert(false);
     goThemePage();
     setReportModal(false);
   };
 
+  const [reportReason, setReportReson] = useState<string>('');
   const reportUser = useCallback(() => {
     const reportedUserId = extractOtherUserId();
     const reportInfo = {
@@ -320,9 +312,8 @@ function Chat({ socket }: any): JSX.Element {
       reportReason,
     };
     socket.emit('reportUser', reportInfo);
-    setReportReson('');
     setReportAlert(true);
-  }, []);
+  }, [reportReason]);
 
   const handleMyProfile = useCallback(() => {
     setMyProfileModal(!myProfileModal);
@@ -347,7 +338,7 @@ function Chat({ socket }: any): JSX.Element {
           icon="success"
           title="신고 완료"
           msg="신고가 정상적으로 완료되었습니다."
-          btn1='확인'
+          btn1="확인"
           onClose={offAlertReportModal}
         />
       )}
@@ -356,7 +347,7 @@ function Chat({ socket }: any): JSX.Element {
           icon="warning"
           title="연장 불가"
           msg="코인이 부족합니다."
-          btn1='확인'
+          btn1="확인"
           onClose={offAlertModal}
         />
       )}
@@ -378,14 +369,7 @@ function Chat({ socket }: any): JSX.Element {
       {reportModal && (
         <ReportModal
           infoContent="신고"
-          reportReasons={[
-            '성적 발언',
-            '혐오발언',
-            '불법 정보',
-            '도배',
-            '개인정보노출 및 강요',
-          ]}
-          onClick={selectReportReason}
+          setReportReson={setReportReson}
           onClose={offReportModal}
           selectedReason={reportReason}
           doReport={reportUser}
