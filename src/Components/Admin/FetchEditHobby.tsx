@@ -8,10 +8,13 @@ export const FetchDelHobby = async (selectedHobby: any) => {
   return fetchDelHobby;
 };
 
-export const FetchAddHobby = async () => {
-  const fetchAddHobby = await axios.post(`http://localhost:4000/hobbies`);
+export const FetchAddHobby = async (hobby: string) => {
+  const fetchAddHobby = await axios.post(`http://localhost:4000/hobbies/join`, {
+    hobby,
+  });
   return fetchAddHobby;
 };
+
 export const FetchUpdateHobby = async (selectedHobby: any) => {
   const fetchDelHobby = await axios.put(
     `http://localhost:4000/hobbies/${selectedHobby}`,

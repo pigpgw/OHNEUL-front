@@ -40,7 +40,9 @@ const EditHobby: React.FC = () => {
   const navigate = useNavigate();
   const handleAdd = async () => {
     try {
-      await FetchAddHobby().then(() => alert('취미를 추가했습니다.'));
+      await FetchAddHobby(selectedHobby).then(() =>
+        alert('취미를 추가했습니다.'),
+      );
     } catch (error) {
       console.error('추가실패', error);
     }
