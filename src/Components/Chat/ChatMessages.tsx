@@ -29,6 +29,7 @@ function ChatMessages({
     };
 
     window.addEventListener('resize', handleKeyboardOpen);
+    console.log(windowHeight);
 
     return () => {
       window.removeEventListener('resize', handleKeyboardOpen);
@@ -46,7 +47,7 @@ function ChatMessages({
   };
 
   return (
-    <ChatMessagesContainer style={{ height: `${windowHeight - 100}px` }}>
+    <ChatMessagesContainer style={{ height: `${windowHeight - 110}px` }}>
       <ChatMessagesWrapper>
         {messageList.map((v, i) => (
           <ChatMessageItemBox key={`${i}_li`} className={v.type}>
@@ -69,7 +70,7 @@ function ChatMessages({
   );
 }
 
-export default React.memo(ChatMessages);
+export default ChatMessages;
 
 const Profile = styled(IoPerson)`
   &.me,
