@@ -262,9 +262,9 @@ function Chat({ socket }: any): JSX.Element {
   const navigate = useNavigate();
 
   const goThemePage = () => {
-    document.cookie = 'other=';
-    navigate('/theme');
+    document.cookie = 'other=';    
     socket.emit('userExit');
+    navigate('/theme');
   };
 
   useEffect(() => {
@@ -325,7 +325,10 @@ function Chat({ socket }: any): JSX.Element {
 
   useEffect(() => {
     const handleDisconnect = () => {
-      goThemePage();
+      setExitModal(true);
+      setTimeout(() => {
+        goThemePage();
+      }, 10000);
     };
 
     socket.on('disconnect', handleDisconnect);
