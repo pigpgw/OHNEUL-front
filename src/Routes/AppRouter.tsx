@@ -24,10 +24,7 @@ import CoinHistory from 'pages/CoinHistory';
 import Announcement from 'Components/Mypage/Announcement';
 import AnnouncementDetail from 'Components/Mypage/AnnouncementDetail';
 
-const socket = io(`${process.env.REACT_APP_BASE_URL}`, {
-  timeout: 30000,
-});
-
+const socket = io(`${process.env.REACT_APP_BASE_URL}`);
 
 function AppRouter() {
   return (
