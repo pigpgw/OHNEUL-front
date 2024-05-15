@@ -13,7 +13,7 @@ interface HobbyData {
 const HobbyBtn = styled.button`
   border-radius: 10px;
   border: 0;
-  padding: 1.5vh 2vh;
+  padding: 1.5% 2vh;
   margin: 15px;
   font-size: 2vh;
   background: white;

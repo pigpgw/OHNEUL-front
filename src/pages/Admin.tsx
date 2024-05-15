@@ -1,6 +1,7 @@
 import Logout from 'Components/Auth/Logout';
 import styled from 'styled-components';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
+import Arrow from 'assets/images/Arrow.png';
 
 const Title = styled.p`
   font-size: 18px;
@@ -11,6 +12,16 @@ const SeparatorLine = styled.div`
   border-bottom: 0.5px solid black;
   width: 100%;
   margin-bottom: 20px;
+`;
+const BackButton = styled(Link)`
+  color: black;
+  text-decoration: none;
+  font-size: 16px;
+  svg {
+    width: 20px;
+    height: 20px;
+    margin-right: 10px;
+  }
 `;
 const MenuContainer = styled.div`
   display: grid;
@@ -35,7 +46,7 @@ const MenuItem = styled.button`
 
   transition: background-color 0.3s;
   &:hover {
-    background-color: #0056b3;
+    background-color: #0175ff;
   }
 `;
 
@@ -44,6 +55,9 @@ const Admin = () => {
 
   return (
     <>
+      <BackButton to="/mypage">
+        <img src={Arrow} alt=""></img>
+      </BackButton>
       <Title>관리자 페이지</Title>
       <SeparatorLine />
       <MenuContainer>

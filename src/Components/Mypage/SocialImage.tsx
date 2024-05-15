@@ -9,11 +9,11 @@ const Kakao = styled.img`
   width: 3%;
   height: 3%;
   margin: 0 1%;
-  min-width: 25px;
-  min-height: 25px;
-  max-width: 30px;
-  max-height: 30px;
-  border-radius: 5px;
+  min-width: 35px;
+  min-height: 35px;
+  max-width: 40px;
+  max-height: 40px;
+  border-radius: 15px;
 `;
 const Naver = styled.img`
   width: 3%;
@@ -42,7 +42,8 @@ function SocialImage() {
     <Wrapper>
       {flatform === 'kakao' ? (
         <>
-          <Kakao src={KakaoBogo}></Kakao> <p>당신의 오늘은 어떠셨나요 {name}님?</p>
+          <Kakao src={KakaoBogo}></Kakao>{' '}
+          <p>당신의 오늘은 어떠셨나요 {name}님?</p>
         </>
       ) : (
         <>
