@@ -13,28 +13,16 @@ interface MessageListProps {
   messageList: Message[];
   handleMyProFile: () => void;
   handleOhterProFile: () => void;
+  style?: React.CSSProperties; // 스타일 프로퍼티 추가
 }
 
 function ChatMessages({
   messageList,
   handleMyProFile,
   handleOhterProFile,
+  style
 }: MessageListProps): JSX.Element {
-  const [windowHeight, setWindowHeight] = useState(window.innerHeight);
   const messagesEndRef = useRef<HTMLDivElement>(null);
-
-  useEffect(() => {
-    const handleKeyboardOpen = () => {
-      setWindowHeight(window.innerHeight);
-    };
-
-    window.addEventListener('resize', handleKeyboardOpen);
-    console.log(windowHeight);
-
-    return () => {
-      window.removeEventListener('resize', handleKeyboardOpen);
-    };
-  }, [windowHeight]);
 
   useEffect(() => {
     scrollToBottom();
@@ -47,7 +35,7 @@ function ChatMessages({
   };
 
   return (
-    <ChatMessagesContainer style={{ height: `${windowHeight - 110}px` }}>
+    <ChatMessagesContainer style={style}>
       <ChatMessagesWrapper>
         {messageList.map((v, i) => (
           <ChatMessageItemBox key={`${i}_li`} className={v.type}>
@@ -55,9 +43,7 @@ function ChatMessages({
               <ProfileWrapper>
                 <Profile
                   className={v.type}
-                  onClick={
-                    v.type === 'me' ? handleMyProFile : handleOhterProFile
-                  }
+                  onClick={v.type === 'me' ? handleMyProFile : handleOhterProFile}
                 />
               </ProfileWrapper>
             ) : null}
@@ -89,9 +75,8 @@ const Profile = styled(IoPerson)`
 
 const ChatMessagesContainer = styled.div`
   width: 100%;
+  max-height: calc(100vh - 160px); /* 수정된 부분 */
   overflow: auto;
-  
-  flex: 1 0 auto;
 `;
 
 const ChatMessagesWrapper = styled.div`
@@ -101,7 +86,6 @@ const ChatMessagesWrapper = styled.div`
   display: flex;
   width: 100%;
   flex-direction: column;
-  overflow-y: scroll;
   padding: 2% 0;
 `;
 
