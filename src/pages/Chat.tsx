@@ -89,7 +89,7 @@ function Chat({ socket }: any): JSX.Element {
         const mood = await fetchUserMood(id);
         const hobby = await fecthGetUserHobby(id);
         const score = await fetchGetUserScore(id);
-        if (userId === id) {
+        if (id === otherId) {
           setOther({
             score: score,
             hobby: hobby.join(', '),
