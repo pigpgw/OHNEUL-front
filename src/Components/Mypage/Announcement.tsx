@@ -13,17 +13,13 @@ import AnnouncementItem from './AnnouncementItem';
 const AnnouncementTitle = styled.div`
   font-weight: 700;
   text-align: left;
-  margin-left: 0.5vh;
+  margin-left: 1vh;
+  margin-top: 0.4vh;
 `;
 const BackButton = styled(Link)`
-  color: black;
-  text-decoration: none;
-  font-size: 16px;
-  svg {
-    width: 20px;
-    height: 20px;
-    margin-right: 10px;
-  }
+  width: 20px;
+  height: 20px;
+  margin-right: 10px;
 `;
 const MenuTitle = styled.div`
   display: flex;
@@ -48,7 +44,11 @@ const Announcement: React.FC = () => {
         const response = await axios.get(
           `${process.env.REACT_APP_BASE_URL}/notices`,
         );
-        dispatch(setAnnouncements(response.data));
+        const sortedAnnouncements = response.data.sort(
+          (a: any, b: any) =>
+            new Date(b.created_at).getTime() - new Date(a.created_at).getTime(),
+        );
+        dispatch(setAnnouncements(sortedAnnouncements));
       } catch (error) {
         console.error('공지 불러오기', error);
       }
@@ -71,7 +71,7 @@ const Announcement: React.FC = () => {
     <Wrapper
       width="100%"
       maxWidth="600px"
-      minHeight="95vh"
+      // minHeight="95vh"
       display="flex"
       justifyContent="space-between"
       flexDirection="column"
