@@ -20,7 +20,7 @@ function ChatMessages({
   messageList,
   handleMyProFile,
   handleOhterProFile,
-  style
+  style,
 }: MessageListProps): JSX.Element {
   const messagesEndRef = useRef<HTMLDivElement>(null);
 
@@ -35,24 +35,22 @@ function ChatMessages({
   };
 
   return (
-    <ChatMessagesContainer style={style}>
-      <ChatMessagesWrapper>
-        {messageList.map((v, i) => (
-          <ChatMessageItemBox key={`${i}_li`} className={v.type}>
-            {v.type === 'me' || v.type === 'other' ? (
-              <ProfileWrapper>
-                <Profile
-                  className={v.type}
-                  onClick={v.type === 'me' ? handleMyProFile : handleOhterProFile}
-                />
-              </ProfileWrapper>
-            ) : null}
-            <ChatMessageWrapper className={v.type}>{v.msg}</ChatMessageWrapper>
-          </ChatMessageItemBox>
-        ))}
-        <div ref={messagesEndRef} />
-      </ChatMessagesWrapper>
-    </ChatMessagesContainer>
+    <ChatMessagesWrapper style={style}>
+      {messageList.map((v, i) => (
+        <ChatMessageItemBox key={`${i}_li`} className={v.type}>
+          {v.type === 'me' || v.type === 'other' ? (
+            <ProfileWrapper>
+              <Profile
+                className={v.type}
+                onClick={v.type === 'me' ? handleMyProFile : handleOhterProFile}
+              />
+            </ProfileWrapper>
+          ) : null}
+          <ChatMessageWrapper className={v.type}>{v.msg}</ChatMessageWrapper>
+        </ChatMessageItemBox>
+      ))}
+      <div ref={messagesEndRef} />
+    </ChatMessagesWrapper>
   );
 }
 
