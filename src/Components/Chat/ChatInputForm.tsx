@@ -49,8 +49,8 @@ function ChatInputForm({
           ref={inputRef}
           value={msg}
           onChange={msgChangeHandler}
-          onFocus={onFocus} 
-          onBlur={onBlur} 
+          onFocus={onFocus}
+          onBlur={onBlur}
         />
         {msg && (
           <ChatSubmitBtn
@@ -75,7 +75,7 @@ const ChatInputContainer = styled.div`
   width: 100%;
   margin: 5px;
   position: fixed;
-  bottom: 3%;
+  bottom: 2%;
 `;
 
 const ChatInput = styled.input`

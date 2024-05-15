@@ -71,11 +71,11 @@ const Profile = styled(IoPerson)`
   }
 `;
 
-const ChatMessagesContainer = styled.div`
-  width: 100%;
-  max-height: calc(100vh - 160px); /* 수정된 부분 */
-  overflow: auto;
-`;
+// const ChatMessagesContainer = styled.div`
+//   width: 100%;
+//   max-height: calc(100vh - 160px); /* 수정된 부분 */
+//   overflow: auto;
+// `;
 
 const ChatMessagesWrapper = styled.div`
   list-style: none;
@@ -85,6 +85,8 @@ const ChatMessagesWrapper = styled.div`
   width: 100%;
   flex-direction: column;
   padding: 2% 0;
+  overflow-y: scroll;
+  max-height: 500px;
 `;
 
 const ChatMessageItemBox = styled.div`

@@ -85,16 +85,9 @@ function Chat({ socket }: any): JSX.Element {
 
   const [isInputActive, setIsInputActive] = useState<boolean>(false);
 
-  const handleMessageContainerHeight = useCallback(() => {
-    const headerHeight = 60; // 헤더의 높이
-    const inputHeight = 60; // 입력창의 높이
-    const totalHeight = window.innerHeight;
-    let messageContainerHeight = totalHeight - headerHeight;
-    if (isInputActive) {
-      messageContainerHeight -= inputHeight;
-    }
-    return messageContainerHeight;
-  }, [isInputActive]);
+  const handleMessageContainerHeight = () => {
+    return window.innerHeight - 140; // 이 값은 필요에 따라 조절 가능
+  };
 
   useEffect(() => {
     if (!socket) return;
@@ -428,7 +421,7 @@ function Chat({ socket }: any): JSX.Element {
         messageList={messageList}
         handleMyProFile={handleMyProfile}
         handleOhterProFile={handleOtherProfile}
-        style={{ maxHeight: `${handleMessageContainerHeight()}px` }}
+        style={{ maxHeight: `${handleMessageContainerHeight()}px` }} // 스타일 전달
       />
       {remainingTime !== 0 && (
         <ChatInputForm
