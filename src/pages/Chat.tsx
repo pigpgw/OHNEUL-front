@@ -49,20 +49,21 @@ function Chat({ socket }: any): JSX.Element {
       id: '',
     },
   ]);
+
   const [remainingTime, setRemainingTime] = useState<number>(300);
   const [totalTime, setTotalTime] = useState<number>(0);
   const [aniTime, setAniTime] = useState(remainingTime);
 
   const [other, setOther] = useState<User>({
-    mood: undefined,
-    hobby: undefined,
-    score: undefined,
+    mood: "",
+    hobby: "",
+    score: "",
   });
 
   const [user, setUser] = useState<User>({
-    mood: undefined,
-    hobby: undefined,
-    score: undefined,
+    mood: "",
+    hobby: "",
+    score: "",
   });
 
   const [consent, setConsent] = useState<boolean>(false);

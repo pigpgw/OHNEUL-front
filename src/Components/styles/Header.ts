@@ -1,7 +1,7 @@
 import styled from 'styled-components';
-import { IoExitOutline } from "@react-icons/all-files/io5/IoExitOutline";
+import { IoExitOutline } from '@react-icons/all-files/io5/IoExitOutline';
 import { RiAlarmWarningFill } from '@react-icons/all-files/ri/RiAlarmWarningFill';
-import font from './font'
+import font from './font';
 
 export const HeaderContainer = styled.div`
   display: flex;

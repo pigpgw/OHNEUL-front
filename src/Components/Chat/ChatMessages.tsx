@@ -90,6 +90,8 @@ const Profile = styled(IoPerson)`
 const ChatMessagesContainer = styled.div`
   width: 100%;
   overflow: auto;
+  
+  flex: 1 0 auto;
 `;
 
 const ChatMessagesWrapper = styled.div`
