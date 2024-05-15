@@ -11,8 +11,8 @@ type ModalProps = {
 type ProfileProps = {
   user: string;
   reviewScore: number;
-  favorite: string;
-  mood: string;
+  favorite: string | undefined;
+  mood: string |undefined;
   handleModal: () => void;
 };
 

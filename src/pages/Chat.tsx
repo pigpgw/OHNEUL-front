@@ -27,10 +27,21 @@ interface Message {
   id: string;
 }
 
+interface User {
+  mood: string | undefined;
+  hobby: string | undefined;
+  score: string | undefined;
+}
+
 function Chat({ socket }: any): JSX.Element {
+  const userId = extractUserId();
+  const otherId = extractOtherUserId();
+  const { userCoinState } = useCoinQuery(userId);
   const [intervalId, setIntervalId] = useState<NodeJS.Timeout | undefined>(
     undefined,
   );
+
+  const [msg, setMsg] = useState<string>('');
   const [messageList, setMessageList] = useState<Message[]>([
     {
       type: 'startChat',
@@ -38,77 +49,79 @@ function Chat({ socket }: any): JSX.Element {
       id: '',
     },
   ]);
-  const [msg, setMsg] = useState<string>('');
-  const [consentModal, setConsentModal] = useState<boolean>(false);
   const [remainingTime, setRemainingTime] = useState<number>(300);
+  const [totalTime, setTotalTime] = useState<number>(0);
+  const [aniTime, setAniTime] = useState(remainingTime);
+
+  const [other, setOther] = useState<User>({
+    mood: undefined,
+    hobby: undefined,
+    score: undefined,
+  });
+
+  const [user, setUser] = useState<User>({
+    mood: undefined,
+    hobby: undefined,
+    score: undefined,
+  });
+
   const [consent, setConsent] = useState<boolean>(false);
+
+  const [consentModal, setConsentModal] = useState<boolean>(false);
   const [consentWaitModal, setConsentWaitModal] = useState<boolean>(false);
   const [forExitModal, setForExitModal] = useState<boolean>(false);
   const [exitModal, setExitModal] = useState<boolean>(false);
   const [reviewModal, setReviewModal] = useState<boolean>(false);
-  const [totalTime, setTotalTime] = useState<number>(0);
+
+  const [reportAlert, setReportAlert] = useState(false);
+  const [reportReason, setReportReson] = useState<string>('');
   const [reportModal, setReportModal] = useState<boolean>(false);
+
   const [alertModal, setAlertModal] = useState<boolean>(false);
-
-  const userId = extractUserId();
-  const { userCoinState } = useCoinQuery(userId);
-  const [aniTime, setAniTime] = useState(remainingTime);
-
-  const [otherMood, setOtherMood] = useState<string>('');
-  const [otherHobby, setOtherHobby] = useState<string>('');
-  const [myMood, setMyMood] = useState('');
-  const [myHobby, setMyHobby] = useState('');
-  const [otherScore, setOtherScore] = useState('');
-  const [myScore, setMyScore] = useState('');
-
   const [agreeModal, setAgreeModal] = useState(false);
   const [myProfileModal, setMyProfileModal] = useState(false);
   const [otherProfileModal, setOtherProfileModal] = useState(false);
 
   useEffect(() => {
     if (!socket) return;
-    const setOtherInfo = async () => {
+    const fetchSetUserInfo = async (id: string) => {
       try {
-        const otherUserId = extractOtherUserId();
-        const mood = await fetchUserMood(otherUserId);
-        const hobby = await fecthGetUserHobby(otherUserId);
-        const getOtherScore = await fetchGetUserScore(otherUserId);
-        setOtherScore(getOtherScore);
-        setOtherMood(mood);
-        setOtherHobby(hobby.join(', '));
-        setMessageList((prev) => [
-          ...prev,
-          {
-            type: 'start',
-            msg: `상대방은 ${hobby.join(', ')}에 관심있어요`,
-            id: '',
-          },
-          {
-            type: 'start',
-            msg: `상대방은 지금 ${mood}`,
-            id: '',
-          },
-        ]);
+        const mood = await fetchUserMood(id);
+        const hobby = await fecthGetUserHobby(id);
+        const score = await fetchGetUserScore(id);
+        if (userId === id) {
+          setOther({
+            score: score,
+            hobby: hobby.join(', '),
+            mood: mood,
+          });
+          setMessageList((prev) => [
+            ...prev,
+            {
+              type: 'start',
+              msg: `상대방은 ${hobby.join(', ')}에 관심있어요`,
+              id: '',
+            },
+            {
+              type: 'start',
+              msg: `상대방은 지금 ${mood}`,
+              id: '',
+            },
+          ]);
+        } else {
+          setUser({
+            score: score,
+            hobby: hobby.join(', '),
+            mood: mood,
+          });
+        }
       } catch (error) {
-        console.error('상대방 기분, 취미 가져오기 실패', error);
+        console.error('기분, 취미 가져오기 실패', error);
       }
     };
 
-    const setMyInfo = async () => {
-      try {
-        const mood = await fetchUserMood(userId);
-        const hobby = await fecthGetUserHobby(userId);
-        const getMyScore = await fetchGetUserScore(userId);
-        setMyMood(mood);
-        setMyHobby(hobby.join(', '));
-        setMyScore(getMyScore);
-      } catch (error) {
-        console.error('내 기분, 취미 가져오기 실패', error);
-      }
-    };
-
-    setOtherInfo();
-    setMyInfo();
+    fetchSetUserInfo(userId);
+    fetchSetUserInfo(otherId);
   }, []);
 
   const onForExitModal = useCallback(() => {
@@ -287,7 +300,6 @@ function Chat({ socket }: any): JSX.Element {
     };
   }, [goThemePage, socket]);
 
-  const [reportAlert, setReportAlert] = useState(false);
   const onReportModal = useCallback(() => {
     setReportModal(true);
   }, []);
@@ -301,7 +313,6 @@ function Chat({ socket }: any): JSX.Element {
     setReportModal(false);
   };
 
-  const [reportReason, setReportReson] = useState<string>('');
   const reportUser = useCallback(() => {
     const reportedUserId = extractOtherUserId();
     const reportInfo = {
@@ -414,18 +425,18 @@ function Chat({ socket }: any): JSX.Element {
       {myProfileModal && (
         <ProfileModal
           user={'나'}
-          reviewScore={Number(myScore)}
-          favorite={myHobby}
-          mood={myMood}
+          reviewScore={Number(user.score)}
+          favorite={user.hobby}
+          mood={user.mood}
           handleModal={handleMyProfile}
         />
       )}
       {otherProfileModal && (
         <ProfileModal
           user={'상대방'}
-          reviewScore={Number(otherScore)}
-          favorite={otherHobby}
-          mood={otherMood}
+          reviewScore={Number(other.score)}
+          favorite={other.hobby}
+          mood={other.mood}
           handleModal={handleOtherProfile}
         />
       )}
