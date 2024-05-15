@@ -1,10 +1,6 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
-import {
-  FetchDelHobby,
-  FetchAddHobby,
-  FetchUpdateHobby,
-} from 'Components/Admin/FetchEditHobby';
+import { FetchDelHobby, FetchAddHobby } from 'api/admin/FetchEditHobby';
 import { useNavigate } from 'react-router-dom';
 
 const Container = styled.div`
@@ -49,19 +45,23 @@ const EditHobby: React.FC = () => {
   };
   const handleDelete = async () => {
     try {
-      await FetchDelHobby(selectedHobby);
+      const selectedHobbyId = parseInt(selectedHobby, 10); // selectedHobby 값을 정수로 변환
+
+      await FetchDelHobby(selectedHobbyId).then(() =>
+        alert('취미를 삭제했습니다.'),
+      );
     } catch (error) {
-      console.error('삭제실패', error);
+      console.error('삭제 실패', error);
     }
   };
 
-  const handleUpdate = async () => {
-    try {
-      await FetchUpdateHobby(selectedHobby);
-    } catch (error) {
-      console.error('업데이트실팽', error);
-    }
-  };
+  // const handleUpdate = async () => {
+  //   try {
+  //     await FetchUpdateHobby(selectedHobby);
+  //   } catch (error) {
+  //     console.error('업데이트실팽', error);
+  //   }
+  // };
 
   return (
     <Container>
@@ -81,7 +81,7 @@ const EditHobby: React.FC = () => {
       />
       <Button onClick={handleAdd}>취미 추가</Button>
       <Button onClick={handleDelete}>취미 삭제</Button>
-      <Button onClick={handleUpdate}>취미 업데이트</Button>
+      {/* <Button onClick={handleUpdate}>취미 업데이트</Button> */}
     </Container>
   );
 };

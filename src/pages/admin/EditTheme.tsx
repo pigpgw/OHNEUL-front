@@ -1,10 +1,6 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
-import {
-  FetchDelTheme,
-  FetchAddTheme,
-  FetchUpdateTheme,
-} from 'Components/Admin/FetchEditTheme';
+import { FetchDelTheme, FetchAddTheme } from 'api/admin/FetchEditTheme';
 import { useNavigate } from 'react-router-dom';
 
 const Container = styled.div`
@@ -40,7 +36,9 @@ function EditTheme() {
   const navigate = useNavigate();
   const handleAdd = async () => {
     try {
-      await FetchAddTheme().then(() => alert('테마를 추가했습니다.'));
+      await FetchAddTheme(selectedTheme).then(() =>
+        alert('테마를 추가했습니다.'),
+      );
     } catch (error) {
       console.error('테마 추가 실패', error);
     }
@@ -55,15 +53,15 @@ function EditTheme() {
     }
   };
 
-  const handleUpdate = async () => {
-    try {
-      await FetchUpdateTheme(selectedTheme).then(() =>
-        alert('테마를 업ㅇ데이트했습니다.'),
-      );
-    } catch (error) {
-      console.error('업뎃없댓', error);
-    }
-  };
+  // const handleUpdate = async () => {
+  //   try {
+  //     await FetchUpdateTheme(selectedTheme).then(() =>
+  //       alert('테마를 업ㅇ데이트했습니다.'),
+  //     );
+  //   } catch (error) {
+  //     console.error('업뎃없댓', error);
+  //   }
+  // };
 
   return (
     <Container>
@@ -83,7 +81,7 @@ function EditTheme() {
       />
       <Button onClick={handleAdd}>테마 추가</Button>
       <Button onClick={handleDelete}>테마 삭제</Button>
-      <Button onClick={handleUpdate}>테마 업뎃</Button>
+      {/* <Button onClick={handleUpdate}>테마 업뎃</Button> */}
     </Container>
   );
 }

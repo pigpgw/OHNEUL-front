@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
-import delUser from 'Components/Admin/FetchManageUsers';
+import delUser from 'api/admin/FetchManageUsers';
 import { useNavigate } from 'react-router-dom';
 
 const Container = styled.div`
@@ -24,7 +24,13 @@ const Button = styled.button`
     background-color: #0056b3;
   }
 `;
+const BackButton = styled.button`
+  padding: 8px 16px;
 
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+`;
 function ManageUsers() {
   const [selectedUser, setSelectedUser] = useState('');
   const navigate = useNavigate();
@@ -35,13 +41,7 @@ function ManageUsers() {
       console.error('유저삭제실패', error);
     }
   };
-  const BackButton = styled.button`
-    padding: 8px 16px;
 
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-  `;
   return (
     <Container>
       <BackButton

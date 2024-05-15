@@ -1,10 +1,6 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
-import {
-  FetchDelMood,
-  FetchAddMood,
-  FetchUpdateMood,
-} from 'Components/Admin/FetchEditMood';
+import { FetchDelMood, FetchAddMood } from 'api/admin/FetchEditMood';
 import { useNavigate } from 'react-router-dom';
 
 const Container = styled.div`
@@ -55,15 +51,15 @@ function EditMood() {
     }
   };
 
-  const handleUpdate = async () => {
-    try {
-      await FetchUpdateMood(selectedMood).then(() =>
-        alert('분위기를 업뎃했습니다.'),
-      );
-    } catch (error) {
-      console.error('분위기 업데이트 실패', error);
-    }
-  };
+  // const handleUpdate = async () => {
+  //   try {
+  //     await FetchUpdateMood(selectedMood).then(() =>
+  //       alert('분위기를 업뎃했습니다.'),
+  //     );
+  //   } catch (error) {
+  //     console.error('분위기 업데이트 실패', error);
+  //   }
+  // };
 
   return (
     <Container>
@@ -83,7 +79,7 @@ function EditMood() {
       />
       <Button onClick={handleAdd}>분위기 추가</Button>
       <Button onClick={handleDelete}>분위기 삭제</Button>
-      <Button onClick={handleUpdate}>분위기 업데이트</Button>
+      {/* <Button onClick={handleUpdate}>분위기 업데이트</Button> */}
     </Container>
   );
 }

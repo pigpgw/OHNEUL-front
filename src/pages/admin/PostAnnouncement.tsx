@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
-import FetchPostAnnouncement from 'Components/Admin/FetchPostAnnouncement';
+import FetchPostAnnouncement from 'api/admin/FetchPostAnnouncement';
 import { useNavigate } from 'react-router-dom';
 
 const Container = styled.div`

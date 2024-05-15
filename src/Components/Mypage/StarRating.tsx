@@ -32,9 +32,8 @@ const StarRating = () => {
         roundedScore = 0;
       }
 
-  
       const starStates: number[] = [];
-      for (let i = 0; i < 5; i+=1) {
+      for (let i = 0; i < 5; i += 1) {
         if (roundedScore >= i + 1) starStates.push(2);
         else if (roundedScore === i + 0.5) starStates.push(1);
         else starStates.push(0);
@@ -52,7 +51,7 @@ const StarRating = () => {
   return (
     <>
       <Wrap>
-      <P>당신의 매너점수</P>
+        <P>당신의 매너점수</P>
         <Stars>
           {star.map((starState, idx) => {
             if (starState === 2) {
