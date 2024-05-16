@@ -58,7 +58,7 @@ const Login: React.FC = () => {
   useEffect(() => {
     if (isLogin) {
       const timer = window.setTimeout(() => {
-        navigate('/favorite');
+        navigate('/nickname');
       }, 2000);
       return () => clearTimeout(timer);
     }

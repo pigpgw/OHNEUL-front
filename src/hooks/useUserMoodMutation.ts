@@ -1,9 +1,9 @@
 /* eslint-disable import/prefer-default-export */
 import { useMutation } from 'react-query';
-import { fetchAddUserMood } from '../api/fetchUserMood';
+import { updateUserData } from '../api/fetchUserMood';
 
 export const useAddUserMoodMutation = () => {
-  return useMutation(['userMood'], fetchAddUserMood, {
+  return useMutation(['userMood'], updateUserData, {
     onSuccess: () => {
       console.log('사용자 기분 등록에 성공하였습니다..');
     },

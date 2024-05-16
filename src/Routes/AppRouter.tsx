@@ -13,6 +13,7 @@ import PostAnnouncement from 'pages/admin/PostAnnouncement';
 
 import Home from 'pages/Home';
 import Favorite from 'pages/Hobby';
+import Nickname from 'pages/Nickname';
 import Mood from 'pages/Mood';
 import Theme from 'pages/Theme';
 import MyPage from 'pages/MyPage';
@@ -33,6 +34,7 @@ function AppRouter() {
         <Route path="/login/kakao" element={<Redirect />} />
         <Route path="/login/naver" element={<Redirect />} />
         <Route path="/" element={<Login />} />
+        
         <Route path="/">
           <Route path="" element={<Home />}>
             <Route path="favorite" element={<Favorite />} />
@@ -41,6 +43,7 @@ function AppRouter() {
             <Route path="mypage" element={<MyPage />} />
           </Route>
         </Route>
+        <Route path='nickname' element= {<Nickname />}/>
         <Route path="/payment" element={<Checkout />} />
         <Route path="/success" element={<Success />} />
         <Route path="/fail" element={<Fail />} />

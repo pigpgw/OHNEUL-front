@@ -2,11 +2,11 @@
 import axios from 'axios';
 import { extractUserId } from '../utils/extractCookie';
 
-interface Mood {
-  mood_id: number;
+interface Data {
+  data: unknown;
 }
 
-export const fetchAddUserMood = async (userMood: Mood): Promise<Mood> => {
+export const updateUserData = async (userData: Data): Promise<Data> => {
   const userId = extractUserId()
-  return axios.patch(`${process.env.REACT_APP_BASE_URL}/users/${userId}`, userMood);
+  return axios.patch(`${process.env.REACT_APP_BASE_URL}/users/${userId}`, userData);
 };

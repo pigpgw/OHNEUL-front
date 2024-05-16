@@ -37,6 +37,7 @@ export const Title = styled.h1<TitleProps>`
   font-family: ${(props) =>
     props.fontFamily ? props.fontFamily : 'sans-serif'};
   text-align: ${(props) => (props.textAlign ? props.textAlign : null)};
+  white-space: pre-wrap;
 `;
 
 interface ContentProps {
@@ -68,7 +69,7 @@ interface WrapperProps {
   width?: string;
   maxWidth?: string;
   height?: string;
-  minHeight? : string;
+  minHeight?: string;
   maxHegith?: string;
   margin?: string;
   border?: string;
@@ -86,7 +87,7 @@ export const Wrapper = styled.div<WrapperProps>`
   width: ${(props) => (props.width ? props.width : null)};
   max-width: ${(props) => (props.maxWidth ? props.maxWidth : null)};
   height: ${(props) => (props.height ? props.height : null)};
-  min-height:${(props) => (props.minHeight ? props.minHeight : null)};
+  min-height: ${(props) => (props.minHeight ? props.minHeight : null)};
   max-height: ${(props) => (props.maxHegith ? props.maxHegith : null)};
   margin: ${(props) => (props.margin ? props.margin : '0')};
   padding: ${(props) => (props.padding ? props.padding : '0')};

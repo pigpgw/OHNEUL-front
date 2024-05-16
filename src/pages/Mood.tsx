@@ -61,7 +61,7 @@ function Mood() {
   const handleSubmit = () => {
     if (seletedMood !== undefined) {
       addUserMood({
-        mood_id: seletedMood,
+        data: seletedMood,
       });
       navigate('/theme');
     } else {

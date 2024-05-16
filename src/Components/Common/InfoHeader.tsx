@@ -7,7 +7,7 @@ import React from 'react';
 
 type InfoHeaderProps = {
   infoTitle: string;
-  infoContent: string;
+  infoContent?: string;
 };
 
 const InfoHeader = ({ infoTitle, infoContent }: InfoHeaderProps) => {
