@@ -3,7 +3,7 @@ import axios from 'axios';
 import { extractUserId } from '../utils/extractCookie';
 
 interface Data {
-  data: unknown;
+  mood_id: number;
 }
 
 export const updateUserData = async (userData: Data): Promise<Data> => {

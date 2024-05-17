@@ -1,6 +1,7 @@
 import axios from 'axios';
 import { useEffect, useState } from 'react';
 import styled from 'styled-components';
+import { useNavigate } from 'react-router-dom';
 import { Container, Title } from 'Components/styles/Common';
 import Header from 'Components/Common/Header/Header';
 import Button from 'Components/Common/Button';
@@ -10,29 +11,37 @@ function Nickname() {
   const [nickname, setNickname] = useState('');
   const userId = extractUserId();
 
-  const fetchAddUserNickname = async (userMood: any): Promise<any> => {
-    return axios.patch(
-      `${process.env.REACT_APP_BASE_URL}/users/${userId}`,
-      userMood,
-    );
+  const navigator = useNavigate();
+
+  const goHobbt = () => {
+    navigator('/favorite');
+  };
+
+  const fetchAddUserNickname = async (username: any): Promise<any> => {
+    return axios.patch(`${process.env.REACT_APP_BASE_URL}/users/${userId}`, {
+      username,
+    });
   };
 
   useEffect(() => {
     const fetchUser = async () => {
-      const response = await axios.get(
-        `${process.env.REACT_APP_BASE_URL}/users/${userId}`,
-      );
-      console.log(response.data);
-      return response.data;
+      try {
+        const response = await axios.get(
+          `${process.env.REACT_APP_BASE_URL}/users/${userId}`,
+        );
+        if (response.data.username) goHobbt();
+      } catch (e) {
+        console.log(e);
+      }
     };
     fetchUser();
   }, []);
 
   const handleSubmit = async () => {
     try {
-      console.log(nickname);
-      await fetchAddUserNickname(nickname)
+      await fetchAddUserNickname(nickname);
       setNickname('');
+      goHobbt();
     } catch (e) {
       console.log(e);
     }

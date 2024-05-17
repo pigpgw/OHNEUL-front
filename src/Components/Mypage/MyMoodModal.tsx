@@ -47,7 +47,7 @@ function MyMood({ onClose }: MyMoodModal) {
   const handleSubmit = () => {
     if (userSelectMood) {
       addUserMood({
-        data: userSelectMood,
+        mood_id: userSelectMood,
       });
       alert('기분 수정에 성공하였습니다.');
       onClose();
