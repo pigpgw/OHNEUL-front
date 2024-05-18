@@ -5,6 +5,7 @@ import { useNavigate } from 'react-router-dom';
 import { Container, Title } from 'Components/styles/Common';
 import Header from 'Components/Common/Header/Header';
 import Button from 'Components/Common/Button';
+import { motion } from 'framer-motion';
 import { extractUserId } from '../utils/extractCookie';
 
 function Nickname() {
@@ -49,23 +50,30 @@ function Nickname() {
 
   return (
     <>
-      <Header nonvisible={true} />
-      <Container>
-        <Title>사용 할 닉네임을 입력해주세요</Title>
-        <Wrapper>
-          <P>닉네임</P>
-          <Input
-            type="text"
-            value={nickname}
-            onChange={(e) => {
-              setNickname(e.target.value);
-            }}
-          />
-        </Wrapper>
-        <Button width="200px" height="40px" onClick={handleSubmit}>
-          시작하기
-        </Button>
-      </Container>
+      <motion.div
+        className="loginPage"
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 2 }}
+        exit={{ opacity: 0 }}
+      >
+        <Header nonvisible={true} />
+        <Container>
+          <Title>사용 할 닉네임을 입력해주세요</Title>
+          <Wrapper>
+            <P>닉네임</P>
+            <Input
+              type="text"
+              value={nickname}
+              onChange={(e) => {
+                setNickname(e.target.value);
+              }}
+            />
+          </Wrapper>
+          <Button width="200px" height="40px" onClick={handleSubmit}>
+            시작하기
+          </Button>
+        </Container>
+      </motion.div>
     </>
   );
 }

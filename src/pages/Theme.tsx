@@ -8,6 +8,7 @@ import InfoFooter from 'Components/Common/InfoFooter';
 import Button from 'Components/Common/Button';
 import AlertModal from 'Components/Modal/AlertModal';
 import LoadingBox from 'Components/Common/LoadingBox/LoadingBox';
+import { motion } from 'framer-motion';
 import { Container } from '../Components/styles/Common';
 import { fetchGetThemes } from '../api/fetchTheme';
 import { WaitModal } from '../Components/Modal/ChatModal';
@@ -102,40 +103,47 @@ function Theme({ socket }: any) {
 
   return (
     <>
-      {alertModal && (
-        <AlertModal
-          icon="warning"
-          title="주제를 선택해주세요"
-          msg="한개의 대화 주제를 골라주세요"
-          btn1="확인"
-          onClose={offAlertModal}
-        />
-      )}
-      <Container>
-        <InfoHeader
-          infoTitle="오늘 당신은?"
-          infoContent="대화 주제를 선택해주세요"
-        />
-        <ButtonList
-          items={theme}
-          onClick={clickBtn}
-          isLoading={isLoading}
-          isError={isError}
-        />
-        {wait && <WaitModal onClose={onClose} />}
-        <InfoFooter infoText="최대 1개만 선택 가능합니다." />
-        <Button
-          disabled={wait}
-          onClick={matchingcStart}
-          width="80%"
-          height="5%"
-          maxheight="100px"
-          fontSize="1.5vh"
-          maxwidth="500px"
-        >
-          선택 완료
-        </Button>
-      </Container>
+      <motion.div
+        className="loginPage"
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 2 }}
+        exit={{ opacity: 0 }}
+      >
+        {alertModal && (
+          <AlertModal
+            icon="warning"
+            title="주제를 선택해주세요"
+            msg="한개의 대화 주제를 골라주세요"
+            btn1="확인"
+            onClose={offAlertModal}
+          />
+        )}
+        <Container>
+          <InfoHeader
+            infoTitle="오늘 당신은?"
+            infoContent="대화 주제를 선택해주세요"
+          />
+          <ButtonList
+            items={theme}
+            onClick={clickBtn}
+            isLoading={isLoading}
+            isError={isError}
+          />
+          {wait && <WaitModal onClose={onClose} />}
+          <InfoFooter infoText="최대 1개만 선택 가능합니다." />
+          <Button
+            disabled={wait}
+            onClick={matchingcStart}
+            width="80%"
+            height="5%"
+            maxheight="100px"
+            fontSize="1.5vh"
+            maxwidth="500px"
+          >
+            선택 완료
+          </Button>
+        </Container>
+      </motion.div>
     </>
   );
 }

@@ -1,10 +1,18 @@
+import { motion } from 'framer-motion';
 import styled, { keyframes } from 'styled-components';
 
 const HeartBeat = () => {
   return (
-    <Container>
-      <Heart />
-    </Container>
+    <motion.div
+      className="loginPage"
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 2 }}
+      exit={{ opacity: 0 }}
+    >
+      <Container>
+        <Heart />
+      </Container>
+    </motion.div>
   );
 };
 

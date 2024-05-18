@@ -19,6 +19,7 @@ import {
 import { Container } from 'Components/styles/Common';
 import { styled } from 'styled-components';
 import { useNavigate } from 'react-router-dom';
+import { motion } from 'framer-motion';
 
 const MyPage: React.FC = () => {
   const [open, setOpen] = useState<string | null>(null);
@@ -39,40 +40,47 @@ const MyPage: React.FC = () => {
     setAlert(true);
   };
   return (
-    <Wrapper>
-      <Title>마이페이지</Title>
-      <ContentContainer>
-        <SocialImage />
-        <StarRating />
-        <MyMood />
-        <Interest />
-        <TabSection>
-          {alert && (
-            <AlertModal
-              icon="warning"
-              title="서비스 준비중"
-              msg="서비스가 준비중입니다.!"
-              btn1="확인"
-              onClose={offAlert}
-            />
-          )}
-          <Tab onClick={onAlert}>결제내역</Tab>
-          <Tab onClick={gocoinHistory}>코인내역</Tab>
-          {open === 'coinusage' && <CoinUsageDetails />}
-          <Tab onClick={onAlert}>이용정책</Tab>
-          {open === 'terms' && <Terms />}
-          <Tab onClick={() => navigate('announcement')} last={'true'}>
-            공지사항
-          </Tab>
-          {open === 'announcement' && <Announcement />}
-        </TabSection>
-        <BtnContainer>
-          <Logout></Logout>
-          <AdminButton></AdminButton>
-          <WithDrawal></WithDrawal>
-        </BtnContainer>
-      </ContentContainer>
-    </Wrapper>
+    <motion.div
+      className="loginPage"
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 2 }}
+      exit={{ opacity: 0 }}
+    >
+      <Wrapper>
+        <Title>마이페이지</Title>
+        <ContentContainer>
+          <SocialImage />
+          <StarRating />
+          <MyMood />
+          <Interest />
+          <TabSection>
+            {alert && (
+              <AlertModal
+                icon="warning"
+                title="서비스 준비중"
+                msg="서비스가 준비중입니다.!"
+                btn1="확인"
+                onClose={offAlert}
+              />
+            )}
+            <Tab onClick={onAlert}>결제내역</Tab>
+            <Tab onClick={gocoinHistory}>코인내역</Tab>
+            {open === 'coinusage' && <CoinUsageDetails />}
+            <Tab onClick={onAlert}>이용정책</Tab>
+            {open === 'terms' && <Terms />}
+            <Tab onClick={() => navigate('announcement')} last={'true'}>
+              공지사항
+            </Tab>
+            {open === 'announcement' && <Announcement />}
+          </TabSection>
+          <BtnContainer>
+            <Logout></Logout>
+            <AdminButton></AdminButton>
+            <WithDrawal></WithDrawal>
+          </BtnContainer>
+        </ContentContainer>
+      </Wrapper>
+    </motion.div>
   );
 };
 

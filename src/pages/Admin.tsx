@@ -2,6 +2,7 @@ import Logout from 'Components/Auth/Logout';
 import styled from 'styled-components';
 import { useNavigate, Link } from 'react-router-dom';
 import Arrow from 'assets/images/Arrow.png';
+import { motion } from 'framer-motion';
 
 const Title = styled.p`
   font-size: 18px;
@@ -55,49 +56,56 @@ const Admin = () => {
 
   return (
     <>
-      <BackButton to="/mypage">
-        <img src={Arrow} alt=""></img>
-      </BackButton>
-      <Title>관리자 페이지</Title>
-      <SeparatorLine />
-      <MenuContainer>
-        <MenuItem
-          onClick={() => {
-            navigate('/admin/manageusers');
-          }}
-        >
-          회원 관리
-        </MenuItem>
-        <MenuItem
-          onClick={() => {
-            navigate('/admin/edithobby');
-          }}
-        >
-          취미 수정
-        </MenuItem>
-        <MenuItem
-          onClick={() => {
-            navigate('/admin/edittheme');
-          }}
-        >
-          테마 수정
-        </MenuItem>
-        <MenuItem
-          onClick={() => {
-            navigate('/admin/editmood');
-          }}
-        >
-          분위기 수정
-        </MenuItem>
-        <MenuItem
-          onClick={() => {
-            navigate('/admin/postannouncement');
-          }}
-        >
-          공지 등록
-        </MenuItem>
-      </MenuContainer>
-      <Logout></Logout>
+      <motion.div
+        className="loginPage"
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 2 }}
+        exit={{ opacity: 0 }}
+      >
+        <BackButton to="/mypage">
+          <img src={Arrow} alt=""></img>
+        </BackButton>
+        <Title>관리자 페이지</Title>
+        <SeparatorLine />
+        <MenuContainer>
+          <MenuItem
+            onClick={() => {
+              navigate('/admin/manageusers');
+            }}
+          >
+            회원 관리
+          </MenuItem>
+          <MenuItem
+            onClick={() => {
+              navigate('/admin/edithobby');
+            }}
+          >
+            취미 수정
+          </MenuItem>
+          <MenuItem
+            onClick={() => {
+              navigate('/admin/edittheme');
+            }}
+          >
+            테마 수정
+          </MenuItem>
+          <MenuItem
+            onClick={() => {
+              navigate('/admin/editmood');
+            }}
+          >
+            분위기 수정
+          </MenuItem>
+          <MenuItem
+            onClick={() => {
+              navigate('/admin/postannouncement');
+            }}
+          >
+            공지 등록
+          </MenuItem>
+        </MenuContainer>
+        <Logout></Logout>
+      </motion.div>
     </>
   );
 };

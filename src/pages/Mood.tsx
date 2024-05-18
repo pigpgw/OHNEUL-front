@@ -9,6 +9,7 @@ import InfoHeader from 'Components/Common/InfoHeader';
 import ButtonList from 'Components/Common/ButtonList';
 import InfoFooter from 'Components/Common/InfoFooter';
 import Button from 'Components/Common/Button';
+import { motion } from 'framer-motion';
 import { useAddUserMoodMutation } from '../hooks/useUserMoodMutation';
 
 interface MoodTs {
@@ -92,47 +93,54 @@ function Mood() {
 
   return (
     <>
-      {dailyModal && (
-        <AlertModal
-          icon="success"
-          title="매일 접속 보상이 지급되었습니다"
-          msg="접속 보상 100코인이 지급되었습니다."
-          btn1="확인"
-          onClose={closeDailyModal}
-        />
-      )}
-      {alertModal && (
-        <AlertModal
-          icon="warning"
-          title="에러"
-          msg="기분을 1개 이상 선택해주세요!"
-          btn1="확인"
-          onClose={closeAlet}
-        />
-      )}
-      <Container>
-        <InfoHeader
-          infoTitle="오늘 당신은?"
-          infoContent="오늘 기분을 선택해주세요"
-        />
-        <ButtonList
-          items={mood}
-          onClick={clickBtn}
-          isLoading={isLoading}
-          isError={isError}
-        />
-        <InfoFooter infoText="최대 1개만 선택 가능합니다." />
-        <Button
-          onClick={handleSubmit}
-          width="80%"
-          height="5%"
-          maxheight="100px"
-          fontSize="1.5vh"
-          maxwidth="500px"
-        >
-          선택 완료
-        </Button>
-      </Container>
+      <motion.div
+        className="loginPage"
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 2 }}
+        exit={{ opacity: 0 }}
+      >
+        {dailyModal && (
+          <AlertModal
+            icon="success"
+            title="매일 접속 보상이 지급되었습니다"
+            msg="접속 보상 100코인이 지급되었습니다."
+            btn1="확인"
+            onClose={closeDailyModal}
+          />
+        )}
+        {alertModal && (
+          <AlertModal
+            icon="warning"
+            title="에러"
+            msg="기분을 1개 이상 선택해주세요!"
+            btn1="확인"
+            onClose={closeAlet}
+          />
+        )}
+        <Container>
+          <InfoHeader
+            infoTitle="오늘 당신은?"
+            infoContent="오늘 기분을 선택해주세요"
+          />
+          <ButtonList
+            items={mood}
+            onClick={clickBtn}
+            isLoading={isLoading}
+            isError={isError}
+          />
+          <InfoFooter infoText="최대 1개만 선택 가능합니다." />
+          <Button
+            onClick={handleSubmit}
+            width="80%"
+            height="5%"
+            maxheight="100px"
+            fontSize="1.5vh"
+            maxwidth="500px"
+          >
+            선택 완료
+          </Button>
+        </Container>
+      </motion.div>
     </>
   );
 }

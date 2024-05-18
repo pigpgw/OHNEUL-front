@@ -1,4 +1,5 @@
 import axios from 'axios';
+import { motion } from 'framer-motion';
 import { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import meltedCookie from 'utils/meltedCookie';
@@ -51,14 +52,21 @@ const CoinUsageDetails = () => {
   };
   return (
     <>
-      <div>
-        {usage.map((el, id) => (
-          <Container key={id}>
-            <Usage>사용코인 : {el.used_coin}</Usage>
-            <DateCont>사용일시 : {formatKoreanDateTime(el.used_at)}</DateCont>
-          </Container>
-        ))}
-      </div>
+      <motion.div
+        className="loginPage"
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 2 }}
+        exit={{ opacity: 0 }}
+      >
+        <div>
+          {usage.map((el, id) => (
+            <Container key={id}>
+              <Usage>사용코인 : {el.used_coin}</Usage>
+              <DateCont>사용일시 : {formatKoreanDateTime(el.used_at)}</DateCont>
+            </Container>
+          ))}
+        </div>
+      </motion.div>
     </>
   );
 };

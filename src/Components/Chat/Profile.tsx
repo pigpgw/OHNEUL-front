@@ -3,6 +3,7 @@ import { styled } from 'styled-components';
 import { createPortal } from 'react-dom';
 
 import React from 'react';
+import { motion } from 'framer-motion';
 
 type ModalProps = {
   children: React.ReactNode;
@@ -12,17 +13,24 @@ type ProfileProps = {
   user: string;
   reviewScore: number;
   favorite: string | undefined;
-  mood: string |undefined;
+  mood: string | undefined;
   handleModal: () => void;
 };
 
 function ModalWrapper({ children }: ModalProps) {
   return (
     <>
-      {createPortal(
-        <ProfileContainer>{children}</ProfileContainer>,
-        document.body,
-      )}
+      <motion.div
+        className="loginPage"
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 2 }}
+        exit={{ opacity: 0 }}
+      >
+        {createPortal(
+          <ProfileContainer>{children}</ProfileContainer>,
+          document.body,
+        )}
+      </motion.div>
     </>
   );
 }

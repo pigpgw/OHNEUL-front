@@ -5,6 +5,7 @@ import { selectAnnouncements } from 'stores/slices/announcementSlice';
 import Arrow from 'assets/images/Arrow.png';
 import styled from 'styled-components';
 import { Wrapper } from 'Components/styles/Common';
+import { motion } from 'framer-motion';
 
 const BackButton = styled(Link)`
   position: absolute;
@@ -68,15 +69,22 @@ const AnnouncementDetail: React.FC = () => {
     .split('^')
     .map((paragraph: string, index: number) => <p key={index}>{paragraph}</p>);
   return (
-    <Wrapper>
-      <BackButton to="/mypage/announcement">
-        <img src={Arrow} alt="Back" />
-      </BackButton>
-      <Title>공지사항</Title>
-      <AnnouncementTitle>{title}</AnnouncementTitle>
-      <DateP>{formatKoreanDateTime(createdAt)}</DateP>
-      <Notice>{editedNotice}</Notice>
-    </Wrapper>
+    <motion.div
+      className="loginPage"
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 2 }}
+      exit={{ opacity: 0 }}
+    >
+      <Wrapper>
+        <BackButton to="/mypage/announcement">
+          <img src={Arrow} alt="Back" />
+        </BackButton>
+        <Title>공지사항</Title>
+        <AnnouncementTitle>{title}</AnnouncementTitle>
+        <DateP>{formatKoreanDateTime(createdAt)}</DateP>
+        <Notice>{editedNotice}</Notice>
+      </Wrapper>
+    </motion.div>
   );
 };
 

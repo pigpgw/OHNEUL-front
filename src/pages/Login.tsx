@@ -8,6 +8,7 @@ import MainLogo from 'Components/Common/MainLogo';
 import phrase from 'assets/images/appCatchphrase.png';
 import { setAuth, login } from 'stores/slices/userSlice';
 import meltedCookie from 'utils/meltedCookie';
+import { motion } from 'framer-motion';
 
 const LogoContainer = styled.div`
   display: flex;
@@ -66,21 +67,28 @@ const Login: React.FC = () => {
   }, [isLogin, navigate]);
 
   return (
-    <div>
-      <LogoContainer>
-        <MainLogo></MainLogo>
-      </LogoContainer>
-      {isLogin ? (
-        <PhraseContainer>
-          <img src={phrase} alt="phrase"></img>
-        </PhraseContainer>
-      ) : (
-        <SocialContainer>
-          <NaverLogin></NaverLogin>
-          <KakaoLogin></KakaoLogin>
-        </SocialContainer>
-      )}
-    </div>
+    <motion.div
+      className="loginPage"
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 2 }}
+      exit={{ opacity: 0 }}
+    >
+      <div>
+        <LogoContainer>
+          <MainLogo></MainLogo>
+        </LogoContainer>
+        {isLogin ? (
+          <PhraseContainer>
+            <img src={phrase} alt="phrase"></img>
+          </PhraseContainer>
+        ) : (
+          <SocialContainer>
+            <NaverLogin></NaverLogin>
+            <KakaoLogin></KakaoLogin>
+          </SocialContainer>
+        )}
+      </div>
+    </motion.div>
   );
 };
 

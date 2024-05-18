@@ -4,6 +4,7 @@ import { useQuery } from 'react-query';
 import { fetchGetMood } from 'api/fetchMood';
 import { useAddUserMoodMutation } from 'hooks/useUserMoodMutation';
 import styled from 'styled-components';
+import { motion } from 'framer-motion';
 
 interface MoodTs {
   mood_id: number;
@@ -62,23 +63,29 @@ function MyMood({ onClose }: MyMoodModal) {
   return (
     <>
       <Wrapper>
-        <Title>오늘 당신은?</Title>
-        <ItemContainer>
-          {mood?.map((item) => (
-            <ItemBtn
-              key={item.mood_id}
-              onClick={() => clickBtn(item.mood_id)}
-              clicked={item.clicked}
-            >
-              {item.mood}
-            </ItemBtn>
-          ))}
-        </ItemContainer>
-        <BtnWrapper>
-          <SubmitBtn onClick={handleSubmit}>선택 완료</SubmitBtn>
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 2 }}
+          exit={{ opacity: 0 }}
+        >
+          <Title>오늘 당신은?</Title>
+          <ItemContainer>
+            {mood?.map((item) => (
+              <ItemBtn
+                key={item.mood_id}
+                onClick={() => clickBtn(item.mood_id)}
+                clicked={item.clicked}
+              >
+                {item.mood}
+              </ItemBtn>
+            ))}
+          </ItemContainer>
+          <BtnWrapper>
+            <SubmitBtn onClick={handleSubmit}>선택 완료</SubmitBtn>
 
-          <CloseBtn onClick={onClose}>닫기</CloseBtn>
-        </BtnWrapper>
+            <CloseBtn onClick={onClose}>닫기</CloseBtn>
+          </BtnWrapper>
+        </motion.div>
       </Wrapper>
     </>
   );
