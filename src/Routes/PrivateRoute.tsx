@@ -9,7 +9,7 @@ interface User {
   };
 }
 // eslint-disable-next-line react/prop-types
-const PrivateRoute = ({ element: Component, ...rest }: any) => {
+const PrivateRoute = ({ Component, ...rest }: any) => {
   const isLogin = useSelector((state: User) => state.user.isLogin);
 
   return isLogin ? <Component {...rest} /> : <Navigate to="/" />;
