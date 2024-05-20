@@ -1,13 +1,13 @@
-name: main branch auto ci process script
+name: dev branch auto ci process script
 
 on:
   push:
     branches:
-      - main
+      - dev
   pull_request:
     types: [closed]
     branches:
-      - main   
+      - dev   
 
 jobs:
   deploy:
@@ -62,7 +62,7 @@ jobs:
         run: git remote update
 
       - name: Git pull
-        run: git pull origin main
+        run: git pull origin dev
 
       - name: Install project dependencies
         run: npm ci
