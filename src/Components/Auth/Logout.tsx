@@ -58,17 +58,20 @@ const Logout: React.FC = () => {
           icon="warning"
           title="로그아웃"
           msg="로그아웃 하시겠습니까?"
-          btn1='확인'
-          btn2='취소'
+          btn1="확인"
+          btn2="취소"
           onClose={handleLogOut}
           onCancel={() => {
             setLogoutModal(false);
           }}
         />
       )}
-      <Button role="button" onClick={() => {
-        setLogoutModal(true)
-      }}>
+      <Button
+        role="button"
+        onClick={() => {
+          setLogoutModal(true);
+        }}
+      >
         로그아웃
       </Button>
     </div>

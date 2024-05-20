@@ -1,8 +1,6 @@
 import { useNavigate } from 'react-router-dom';
 
 const meltedCookie = () => {
-  const navigate = useNavigate();
-
   const cookies = document.cookie.split('; ');
   const userInfo: { [key in string]: string } = cookies.reduce(
     (acc, cookie) => {

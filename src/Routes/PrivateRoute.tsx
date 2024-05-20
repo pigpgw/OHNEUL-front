@@ -8,8 +8,8 @@ interface User {
     isLogin: boolean;
   };
 }
-// eslint-disable-next-line react/prop-types
-const PrivateRoute = ({ Component, ...rest }: any) => {
+
+const PrivateRoute = ({ component: Component, ...rest }: any) => {
   const isLogin = useSelector((state: User) => state.user.isLogin);
 
   return isLogin ? <Component {...rest} /> : <Navigate to="/" />;
