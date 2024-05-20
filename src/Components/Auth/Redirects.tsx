@@ -5,7 +5,7 @@ import { useDispatch } from 'react-redux';
 import phrase from 'assets/images/appCatchphrase.png';
 
 const PhraseContainer = styled.div``;
-const Redirect: React.FC = () => {
+const Redirects: React.FC = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
@@ -31,4 +31,4 @@ const Redirect: React.FC = () => {
   );
 };
 
-export default Redirect;
+export default Redirects;

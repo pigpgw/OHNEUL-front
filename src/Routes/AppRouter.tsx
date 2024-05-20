@@ -2,7 +2,7 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom';
 
 import Login from 'pages/Login';
 import NotFound from 'pages/NotFound';
-import Redirect from 'Components/Auth/Redirect';
+import Redirects from 'Components/Auth/Redirects';
 import io from 'socket.io-client';
 import Admin from 'pages/Admin';
 import ManageUsers from 'pages/admin/ManageUsers';
@@ -10,7 +10,6 @@ import EditHobby from 'pages/admin/EditHobby';
 import EditTheme from 'pages/admin/EditTheme';
 import EditMood from 'pages/admin/EditMood';
 import PostAnnouncement from 'pages/admin/PostAnnouncement';
-
 import Home from 'pages/Home';
 import Favorite from 'pages/Hobby';
 import Nickname from 'pages/Nickname';
@@ -25,6 +24,7 @@ import CoinHistory from 'pages/CoinHistory';
 import Announcement from 'Components/Mypage/Announcement';
 import AnnouncementDetail from 'Components/Mypage/AnnouncementDetail';
 import { AnimatePresence } from 'framer-motion';
+import { useSelector } from 'react-redux';
 
 const socket = io(`${process.env.REACT_APP_BASE_URL}`);
 
@@ -33,8 +33,8 @@ function AppRouter() {
     <BrowserRouter>
       <AnimatePresence>
         <Routes>
-          <Route path="/login/kakao" element={<Redirect />} />
-          <Route path="/login/naver" element={<Redirect />} />
+          <Route path="/login/kakao" element={<Redirects />} />
+          <Route path="/login/naver" element={<Redirects />} />
           <Route path="/" element={<Login />} />
 
           <Route path="/">
