@@ -18,6 +18,7 @@ const meltedCookie = () => {
     admin: isAdmin,
   } = userInfo;
   const cookie = [flatform, token, rewardCoin, userId, isAdmin];
+
   return cookie;
 };
 
