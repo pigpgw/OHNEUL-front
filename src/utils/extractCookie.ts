@@ -3,6 +3,9 @@ export const extractUserId = (): string => {
     .split(' ')
     .filter((item) => item.split('=')[0] === 'user_id')[0];
   const userId = uuidInCookie.split('=')[1].replace(/;/g, '');
+  if (userId) {
+    return '';
+  }
   return userId;
 };
 

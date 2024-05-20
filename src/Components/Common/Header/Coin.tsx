@@ -11,7 +11,6 @@ type CoinProps = {
 function Coin({ onClick }: CoinProps) {
   const userId = extractUserId();
   const { isCoinLoading, isCoinError, userCoinState } = useCoinQuery(userId);
-  if (!userId) return <div>에러 발생</div>;
   if (isCoinLoading) return null;
   if (isCoinError) return <div>에러 발생</div>;
   return (

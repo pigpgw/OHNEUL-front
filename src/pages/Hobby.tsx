@@ -7,7 +7,6 @@ import ButtonList from 'Components/Common/ButtonList';
 import InfoFooter from 'Components/Common/InfoFooter';
 import AlertModal from 'Components/Modal/AlertModal';
 import Button from 'Components/Common/Button';
-import { motion } from 'framer-motion';
 import useCheckHobbiesAndNavigate from 'hooks/useCheckHobbiesAndNavigateHook';
 import { extractUserId } from 'utils/extractCookie';
 import { useAddUserHobbyMutation } from '../hooks/useUserHobbyMutation';
@@ -69,45 +68,38 @@ function Hobby() {
   };
 
   return (
-    <motion.div
-      className="loginPage"
-      initial={{ opacity: 0 }}
-      animate={{ opacity: 2 }}
-      exit={{ opacity: 0 }}
-    >
-      <Container>
-        {Alert && (
-          <AlertModal
-            icon="warning"
-            title="기분 등록 실패"
-            msg="취미는 1개 ~ 3개만 골라주세요"
-            btn1="확인"
-            onClose={alertClose}
-          />
-        )}
-        <InfoHeader
-          infoTitle="평소 당신은?"
-          infoContent="관심사를 선택해주세요"
+    <Container>
+      {Alert && (
+        <AlertModal
+          icon="warning"
+          title="기분 등록 실패"
+          msg="취미는 1개 ~ 3개만 골라주세요"
+          btn1="확인"
+          onClose={alertClose}
         />
-        <ButtonList
-          items={hobby}
-          onClick={clickBtn}
-          isLoading={isLoading}
-          isError={isError}
-        />
-        <InfoFooter infoText="최소 1개, 최대 3개만 선택 가능" />
-        <Button
-          onClick={handleSubmit}
-          width="80%"
-          height="5%"
-          maxheight="100px"
-          fontSize="1.5vh"
-          maxwidth="500px"
-        >
-          선택 완료
-        </Button>
-      </Container>
-    </motion.div>
+      )}
+      <InfoHeader
+        infoTitle="평소 당신은?"
+        infoContent="관심사를 선택해주세요"
+      />
+      <ButtonList
+        items={hobby}
+        onClick={clickBtn}
+        isLoading={isLoading}
+        isError={isError}
+      />
+      <InfoFooter infoText="최소 1개, 최대 3개만 선택 가능" />
+      <Button
+        onClick={handleSubmit}
+        width="80%"
+        height="5%"
+        maxheight="100px"
+        fontSize="1.5vh"
+        maxwidth="500px"
+      >
+        선택 완료
+      </Button>
+    </Container>
   );
 }
 

@@ -1,4 +1,8 @@
+import { useNavigate } from 'react-router-dom';
+
 const meltedCookie = () => {
+  const navigate = useNavigate();
+
   const cookies = document.cookie.split('; ');
   const userInfo: { [key in string]: string } = cookies.reduce(
     (acc, cookie) => {
@@ -18,7 +22,9 @@ const meltedCookie = () => {
     admin: isAdmin,
   } = userInfo;
   const cookie = [flatform, token, rewardCoin, userId, isAdmin];
-
+  if (cookie === undefined) {
+    return [];
+  }
   return cookie;
 };
 
