@@ -88,7 +88,8 @@ jobs:
           username: ${{ secrets.USER }}
           key: ${{ secrets.SSH_PRIVATE_KEY }}
           script: |
-            npm ci
+            cd /home/ec2-user/OHNEUL-front
+            npm install
 
       - name: Restart server
         uses: appleboy/ssh-action@v0.1.6
