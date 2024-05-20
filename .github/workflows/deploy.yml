@@ -7,7 +7,7 @@ on:
   pull_request:
     types: [closed]
     branches:
-      - main   
+      - main     
 
 jobs:
   deploy:
@@ -17,67 +17,93 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v3
 
-      - name: executing remote ssh commands
+      - name: Setup SSH
+        uses: webfactory/ssh-agent@v0.5.3
+        with:
+          ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}
+
+      - name: Create directory
         uses: appleboy/ssh-action@v0.1.6
         with:
           host: ${{ secrets.HOST }}
           username: ${{ secrets.USER }}
           key: ${{ secrets.SSH_PRIVATE_KEY }}
+          script: |
+            sudo mkdir -p /home/ec2-user/OHNEUL-front
 
-      - name: Setup Node.js
-        uses: actions/setup-node@v3
+      - name: Change ownership
+        uses: appleboy/ssh-action@v0.1.6
         with:
-          node-version: "20"
+          host: ${{ secrets.HOST }}
+          username: ${{ secrets.USER }}
+          key: ${{ secrets.SSH_PRIVATE_KEY }}
+          script: |
+            sudo chown -R ec2-user:ec2-user /home/ec2-user/OHNEUL-front
 
-      - name: Cache dependencies
-        id: cache
-        uses: actions/cache@v2
+      - name: Go to project directory and pull latest code
+        uses: appleboy/ssh-action@v0.1.6
         with:
-          path: "**/node_modules"
-          key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
-          restore-keys: |
-            ${{ runner.os }}-node-
+          host: ${{ secrets.HOST }}
+          username: ${{ secrets.USER }}
+          key: ${{ secrets.SSH_PRIVATE_KEY }}
+          script: |
+            cd /home/ec2-user/OHNEUL-front
+            git pull origin main
 
       - name: Install dependencies
-        run: |
-          sudo apt update
-          sudo apt install -y nodejs npm  
-          sudo npm install -g pm2
-          sudo npm install -g dotenv
+        uses: appleboy/ssh-action@v0.1.6
+        with:
+          host: ${{ secrets.HOST }}
+          username: ${{ secrets.USER }}
+          key: ${{ secrets.SSH_PRIVATE_KEY }}
+          script: |
+            sudo yum update -y
+            sudo yum install -y nodejs npm
+            sudo npm install -g pm2 dotenv
 
       - name: Go to project directory
-        run: cd /home/runner/work/OHNEUL-front
+        uses: appleboy/ssh-action@v0.1.6
+        with:
+          host: ${{ secrets.HOST }}
+          username: ${{ secrets.USER }}
+          key: ${{ secrets.SSH_PRIVATE_KEY }}
+          script: |
+            cd /home/ec2-user/OHNEUL-front
 
       - name: Setting .env
-        run: |
-          echo "REACT_APP_BASE_URL=${{ secrets.REACT_APP_BASE_URL }}" >> .env
-          echo "REACT_APP_TOSS_PAYMENTS_CLIENT_KEY=${{ secrets.REACT_APP_TOSS_PAYMENTS_CLIENT_KEY }}" >> .env
-          echo "REACT_APP_TOSS_PAYMENTS_SECRET_KEY=${{ secrets.REACT_APP_TOSS_PAYMENTS_SECRET_KEY }}" >> .env
-          cat .env
-
-      - name: Checking file
-        run: ls -al /home/runner/work/OHNEUL-front
-
-      - name: Remote
-        run: git remote update
-
-      - name: Git pull
-        run: git pull origin main
+        uses: appleboy/ssh-action@v0.1.6
+        with:
+          host: ${{ secrets.HOST }}
+          username: ${{ secrets.USER }}
+          key: ${{ secrets.SSH_PRIVATE_KEY }}
+          script: |
+            echo "REACT_APP_BASE_URL=${{ secrets.REACT_APP_BASE_URL }}" >> .env
+            echo "REACT_APP_TOSS_PAYMENTS_CLIENT_KEY=${{ secrets.REACT_APP_TOSS_PAYMENTS_CLIENT_KEY }}" >> .env
+            echo "REACT_APP_TOSS_PAYMENTS_SECRET_KEY=${{ secrets.REACT_APP_TOSS_PAYMENTS_SECRET_KEY }}" >> .env
 
       - name: Install project dependencies
-        run: npm ci
+        uses: appleboy/ssh-action@v0.1.6
+        with:
+          host: ${{ secrets.HOST }}
+          username: ${{ secrets.USER }}
+          key: ${{ secrets.SSH_PRIVATE_KEY }}
+          script: |
+            npm ci
 
       - name: Restart server
-        run: sudo pm2 restart ohneul-client || sudo pm2 start npm --name ohneul-client -- start:dev
+        uses: appleboy/ssh-action@v0.1.6
+        with:
+          host: ${{ secrets.HOST }}
+          username: ${{ secrets.USER }}
+          key: ${{ secrets.SSH_PRIVATE_KEY }}
+          script: |
+            sudo pm2 restart ohneul-client || sudo pm2 start npm --name ohneul-client -- start:dev
 
-      - name: Checking Pm2 List
-        run: sudo pm2 list
-
-      # - name: Checking server logs
-      #   run: |
-      #     sudo pm2 logs ohneul-client
-      #     sudo pm2 logs ***-client
-
-  # 깃허브 레파지토리가 프라이빗으로 만들어져 있을때. 
-  # git pull https://${{ secrets.GIT_USER }}:${{ secrets.GIT_PASSWORD }}@github.com/blockenters/streamlit_kmeans.git
- 
+      - name: Check PM2 list
+        uses: appleboy/ssh-action@v0.1.6
+        with:
+          host: ${{ secrets.HOST }}
+          username: ${{ secrets.USER }}
+          key: ${{ secrets.SSH_PRIVATE_KEY }}
+          script: |
+            sudo pm2 list
