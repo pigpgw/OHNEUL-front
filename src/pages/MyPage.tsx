@@ -24,9 +24,6 @@ import { motion } from 'framer-motion';
 const MyPage: React.FC = () => {
   const [open, setOpen] = useState<string | null>(null);
   const [alert, setAlert] = useState(false);
-  const handleModal = (itemName: React.SetStateAction<string | null>) => {
-    setOpen(open === itemName ? null : itemName);
-  };
   const navigate = useNavigate();
   const gocoinHistory = () => {
     navigate('/coinHistory');
