@@ -18,6 +18,7 @@ function Nickname() {
   };
 
   const fetchAddUserNickname = async (username: any): Promise<any> => {
+    console.log(username,userId)
     return axios.patch(`${process.env.REACT_APP_BASE_URL}/users/${userId}`, {
       username,
     });
