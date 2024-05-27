@@ -13,14 +13,12 @@ interface MessageListProps {
   messageList: Message[];
   handleMyProFile: () => void;
   handleOhterProFile: () => void;
-  style?: React.CSSProperties; // 스타일 프로퍼티 추가
 }
 
 function ChatMessages({
   messageList,
   handleMyProFile,
-  handleOhterProFile,
-  style,
+  handleOhterProFile
 }: MessageListProps): JSX.Element {
   const messagesEndRef = useRef<HTMLDivElement>(null);
 
@@ -35,7 +33,7 @@ function ChatMessages({
   };
 
   return (
-    <ChatMessagesWrapper style={style}>
+    <ChatMessagesWrapper>
       {messageList.map((v, i) => (
         <ChatMessageItemBox key={`${i}_li`} className={v.type}>
           {v.type === 'me' || v.type === 'other' ? (
@@ -71,12 +69,6 @@ const Profile = styled(IoPerson)`
   }
 `;
 
-// const ChatMessagesContainer = styled.div`
-//   width: 100%;
-//   max-height: calc(100vh - 160px); /* 수정된 부분 */
-//   overflow: auto;
-// `;
-
 const ChatMessagesWrapper = styled.div`
   list-style: none;
   margin: 0;
@@ -86,7 +78,6 @@ const ChatMessagesWrapper = styled.div`
   flex-direction: column;
   padding: 2% 0;
   overflow-y: scroll;
-  max-height: 500px;
 `;
 
 const ChatMessageItemBox = styled.div`
