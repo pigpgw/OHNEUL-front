@@ -33,7 +33,7 @@ function ChatMessages({
   };
 
   return (
-    <div>
+    <div style={{height:'100px'}}>
       <ChatMessagesWrapper>
         {messageList.map((v, i) => (
           <ChatMessageItemBox key={`${i}_li`} className={v.type}>
