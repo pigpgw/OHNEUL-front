@@ -32,18 +32,17 @@ const WithDrawal: React.FC = () => {
   const deleteCookie = (name: string): void => {
     document.cookie = `${name}=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;`;
   };
-  const userId = user.value.user_id;
 
   const handleWithDrawal = () => {
-    const [flatform, token, rewardCoin] = meltedCookie();
-    if (flatform) {
+    const [flatform, token, rewardCoin, userId] = meltedCookie();
+    if (userId) {
       dispatch(clearAuth());
       dispatch(logout());
       deleteCookie('user_id');
       deleteCookie('refreshToken');
       deleteCookie('provider');
       deleteCookie('reward');
-
+      deleteCookie('admin');
       navigate('/');
     }
 
@@ -52,6 +51,7 @@ const WithDrawal: React.FC = () => {
         const response = await axios.delete(
           `${process.env.REACT_APP_BASE_URL}/users/${userid}`,
         );
+        console.log(response.data);
         return response.data;
       } catch (error) {
         console.error('회원탈퇴 실패', error);

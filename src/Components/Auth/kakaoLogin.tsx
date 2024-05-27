@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 import KakaoImg from 'assets/images/kakaoBogo.png';
+import { motion } from 'framer-motion';
 
 const KakaoLoginButton = styled.button`
   background-color: #fae100;
@@ -25,10 +26,17 @@ const KakaoLogin: React.FC = () => {
   }
 
   return (
-    <KakaoLoginButton onClick={loginRedirect}>
-      <img alt="" src={KakaoImg}></img>
-      카카오 로그인
-    </KakaoLoginButton>
+    <motion.div
+      className="loginPage"
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 2 }}
+      exit={{ opacity: 0 }}
+    >
+      <KakaoLoginButton onClick={loginRedirect}>
+        <img alt="" src={KakaoImg}></img>
+        카카오 로그인
+      </KakaoLoginButton>
+    </motion.div>
   );
 };
 

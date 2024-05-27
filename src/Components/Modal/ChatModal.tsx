@@ -3,8 +3,9 @@ import React, { ReactNode, MouseEvent } from 'react';
 import { createPortal } from 'react-dom';
 import styled from 'styled-components';
 import LoadingBox from 'Components/Common/LoadingBox/LoadingBox';
+import { motion } from 'framer-motion';
 import HeartBeat from './Heart';
-import font from '../styles/font'
+import font from '../styles/font';
 
 type ModalProps = {
   children: React.ReactNode;
@@ -42,6 +43,7 @@ const WaitModal = ({ onClose }: WatiModalProps) => {
     <ModalWrapper>
       <ModalTitle>대화 상대를 찾고 있어요</ModalTitle>
       <LoadingBox />
+
       <ModalBtnContainer>
         <ModalBtn onClick={onClose}>취소</ModalBtn>
       </ModalBtnContainer>
@@ -51,14 +53,21 @@ const WaitModal = ({ onClose }: WatiModalProps) => {
 
 const ConsentModal = React.memo(({ onAgree, onRefuse }: ConsentModalProps) => {
   return (
-    <ModalWrapper>
-      <ModalTitle>상대방과 대화를 연장하시겠습니까?</ModalTitle>
-      <ModalBtnContainer>
-        <ModalBtn onClick={onAgree}>연장하기</ModalBtn>
-        <ModalBtn onClick={onRefuse}>거절하기</ModalBtn>
-      </ModalBtnContainer>
-      <ModalInfo>상호 동의시 코인이 차감되고 대화가 연장됩니다.</ModalInfo>
-    </ModalWrapper>
+    <motion.div
+      className="loginPage"
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 2 }}
+      exit={{ opacity: 0 }}
+    >
+      <ModalWrapper>
+        <ModalTitle>상대방과 대화를 연장하시겠습니까?</ModalTitle>
+        <ModalBtnContainer>
+          <ModalBtn onClick={onAgree}>연장하기</ModalBtn>
+          <ModalBtn onClick={onRefuse}>거절하기</ModalBtn>
+        </ModalBtnContainer>
+        <ModalInfo>상호 동의시 코인이 차감되고 대화가 연장됩니다.</ModalInfo>
+      </ModalWrapper>
+    </motion.div>
   );
 });
 
@@ -73,15 +82,24 @@ const InfoModal = React.memo(
     btnName2,
   }: InfoModal) => {
     return (
-      <ModalWrapper>
-        <ModalTitle>{infoContent}</ModalTitle>
-        <ModalBtnContainer>
-          {continueEvent && (
-            <ModalBtn onClick={continueEvent}>{btnName1}</ModalBtn>
-          )}
-          {finishEvent && <ModalBtn onClick={finishEvent}>{btnName2}</ModalBtn>}
-        </ModalBtnContainer>
-      </ModalWrapper>
+      <motion.div
+        className="loginPage"
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 2 }}
+        exit={{ opacity: 0 }}
+      >
+        <ModalWrapper>
+          <ModalTitle>{infoContent}</ModalTitle>
+          <ModalBtnContainer>
+            {continueEvent && (
+              <ModalBtn onClick={continueEvent}>{btnName1}</ModalBtn>
+            )}
+            {finishEvent && (
+              <ModalBtn onClick={finishEvent}>{btnName2}</ModalBtn>
+            )}
+          </ModalBtnContainer>
+        </ModalWrapper>
+      </motion.div>
     );
   },
 );
@@ -90,7 +108,7 @@ InfoModal.displayName = 'InfoModal';
 
 interface ReportModalProps {
   infoContent: string;
-  setReportReson?: (reason:string) => void;
+  setReportReson?: (reason: string) => void;
   onClose: () => void;
   doReport: () => void;
   reportReasons?: string[];
@@ -106,34 +124,41 @@ const ReportModal = React.memo(
     selectedReason,
   }: ReportModalProps) => {
     return (
-      <ReportModalLayout>
-        <ModalTitle>{infoContent}</ModalTitle>
-        <ReportModalBtnContainer>
-          {[
-            '성적 발언',
-            '혐오발언',
-            '불법 정보',
-            '도배',
-            '개인정보노출 및 강요',
-          ].map((reason, index) => (
-            <ReportBtn
-              key={index}
-              value={reason}
-              onClick={() => {
-                // eslint-disable-next-line no-unused-expressions
-                setReportReson && setReportReson(reason);
-              }}
-              selected={selectedReason === reason}
-            >
-              {reason}
-            </ReportBtn>
-          ))}
-          <ModalBtnContainer>
-            <ModalBtn onClick={doReport}>신고후 나가기</ModalBtn>
-            <ModalBtn onClick={onClose}>취소</ModalBtn>
-          </ModalBtnContainer>
-        </ReportModalBtnContainer>
-      </ReportModalLayout>
+      <motion.div
+        className="loginPage"
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 2 }}
+        exit={{ opacity: 0 }}
+      >
+        <ReportModalLayout>
+          <ModalTitle>{infoContent}</ModalTitle>
+          <ReportModalBtnContainer>
+            {[
+              '성적 발언',
+              '혐오발언',
+              '불법 정보',
+              '도배',
+              '개인정보노출 및 강요',
+            ].map((reason, index) => (
+              <ReportBtn
+                key={index}
+                value={reason}
+                onClick={() => {
+                  // eslint-disable-next-line no-unused-expressions
+                  setReportReson && setReportReson(reason);
+                }}
+                selected={selectedReason === reason}
+              >
+                {reason}
+              </ReportBtn>
+            ))}
+            <ModalBtnContainer>
+              <ModalBtn onClick={doReport}>신고후 나가기</ModalBtn>
+              <ModalBtn onClick={onClose}>취소</ModalBtn>
+            </ModalBtnContainer>
+          </ReportModalBtnContainer>
+        </ReportModalLayout>
+      </motion.div>
     );
   },
   (prevProps, nextProps) => {
@@ -145,20 +170,34 @@ ReportModal.displayName = 'ReportModal';
 
 const ReviewModal = ({ children }: ReviewModalProps) => {
   return (
-    <ModalWrapper>
-      <ModalTitle>오늘 대화는 어떠셨나요?</ModalTitle>
-      {children}
-    </ModalWrapper>
+    <motion.div
+      className="loginPage"
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 2 }}
+      exit={{ opacity: 0 }}
+    >
+      <ModalWrapper>
+        <ModalTitle>오늘 대화는 어떠셨나요?</ModalTitle>
+        {children}
+      </ModalWrapper>
+    </motion.div>
   );
 };
 
 const AgreeModal = () => {
   return (
-    <ModalWrapper>
-      <ModalTitle>연장 성공!</ModalTitle>
-      <HeartBeat />
-      <ModalInfo>5초후 대화가 자동으로 시작됩니다.</ModalInfo>
-    </ModalWrapper>
+    <motion.div
+      className="loginPage"
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 2 }}
+      exit={{ opacity: 0 }}
+    >
+      <ModalWrapper>
+        <ModalTitle>연장 성공!</ModalTitle>
+        <HeartBeat />
+        <ModalInfo>5초후 대화가 자동으로 시작됩니다.</ModalInfo>
+      </ModalWrapper>
+    </motion.div>
   );
 };
 

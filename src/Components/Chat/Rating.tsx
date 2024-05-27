@@ -4,6 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import AlertModal from 'Components/Modal/AlertModal';
 import { extractOtherUserId } from 'utils/extractCookie';
 import styled from 'styled-components';
+import { motion } from 'framer-motion';
 
 function Rating({ socket }: any): JSX.Element {
   const [clicked, setClicked] = useState<boolean[]>([
@@ -46,30 +47,36 @@ function Rating({ socket }: any): JSX.Element {
   };
 
   return (
-    <Wrap>
-      {Alert && (
-        <AlertModal
-          icon="success"
-          title="리뷰 등록 성공"
-          msg="리뷰가 성공적으로 저장되었습니다."
-          btn1="확인"
-          onClose={offmodal}
-        />
-      )}
-      <Stars>
-        {[0, 1, 2, 3, 4].map((el, idx) => {
-          return (
-            <FaStar
-              key={idx}
-              size="50"
-              onClick={() => handleStarClick(el)}
-              className={clicked[el] ? 'yellowStar' : ''}
-            />
-          );
-        })}
-      </Stars>
-      <RatingBtn onClick={sendReview}>보내기</RatingBtn>
-    </Wrap>
+    <motion.div
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 2 }}
+      exit={{ opacity: 0 }}
+    >
+      <Wrap>
+        {Alert && (
+          <AlertModal
+            icon="success"
+            title="리뷰 등록 성공"
+            msg="리뷰가 성공적으로 저장되었습니다."
+            btn1="확인"
+            onClose={offmodal}
+          />
+        )}
+        <Stars>
+          {[0, 1, 2, 3, 4].map((el, idx) => {
+            return (
+              <FaStar
+                key={idx}
+                size="50"
+                onClick={() => handleStarClick(el)}
+                className={clicked[el] ? 'yellowStar' : ''}
+              />
+            );
+          })}
+        </Stars>
+        <RatingBtn onClick={sendReview}>보내기</RatingBtn>
+      </Wrap>
+    </motion.div>
   );
 }
 

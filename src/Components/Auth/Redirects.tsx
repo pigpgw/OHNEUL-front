@@ -2,13 +2,10 @@ import React, { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 import { useDispatch } from 'react-redux';
+import phrase from 'assets/images/appCatchphrase.png';
 
-const Wrap = styled.div`
-  margin-top: 200px;
-  min-height: 1100px;
-`;
-
-const Redirect: React.FC = () => {
+const PhraseContainer = styled.div``;
+const Redirects: React.FC = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
@@ -27,9 +24,11 @@ const Redirect: React.FC = () => {
 
   return (
     <>
-      <Wrap>로딩중</Wrap>
+      <PhraseContainer>
+        <img src={phrase} alt="phrase"></img>
+      </PhraseContainer>
     </>
   );
 };
 
-export default Redirect;
+export default Redirects;

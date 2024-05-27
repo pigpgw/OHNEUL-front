@@ -15,6 +15,7 @@ const Kakao = styled.img`
   max-height: 40px;
   border-radius: 15px;
 `;
+
 const Naver = styled.img`
   width: 3%;
   height: 3%;
@@ -29,20 +30,36 @@ const Naver = styled.img`
 function SocialImage() {
   const [name, setName] = useState<string>('');
   const [flatform, token, rewardCoin, userId, isAdmin] = meltedCookie();
+
   useEffect(() => {
     const fetchUserName = async () => {
-      const userName: any = await axios
-        .get(`${process.env.REACT_APP_BASE_URL}/users/${userId}`)
-        .then((res) => res.data.username);
-      setName(userName);
+      if (!userId) {
+        console.error('User ID is null or undefined');
+        return;
+      }
+      try {
+        const response = await axios.get(
+          `${process.env.REACT_APP_BASE_URL}/users/${userId}`,
+        );
+        const userName = response.data.username;
+        if (userName) {
+          setName(userName);
+        } else {
+          console.error('Username is null or undefined');
+        }
+      } catch (error) {
+        console.error('Error fetching user:', error);
+      }
     };
+
     fetchUserName();
-  }, []);
+  }, [userId]);
+
   return (
     <Wrapper>
       {flatform === 'kakao' ? (
         <>
-          <Kakao src={KakaoBogo}></Kakao>{' '}
+          <Kakao src={KakaoBogo}></Kakao>
           <p>당신의 오늘은 어떠셨나요 {name}님?</p>
         </>
       ) : (
@@ -54,6 +71,7 @@ function SocialImage() {
     </Wrapper>
   );
 }
+
 export default SocialImage;
 
 const Wrapper = styled.div`

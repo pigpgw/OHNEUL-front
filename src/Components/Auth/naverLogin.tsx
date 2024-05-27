@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { motion } from 'framer-motion';
 import NaverImg from '../../assets/images/naverBogo.jpeg';
 
 const NaverLoginButton = styled.button`
@@ -27,10 +28,17 @@ const NaverLogin: React.FC = () => {
   };
 
   return (
-    <NaverLoginButton onClick={loginRedirect}>
-      <img alt="" src={NaverImg}></img>
-      네이버 로그인
-    </NaverLoginButton>
+    <motion.div
+      className="loginPage"
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 2 }}
+      exit={{ opacity: 0 }}
+    >
+      <NaverLoginButton onClick={loginRedirect}>
+        <img alt="" src={NaverImg}></img>
+        네이버 로그인
+      </NaverLoginButton>
+    </motion.div>
   );
 };
 
