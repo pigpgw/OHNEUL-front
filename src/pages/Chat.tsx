@@ -86,10 +86,6 @@ function Chat({ socket }: any): JSX.Element {
 
   const [isInputActive, setIsInputActive] = useState<boolean>(false);
 
-  const handleMessageContainerHeight = () => {
-    return window.innerHeight - 140; // 이 값은 필요에 따라 조절 가능
-  };
-
   useEffect(() => {
     if (!socket) return;
     const fetchSetUserInfo = async (id: string) => {
@@ -429,7 +425,6 @@ function Chat({ socket }: any): JSX.Element {
           messageList={messageList}
           handleMyProFile={handleMyProfile}
           handleOhterProFile={handleOtherProfile}
-          style={{ maxHeight: `${handleMessageContainerHeight()}px` }} // 스타일 전달
         />
         {remainingTime !== 0 && (
           <ChatInputForm
