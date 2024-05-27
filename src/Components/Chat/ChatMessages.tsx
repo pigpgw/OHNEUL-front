@@ -48,9 +48,9 @@ function ChatMessages({
               </ProfileWrapper>
             ) : null}
             <ChatMessageWrapper className={v.type}>{v.msg}</ChatMessageWrapper>
+            <div ref={messagesEndRef} />
           </ChatMessageItemBox>
         ))}
-        <div ref={messagesEndRef} />
       </ChatMessagesWrapper>
     </div>
   );
