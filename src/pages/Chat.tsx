@@ -420,18 +420,18 @@ function Chat({ socket }: any): JSX.Element {
             btnName2="나가기"
           />
         )}
-        <ChatMessages
+        {/* <ChatMessages
           messageList={messageList}
           handleMyProFile={handleMyProfile}
           handleOhterProFile={handleOtherProfile}
-        />
+        /> */}
         {remainingTime !== 0 && (
           <ChatInputForm
             msgSubmitHandler={msgSubmitHandler}
             msg={msg}
             msgChangeHandler={msgChangeHandler}
-            onFocus={() => setIsInputActive(true)} // 입력창이 활성화될 때
-            onBlur={() => setIsInputActive(false)} // 입력창이 비활성화될 때
+            onFocus={() => setIsInputActive(true)} 
+            onBlur={() => setIsInputActive(false)} 
           />
         )}
         {myProfileModal && (
