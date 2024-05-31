@@ -20,7 +20,6 @@ import { useNavigate } from 'react-router-dom';
 import Rating from 'Components/Chat/Rating';
 import { fecthGetUserHobby } from 'api/fetchGetOneUserHobby';
 import { fetchGetUserScore } from 'api/fetchGetUserScore';
-import { motion } from 'framer-motion';
 
 interface Message {
   msg: string;

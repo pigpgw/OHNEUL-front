@@ -36,14 +36,14 @@ function ChatMessages({
     <ChatMessagesWrapper>
       {messageList.map((v, i) => (
         <ChatMessageItemBox key={`${i}_li`} className={v.type}>
-          {v.type === 'me' || v.type === 'other' ? (
+          {/* {v.type === 'me' || v.type === 'other' ? (
             <ProfileWrapper>
               <Profile
                 className={v.type}
                 onClick={v.type === 'me' ? handleMyProFile : handleOhterProFile}
               />
             </ProfileWrapper>
-          ) : null}
+          ) : null} */}
           <ChatMessageWrapper className={v.type}>{v.msg}</ChatMessageWrapper>
         </ChatMessageItemBox>
       ))}
