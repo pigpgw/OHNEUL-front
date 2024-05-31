@@ -20,17 +20,17 @@ function ChatMessages({
   handleMyProFile,
   handleOhterProFile,
 }: MessageListProps): JSX.Element {
-  const messagesEndRef = useRef<HTMLDivElement>(null);
+  // const messagesEndRef = useRef<HTMLDivElement>(null);
 
-  useEffect(() => {
-    scrollToBottom();
-  }, [messageList]);
+  // useEffect(() => {
+  //   scrollToBottom();
+  // }, [messageList]);
 
-  const scrollToBottom = () => {
-    if (messagesEndRef.current) {
-      messagesEndRef.current.scrollIntoView({ behavior: 'smooth' });
-    }
-  };
+  // const scrollToBottom = () => {
+  //   if (messagesEndRef.current) {
+  //     messagesEndRef.current.scrollIntoView({ behavior: 'smooth' });
+  //   }
+  // };
 
   return (
     <ChatMessagesWrapper>
@@ -47,7 +47,7 @@ function ChatMessages({
           <ChatMessageWrapper className={v.type}>{v.msg}</ChatMessageWrapper>
         </ChatMessageItemBox>
       ))}
-      <div ref={messagesEndRef} />
+      {/* <div ref={messagesEndRef} /> */}
     </ChatMessagesWrapper>
   );
 }
@@ -79,7 +79,6 @@ const ChatMessagesWrapper = styled.div`
   flex-direction: column;
   padding: 2% 0;
   overflow-y: scroll;
-  max-height: 500px;
   justify-content: center;
 `;
 
