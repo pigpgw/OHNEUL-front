@@ -71,7 +71,7 @@ jobs:
           script: |
             cd /home/ec2-user/OHNEUL-front
             git remote update
-            git pull origin main
+            git pull --no-rebase origin main
 
       - name: Setting .env
         uses: appleboy/ssh-action@v0.1.6
