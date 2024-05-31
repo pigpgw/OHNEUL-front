@@ -71,6 +71,8 @@ jobs:
           script: |
             cd /home/ec2-user/OHNEUL-front
             git remote update
+            git fetch origin
+            git reset --hard origin/main
 
       - name: Setting .env
         uses: appleboy/ssh-action@v0.1.6
