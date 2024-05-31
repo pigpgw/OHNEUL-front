@@ -6,8 +6,12 @@ on:
   pull_request:
     types: [closed]
     branches:
+<<<<<<< HEAD
       - main     
       
+=======
+      - main
+>>>>>>> 314da32 (docs: 불필요한 코드 삭제)
 jobs:
   deploy:
     runs-on: ubuntu-latest
@@ -93,7 +97,6 @@ jobs:
           # if: steps.cache.outputs.cache-hit != 'true'
           script: |
              cd /home/ec2-user/OHNEUL-front
-             npm ci
              # npm ci
              
       - name: Restart server
