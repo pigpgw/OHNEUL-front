@@ -6,25 +6,21 @@ on:
   pull_request:
     types: [closed]
     branches:
-<<<<<<< HEAD
-      - main     
-      
-=======
       - main
->>>>>>> 314da32 (docs: 불필요한 코드 삭제)
+
 jobs:
   deploy:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repository
         uses: actions/checkout@v3
-        
+
       - name: Set up Node.js
         uses: actions/setup-node@v3
         with:
           node-version: '16'
           cache: 'npm'
-          
+
       - name: Cache dependencies
         uses: actions/cache@v2
         with:
@@ -32,12 +28,12 @@ jobs:
           key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
           restore-keys: |
             ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
-            
+
       - name: Setup SSH
         uses: webfactory/ssh-agent@v0.5.3
         with:
           ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}
-          
+
       - name: Create directory
         uses: appleboy/ssh-action@v0.1.6
         with:
@@ -46,7 +42,7 @@ jobs:
           key: ${{ secrets.SSH_PRIVATE_KEY }}
           script: |
             sudo mkdir -p /home/ec2-user/OHNEUL-front
-            
+
       - name: Change ownership
         uses: appleboy/ssh-action@v0.1.6
         with:
@@ -55,7 +51,7 @@ jobs:
           key: ${{ secrets.SSH_PRIVATE_KEY }}
           script: |
             sudo chown -R ec2-user:ec2-user /home/ec2-user/OHNEUL-front
-            
+
       - name: Update npm
         uses: appleboy/ssh-action@v0.1.6
         with:
@@ -65,7 +61,7 @@ jobs:
           script: |
             sudo yum update -y
             # npm install pm2 -g
-            
+
       - name: Go to project directory and pull latest code
         uses: appleboy/ssh-action@v0.1.6
         with:
@@ -76,7 +72,7 @@ jobs:
             cd /home/ec2-user/OHNEUL-front
             git remote update
             git pull origin main
-            
+
       - name: Setting .env
         uses: appleboy/ssh-action@v0.1.6
         with:
@@ -87,7 +83,7 @@ jobs:
             echo "REACT_APP_BASE_URL=${{ secrets.REACT_APP_BASE_URL }}" > .env
             echo "REACT_APP_TOSS_PAYMENTS_CLIENT_KEY=${{ secrets.REACT_APP_TOSS_PAYMENTS_CLIENT_KEY }}" >> .env
             echo "REACT_APP_TOSS_PAYMENTS_SECRET_KEY=${{ secrets.REACT_APP_TOSS_PAYMENTS_SECRET_KEY }}" >> .env
-    
+
       - name: Install project dependencies
         uses: appleboy/ssh-action@v0.1.6
         with:
@@ -96,9 +92,9 @@ jobs:
           key: ${{ secrets.SSH_PRIVATE_KEY }}
           # if: steps.cache.outputs.cache-hit != 'true'
           script: |
-             cd /home/ec2-user/OHNEUL-front
-             # npm ci
-             
+            cd /home/ec2-user/OHNEUL-front
+            # npm ci
+
       - name: Restart server
         uses: appleboy/ssh-action@v0.1.6
         with:
@@ -107,7 +103,7 @@ jobs:
           key: ${{ secrets.SSH_PRIVATE_KEY }}
           script: |
             pm2 restart ohneul-client || pm2 start npm --name ohneul-client -- start:dev
-            
+
       - name: Check PM2 list
         uses: appleboy/ssh-action@v0.1.6
         with:
