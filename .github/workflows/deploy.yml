@@ -13,12 +13,6 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v3
-      # - uses: actions/setup-node@v3 # 버전에 맞게 node.js 설치
-      #   with:
-      #     # node-version-file: '.nvmrc' # .nvmrc 파일을 기준으로 삼는다.
-      #     node-version: '18'
-      #     cache: 'npm'
-      
       - name: Set up Node.js
         uses: actions/setup-node@v3
         with:
