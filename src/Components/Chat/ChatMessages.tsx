@@ -33,27 +33,22 @@ function ChatMessages({
   };
 
   return (
-    <div>
-      {' '}
-      <ChatMessagesWrapper>
-        {messageList.map((v, i) => (
-          <ChatMessageItemBox key={`${i}_li`} className={v.type}>
-            {v.type === 'me' || v.type === 'other' ? (
-              <ProfileWrapper>
-                <Profile
-                  className={v.type}
-                  onClick={
-                    v.type === 'me' ? handleMyProFile : handleOhterProFile
-                  }
-                />
-              </ProfileWrapper>
-            ) : null}
-            <ChatMessageWrapper className={v.type}>{v.msg}</ChatMessageWrapper>
-          </ChatMessageItemBox>
-        ))}
-        <div ref={messagesEndRef} />
-      </ChatMessagesWrapper>
-    </div>
+    <ChatMessagesWrapper>
+      {messageList.map((v, i) => (
+        <ChatMessageItemBox key={`${i}_li`} className={v.type}>
+          {v.type === 'me' || v.type === 'other' ? (
+            <ProfileWrapper>
+              <Profile
+                className={v.type}
+                onClick={v.type === 'me' ? handleMyProFile : handleOhterProFile}
+              />
+            </ProfileWrapper>
+          ) : null}
+          <ChatMessageWrapper className={v.type}>{v.msg}</ChatMessageWrapper>
+        </ChatMessageItemBox>
+      ))}
+      <div ref={messagesEndRef} />
+    </ChatMessagesWrapper>
   );
 }
 

@@ -1,10 +1,7 @@
 import Coin from 'Components/Common/Header/Coin';
 import Exit from 'Components/Common/Header/Exit';
 import ReportIcon from 'Components/Common/Header/Report';
-import {
-  HeaderContainer,
-  TimerContainer,
-} from '../styles/Header';
+import { HeaderContainer, TimerContainer } from '../styles/Header';
 
 import HeaderTimerLine from './HeaderLineTimer';
 import Timer from './Timer';

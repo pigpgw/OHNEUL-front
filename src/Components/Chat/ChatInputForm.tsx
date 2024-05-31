@@ -74,6 +74,9 @@ function ChatInputForm({
 const ChatInputContainer = styled.div`
   width: 100%;
   margin: 5px;
+  position: fixed;
+  top: 90%;
+  left: 0;
 `;
 
 const ChatInput = styled.input`
