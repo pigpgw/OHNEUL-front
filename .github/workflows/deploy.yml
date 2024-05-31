@@ -92,6 +92,7 @@ jobs:
           # if: steps.cache.outputs.cache-hit != 'true'
           script: |
             cd /home/ec2-user/OHNEUL-front
+            npm run build
             # npm ci
 
       - name: Restart server
