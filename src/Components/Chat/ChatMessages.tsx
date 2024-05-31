@@ -33,26 +33,22 @@ function ChatMessages({
   };
 
   return (
-    <div style={{height:'100px'}}>
-      <ChatMessagesWrapper>
-        {messageList.map((v, i) => (
-          <ChatMessageItemBox key={`${i}_li`} className={v.type}>
-            {v.type === 'me' || v.type === 'other' ? (
-              <ProfileWrapper>
-                <Profile
-                  className={v.type}
-                  onClick={
-                    v.type === 'me' ? handleMyProFile : handleOhterProFile
-                  }
-                />
-              </ProfileWrapper>
-            ) : null}
-            <ChatMessageWrapper className={v.type}>{v.msg}</ChatMessageWrapper>
-            <div ref={messagesEndRef} />
-          </ChatMessageItemBox>
-        ))}
-      </ChatMessagesWrapper>
-    </div>
+    <ChatMessagesWrapper>
+      {messageList.map((v, i) => (
+        <ChatMessageItemBox key={`${i}_li`} className={v.type}>
+          {v.type === 'me' || v.type === 'other' ? (
+            <ProfileWrapper>
+              <Profile
+                className={v.type}
+                onClick={v.type === 'me' ? handleMyProFile : handleOhterProFile}
+              />
+            </ProfileWrapper>
+          ) : null}
+          <ChatMessageWrapper className={v.type}>{v.msg}</ChatMessageWrapper>
+        </ChatMessageItemBox>
+      ))}
+      <div ref={messagesEndRef} />
+    </ChatMessagesWrapper>
   );
 }
 
@@ -74,6 +70,7 @@ const Profile = styled(IoPerson)`
 `;
 
 const ChatMessagesWrapper = styled.div`
+  width: 100%;
   list-style: none;
   margin: 0;
   border-radius: 10px;
@@ -82,6 +79,8 @@ const ChatMessagesWrapper = styled.div`
   flex-direction: column;
   padding: 2% 0;
   overflow-y: scroll;
+  max-height: 500px;
+  justify-content: center;
 `;
 
 const ChatMessageItemBox = styled.div`

@@ -31,7 +31,6 @@ const socket = io(`${process.env.REACT_APP_BASE_URL}`);
 function AppRouter() {
   return (
     <BrowserRouter>
-      <AnimatePresence>
         <Routes>
           <Route path="/login/kakao" element={<Redirects />} />
           <Route path="/login/naver" element={<Redirects />} />
@@ -87,7 +86,6 @@ function AppRouter() {
             element={<PrivateRoute element={PostAnnouncement} />}
           />
         </Routes>
-      </AnimatePresence>
     </BrowserRouter>
   );
 }

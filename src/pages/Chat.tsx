@@ -349,110 +349,103 @@ function Chat({ socket }: any): JSX.Element {
 
   return (
     <>
-      <motion.div
-        className="loginPage"
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 2 }}
-        exit={{ opacity: 0 }}
-      >
-        <ChatHeader
-          minutes={minutes}
-          seconds={seconds}
-          reportIconClick={onReportModal}
-          onRefuse={onRefuse}
-          onForExitModal={onForExitModal}
-          aniTime={aniTime}
-        ></ChatHeader>
-        {reportAlert && (
-          <AlertModal
-            icon="success"
-            title="신고 완료"
-            msg="신고가 정상적으로 완료되었습니다."
-            btn1="확인"
-            onClose={offAlertReportModal}
-          />
-        )}
-        {alertModal && (
-          <AlertModal
-            icon="warning"
-            title="연장 불가"
-            msg="코인이 부족합니다."
-            btn1="확인"
-            onClose={offAlertModal}
-          />
-        )}
-        {consentModal && !exitModal && (
-          <ConsentModal onAgree={onAgree} onRefuse={onRefuse}></ConsentModal>
-        )}
-        {consentWaitModal && (
-          <InfoModal
-            infoContent={'상대방이 응답을 하는중입니다. 잠시만 기다려주세요'}
-          ></InfoModal>
-        )}
-        {exitModal && (
-          <InfoModal
-            btnName2="나가기"
-            finishEvent={goThemePage}
-            infoContent="상대방이 나갔습니다 10초뒤 주제 선택 페이지로 이동합니다.."
-          ></InfoModal>
-        )}
-        {reportModal && (
-          <ReportModal
-            infoContent="신고"
-            setReportReson={setReportReson}
-            onClose={offReportModal}
-            selectedReason={reportReason}
-            doReport={reportUser}
-          />
-        )}
-        {agreeModal && <AgreeModal />}
-        {reviewModal && (
-          <ReviewModal>
-            <Rating socket={socket} />
-          </ReviewModal>
-        )}
-        {forExitModal && (
-          <InfoModal
-            infoContent="대화를 종료하시겠습니까?"
-            continueEvent={offForExitModal}
-            finishEvent={onRefuse}
-            btnName1="계속하기"
-            btnName2="나가기"
-          />
-        )}
-        {/* <ChatMessages
-          messageList={messageList}
-          handleMyProFile={handleMyProfile}
-          handleOhterProFile={handleOtherProfile}
-        /> */}
-        {remainingTime !== 0 && (
-          <ChatInputForm
-            msgSubmitHandler={msgSubmitHandler}
-            msg={msg}
-            msgChangeHandler={msgChangeHandler}
-            onFocus={() => setIsInputActive(true)} 
-            onBlur={() => setIsInputActive(false)} 
-          />
-        )}
-        {myProfileModal && (
-          <ProfileModal
-            user={'나'}
-            reviewScore={Number(user.score)}
-            favorite={user.hobby}
-            mood={user.mood}
-            handleModal={handleMyProfile}
-          />
-        )}
-        {otherProfileModal && (
-          <ProfileModal
-            user={'상대방'}
-            reviewScore={Number(other.score)}
-            favorite={other.hobby}
-            mood={other.mood}
-            handleModal={handleOtherProfile}
-          />
-        )}
-      </motion.div>
+      <ChatHeader
+        minutes={minutes}
+        seconds={seconds}
+        reportIconClick={onReportModal}
+        onRefuse={onRefuse}
+        onForExitModal={onForExitModal}
+        aniTime={aniTime}
+      ></ChatHeader>
+      {reportAlert && (
+        <AlertModal
+          icon="success"
+          title="신고 완료"
+          msg="신고가 정상적으로 완료되었습니다."
+          btn1="확인"
+          onClose={offAlertReportModal}
+        />
+      )}
+      {alertModal && (
+        <AlertModal
+          icon="warning"
+          title="연장 불가"
+          msg="코인이 부족합니다."
+          btn1="확인"
+          onClose={offAlertModal}
+        />
+      )}
+      {consentModal && !exitModal && (
+        <ConsentModal onAgree={onAgree} onRefuse={onRefuse}></ConsentModal>
+      )}
+      {consentWaitModal && (
+        <InfoModal
+          infoContent={'상대방이 응답을 하는중입니다. 잠시만 기다려주세요'}
+        ></InfoModal>
+      )}
+      {exitModal && (
+        <InfoModal
+          btnName2="나가기"
+          finishEvent={goThemePage}
+          infoContent="상대방이 나갔습니다 10초뒤 주제 선택 페이지로 이동합니다.."
+        ></InfoModal>
+      )}
+      {reportModal && (
+        <ReportModal
+          infoContent="신고"
+          setReportReson={setReportReson}
+          onClose={offReportModal}
+          selectedReason={reportReason}
+          doReport={reportUser}
+        />
+      )}
+      {agreeModal && <AgreeModal />}
+      {reviewModal && (
+        <ReviewModal>
+          <Rating socket={socket} />
+        </ReviewModal>
+      )}
+      {forExitModal && (
+        <InfoModal
+          infoContent="대화를 종료하시겠습니까?"
+          continueEvent={offForExitModal}
+          finishEvent={onRefuse}
+          btnName1="계속하기"
+          btnName2="나가기"
+        />
+      )}
+      <ChatMessages
+        messageList={messageList}
+        handleMyProFile={handleMyProfile}
+        handleOhterProFile={handleOtherProfile}
+      />
+      {remainingTime !== 0 && (
+        <ChatInputForm
+          msgSubmitHandler={msgSubmitHandler}
+          msg={msg}
+          msgChangeHandler={msgChangeHandler}
+          onFocus={() => setIsInputActive(true)} // 입력창이 활성화될 때
+          onBlur={() => setIsInputActive(false)} // 입력창이 비활성화될 때
+        />
+      )}
+      {myProfileModal && (
+        <ProfileModal
+          user={'나'}
+          reviewScore={Number(user.score)}
+          favorite={user.hobby}
+          mood={user.mood}
+          handleModal={handleMyProfile}
+        />
+      )}
+      {otherProfileModal && (
+        <ProfileModal
+          user={'상대방'}
+          reviewScore={Number(other.score)}
+          favorite={other.hobby}
+          mood={other.mood}
+          handleModal={handleOtherProfile}
+        />
+      )}
     </>
   );
 }
