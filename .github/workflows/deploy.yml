@@ -1,5 +1,4 @@
 name: deploy
-
 on:
   push:
     branches:
@@ -8,28 +7,34 @@ on:
     types: [closed]
     branches:
       - main     
-
 jobs:
   deploy:
     runs-on: ubuntu-latest
-
     steps:
       - name: Checkout repository
         uses: actions/checkout@v3
-
+      # - uses: actions/setup-node@v3 # 버전에 맞게 node.js 설치
+      #   with:
+      #     # node-version-file: '.nvmrc' # .nvmrc 파일을 기준으로 삼는다.
+      #     node-version: '18'
+      #     cache: 'npm'
+      
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '16'
+          cache: 'npm'
       - name: Cache dependencies
         uses: actions/cache@v2
         with:
           path: ~/.npm
-          key: ${{ runner.os }}-npm-${{ hashFiles('**/package-lock.json') }}
+          key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
           restore-keys: |
-            ${{ runner.os }}-npm-
-
+            ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
       - name: Setup SSH
         uses: webfactory/ssh-agent@v0.5.3
         with:
           ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}
-
       - name: Create directory
         uses: appleboy/ssh-action@v0.1.6
         with:
@@ -38,7 +43,6 @@ jobs:
           key: ${{ secrets.SSH_PRIVATE_KEY }}
           script: |
             sudo mkdir -p /home/ec2-user/OHNEUL-front
-
       - name: Change ownership
         uses: appleboy/ssh-action@v0.1.6
         with:
@@ -47,7 +51,15 @@ jobs:
           key: ${{ secrets.SSH_PRIVATE_KEY }}
           script: |
             sudo chown -R ec2-user:ec2-user /home/ec2-user/OHNEUL-front
-
+      - name: Update npm
+        uses: appleboy/ssh-action@v0.1.6
+        with:
+          host: ${{ secrets.HOST }}
+          username: ${{ secrets.USER }}
+          key: ${{ secrets.SSH_PRIVATE_KEY }}
+          script: |
+            sudo yum update -y
+            # npm install pm2 -g
       - name: Go to project directory and pull latest code
         uses: appleboy/ssh-action@v0.1.6
         with:
@@ -56,28 +68,8 @@ jobs:
           key: ${{ secrets.SSH_PRIVATE_KEY }}
           script: |
             cd /home/ec2-user/OHNEUL-front
+            git remote update
             git pull origin main
-
-      - name: Install dependencies
-        uses: appleboy/ssh-action@v0.1.6
-        with:
-          host: ${{ secrets.HOST }}
-          username: ${{ secrets.USER }}
-          key: ${{ secrets.SSH_PRIVATE_KEY }}
-          script: |
-            sudo yum update -y
-            sudo yum install -y nodejs npm
-            sudo npm install -g pm2 dotenv
-
-      - name: Go to project directory
-        uses: appleboy/ssh-action@v0.1.6
-        with:
-          host: ${{ secrets.HOST }}
-          username: ${{ secrets.USER }}
-          key: ${{ secrets.SSH_PRIVATE_KEY }}
-          script: |
-            cd /home/ec2-user/OHNEUL-front
-
       - name: Setting .env
         uses: appleboy/ssh-action@v0.1.6
         with:
@@ -85,20 +77,20 @@ jobs:
           username: ${{ secrets.USER }}
           key: ${{ secrets.SSH_PRIVATE_KEY }}
           script: |
-            echo "REACT_APP_BASE_URL=${{ secrets.REACT_APP_BASE_URL }}" >> .env
+            echo "REACT_APP_BASE_URL=${{ secrets.REACT_APP_BASE_URL }}" > .env
             echo "REACT_APP_TOSS_PAYMENTS_CLIENT_KEY=${{ secrets.REACT_APP_TOSS_PAYMENTS_CLIENT_KEY }}" >> .env
             echo "REACT_APP_TOSS_PAYMENTS_SECRET_KEY=${{ secrets.REACT_APP_TOSS_PAYMENTS_SECRET_KEY }}" >> .env
-
       - name: Install project dependencies
         uses: appleboy/ssh-action@v0.1.6
         with:
           host: ${{ secrets.HOST }}
           username: ${{ secrets.USER }}
           key: ${{ secrets.SSH_PRIVATE_KEY }}
+          # if: steps.cache.outputs.cache-hit != 'true'
           script: |
-            cd /home/ec2-user/OHNEUL-front
-            npm install
-
+             cd /home/ec2-user/OHNEUL-front
+             npm ci
+             # npm ci
       - name: Restart server
         uses: appleboy/ssh-action@v0.1.6
         with:
@@ -106,8 +98,7 @@ jobs:
           username: ${{ secrets.USER }}
           key: ${{ secrets.SSH_PRIVATE_KEY }}
           script: |
-            sudo pm2 restart ohneul-client || sudo pm2 start npm --name ohneul-client -- start:dev
-
+            pm2 restart ohneul-client || pm2 start npm --name ohneul-client -- start:dev
       - name: Check PM2 list
         uses: appleboy/ssh-action@v0.1.6
         with:
@@ -115,4 +106,5 @@ jobs:
           username: ${{ secrets.USER }}
           key: ${{ secrets.SSH_PRIVATE_KEY }}
           script: |
-            sudo pm2 list
+            # export PATH=$PATH:/usr/local/bin
+            pm2 list
