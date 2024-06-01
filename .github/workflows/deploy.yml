@@ -94,7 +94,9 @@ jobs:
           script: |
             cd /home/ec2-user/OHNEUL-front
             npm ci
-            npm run build
+
+      - name: Build
+        run: npm run build
 
       - name: Restart server
         uses: appleboy/ssh-action@v0.1.6
