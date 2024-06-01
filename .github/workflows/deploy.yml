@@ -93,7 +93,7 @@ jobs:
           # if: steps.cache.outputs.cache-hit != 'true'
           script: |
             cd /home/ec2-user/OHNEUL-front
-            npm ci
+            npm install
 
       # - name: Build
       #   run: npm run build
