@@ -71,8 +71,7 @@ jobs:
           script: |
             cd /home/ec2-user/OHNEUL-front
             git remote update
-            git fetch origin
-            git reset --hard origin/main
+            git pull origin main
 
       - name: Setting .env
         uses: appleboy/ssh-action@v0.1.6
@@ -113,5 +112,4 @@ jobs:
           username: ${{ secrets.USER }}
           key: ${{ secrets.SSH_PRIVATE_KEY }}
           script: |
-            # export PATH=$PATH:/usr/local/bin
             pm2 list
