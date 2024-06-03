@@ -1,4 +1,5 @@
 name: deploy
+
 on:
   push:
     branches:
@@ -11,6 +12,7 @@ on:
 jobs:
   deploy:
     runs-on: ubuntu-latest
+
     steps:
       - name: Checkout repository
         uses: actions/checkout@v3
@@ -29,91 +31,46 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
 
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Build project
+        run: npm run build
+
       - name: Setup SSH
         uses: webfactory/ssh-agent@v0.5.3
         with:
           ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}
 
-      - name: Create directory
+      - name: Run SSH scripts
         uses: appleboy/ssh-action@v0.1.6
         with:
           host: ${{ secrets.HOST }}
           username: ${{ secrets.USER }}
           key: ${{ secrets.SSH_PRIVATE_KEY }}
           script: |
+            # Create project directory
             sudo mkdir -p /home/ec2-user/OHNEUL-front
-
-      - name: Change ownership
-        uses: appleboy/ssh-action@v0.1.6
-        with:
-          host: ${{ secrets.HOST }}
-          username: ${{ secrets.USER }}
-          key: ${{ secrets.SSH_PRIVATE_KEY }}
-          script: |
             sudo chown -R ec2-user:ec2-user /home/ec2-user/OHNEUL-front
 
-      # - name: Update npm
-      #   uses: appleboy/ssh-action@v0.1.6
-      #   with:
-      #     host: ${{ secrets.HOST }}
-      #     username: ${{ secrets.USER }}
-      #     key: ${{ secrets.SSH_PRIVATE_KEY }}
-      #     script: |
-      #       sudo yum update -y
-      #       # npm install pm2 -g
-
-      - name: Go to project directory and pull latest code
-        uses: appleboy/ssh-action@v0.1.6
-        with:
-          host: ${{ secrets.HOST }}
-          username: ${{ secrets.USER }}
-          key: ${{ secrets.SSH_PRIVATE_KEY }}
-          script: |
+            # Pull
             cd /home/ec2-user/OHNEUL-front
             git remote update
             git pull origin main
 
-      - name: Setting .env
-        uses: appleboy/ssh-action@v0.1.6
-        with:
-          host: ${{ secrets.HOST }}
-          username: ${{ secrets.USER }}
-          key: ${{ secrets.SSH_PRIVATE_KEY }}
-          script: |
+            # Set env
             echo "REACT_APP_BASE_URL=${{ secrets.REACT_APP_BASE_URL }}" > .env
             echo "REACT_APP_TOSS_PAYMENTS_CLIENT_KEY=${{ secrets.REACT_APP_TOSS_PAYMENTS_CLIENT_KEY }}" >> .env
             echo "REACT_APP_TOSS_PAYMENTS_SECRET_KEY=${{ secrets.REACT_APP_TOSS_PAYMENTS_SECRET_KEY }}" >> .env
 
-      - name: Install project dependencies
-        uses: appleboy/ssh-action@v0.1.6
-        with:
-          host: ${{ secrets.HOST }}
-          username: ${{ secrets.USER }}
-          key: ${{ secrets.SSH_PRIVATE_KEY }}
-          # if: steps.cache.outputs.cache-hit != 'true'
-          script: |
-            cd /home/ec2-user/OHNEUL-front
-            npm ci 
+            # Install project dependencies
+            npm ci
 
-      - name: Build
-        run: |
-           cd /home/ec2-user/OHNEUL-front
-           npm run build
+            # Build project
+            npm run build
 
-      - name: Restart server
-        uses: appleboy/ssh-action@v0.1.6
-        with:
-          host: ${{ secrets.HOST }}
-          username: ${{ secrets.USER }}
-          key: ${{ secrets.SSH_PRIVATE_KEY }}
-          script: |
+            # Restart server
             pm2 restart ohneul-client || pm2 start npm --name ohneul-client -- start:dev
 
-      - name: Check PM2 list
-        uses: appleboy/ssh-action@v0.1.6
-        with:
-          host: ${{ secrets.HOST }}
-          username: ${{ secrets.USER }}
-          key: ${{ secrets.SSH_PRIVATE_KEY }}
-          script: |
+            # Check PM2 list
             pm2 list
