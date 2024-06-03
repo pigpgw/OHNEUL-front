@@ -55,16 +55,6 @@ function EditTheme() {
     }
   };
 
-  // const handleUpdate = async () => {
-  //   try {
-  //     await FetchUpdateTheme(selectedTheme).then(() =>
-  //       alert('테마를 업ㅇ데이트했습니다.'),
-  //     );
-  //   } catch (error) {
-  //     console.error('업뎃없댓', error);
-  //   }
-  // };
-
   return (
     <Container>
       {' '}

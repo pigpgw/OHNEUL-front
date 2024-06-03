@@ -1,13 +1,17 @@
+/* eslint-disable no-console */
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 import Pagination from 'utils/Pagination';
 import axios from 'axios';
 import { useDispatch, useSelector } from 'react-redux';
-import { setAnnouncements } from 'stores/slices/announcementSlice';
-import { selectAnnouncements } from 'stores/slices/announcementSlice';
+import {
+  setAnnouncements,
+  selectAnnouncements,
+} from 'stores/slices/announcementSlice';
 import Arrow from 'assets/images/Arrow.png';
 import { Link } from 'react-router-dom';
-import { Wrapper, Title, Content } from 'Components/styles/Common';
+import { Wrapper } from 'Components/styles/Common';
 import { motion } from 'framer-motion';
 import AnnouncementItem from './AnnouncementItem';
 

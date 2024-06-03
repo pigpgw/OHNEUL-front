@@ -1,5 +1,7 @@
-import React, { useEffect, useState } from 'react';
-import { ItemBtn, Container } from 'Components/styles/Common';
+/* eslint-disable no-alert */
+/* eslint-disable no-console */
+import { useEffect, useState } from 'react';
+import { ItemBtn } from 'Components/styles/Common';
 import { useQuery } from 'react-query';
 import { fetchGetMood } from 'api/fetchMood';
 import { useAddUserMoodMutation } from 'hooks/useUserMoodMutation';

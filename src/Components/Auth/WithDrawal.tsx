@@ -1,5 +1,6 @@
-import React, { useEffect, useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+/* eslint-disable no-console */
+import React, { useState } from 'react';
+import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { logout, clearAuth } from 'stores/slices/userSlice';
 import axios from 'axios';
@@ -17,16 +18,16 @@ const Button = styled.button`
   outline: inherit;
   font-size: 2vh;
 `;
-interface User {
-  user: {
-    value: { user_id: string; refreshToken: string; provider: string };
-    isLogin: boolean;
-  };
-}
+// interface User {
+//   user: {
+//     value: { user_id: string; refreshToken: string; provider: string };
+//     isLogin: boolean;
+//   };
+// }
 const WithDrawal: React.FC = () => {
   const [withDrawModal, setWithDrawModal] = useState(false);
   const [withdrawn, setWithdrawn] = useState(false);
-  const user = useSelector((state: User) => state.user);
+  // const user = useSelector((state: User) => state.user);
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const deleteCookie = (name: string): void => {
@@ -34,7 +35,7 @@ const WithDrawal: React.FC = () => {
   };
 
   const handleWithDrawal = () => {
-    const [flatform, token, rewardCoin, userId] = meltedCookie();
+    const [userId] = meltedCookie();
     if (userId) {
       dispatch(clearAuth());
       dispatch(logout());

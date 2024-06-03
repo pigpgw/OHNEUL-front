@@ -1,10 +1,8 @@
-import axios from 'axios';
-import React, { useState, useEffect } from 'react';
+/* eslint-disable @typescript-eslint/no-explicit-any */
+import { useState } from 'react';
 import editButton from 'assets/images/editButton.png';
-import meltedCookie from 'utils/meltedCookie';
 import styled from 'styled-components';
 import InterestModal from 'Components/Mypage/InterestModal';
-import { useQuery } from 'react-query';
 
 interface HobbyData {
   hobby_id: number;
@@ -36,43 +34,42 @@ const Interest = () => {
   const handleModal = (itemName: any) => {
     setOpen(open === itemName ? null : itemName);
   };
-  const [flatform, token, rewardCoin, userId] = meltedCookie();
 
-  const [datas, setData] = useState<HobbyData[]>([]);
+  const [datas] = useState<HobbyData[]>([]);
   const handleCloseModal = () => {
     setOpen(null);
   };
-  interface HobbyTs {
-    hobby_id: number;
-    hobby: string;
-  }
-  const { isLoading, isError, data } = useQuery<HobbyTs | any>(
-    ['myhobby'],
-    async () => {
-      const allHobbiesResponse: any = await axios
-        .get(`${process.env.REACT_APP_BASE_URL}/hobbies`)
-        .then((res) => res.data);
-      const userHobbieseResponse: any = await axios
-        .get(`${process.env.REACT_APP_BASE_URL}/user-hobby/${userId}`)
-        .then((res) => res.data);
-      const hobby = () => {
-        const res = [];
-        for (let i = 0; i < allHobbiesResponse.length; i += 1) {
-          for (let j = 0; j < userHobbieseResponse.length; j += 1) {
-            if (
-              allHobbiesResponse[i].hobby_id ===
-              userHobbieseResponse[j].hobby_id
-            ) {
-              res.push(allHobbiesResponse[i]);
-            }
-          }
-        }
-        setData(res);
-      };
-      return hobby();
-    },
-    { refetchInterval: 3000 },
-  );
+  // interface HobbyTs {
+  //   hobby_id: number;
+  //   hobby: string;
+  // }
+  // const { isLoading, isError, data } = useQuery<HobbyTs | any>(
+  //   ['myhobby'],
+  //   async () => {
+  //     const allHobbiesResponse: any = await axios
+  //       .get(`${process.env.REACT_APP_BASE_URL}/hobbies`)
+  //       .then((res) => res.data);
+  //     const userHobbieseResponse: any = await axios
+  //       .get(`${process.env.REACT_APP_BASE_URL}/user-hobby/${userId}`)
+  //       .then((res) => res.data);
+  //     const hobby = () => {
+  //       const res = [];
+  //       for (let i = 0; i < allHobbiesResponse.length; i += 1) {
+  //         for (let j = 0; j < userHobbieseResponse.length; j += 1) {
+  //           if (
+  //             allHobbiesResponse[i].hobby_id ===
+  //             userHobbieseResponse[j].hobby_id
+  //           ) {
+  //             res.push(allHobbiesResponse[i]);
+  //           }
+  //         }
+  //       }
+  //       setData(res);
+  //     };
+  //     return hobby();
+  //   },
+  //   { refetchInterval: 3000 },
+  // );
 
   // if (isLoading) return <div>Loading</div>;
   // if (isError) return <div>취미를 가져오기를 실패했습니다.</div>;

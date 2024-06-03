@@ -6,6 +6,7 @@ import { extractOtherUserId } from 'utils/extractCookie';
 import styled from 'styled-components';
 import { motion } from 'framer-motion';
 
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 function Rating({ socket }: any): JSX.Element {
   const [clicked, setClicked] = useState<boolean[]>([
     false,

@@ -8,15 +8,8 @@ import meltedCookie from 'utils/meltedCookie';
 import styled from 'styled-components';
 
 const StarRating = () => {
-  const [flatform, token, rewardCoin, userId] = meltedCookie();
+  const [userId] = meltedCookie();
   const [star, setStar] = useState<number[]>([0, 0, 0, 0, 0]); // 2가 풀 1 반
-  const li: { [key: number]: string } = {
-    5: '멋쟁이 잰틀맨',
-    4: '신사',
-    3: '보통',
-    2: '좀 더 친절하게 대해주세요',
-    1: 'ㅠㅠ',
-  };
 
   const fetchScore = async () => {
     try {
@@ -40,7 +33,7 @@ const StarRating = () => {
       }
       setStar(starStates);
     } catch (error) {
-      console.log('유저 점수 가져오기 실패:', error);
+      throw new Error('유저 점수 가져오기 실패');
     }
   };
 

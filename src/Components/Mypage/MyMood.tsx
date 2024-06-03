@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import axios from 'axios';
 import { useState, useEffect } from 'react';
 import meltedCookie from 'utils/meltedCookie';
@@ -28,11 +29,12 @@ const MoodBtnContainer = styled.div`
 `;
 
 const MyMood = () => {
-  const [open, setOpen] = useState<string | null>(null);
+  const [open, setOpen] = useState<string | any>(null);
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const handleModal = (itemName: any) => {
     setOpen(open === itemName ? null : itemName);
   };
-  const [flatform, token, rewardCoin, userId] = meltedCookie();
+  const [userId] = meltedCookie();
   const [datas, setData] = useState<string[]>([]);
   const handleCloseModal = () => {
     setOpen(null);

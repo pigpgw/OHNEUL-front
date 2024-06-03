@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import React from 'react';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
@@ -33,7 +34,7 @@ const AnnouncementItemDate = styled.p`
 const AnnouncementItem: React.FC<AnnouncementItemProps> = ({
   announcement,
 }) => {
-  const { title, notice, created_at: createdAt } = announcement;
+  const { title } = announcement;
   const formatKoreanDateTime = (dateTimeString: string): string => {
     try {
       const date = new Date(dateTimeString);

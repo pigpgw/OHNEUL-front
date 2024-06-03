@@ -1,4 +1,3 @@
-import React from 'react';
 import axios from 'axios';
 
 const FetchPostAnnouncement = async (title: string, notice: string) => {
@@ -10,10 +9,9 @@ const FetchPostAnnouncement = async (title: string, notice: string) => {
         notice,
       },
     );
-    console.log(announcementFetch.data);
+    return announcementFetch.data;
   } catch (error) {
-    console.error(error);
-    throw error;
+    throw new Error('공지사항 데이터 가져오기 실패');
   }
 };
 

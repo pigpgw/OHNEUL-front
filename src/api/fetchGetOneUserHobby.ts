@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 /* eslint-disable import/prefer-default-export */
 import axios from 'axios';
 import { fetchGetHobbys } from './fetchHobby';
@@ -20,7 +21,6 @@ export const fecthGetUserHobby = async (otherId: string) => {
 
     return otherHobbyObj;
   } catch (e) {
-    console.log(e);
     throw new Error('상대방 취미 데이터 가져오기 실패');
   }
 };

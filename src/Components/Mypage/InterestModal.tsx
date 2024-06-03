@@ -1,6 +1,7 @@
+/* eslint-disable no-alert */
+/* eslint-disable no-console */
 import React, { useEffect, useState } from 'react';
 import { ItemBtn, InfoText } from 'Components/styles/Common';
-import { useNavigate } from 'react-router-dom';
 import { useQuery } from 'react-query';
 import { extractUserId } from 'utils/extractCookie';
 import { useAddUserHobbyMutation } from 'hooks/useUserHobbyMutation';
@@ -44,7 +45,6 @@ function InterestModal({ onClose }: MyHobbyModal) {
   };
   const userId = extractUserId();
   const { mutate: addUserHobby } = useAddUserHobbyMutation();
-  const navigate = useNavigate();
   const handleSubmit = async () => {
     if (userSelectHobby.length >= 4 || userSelectHobby.length === 0) {
       alert('취미는 1개 ~ 3개만 골라주세요');

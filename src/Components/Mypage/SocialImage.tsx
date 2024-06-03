@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 import NaverBogo from 'assets/images/naverBogo.jpeg';
 import KakaoBogo from 'assets/images/kakaoBogo.png';
 import meltedCookie from 'utils/meltedCookie';
@@ -29,7 +30,7 @@ const Naver = styled.img`
 
 function SocialImage() {
   const [name, setName] = useState<string>('');
-  const [flatform, token, rewardCoin, userId, isAdmin] = meltedCookie();
+  const [flatform, userId] = meltedCookie();
 
   useEffect(() => {
     const fetchUserName = async () => {
