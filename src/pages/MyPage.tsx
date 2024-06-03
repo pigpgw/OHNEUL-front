@@ -16,13 +16,12 @@ import {
   Tab,
   ContentContainer,
 } from 'Components/styles/Mypage';
-import { Container } from 'Components/styles/Common';
 import { styled } from 'styled-components';
 import { useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
 
 const MyPage: React.FC = () => {
-  const [open, setOpen] = useState<string | null>(null);
+  const [open] = useState<string | null>(null);
   const [alert, setAlert] = useState(false);
   const navigate = useNavigate();
   const gocoinHistory = () => {

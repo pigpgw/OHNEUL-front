@@ -59,7 +59,7 @@ function Hobby() {
       });
       navigate('/mood');
     } catch (e) {
-      console.log('유저 취미 등록 실패');
+      navigate('/mood');
     }
   };
 

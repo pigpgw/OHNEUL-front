@@ -1,3 +1,5 @@
+/* eslint-disable no-alert */
+/* eslint-disable no-console */
 import React, { useState } from 'react';
 import styled from 'styled-components';
 import { FetchDelHobby, FetchAddHobby } from 'api/admin/FetchEditHobby';
@@ -45,7 +47,7 @@ const EditHobby: React.FC = () => {
   };
   const handleDelete = async () => {
     try {
-      const selectedHobbyId = parseInt(selectedHobby, 10); // selectedHobby 값을 정수로 변환
+      const selectedHobbyId = parseInt(selectedHobby, 10);
 
       await FetchDelHobby(selectedHobbyId).then(() =>
         alert('취미를 삭제했습니다.'),
@@ -54,14 +56,6 @@ const EditHobby: React.FC = () => {
       console.error('삭제 실패', error);
     }
   };
-
-  // const handleUpdate = async () => {
-  //   try {
-  //     await FetchUpdateHobby(selectedHobby);
-  //   } catch (error) {
-  //     console.error('업데이트실팽', error);
-  //   }
-  // };
 
   return (
     <Container>

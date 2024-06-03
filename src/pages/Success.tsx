@@ -41,11 +41,11 @@ function Success() {
           },
         },
       );
-      console.log('제발제바렞발', response);
       if (response.status === 201) {
         setIsConfirmed(true);
       }
     } catch (error) {
+      // eslint-disable-next-line no-console
       console.log('error:', error);
     }
   }
@@ -102,9 +102,6 @@ const RequestWrapper = styled.div`
   align-items: center;
   flex-direction: column;
 `;
-
-const RequestTitle = styled.h2``;
-const RequestSubTitle = styled.h4``;
 
 const PaymentBtn = styled.button`
   width: 70%;

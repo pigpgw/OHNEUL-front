@@ -23,7 +23,6 @@ const NaverLogin: React.FC = () => {
   const NaverAuthRoot = `${process.env.REACT_APP_BASE_URL}/login/naver`;
 
   const loginRedirect = () => {
-    console.log('누름');
     window.location.href = NaverAuthRoot;
   };
 

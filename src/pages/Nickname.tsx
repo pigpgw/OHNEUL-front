@@ -1,3 +1,5 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
+/* eslint-disable no-console */
 import axios from 'axios';
 import { useEffect, useState } from 'react';
 import styled from 'styled-components';
@@ -19,7 +21,7 @@ function Nickname() {
   };
 
   const fetchAddUserNickname = async (username: any): Promise<any> => {
-    console.log(username,userId)
+    console.log(username, userId);
     return axios.patch(`${process.env.REACT_APP_BASE_URL}/users/${userId}`, {
       username,
     });

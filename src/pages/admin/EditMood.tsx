@@ -1,3 +1,5 @@
+/* eslint-disable no-console */
+/* eslint-disable no-alert */
 import React, { useState } from 'react';
 import styled from 'styled-components';
 import { FetchDelMood, FetchAddMood } from 'api/admin/FetchEditMood';

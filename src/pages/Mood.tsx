@@ -88,9 +88,6 @@ function Mood() {
     setAlertModal(false);
   };
 
-  // if (isLoading) return <div>Loading</div>;
-  // if (isError) return <div>mood data 가져오기 실패</div>;
-
   return (
     <>
       <motion.div

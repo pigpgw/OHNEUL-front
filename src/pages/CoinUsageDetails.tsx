@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 import axios from 'axios';
 import { motion } from 'framer-motion';
 import { useEffect, useState } from 'react';
@@ -19,7 +20,7 @@ const DateCont = styled.div``;
 
 const CoinUsageDetails = () => {
   const [usage, setUsage] = useState<Usage[]>([]);
-  const [flatform, token, rewardCoin, userId] = meltedCookie();
+  const [userId] = meltedCookie();
 
   useEffect(() => {
     const fetchUsage = async () => {
@@ -45,6 +46,7 @@ const CoinUsageDetails = () => {
       const hours = String(date.getHours()).padStart(2, '0');
       const minutes = String(date.getMinutes()).padStart(2, '0');
       return `${year}-${month}-${day} ${hours}:${minutes}`;
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
     } catch (error: any) {
       console.error('날짜 변환 중 에러가 발생했습니다:', error.message);
       return '';

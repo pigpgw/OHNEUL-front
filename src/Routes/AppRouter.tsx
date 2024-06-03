@@ -23,7 +23,6 @@ import Chat from 'pages/Chat';
 import CoinHistory from 'pages/CoinHistory';
 import Announcement from 'Components/Mypage/Announcement';
 import AnnouncementDetail from 'Components/Mypage/AnnouncementDetail';
-import { AnimatePresence } from 'framer-motion';
 
 const socket = io(`${process.env.REACT_APP_BASE_URL}`);
 
@@ -49,7 +48,10 @@ function AppRouter() {
         <Route path="/chat" element={<Chat socket={socket} />} />
         <Route path="/coinhistory" element={<CoinHistory />} />
         <Route path="mypage/announcement" element={<Announcement />} />
-        <Route path="mypage/announcement/:id" element={<AnnouncementDetail />} />
+        <Route
+          path="mypage/announcement/:id"
+          element={<AnnouncementDetail />}
+        />
         <Route path="/*" element={<NotFound />} />
         <Route path="/admin" element={<Admin />} />
         <Route path="/admin/manageusers" element={<ManageUsers />} />

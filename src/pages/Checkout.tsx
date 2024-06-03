@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { useEffect, useRef, useState } from 'react';
 import { loadPaymentWidget } from '@tosspayments/payment-widget-sdk';
 import styled from 'styled-components';
@@ -22,8 +23,8 @@ function Checkout() {
   const paymentWidgetRef = useRef<PaymentWidget | null>(null);
   const paymentMethodsWidgetRef = useRef<any>(null);
   const agreementWidgetRef = useRef<any>(null);
-  const [price, setPrice] = useState<number>(500);
-  const [coin, setCoin] = useState<number>(500);
+  const [price] = useState<number>(500);
+  const [coin] = useState<number>(500);
   const customerKey = '4a394e47-64a1-44de-91c2-6bcd30d72c57'; // 내 상점에서 고객을 구분하기 위해 발급한 고객의 고유 ID
   const generateRandomString = (): string => {
     return Math.random().toString(36).substr(2, 10);

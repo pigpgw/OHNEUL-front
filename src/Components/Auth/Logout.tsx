@@ -3,8 +3,6 @@ import { useDispatch, useSelector } from 'react-redux';
 import AlertModal from 'Components/Modal/AlertModal';
 import { useNavigate } from 'react-router-dom';
 import { logout, clearAuth } from 'stores/slices/userSlice';
-
-import meltedCookie from 'utils/meltedCookie';
 import styled from 'styled-components';
 
 const Button = styled.button`
@@ -40,8 +38,6 @@ const Logout: React.FC = () => {
   }, [user.isLogin, navigate]);
 
   const handleLogOut = () => {
-    const [flatform, token, rewardCoin, userId] = meltedCookie();
-    console.log(`${flatform}-로그아웃`);
     dispatch(clearAuth());
     dispatch(logout());
     deleteCookie('user_id');

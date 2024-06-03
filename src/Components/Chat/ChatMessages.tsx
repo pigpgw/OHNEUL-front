@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from 'react';
+import { useEffect, useRef } from 'react';
 import styled from 'styled-components';
 import { IoPerson } from '@react-icons/all-files/io5/IoPerson';
 import font from '../styles/font';
@@ -20,36 +20,35 @@ function ChatMessages({
   handleMyProFile,
   handleOhterProFile,
 }: MessageListProps): JSX.Element {
-  // const messagesEndRef = useRef<HTMLDivElement>(null);
+  const messagesEndRef = useRef<HTMLDivElement>(null);
 
-  // useEffect(() => {
-  //   scrollToBottom();
-  // }, [messageList]);
+  useEffect(() => {
+    scrollToBottom();
+  }, [messageList]);
 
-  // const scrollToBottom = () => {
-  //   if (messagesEndRef.current) {
-  //     messagesEndRef.current.scrollIntoView({ behavior: 'smooth' });
-  //   }
-  // };
+  const scrollToBottom = () => {
+    if (messagesEndRef.current) {
+      messagesEndRef.current.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
 
   return (
-    // <ChatMessagesWrapper>
-    //   {messageList.map((v, i) => (
-    //     <ChatMessageItemBox key={`${i}_li`} className={v.type}>
-    //       {/* {v.type === 'me' || v.type === 'other' ? (
-    //         <ProfileWrapper>
-    //           <Profile
-    //             className={v.type}
-    //             onClick={v.type === 'me' ? handleMyProFile : handleOhterProFile}
-    //           />
-    //         </ProfileWrapper>
-    //       ) : null} */}
-    //       <ChatMessageWrapper className={v.type}>{v.msg}</ChatMessageWrapper>
-    //     </ChatMessageItemBox>
-    //   ))}
-    //   {/* <div ref={messagesEndRef} /> */}
-    // </ChatMessagesWrapper>
-    <>ㅇ</>
+    <ChatMessagesWrapper>
+      {messageList.map((v, i) => (
+        <ChatMessageItemBox key={`${i}_li`} className={v.type}>
+          {v.type === 'me' || v.type === 'other' ? (
+            <ProfileWrapper>
+              <Profile
+                className={v.type}
+                onClick={v.type === 'me' ? handleMyProFile : handleOhterProFile}
+              />
+            </ProfileWrapper>
+          ) : null}
+          <ChatMessageWrapper className={v.type}>{v.msg}</ChatMessageWrapper>
+        </ChatMessageItemBox>
+      ))}
+      <div ref={messagesEndRef} />
+    </ChatMessagesWrapper>
   );
 }
 

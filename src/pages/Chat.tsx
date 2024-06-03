@@ -1,3 +1,5 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
+/* eslint-disable no-console */
 /* eslint-disable object-shorthand */
 /* eslint-disable no-useless-return */
 import React, { useCallback, useEffect, useState } from 'react';
@@ -82,8 +84,6 @@ function Chat({ socket }: any): JSX.Element {
   const [agreeModal, setAgreeModal] = useState(false);
   const [myProfileModal, setMyProfileModal] = useState(false);
   const [otherProfileModal, setOtherProfileModal] = useState(false);
-
-  const [isInputActive, setIsInputActive] = useState<boolean>(false);
 
   useEffect(() => {
     if (!socket) return;
@@ -423,8 +423,6 @@ function Chat({ socket }: any): JSX.Element {
           msgSubmitHandler={msgSubmitHandler}
           msg={msg}
           msgChangeHandler={msgChangeHandler}
-          onFocus={() => setIsInputActive(true)} // 입력창이 활성화될 때
-          onBlur={() => setIsInputActive(false)} // 입력창이 비활성화될 때
         />
       )}
       {myProfileModal && (

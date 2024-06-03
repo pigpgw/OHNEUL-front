@@ -7,7 +7,6 @@ import ButtonList from 'Components/Common/ButtonList';
 import InfoFooter from 'Components/Common/InfoFooter';
 import Button from 'Components/Common/Button';
 import AlertModal from 'Components/Modal/AlertModal';
-import LoadingBox from 'Components/Common/LoadingBox/LoadingBox';
 import { motion } from 'framer-motion';
 import { Container } from '../Components/styles/Common';
 import { fetchGetThemes } from '../api/fetchTheme';
@@ -19,6 +18,7 @@ interface Themes {
   clicked?: boolean;
 }
 
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 function Theme({ socket }: any) {
   const {
     data: availableThemes,

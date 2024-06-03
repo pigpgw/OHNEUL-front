@@ -16,6 +16,7 @@ const Redirects: React.FC = () => {
           navigate('/');
         }
       } catch (error) {
+        // eslint-disable-next-line no-alert
         alert('로그인에 실패했습니다.');
       }
     };
