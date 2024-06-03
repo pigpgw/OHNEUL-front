@@ -29,6 +29,7 @@ function AlertModal({
   onCancel,
 }: AlertModalProps) {
   useEffect(() => {
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     const options: any = {
       icon,
       title,

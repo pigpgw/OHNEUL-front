@@ -1,4 +1,4 @@
-import React from 'react';
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import axios from 'axios';
 
 export const FetchAddTheme = async (selectedTheme: string) => {
@@ -7,12 +7,7 @@ export const FetchAddTheme = async (selectedTheme: string) => {
   });
   return fetchTheme;
 };
-// export const FetchUpdateTheme = async (selectedtheme: any) => {
-//   const fetchTheme = await axios.put(
-//     `http://localhost:4000/themes/${selectedtheme}`,
-//   );
-//   return fetchTheme;
-// };
+
 export const FetchDelTheme = async (selectedtheme: any) => {
   const fetchTheme = await axios.delete(
     `http://localhost:4000/themes/${selectedtheme}`,

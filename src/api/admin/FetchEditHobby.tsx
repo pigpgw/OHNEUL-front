@@ -1,4 +1,4 @@
-import React from 'react';
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import axios from 'axios';
 
 export const FetchDelHobby = async (selectedHobbyId: any) => {
