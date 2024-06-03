@@ -30,7 +30,6 @@ export const fetchUserMood = async (otherId: string): Promise<string> => {
 
     return otherMoodObject ? otherMoodObject.mood : '';
   } catch (error) {
-    console.error('상대방 기분 가져오기 실패 :', error);
     throw new Error('상대방 기분 가져오기 실패');
   }
 };
