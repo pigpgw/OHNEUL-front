@@ -52,15 +52,15 @@ jobs:
           script: |
             sudo chown -R ec2-user:ec2-user /home/ec2-user/OHNEUL-front
 
-      - name: Update npm
-        uses: appleboy/ssh-action@v0.1.6
-        with:
-          host: ${{ secrets.HOST }}
-          username: ${{ secrets.USER }}
-          key: ${{ secrets.SSH_PRIVATE_KEY }}
-          script: |
-            sudo yum update -y
-            # npm install pm2 -g
+      # - name: Update npm
+      #   uses: appleboy/ssh-action@v0.1.6
+      #   with:
+      #     host: ${{ secrets.HOST }}
+      #     username: ${{ secrets.USER }}
+      #     key: ${{ secrets.SSH_PRIVATE_KEY }}
+      #     script: |
+      #       sudo yum update -y
+      #       # npm install pm2 -g
 
       - name: Go to project directory and pull latest code
         uses: appleboy/ssh-action@v0.1.6
