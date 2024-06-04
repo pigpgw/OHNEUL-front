@@ -19,6 +19,7 @@ import {
 import AlertModal from 'Components/Modal/AlertModal';
 import { useCoinQuery } from 'hooks/useCoinQuery';
 import { useNavigate } from 'react-router-dom';
+import { useQueryClient } from 'react-query';
 import Rating from 'Components/Chat/Rating';
 import { fecthGetUserHobby } from 'api/fetchGetOneUserHobby';
 import { fetchGetUserScore } from 'api/fetchGetUserScore';
@@ -52,7 +53,7 @@ function Chat({ socket }: any): JSX.Element {
     },
   ]);
 
-  const [remainingTime, setRemainingTime] = useState<number>(300);
+  const [remainingTime, setRemainingTime] = useState<number>(10);
   const [totalTime, setTotalTime] = useState<number>(0);
   const [aniTime, setAniTime] = useState(remainingTime);
 
@@ -196,6 +197,8 @@ function Chat({ socket }: any): JSX.Element {
     };
   }, [socket]);
 
+  const queryClient = useQueryClient();
+
   useEffect(() => {
     function consentWaitCallback() {
       setConsentWaitModal(true);
@@ -203,6 +206,7 @@ function Chat({ socket }: any): JSX.Element {
     }
 
     function consentSuccessCallback() {
+      queryClient.invalidateQueries(['coin',userId]);
       setAgreeModal(true);
       setConsentModal(false);
       setConsentWaitModal(false);
