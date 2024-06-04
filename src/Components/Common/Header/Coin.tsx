@@ -16,7 +16,7 @@ function Coin({ onClick }: CoinProps) {
   return (
     <CashContainer onClick={onClick}>
       <CashIcon src={coin} alt="코인 아이콘" />
-      <CashAmount>{userCoinState}</CashAmount>
+      <CashAmount>{userCoinState?.coin}</CashAmount>
     </CashContainer>
   );
 }

@@ -9,8 +9,7 @@ interface UserCoin {
 interface CoinQueryClient {
   isCoinLoading: boolean;
   isCoinError: boolean;
-  userCoinState: number;
-  isSuccess: boolean;
+  userCoinState: UserCoin | undefined;
 }
 
 const fetchUser = async (userId: string) => {
@@ -24,14 +23,10 @@ export const useCoinQuery = (userId: string): CoinQueryClient => {
   const {
     isLoading: isCoinLoading,
     isError: isCoinError,
-    data,
-
-    isSuccess,
+    data: userCoinState,
   } = useQuery<UserCoin>(['coin', userId], () => fetchUser(userId), {
     refetchInterval: 6000,
   });
 
-  const userCoinState: number = data?.coin || 0;
-
-  return { isCoinLoading, isCoinError, userCoinState, isSuccess };
+  return { isCoinLoading, isCoinError, userCoinState };
 };

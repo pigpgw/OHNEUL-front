@@ -253,7 +253,7 @@ function Chat({ socket }: any): JSX.Element {
   };
 
   const onAgree = useCallback(() => {
-    if (userCoinState < 5) {
+    if (userCoinState && userCoinState?.coin < 5) {
       setAlertModal(true);
     } else {
       const data = {
