@@ -23,6 +23,7 @@ import Chat from 'pages/Chat';
 import CoinHistory from 'pages/CoinHistory';
 import Announcement from 'Components/Mypage/Announcement';
 import AnnouncementDetail from 'Components/Mypage/AnnouncementDetail';
+import PrivateRoute from './PrivateRoute';
 
 const socket = io(`${process.env.REACT_APP_BASE_URL}`);
 
@@ -33,25 +34,27 @@ function AppRouter() {
         <Route path="/login/kakao" element={<Redirects />} />
         <Route path="/login/naver" element={<Redirects />} />
         <Route path="/" element={<Login />} />
+        <Route element={<PrivateRoute />}>
+          <Route path="/" element={<Home />}>
+            <Route path="favorite" element={<Favorite />} />
+            <Route path="mood" element={<Mood />} />
+            <Route path="theme" element={<Theme socket={socket} />} />
+            <Route path="mypage" element={<MyPage />} />
+          </Route>
 
-        <Route path="/" element={<Home />}>
-          <Route path="favorite" element={<Favorite />} />
-          <Route path="mood" element={<Mood />} />
-          <Route path="theme" element={<Theme socket={socket} />} />
-          <Route path="mypage" element={<MyPage />} />
+          <Route path="/nickname" element={<Nickname />} />
+          <Route path="/payment" element={<Checkout />} />
+          <Route path="/success" element={<Success />} />
+          <Route path="/fail" element={<Fail />} />
+          <Route path="/chat" element={<Chat socket={socket} />} />
+          <Route path="/coinhistory" element={<CoinHistory />} />
+          <Route path="/mypage/announcement" element={<Announcement />} />
+          <Route
+            path="/mypage/announcement/:id"
+            element={<AnnouncementDetail />}
+          />
         </Route>
 
-        <Route path="nickname" element={<Nickname />} />
-        <Route path="/payment" element={<Checkout />} />
-        <Route path="/success" element={<Success />} />
-        <Route path="/fail" element={<Fail />} />
-        <Route path="/chat" element={<Chat socket={socket} />} />
-        <Route path="/coinhistory" element={<CoinHistory />} />
-        <Route path="mypage/announcement" element={<Announcement />} />
-        <Route
-          path="mypage/announcement/:id"
-          element={<AnnouncementDetail />}
-        />
         <Route path="/*" element={<NotFound />} />
         <Route path="/admin" element={<Admin />} />
         <Route path="/admin/manageusers" element={<ManageUsers />} />
