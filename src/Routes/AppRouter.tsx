@@ -48,9 +48,9 @@ function AppRouter() {
           <Route path="/fail" element={<Fail />} />
           <Route path="/chat" element={<Chat socket={socket} />} />
           <Route path="/coinhistory" element={<CoinHistory />} />
-          <Route path="mypage/announcement" element={<Announcement />} />
+          <Route path="/mypage/announcement" element={<Announcement />} />
           <Route
-            path="mypage/announcement/:id"
+            path="/mypage/announcement/:id"
             element={<AnnouncementDetail />}
           />
         </Route>

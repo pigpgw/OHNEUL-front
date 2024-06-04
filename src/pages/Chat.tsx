@@ -87,6 +87,12 @@ function Chat({ socket }: any): JSX.Element {
   const [otherProfileModal, setOtherProfileModal] = useState(false);
 
   useEffect(() => {
+    if (!otherId) {
+      navigate(-1)
+    }
+  },[])
+
+  useEffect(() => {
     if (!socket) return;
     const fetchSetUserInfo = async (id: string) => {
       try {
