@@ -1,15 +1,15 @@
 import { useState, useEffect } from 'react';
-import axios from 'axios';
+// import axios from 'axios';
 import { TiStarFullOutline } from '@react-icons/all-files/ti/TiStarFullOutline';
 import { TiStarHalfOutline } from '@react-icons/all-files/ti/TiStarHalfOutline';
 import { TiStarOutline } from '@react-icons/all-files/ti/TiStarOutline';
 
-import meltedCookie from 'utils/meltedCookie';
+// import meltedCookie from 'utils/meltedCookie';
 import styled from 'styled-components';
 
 const StarRating = () => {
-  const userId = meltedCookie()[3];
-  const [star, setStar] = useState<number[]>([0, 0, 0, 0, 0]); // 2가 풀 1 반
+  // const userId = meltedCookie()[3];
+  const [star] = useState<number[]>([0, 0, 0, 0, 0]); // 2가 풀 1 반
 
   const fetchScore = async () => {
     // try {
@@ -36,10 +36,9 @@ const StarRating = () => {
     // } catch (error) {
     //   throw new Error('유저 점수 가져오기 실패');
     // }
-    const response = await axios.get(
-      `${process.env.REACT_APP_BASE_URL}/users/${userId}`,
-    );
-    console.log(response, userId);
+    // const response = await axios.get(
+    //   `${process.env.REACT_APP_BASE_URL}/users/${userId}`,
+    // );
   };
 
   useEffect(() => {
