@@ -1,10 +1,10 @@
 /* eslint-disable no-console */
 import NaverBogo from 'assets/images/naverBogo.jpeg';
 import KakaoBogo from 'assets/images/kakaoBogo.png';
-import meltedCookie from 'utils/meltedCookie';
 import styled from 'styled-components';
 import axios from 'axios';
 import { useEffect, useState } from 'react';
+import { extractFlatform, extractUserId } from 'utils/extractCookie';
 
 const Kakao = styled.img`
   width: 3%;
@@ -30,9 +30,11 @@ const Naver = styled.img`
 
 function SocialImage() {
   const [name, setName] = useState<string>('');
-  const [flatform, userId] = meltedCookie();
+  const userId = extractUserId();
+  const flatform = extractFlatform();
 
   useEffect(() => {
+    console.log(flatform)
     const fetchUserName = async () => {
       if (!userId) {
         console.error('User ID is null or undefined');
@@ -54,7 +56,7 @@ function SocialImage() {
     };
 
     fetchUserName();
-  }, [userId]);
+  }, []);
 
   return (
     <Wrapper>

@@ -39,3 +39,17 @@ export const extractReward = (): string => {
   }
   return '';
 };
+
+export const extractFlatform = (): string => {
+  const cookieString = document.cookie;
+  if (cookieString) {
+    const uuidInCookie = cookieString
+      .split('; ')
+      .find((item) => item.startsWith('provider='));
+    if (uuidInCookie) {
+      const userId = uuidInCookie.split('=')[1];
+      return userId;
+    }
+  }
+  return '';
+};
