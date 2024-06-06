@@ -44,6 +44,37 @@ Ohneul은 일상 생활에서 지치고 힘들지만 누군가에게 속마음�
 - 협업 툴 : Discord, Notion, Github
 - 서비스 배포 환경 : Ec2
 
+## 📺 화면 소개 (gif)
+
+### 로그인
+<p align='center'>
+    <img width="700" alt="스크린샷 2024-06-05 오후 4 41 27" src="https://github.com/pigpgw/OHNEUL-front/assets/133184988/58735d93-3b44-44b6-9933-f017bea0a28f">
+</p>
+
+
+### 기분 선택 , 매칭 주제 선택
+<p align='center'>
+    <img width="700" alt="스크린샷 2024-06-05 오후 4 41 27" src="https://github.com/pigpgw/OHNEUL-front/assets/133184988/599e69dc-f2f3-4d23-b727-b034e7171234">
+</p>
+
+### 채팅및 연장
+<p align='center'>
+    <img width="700" alt="스크린샷 2024-06-05 오후 4 41 27" src="https://github.com/pigpgw/OHNEUL-front/assets/133184988/327f1f52-b3a5-421f-ae43-2eec29938318">
+</p>
+
+### 신고
+<p align='center'>
+    <img width="700" alt="스크린샷 2024-06-05 오후 4 41 27" src="https://github.com/pigpgw/OHNEUL-front/assets/133184988/7bb29515-2627-49ff-9bfb-c1b815406243">
+</p>
+
+### 마이페이지
+<p align='center'>
+    <img width="700" alt="스크린샷 2024-06-05 오후 4 41 27" src="https://github.com/pigpgw/OHNEUL-front/assets/133184988/32dcc855-9dd2-4b64-aa40-3c3ca625a537">
+</p>
+
+### 코인샵
+
+
 ## 역할 분담
 
 ### 🍊박건우
