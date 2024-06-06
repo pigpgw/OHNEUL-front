@@ -1,7 +1,9 @@
+/* eslint-disable no-console */
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import axios from 'axios';
 import { useEffect, useState } from 'react';
-import meltedCookie from 'utils/meltedCookie';
 import styled from 'styled-components';
+import { extractUserId } from 'utils/extractCookie';
 
 const Container = styled.div`
   margin-top: 5px;
@@ -23,7 +25,7 @@ interface PaymentData {
 }
 
 const PaymentsDetails = () => {
-  const [flatform, token, rewardCoin, userId] = meltedCookie();
+  const userId = extractUserId();
   const [datas, setData] = useState<PaymentData[]>([]);
   useEffect(() => {
     const fetchPayments = async () => {

@@ -12,7 +12,6 @@ import {
 import Arrow from 'assets/images/Arrow.png';
 import { Link } from 'react-router-dom';
 import { Wrapper } from 'Components/styles/Common';
-import { motion } from 'framer-motion';
 import AnnouncementItem from './AnnouncementItem';
 
 const AnnouncementTitle = styled.div`
@@ -73,41 +72,34 @@ const Announcement: React.FC = () => {
     indexOfLastAnnouncement,
   );
   return (
-    <motion.div
-      className="loginPage"
-      initial={{ opacity: 0 }}
-      animate={{ opacity: 2 }}
-      exit={{ opacity: 0 }}
+    <Wrapper
+      width="100%"
+      maxWidth="600px"
+      // minHeight="95vh"
+      display="flex"
+      justifyContent="space-between"
+      flexDirection="column"
+      align-items="flex-start"
     >
-      <Wrapper
-        width="100%"
-        maxWidth="600px"
-        // minHeight="95vh"
-        display="flex"
-        justifyContent="space-between"
-        flexDirection="column"
-        align-items="flex-start"
-      >
-        <MenuTitle>
-          <BackButton to="/mypage">
-            <img src={Arrow} alt=""></img>
-          </BackButton>
-          <AnnouncementTitle>공지사항</AnnouncementTitle>
-        </MenuTitle>
-        <Item>
-          <BorderLine></BorderLine>
-          {currentAnnouncements.map((announcement: any, id: number) => (
-            <AnnouncementItem key={id} announcement={announcement} />
-          ))}
-        </Item>
-        <Pagination
-          itemsCount={announcements.length}
-          pageSize={pageSize}
-          currentPage={currentPage}
-          onPageChange={handlePageChange}
-        />
-      </Wrapper>
-    </motion.div>
+      <MenuTitle>
+        <BackButton to="/mypage">
+          <img src={Arrow} alt=""></img>
+        </BackButton>
+        <AnnouncementTitle>공지사항</AnnouncementTitle>
+      </MenuTitle>
+      <Item>
+        <BorderLine></BorderLine>
+        {currentAnnouncements.map((announcement: any, id: number) => (
+          <AnnouncementItem key={id} announcement={announcement} />
+        ))}
+      </Item>
+      <Pagination
+        itemsCount={announcements.length}
+        pageSize={pageSize}
+        currentPage={currentPage}
+        onPageChange={handlePageChange}
+      />
+    </Wrapper>
   );
 };
 

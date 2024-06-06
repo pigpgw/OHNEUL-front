@@ -1,11 +1,11 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import axios from 'axios';
 import { useState, useEffect } from 'react';
-import meltedCookie from 'utils/meltedCookie';
 import styled from 'styled-components';
 import MyMoodModal from 'Components/Mypage/MyMoodModal';
 import editButton from 'assets/images/editButton.png';
 import { useQuery } from 'react-query';
+import { extractUserId } from 'utils/extractCookie';
 
 const MoodBtn = styled.button`
   border-radius: 10px;
@@ -34,7 +34,7 @@ const MyMood = () => {
   const handleModal = (itemName: any) => {
     setOpen(open === itemName ? null : itemName);
   };
-  const [userId] = meltedCookie();
+  const userId = extractUserId();
   const [datas, setData] = useState<string[]>([]);
   const handleCloseModal = () => {
     setOpen(null);
@@ -53,7 +53,6 @@ const MyMood = () => {
       const userMoodResponse = await axios
         .get(`${process.env.REACT_APP_BASE_URL}/users/${userId}`)
         .then((res) => res.data.mood_id);
-
       const mood = (): void => {
         const res = [];
         for (let i = 0; i < allMoodResponse.length; i += 1) {

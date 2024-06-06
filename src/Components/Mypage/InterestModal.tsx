@@ -7,7 +7,6 @@ import { extractUserId } from 'utils/extractCookie';
 import { useAddUserHobbyMutation } from 'hooks/useUserHobbyMutation';
 import { fetchGetHobbys } from 'api/fetchHobby';
 import styled from 'styled-components';
-import { motion } from 'framer-motion';
 
 interface Hobby {
   hobby_id: number;
@@ -67,30 +66,23 @@ function InterestModal({ onClose }: MyHobbyModal) {
   return (
     <>
       <Wrapper>
-        <motion.div
-          className="loginPage"
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 2 }}
-          exit={{ opacity: 0 }}
-        >
-          <Title>평소 당신은?</Title>
-          <ItemContainer>
-            {hobby.map((category) => (
-              <ItemBtn
-                key={category.hobby_id}
-                clicked={category.clicked}
-                onClick={() => clickBtn(category.hobby_id)}
-              >
-                {category.hobby}
-              </ItemBtn>
-            ))}
-          </ItemContainer>
-          <InfoText>최소 1개, 최대 3개만 선택 가능</InfoText>
-          <BtnWrapper>
-            <SubmitBtn onClick={handleSubmit}>선택 완료</SubmitBtn>
-            <CloseBtn onClick={onClose}>닫기</CloseBtn>
-          </BtnWrapper>
-        </motion.div>
+        <Title>평소 당신은?</Title>
+        <ItemContainer>
+          {hobby.map((category) => (
+            <ItemBtn
+              key={category.hobby_id}
+              clicked={category.clicked}
+              onClick={() => clickBtn(category.hobby_id)}
+            >
+              {category.hobby}
+            </ItemBtn>
+          ))}
+        </ItemContainer>
+        <InfoText>최소 1개, 최대 3개만 선택 가능</InfoText>
+        <BtnWrapper>
+          <SubmitBtn onClick={handleSubmit}>선택 완료</SubmitBtn>
+          <CloseBtn onClick={onClose}>닫기</CloseBtn>
+        </BtnWrapper>
       </Wrapper>
     </>
   );

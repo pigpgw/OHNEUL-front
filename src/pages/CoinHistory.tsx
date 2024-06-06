@@ -4,7 +4,6 @@ import GoBackHeader from 'Components/Common/Header/GoBackHeader';
 import Button from 'Components/Common/Button';
 import useGetCoinHistory from 'hooks/useGetCoinHistory';
 import CoinHistoryList from 'Components/CoinHistoryList.tsx/CoinHistoryList';
-import { motion } from 'framer-motion';
 import { extractUserId } from '../utils/extractCookie';
 
 interface ScoreProps {
@@ -46,39 +45,32 @@ function CoinHistory() {
   if (isError) return <div>에러</div>;
 
   return (
-    <motion.div
-      className="loginPage"
-      initial={{ opacity: 0 }}
-      animate={{ opacity: 2 }}
-      exit={{ opacity: 0 }}
+    <Wrapper
+      width="100%"
+      maxWidth="600px"
+      minHeight="95vh"
+      display="flex"
+      justifyContent="space-between"
+      flexDirection="column"
+      alignItems="flex-start"
     >
-      <Wrapper
-        width="100%"
-        maxWidth="600px"
-        minHeight="95vh"
-        display="flex"
-        justifyContent="space-between"
-        flexDirection="column"
-        alignItems="flex-start"
-      >
-        <GoBackHeader />
-        <Title margin="3vh 0 3vh 1vh">당신의 코인 사용 내역</Title>
-        <Content fontSize="2.7vh" fonstWeight="800" margin="3vh auto">
-          총 연장 성공 : {coinHistory?.length}회
-        </Content>
-        <CoinHistoryList visibleItems={visibleItems} data={coinHistory} />
-        {visibleItems < coinHistory?.length && (
-          <Button
-            width="100%"
-            height="5vh"
-            margin="0 auto"
-            onClick={loadMoreItems}
-          >
-            더보기
-          </Button>
-        )}
-      </Wrapper>
-    </motion.div>
+      <GoBackHeader />
+      <Title margin="3vh 0 3vh 1vh">당신의 코인 사용 내역</Title>
+      <Content fontSize="2.7vh" fonstWeight="800" margin="3vh auto">
+        총 연장 성공 : {coinHistory?.length}회
+      </Content>
+      <CoinHistoryList visibleItems={visibleItems} data={coinHistory} />
+      {visibleItems < coinHistory?.length && (
+        <Button
+          width="100%"
+          height="5vh"
+          margin="0 auto"
+          onClick={loadMoreItems}
+        >
+          더보기
+        </Button>
+      )}
+    </Wrapper>
   );
 }
 

@@ -1,44 +1,39 @@
 import { useState, useEffect } from 'react';
-// import axios from 'axios';
+import axios from 'axios';
 import { TiStarFullOutline } from '@react-icons/all-files/ti/TiStarFullOutline';
 import { TiStarHalfOutline } from '@react-icons/all-files/ti/TiStarHalfOutline';
 import { TiStarOutline } from '@react-icons/all-files/ti/TiStarOutline';
-
-// import meltedCookie from 'utils/meltedCookie';
+import { extractUserId } from 'utils/extractCookie';
 import styled from 'styled-components';
 
 const StarRating = () => {
-  // const userId = meltedCookie()[3];
-  const [star] = useState<number[]>([0, 0, 0, 0, 0]); // 2가 풀 1 반
+  const userId = extractUserId();
+  const [star, setStar] = useState<number[]>([0, 0, 0, 0, 0]); // 2가 풀 1 반
 
   const fetchScore = async () => {
-    // try {
-    //   const response = await axios.get(
-    //     `${process.env.REACT_APP_BASE_URL}/users/${userId}`,
-    //   );
-    //   const { score } = response.data;
-    //   // const myScore = Number(score);
-    //   // let roundedScore = Math.round(myScore * 2) / 2;
-    //   // if (roundedScore > 5) {
-    //   //   roundedScore = 5;
-    //   // } else if (roundedScore < 0) {
-    //   //   roundedScore = 0;
-    //   // }
+    try {
+      const response = await axios.get(
+        `${process.env.REACT_APP_BASE_URL}/users/${userId}`,
+      );
+      const { score } = response.data;
+      const myScore = Number(score);
+      let roundedScore = Math.round(myScore * 2) / 2;
+      if (roundedScore > 5) {
+        roundedScore = 5;
+      } else if (roundedScore < 0) {
+        roundedScore = 0;
+      }
 
-    //   // const starStates: number[] = [];
-    //   // for (let i = 0; i < 5; i += 1) {
-    //   //   if (roundedScore >= i + 1) starStates.push(2);
-    //   //   else if (roundedScore === i + 0.5) starStates.push(1);
-    //   //   else starStates.push(0);
-    //   // }
-    //   // setStar(starStates);
-    //   console.log(score);
-    // } catch (error) {
-    //   throw new Error('유저 점수 가져오기 실패');
-    // }
-    // const response = await axios.get(
-    //   `${process.env.REACT_APP_BASE_URL}/users/${userId}`,
-    // );
+      const starStates: number[] = [];
+      for (let i = 0; i < 5; i += 1) {
+        if (roundedScore >= i + 1) starStates.push(2);
+        else if (roundedScore === i + 0.5) starStates.push(1);
+        else starStates.push(0);
+      }
+      setStar(starStates);
+    } catch (error) {
+      throw new Error('유저 점수 가져오기 실패');
+    }
   };
 
   useEffect(() => {
