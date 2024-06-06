@@ -1,5 +1,3 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
-/* eslint-disable no-console */
 import axios from 'axios';
 import { useEffect, useState } from 'react';
 import styled from 'styled-components';
@@ -20,8 +18,7 @@ function Nickname() {
     navigator('/favorite');
   };
 
-  const fetchAddUserNickname = async (username: any): Promise<any> => {
-    console.log(username, userId);
+  const fetchAddUserNickname = async (username: string): Promise<string> => {
     return axios.patch(`${process.env.REACT_APP_BASE_URL}/users/${userId}`, {
       username,
     });
@@ -35,7 +32,7 @@ function Nickname() {
         );
         if (response.data.username) goHobbt();
       } catch (e) {
-        console.log(e);
+        throw new Error('유저 정보 가져오기 실패')
       }
     };
     fetchUser();
@@ -47,7 +44,7 @@ function Nickname() {
       setNickname('');
       goHobbt();
     } catch (e) {
-      console.log(e);
+      throw new Error('유저 닉네임 등록 실패')
     }
   };
 

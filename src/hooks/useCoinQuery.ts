@@ -1,4 +1,3 @@
-/* eslint-disable import/prefer-default-export */
 import axios from 'axios';
 import { useQuery } from 'react-query';
 
@@ -19,14 +18,16 @@ const fetchUser = async (userId: string) => {
   return response.data;
 };
 
-export const useCoinQuery = (userId: string): CoinQueryClient => {
+const useCoinQuery = (userId: string): CoinQueryClient => {
   const {
     isLoading: isCoinLoading,
     isError: isCoinError,
     data: userCoinState,
-  } = useQuery<UserCoin>(['coin',userId], () => fetchUser(userId), {
+  } = useQuery<UserCoin>(['coin', userId], () => fetchUser(userId), {
     staleTime: 0,
   });
 
   return { isCoinLoading, isCoinError, userCoinState };
 };
+
+export default useCoinQuery;

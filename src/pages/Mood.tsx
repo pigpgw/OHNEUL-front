@@ -10,7 +10,7 @@ import ButtonList from 'Components/Common/ButtonList';
 import InfoFooter from 'Components/Common/InfoFooter';
 import Button from 'Components/Common/Button';
 import { motion } from 'framer-motion';
-import { useAddUserMoodMutation } from '../hooks/useUserMoodMutation';
+import useAddUserMoodMutation from '../hooks/useUserMoodMutation';
 
 interface MoodTs {
   mood_id: number;

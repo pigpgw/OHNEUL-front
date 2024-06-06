@@ -9,7 +9,7 @@ import Button from 'Components/Common/Button';
 import AlertModal from 'Components/Modal/AlertModal';
 import { motion } from 'framer-motion';
 import { Container } from '../Components/styles/Common';
-import { fetchGetThemes } from '../api/fetchTheme';
+import fetchGetThemes from '../api/fetchTheme';
 import { WaitModal } from '../Components/Modal/ChatModal';
 
 interface Themes {

@@ -4,9 +4,9 @@ import { useEffect, useState } from 'react';
 import { ItemBtn } from 'Components/styles/Common';
 import { useQuery } from 'react-query';
 import { fetchGetMood } from 'api/fetchMood';
-import { useAddUserMoodMutation } from 'hooks/useUserMoodMutation';
 import styled from 'styled-components';
 import { motion } from 'framer-motion';
+import useAddUserMoodMutation from 'hooks/useUserMoodMutation';
 
 interface MoodTs {
   mood_id: number;

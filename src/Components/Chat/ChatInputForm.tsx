@@ -6,16 +6,12 @@ interface ChatInputProps {
   msgSubmitHandler: (e: React.FormEvent<HTMLFormElement>) => void;
   msg: string;
   msgChangeHandler: (e: React.ChangeEvent<HTMLInputElement>) => void;
-  onFocus?: () => void; // 입력창이 활성화될 때 실행할 함수
-  onBlur?: () => void; // 입력창이 비활성화될 때 실행할 함수
 }
 
 function ChatInputForm({
   msgSubmitHandler,
   msg,
   msgChangeHandler,
-  onFocus,
-  onBlur,
 }: ChatInputProps): JSX.Element {
   const inputRef = useRef<HTMLInputElement>(null);
   const [keyboardHeight, setKeyboardHeight] = useState<number>(0);
@@ -49,8 +45,6 @@ function ChatInputForm({
           ref={inputRef}
           value={msg}
           onChange={msgChangeHandler}
-          onFocus={onFocus}
-          onBlur={onBlur}
         />
         {msg && (
           <ChatSubmitBtn
