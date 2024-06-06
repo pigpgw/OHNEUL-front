@@ -9,6 +9,7 @@ import styled from 'styled-components';
 const StarRating = () => {
   const userId = extractUserId();
   const [star, setStar] = useState<number[]>([0, 0, 0, 0, 0]); // 2가 풀 1 반
+  const allZeros = star.every((num) => num === 0);
 
   const fetchScore = async () => {
     try {
@@ -44,21 +45,36 @@ const StarRating = () => {
     <>
       <Wrap>
         <P>당신의 매너점수</P>
-        <Stars>
-          {star.map((starState, idx) => {
-            if (starState === 2) {
-              return <TiStarFullOutline key={idx} size="50" />;
-            }
-            if (starState === 1) {
-              return (
-                <div key={idx}>
-                  <TiStarHalfOutline key={idx} size="50" />
-                </div>
-              );
-            }
-            return <TiStarOutline key={idx} size="50" />;
-          })}
-        </Stars>
+        {allZeros ? (
+          <div
+            style={{
+              color: '#ffe598',
+              flexDirection: 'column',
+              display: 'flex',
+              justifyContent: 'center',
+              alignItems: 'center',
+            }}
+          >
+            <TiStarOutline size="50" />{' '}
+            <p style={{ marginTop: '5px',fontSize:'12px' }}>등록된 점수가 없습니다</p>.
+          </div>
+        ) : (
+          <Stars>
+            {star.map((starState, idx) => {
+              if (starState === 2) {
+                return <TiStarFullOutline key={idx} size="50" />;
+              }
+              if (starState === 1) {
+                return (
+                  <div key={idx}>
+                    <TiStarHalfOutline key={idx} size="50" />
+                  </div>
+                );
+              }
+              return <TiStarOutline key={idx} size="50" />;
+            })}
+          </Stars>
+        )}
       </Wrap>
     </>
   );
@@ -67,7 +83,11 @@ const StarRating = () => {
 export default StarRating;
 
 const Wrap = styled.div`
-  margin: 5vh 0;
+  margin-top: 30px;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
 `;
 
 const Stars = styled.div`
@@ -81,4 +101,6 @@ const Stars = styled.div`
 
 const P = styled.p`
   margin: 2%;
+  width: 180px;
+  font-weight: 600;
 `;
