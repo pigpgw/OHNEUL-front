@@ -1,7 +1,3 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
-/* eslint-disable no-console */
-/* eslint-disable object-shorthand */
-/* eslint-disable no-useless-return */
 import React, { useCallback, useEffect, useState } from 'react';
 import ChatHeader from 'Components/Chat/ChatHeader';
 import ChatMessages from 'Components/Chat/ChatMessages';
@@ -17,12 +13,12 @@ import {
   AgreeModal,
 } from 'Components/Modal/ChatModal';
 import AlertModal from 'Components/Modal/AlertModal';
-import { useCoinQuery } from 'hooks/useCoinQuery';
+import useCoinQuery from 'hooks/useCoinQuery';
 import { useNavigate } from 'react-router-dom';
 import { useQueryClient } from 'react-query';
 import Rating from 'Components/Chat/Rating';
 import { fecthGetUserHobby } from 'api/fetchGetOneUserHobby';
-import { fetchGetUserScore } from 'api/fetchGetUserScore';
+import fetchGetUserScore from 'api/fetchGetUserScore';
 
 interface Message {
   msg: string;
@@ -36,6 +32,7 @@ interface User {
   score: string | undefined;
 }
 
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 function Chat({ socket }: any): JSX.Element {
   const userId = extractUserId();
   const otherId = extractOtherUserId();
@@ -88,9 +85,9 @@ function Chat({ socket }: any): JSX.Element {
 
   useEffect(() => {
     if (!otherId) {
-      navigate(-1)
+      navigate(-1);
     }
-  },[])
+  }, []);
 
   useEffect(() => {
     if (!socket) return;
@@ -101,9 +98,9 @@ function Chat({ socket }: any): JSX.Element {
         const score = await fetchGetUserScore(id);
         if (id === otherId) {
           setOther({
-            score: score,
+            score,
             hobby: hobby.join(', '),
-            mood: mood,
+            mood,
           });
           setMessageList((prev) => [
             ...prev,
@@ -120,13 +117,13 @@ function Chat({ socket }: any): JSX.Element {
           ]);
         } else {
           setUser({
-            score: score,
+            score,
             hobby: hobby.join(', '),
-            mood: mood,
+            mood,
           });
         }
       } catch (error) {
-        console.error('기분, 취미 가져오기 실패', error);
+        throw new Error('상대방 기분및 취미 가져오기 실패');
       }
     };
 
@@ -212,7 +209,7 @@ function Chat({ socket }: any): JSX.Element {
     }
 
     function consentSuccessCallback() {
-      queryClient.invalidateQueries(['coin',userId]);
+      queryClient.invalidateQueries(['coin', userId]);
       setAgreeModal(true);
       setConsentModal(false);
       setConsentWaitModal(false);

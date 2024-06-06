@@ -1,7 +1,11 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
-/* eslint-disable import/prefer-default-export */
 import axios from 'axios';
-import { fetchGetHobbys } from './fetchHobby';
+import fetchGetHobbys from './fetchHobby';
+
+interface Props {
+  user_hobby_id: string;
+  user_id: string;
+  hobby_id: string;
+}
 
 export const fetchGetOneUserHobby = async (userId: string) => {
   const response = await axios.get(
@@ -14,8 +18,8 @@ export const fecthGetUserHobby = async (otherId: string) => {
   try {
     const totalMoodData = await fetchGetHobbys();
     const response = await fetchGetOneUserHobby(otherId);
-    const otherHobby = response.map((item: any): any => item.hobby_id);
-    const otherHobbyObj = otherHobby.map((item: any): any => {
+    const otherHobby = response.map((item: Props): string => item.hobby_id);
+    const otherHobbyObj = otherHobby.map((item: number): string | undefined => {
       return totalMoodData.find((hobby) => hobby.hobby_id === item)?.hobby;
     });
 

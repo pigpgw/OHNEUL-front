@@ -1,8 +1,8 @@
 /* eslint-disable import/prefer-default-export */
 import { useMutation } from 'react-query';
-import { updateUserData } from '../api/fetchUserMood';
+import updateUserData from '../api/fetchUserMood';
 
-export const useAddUserMoodMutation = () => {
+const useAddUserMoodMutation = () => {
   return useMutation(['userMood'], updateUserData, {
     onSuccess: () => {
       // eslint-disable-next-line no-console
@@ -10,3 +10,5 @@ export const useAddUserMoodMutation = () => {
     },
   });
 };
+
+export default useAddUserMoodMutation;

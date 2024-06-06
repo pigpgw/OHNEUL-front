@@ -80,6 +80,7 @@ const ChatMessagesWrapper = styled.div`
   padding: 2% 0;
   overflow-y: scroll;
   justify-content: center;
+  max-height: 80vh;
 `;
 
 const ChatMessageItemBox = styled.div`

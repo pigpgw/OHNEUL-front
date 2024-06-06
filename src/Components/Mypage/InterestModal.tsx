@@ -5,7 +5,7 @@ import { ItemBtn, InfoText } from 'Components/styles/Common';
 import { useQuery } from 'react-query';
 import { extractUserId } from 'utils/extractCookie';
 import { useAddUserHobbyMutation } from 'hooks/useUserHobbyMutation';
-import { fetchGetHobbys } from 'api/fetchHobby';
+import fetchGetHobbys from 'api/fetchHobby';
 import styled from 'styled-components';
 
 interface Hobby {

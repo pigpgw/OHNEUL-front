@@ -1,4 +1,3 @@
-/* eslint-disable import/prefer-default-export */
 import axios from 'axios';
 
 interface UserHobby {
@@ -11,8 +10,13 @@ interface AddUserHobbyResponse {
   data: string;
 }
 
-export const fetchAddUserHobby = (
+const fetchAddUserHobby = (
   userHobby: UserHobby,
 ): Promise<AddUserHobbyResponse> => {
-  return axios.post(`${process.env.REACT_APP_BASE_URL}/user-hobby/join`, userHobby);
+  return axios.post(
+    `${process.env.REACT_APP_BASE_URL}/user-hobby/join`,
+    userHobby,
+  );
 };
+
+export default fetchAddUserHobby;

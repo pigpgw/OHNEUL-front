@@ -1,4 +1,3 @@
-/* eslint-disable no-console */
 import axios from 'axios';
 import { motion } from 'framer-motion';
 import { useEffect, useState } from 'react';
@@ -30,7 +29,7 @@ const CoinUsageDetails = () => {
         );
         setUsage(response.data);
       } catch (error) {
-        console.error(error);
+        throw new Error('유저 코인 내역 불러오기 싶래');
       }
     };
     fetchUsage();
@@ -39,17 +38,14 @@ const CoinUsageDetails = () => {
   const formatKoreanDateTime = (dateTimeString: string): string => {
     try {
       const date = new Date(dateTimeString);
-      // 위 스타일드컴포넌트의 Date 컴포넌트와 생성자함수 new Date 가 겹쳐서 오류가 발생함;;
       const year = date.getFullYear();
       const month = String(date.getMonth() + 1).padStart(2, '0');
       const day = String(date.getDate()).padStart(2, '0');
       const hours = String(date.getHours()).padStart(2, '0');
       const minutes = String(date.getMinutes()).padStart(2, '0');
       return `${year}-${month}-${day} ${hours}:${minutes}`;
-      // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    } catch (error: any) {
-      console.error('날짜 변환 중 에러가 발생했습니다:', error.message);
-      return '';
+    } catch (error) {
+      throw new Error('코인 내역 시간 불러오기 싶래');
     }
   };
   return (

@@ -10,7 +10,7 @@ import Button from 'Components/Common/Button';
 import useCheckHobbiesAndNavigate from 'hooks/useCheckHobbiesAndNavigateHook';
 import { extractUserId } from 'utils/extractCookie';
 import { useAddUserHobbyMutation } from '../hooks/useUserHobbyMutation';
-import { fetchGetHobbys } from '../api/fetchHobby';
+import fetchGetHobbys from '../api/fetchHobby';
 
 interface Hobby {
   hobby_id: number;

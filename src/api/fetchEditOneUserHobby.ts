@@ -1,3 +1,5 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
+/* eslint-disable no-console */
 /* eslint-disable import/prefer-default-export */
 import axios from 'axios';
 import meltedCookie from 'utils/meltedCookie';
