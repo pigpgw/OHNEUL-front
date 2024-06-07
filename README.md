@@ -94,7 +94,9 @@ Ohneul은 일상 생활에서 지치고 힘들지만 누군가에게 속마음�
 </p>
 
 ### 코인샵
-
+<p align='center'>
+    <img width="300" alt="스크린샷 2024-06-05 오후 4 41 27" src="https://github.com/pigpgw/OHNEUL-front/assets/133184988/8e2fe365-b9a9-4783-979f-6dcafbbc4c67">
+</p>
 
 ## 팀원 구성
 <div align="center">
