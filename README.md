@@ -62,7 +62,9 @@ Back-end : 제공된 API 활용(Nest.js, mariaDB, Typeorm)
     - ec2연결(nginx, pm2, github actions 사용)
 ### 🐬김정운
 - **기능**
-    - 
+    - 유저 정보, 로그인, 접속 보상 지급, 공지, 코인 사옹 내역, 유저 신고
+    - 데이터베이스 연결(mariaDB)
+    - ec2연결(nginx, pm2, github actions 사용)
 
 ## 개발 환경
 - Front-end : React, TypeScript, Styled-Components, React-Query, Redux Toolkit
